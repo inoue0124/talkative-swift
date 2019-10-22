@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oho-CA-icL">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ChatroomListView-->
+        <scene sceneID="z7k-PK-85r">
+            <objects>
+                <viewController id="1NC-bE-SpL" userLabel="ChatroomListView" customClass="ChatroomListViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bxJ-we-ISx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nQC-lu-vBU">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="kte-lI-VZt" firstAttribute="trailing" secondItem="nQC-lu-vBU" secondAttribute="trailing" id="ahN-CZ-SIJ"/>
+                            <constraint firstItem="nQC-lu-vBU" firstAttribute="leading" secondItem="kte-lI-VZt" secondAttribute="leading" id="kRw-G1-rpj"/>
+                            <constraint firstItem="nQC-lu-vBU" firstAttribute="top" secondItem="kte-lI-VZt" secondAttribute="top" id="nzd-jL-AMO"/>
+                            <constraint firstItem="kte-lI-VZt" firstAttribute="bottom" secondItem="nQC-lu-vBU" secondAttribute="bottom" id="r7U-P3-58t"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kte-lI-VZt"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="message" id="dyP-cK-nXr"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="Hyc-1B-HgH"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="ChatroomListTable" destination="nQC-lu-vBU" id="75N-YR-7ic"/>
+                        <segue destination="Cyt-4m-12D" kind="show" id="AoE-3l-fCt"/>
+                        <segue destination="qir-iD-Gjj" kind="show" identifier="showChatroomView" id="DEs-bC-hey"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EuA-On-GfX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-233" y="-115"/>
+        </scene>
+        <!--loginView-->
+        <scene sceneID="TVM-jJ-fiU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="loginView" id="Cyt-4m-12D" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="51U-pZ-czN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Clp-Mc-rva" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="540" y="-439"/>
+        </scene>
+        <!--Chatroom View Controller-->
+        <scene sceneID="93M-8G-GeC">
+            <objects>
+                <viewController storyboardIdentifier="chatroom" id="qir-iD-Gjj" customClass="ChatroomViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y29-bn-84D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="EEk-HE-OKT"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aRf-D7-kJD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qXV-fy-MvH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1025" y="-115"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3g0-Ca-wi7">
+            <objects>
+                <navigationController id="oho-CA-icL" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TIq-19-4bZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1NC-bE-SpL" kind="relationship" relationship="rootViewController" id="Cwj-Bt-QHy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y7F-J1-2CC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-233" y="-828"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="message" width="30" height="30"/>
+    </resources>
+</document>

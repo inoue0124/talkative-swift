@@ -3,19 +3,54 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		357751F20904743882F1793A /* Pods_talkativeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CE1B02D5EF776DF1F9FE9 /* Pods_talkativeTests.framework */; };
+		3CC88CC274CDFE21DF1512AE /* Pods_talkative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */; };
+		5F447A9537E886BBEC1B0DBB /* Pods_talkative_talkativeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */; };
+		701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF3BA234D6E1B006A3F82 /* callingViewController.swift */; };
+		7030DCD2235264F000F29566 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030DCD1235264F000F29566 /* Settings.swift */; };
+		703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 703976BB23577BB100F4207A /* GoogleService-Info.plist */; };
+		70488CD623551A0900B3C1CD /* ChatroomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70488CD523551A0900B3C1CD /* ChatroomModel.swift */; };
+		70488D352356871400B3C1CD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70488D342356871400B3C1CD /* UserModel.swift */; };
+		70488D3723568AC000B3C1CD /* OfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70488D3623568AC000B3C1CD /* OfferModel.swift */; };
+		7059B899234F1472005BB6D4 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059B898234F1472005BB6D4 /* ImagePickerController.swift */; };
+		7059B89B234F1479005BB6D4 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059B89A234F1479005BB6D4 /* ImageRow.swift */; };
+		7059B8A6234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059B8A4234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift */; };
+		7059B8A7234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7059B8A5234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib */; };
+		7059B8A9234F6EBA005BB6D4 /* chatroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059B8A8234F6EBA005BB6D4 /* chatroomViewController.swift */; };
+		70695288234D697000D936EC /* nativeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70695287234D697000D936EC /* nativeDetailViewController.swift */; };
+		7069528C234D6C8900D936EC /* Uitl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069528B234D6C8900D936EC /* Uitl.swift */; };
+		70918AB2235C8D3900C18CA2 /* HistoryRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918AB0235C8D3900C18CA2 /* HistoryRowTableViewCell.swift */; };
+		70918AB3235C8D3900C18CA2 /* HistoryRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70918AB1235C8D3900C18CA2 /* HistoryRowTableViewCell.xib */; };
+		70979CEA234DA04B00579395 /* SearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70979CE9234DA04B00579395 /* SearchView.storyboard */; };
+		70979CEC234DB37A00579395 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CEB234DB37A00579395 /* ReviewViewController.swift */; };
+		70979CEE234DB8FA00579395 /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CED234DB8FA00579395 /* signUpViewController.swift */; };
+		70979CF1234DCEEF00579395 /* loginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70979CF0234DCEEF00579395 /* loginView.storyboard */; };
+		70979CF5234DF07400579395 /* registerProfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF4234DF07400579395 /* registerProfViewController.swift */; };
+		70979CF7234DF2DD00579395 /* logInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF6234DF2DD00579395 /* logInViewController.swift */; };
+		70979CF9234E2C8400579395 /* extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF8234E2C8400579395 /* extentions.swift */; };
 		70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF44234C856300BA2D74 /* AppDelegate.swift */; };
-		70A4DF47234C856300BA2D74 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF46234C856300BA2D74 /* SceneDelegate.swift */; };
-		70A4DF49234C856300BA2D74 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF48234C856300BA2D74 /* FirstViewController.swift */; };
-		70A4DF4B234C856300BA2D74 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF4A234C856300BA2D74 /* SecondViewController.swift */; };
-		70A4DF4E234C856300BA2D74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF4C234C856300BA2D74 /* Main.storyboard */; };
+		70A4DF49234C856300BA2D74 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF48234C856300BA2D74 /* SearchViewController.swift */; };
+		70A4DF4B234C856300BA2D74 /* ChatroomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF4A234C856300BA2D74 /* ChatroomListViewController.swift */; };
 		70A4DF50234C856500BA2D74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF4F234C856500BA2D74 /* Assets.xcassets */; };
 		70A4DF53234C856500BA2D74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF51234C856500BA2D74 /* LaunchScreen.storyboard */; };
 		70A4DF5E234C856500BA2D74 /* talkativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF5D234C856500BA2D74 /* talkativeTests.swift */; };
 		70A4DF69234C856500BA2D74 /* talkativeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF68234C856500BA2D74 /* talkativeUITests.swift */; };
+		70A4DF77234C8C6800BA2D74 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF76234C8C6800BA2D74 /* HistoryViewController.swift */; };
+		70A4DF79234C8CFE00BA2D74 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF78234C8CFE00BA2D74 /* ProfileViewController.swift */; };
+		70A4DF7F234CAB8B00BA2D74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF7E234CAB8B00BA2D74 /* Main.storyboard */; };
+		70A4DF81234CAB9900BA2D74 /* HistoryView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF80234CAB9900BA2D74 /* HistoryView.storyboard */; };
+		70A4DF83234CABA600BA2D74 /* ProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */; };
+		70A4DF85234CAD9000BA2D74 /* ChatroomListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF84234CAD9000BA2D74 /* ChatroomListView.storyboard */; };
+		70A551F32359F076005F4699 /* Preloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 70A551F22359F076005F4699 /* Preloader.gif */; };
+		70A551F52359F0C5005F4699 /* Preloader2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 70A551F42359F0C5005F4699 /* Preloader2.gif */; };
+		70D9BE26234CB71B004DA3BF /* SearchConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */; };
+		70D9BE2D234CD9BC004DA3BF /* nativeListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */; };
+		70D9BE2E234CD9BC004DA3BF /* nativeListRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70D9BE2C234CD9BC004DA3BF /* nativeListRowTableViewCell.xib */; };
+		70D9BE30234CDE03004DA3BF /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE2F234CDE03004DA3BF /* SearchResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +71,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B6823FD47379237AEBC8B0C /* Pods-talkativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talkativeTests.release.xcconfig"; path = "Target Support Files/Pods-talkativeTests/Pods-talkativeTests.release.xcconfig"; sourceTree = "<group>"; };
+		507CE1B02D5EF776DF1F9FE9 /* Pods_talkativeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkativeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkative_talkativeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		701AF3BA234D6E1B006A3F82 /* callingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callingViewController.swift; sourceTree = "<group>"; };
+		701AF3BC234D7733006A3F82 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		7030DCD1235264F000F29566 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		703976BB23577BB100F4207A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		70488CD523551A0900B3C1CD /* ChatroomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomModel.swift; sourceTree = "<group>"; };
+		70488D342356871400B3C1CD /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		70488D3623568AC000B3C1CD /* OfferModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferModel.swift; sourceTree = "<group>"; };
+		7059B898234F1472005BB6D4 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		7059B89A234F1479005BB6D4 /* ImageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
+		7059B8A4234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatroomListRowTableViewCell.swift; sourceTree = "<group>"; };
+		7059B8A5234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = chatroomListRowTableViewCell.xib; sourceTree = "<group>"; };
+		7059B8A8234F6EBA005BB6D4 /* chatroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatroomViewController.swift; sourceTree = "<group>"; };
+		70695287234D697000D936EC /* nativeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nativeDetailViewController.swift; sourceTree = "<group>"; };
+		7069528B234D6C8900D936EC /* Uitl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uitl.swift; sourceTree = "<group>"; };
+		70918AB0235C8D3900C18CA2 /* HistoryRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRowTableViewCell.swift; sourceTree = "<group>"; };
+		70918AB1235C8D3900C18CA2 /* HistoryRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryRowTableViewCell.xib; sourceTree = "<group>"; };
+		70979CE9234DA04B00579395 /* SearchView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchView.storyboard; sourceTree = "<group>"; };
+		70979CEB234DB37A00579395 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		70979CED234DB8FA00579395 /* signUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
+		70979CF0234DCEEF00579395 /* loginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = loginView.storyboard; sourceTree = "<group>"; };
+		70979CF4234DF07400579395 /* registerProfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerProfViewController.swift; sourceTree = "<group>"; };
+		70979CF6234DF2DD00579395 /* logInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logInViewController.swift; sourceTree = "<group>"; };
+		70979CF8234E2C8400579395 /* extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extentions.swift; sourceTree = "<group>"; };
 		70A4DF41234C856300BA2D74 /* talkative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talkative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A4DF44234C856300BA2D74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		70A4DF46234C856300BA2D74 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		70A4DF48234C856300BA2D74 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		70A4DF4A234C856300BA2D74 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		70A4DF4D234C856300BA2D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		70A4DF48234C856300BA2D74 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		70A4DF4A234C856300BA2D74 /* ChatroomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomListViewController.swift; sourceTree = "<group>"; };
 		70A4DF4F234C856500BA2D74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70A4DF52234C856500BA2D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70A4DF54234C856500BA2D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +111,23 @@
 		70A4DF64234C856500BA2D74 /* talkativeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = talkativeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A4DF68234C856500BA2D74 /* talkativeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkativeUITests.swift; sourceTree = "<group>"; };
 		70A4DF6A234C856500BA2D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70A4DF76234C8C6800BA2D74 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		70A4DF78234C8CFE00BA2D74 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		70A4DF7E234CAB8B00BA2D74 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		70A4DF80234CAB9900BA2D74 /* HistoryView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HistoryView.storyboard; sourceTree = "<group>"; };
+		70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileView.storyboard; sourceTree = "<group>"; };
+		70A4DF84234CAD9000BA2D74 /* ChatroomListView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatroomListView.storyboard; sourceTree = "<group>"; };
+		70A551F22359F076005F4699 /* Preloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Preloader.gif; sourceTree = "<group>"; };
+		70A551F42359F0C5005F4699 /* Preloader2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Preloader2.gif; sourceTree = "<group>"; };
+		70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConditionViewController.swift; sourceTree = "<group>"; };
+		70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nativeListRowTableViewCell.swift; sourceTree = "<group>"; };
+		70D9BE2C234CD9BC004DA3BF /* nativeListRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = nativeListRowTableViewCell.xib; sourceTree = "<group>"; };
+		70D9BE2F234CDE03004DA3BF /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		9EDD02C4D06691FF1C1374DF /* Pods-talkative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talkative.debug.xcconfig"; path = "Target Support Files/Pods-talkative/Pods-talkative.debug.xcconfig"; sourceTree = "<group>"; };
+		D1BE3EA45B811FE4BE869C06 /* Pods-talkative-talkativeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talkative-talkativeUITests.debug.xcconfig"; path = "Target Support Files/Pods-talkative-talkativeUITests/Pods-talkative-talkativeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E6C845B4B0B2811624086446 /* Pods-talkative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talkative.release.xcconfig"; path = "Target Support Files/Pods-talkative/Pods-talkative.release.xcconfig"; sourceTree = "<group>"; };
+		F01EB9263CB3E8418687117E /* Pods-talkativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talkativeTests.debug.xcconfig"; path = "Target Support Files/Pods-talkativeTests/Pods-talkativeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F3C7F868771151DA3D91C7B4 /* Pods-talkative-talkativeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talkative-talkativeUITests.release.xcconfig"; path = "Target Support Files/Pods-talkative-talkativeUITests/Pods-talkative-talkativeUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CC88CC274CDFE21DF1512AE /* Pods_talkative.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				357751F20904743882F1793A /* Pods_talkativeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +151,51 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F447A9537E886BBEC1B0DBB /* Pods_talkative_talkativeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36E82F34FC519698E4642CDE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */,
+				54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */,
+				507CE1B02D5EF776DF1F9FE9 /* Pods_talkativeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7059B893234F1414005BB6D4 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				70A551F22359F076005F4699 /* Preloader.gif */,
+				70A551F42359F0C5005F4699 /* Preloader2.gif */,
+				70488D342356871400B3C1CD /* UserModel.swift */,
+				70488D3623568AC000B3C1CD /* OfferModel.swift */,
+				70488CD523551A0900B3C1CD /* ChatroomModel.swift */,
+				7069528B234D6C8900D936EC /* Uitl.swift */,
+				70979CF8234E2C8400579395 /* extentions.swift */,
+				7059B898234F1472005BB6D4 /* ImagePickerController.swift */,
+				7059B89A234F1479005BB6D4 /* ImageRow.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		70979CEF234DB90000579395 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				70979CF6234DF2DD00579395 /* logInViewController.swift */,
+				70979CED234DB8FA00579395 /* signUpViewController.swift */,
+				70979CF4234DF07400579395 /* registerProfViewController.swift */,
+				7030DCD1235264F000F29566 /* Settings.swift */,
+				70979CF0234DCEEF00579395 /* loginView.storyboard */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		70A4DF38234C856300BA2D74 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +203,8 @@
 				70A4DF5C234C856500BA2D74 /* talkativeTests */,
 				70A4DF67234C856500BA2D74 /* talkativeUITests */,
 				70A4DF42234C856300BA2D74 /* Products */,
+				D8194B840CBF27870DB9D1DC /* Pods */,
+				36E82F34FC519698E4642CDE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,12 +222,17 @@
 			isa = PBXGroup;
 			children = (
 				70A4DF44234C856300BA2D74 /* AppDelegate.swift */,
-				70A4DF46234C856300BA2D74 /* SceneDelegate.swift */,
-				70A4DF48234C856300BA2D74 /* FirstViewController.swift */,
-				70A4DF4A234C856300BA2D74 /* SecondViewController.swift */,
-				70A4DF4C234C856300BA2D74 /* Main.storyboard */,
+				701AF3BC234D7733006A3F82 /* SceneDelegate.swift */,
+				70979CEF234DB90000579395 /* Authentication */,
+				70D9BE27234CD87E004DA3BF /* SearchView */,
+				70D9BE28234CD891004DA3BF /* MessageView */,
+				70D9BE29234CD89B004DA3BF /* HistoryView */,
+				70D9BE2A234CD8A9004DA3BF /* ProfileView */,
+				7059B893234F1414005BB6D4 /* SupportingFiles */,
 				70A4DF4F234C856500BA2D74 /* Assets.xcassets */,
+				70A4DF7E234CAB8B00BA2D74 /* Main.storyboard */,
 				70A4DF51234C856500BA2D74 /* LaunchScreen.storyboard */,
+				703976BB23577BB100F4207A /* GoogleService-Info.plist */,
 				70A4DF54234C856500BA2D74 /* Info.plist */,
 			);
 			path = talkative;
@@ -131,6 +256,67 @@
 			path = talkativeUITests;
 			sourceTree = "<group>";
 		};
+		70D9BE27234CD87E004DA3BF /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				70A4DF48234C856300BA2D74 /* SearchViewController.swift */,
+				70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */,
+				70D9BE2F234CDE03004DA3BF /* SearchResultViewController.swift */,
+				70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */,
+				70D9BE2C234CD9BC004DA3BF /* nativeListRowTableViewCell.xib */,
+				70695287234D697000D936EC /* nativeDetailViewController.swift */,
+				701AF3BA234D6E1B006A3F82 /* callingViewController.swift */,
+				70979CEB234DB37A00579395 /* ReviewViewController.swift */,
+				70979CE9234DA04B00579395 /* SearchView.storyboard */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
+		70D9BE28234CD891004DA3BF /* MessageView */ = {
+			isa = PBXGroup;
+			children = (
+				70A4DF4A234C856300BA2D74 /* ChatroomListViewController.swift */,
+				7059B8A4234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift */,
+				7059B8A5234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib */,
+				7059B8A8234F6EBA005BB6D4 /* chatroomViewController.swift */,
+				70A4DF84234CAD9000BA2D74 /* ChatroomListView.storyboard */,
+			);
+			path = MessageView;
+			sourceTree = "<group>";
+		};
+		70D9BE29234CD89B004DA3BF /* HistoryView */ = {
+			isa = PBXGroup;
+			children = (
+				70A4DF76234C8C6800BA2D74 /* HistoryViewController.swift */,
+				70918AB0235C8D3900C18CA2 /* HistoryRowTableViewCell.swift */,
+				70918AB1235C8D3900C18CA2 /* HistoryRowTableViewCell.xib */,
+				70A4DF80234CAB9900BA2D74 /* HistoryView.storyboard */,
+			);
+			path = HistoryView;
+			sourceTree = "<group>";
+		};
+		70D9BE2A234CD8A9004DA3BF /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				70A4DF78234C8CFE00BA2D74 /* ProfileViewController.swift */,
+				70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		D8194B840CBF27870DB9D1DC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9EDD02C4D06691FF1C1374DF /* Pods-talkative.debug.xcconfig */,
+				E6C845B4B0B2811624086446 /* Pods-talkative.release.xcconfig */,
+				D1BE3EA45B811FE4BE869C06 /* Pods-talkative-talkativeUITests.debug.xcconfig */,
+				F3C7F868771151DA3D91C7B4 /* Pods-talkative-talkativeUITests.release.xcconfig */,
+				F01EB9263CB3E8418687117E /* Pods-talkativeTests.debug.xcconfig */,
+				4B6823FD47379237AEBC8B0C /* Pods-talkativeTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +324,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70A4DF6D234C856500BA2D74 /* Build configuration list for PBXNativeTarget "talkative" */;
 			buildPhases = (
+				561A447E96E189C48ED90807 /* [CP] Check Pods Manifest.lock */,
 				70A4DF3D234C856300BA2D74 /* Sources */,
 				70A4DF3E234C856300BA2D74 /* Frameworks */,
 				70A4DF3F234C856300BA2D74 /* Resources */,
+				839E402B421975E96C1101D3 /* [CP] Embed Pods Frameworks */,
+				30804E653C1C6E33B371D41C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,6 +344,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70A4DF70234C856500BA2D74 /* Build configuration list for PBXNativeTarget "talkativeTests" */;
 			buildPhases = (
+				92A722472141C912EA2FC961 /* [CP] Check Pods Manifest.lock */,
 				70A4DF55234C856500BA2D74 /* Sources */,
 				70A4DF56234C856500BA2D74 /* Frameworks */,
 				70A4DF57234C856500BA2D74 /* Resources */,
@@ -173,9 +363,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70A4DF73234C856500BA2D74 /* Build configuration list for PBXNativeTarget "talkativeUITests" */;
 			buildPhases = (
+				527D054E85338DF553D6CB31 /* [CP] Check Pods Manifest.lock */,
 				70A4DF60234C856500BA2D74 /* Sources */,
 				70A4DF61234C856500BA2D74 /* Frameworks */,
 				70A4DF62234C856500BA2D74 /* Resources */,
+				96541DF1FEF91DAD74294709 /* [CP] Embed Pods Frameworks */,
+				2880804CD9F824DBEA33F616 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -236,8 +429,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				70A4DF53234C856500BA2D74 /* LaunchScreen.storyboard in Resources */,
+				70A4DF83234CABA600BA2D74 /* ProfileView.storyboard in Resources */,
+				70A4DF81234CAB9900BA2D74 /* HistoryView.storyboard in Resources */,
+				70979CF1234DCEEF00579395 /* loginView.storyboard in Resources */,
+				70A4DF85234CAD9000BA2D74 /* ChatroomListView.storyboard in Resources */,
+				703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */,
+				70A4DF7F234CAB8B00BA2D74 /* Main.storyboard in Resources */,
 				70A4DF50234C856500BA2D74 /* Assets.xcassets in Resources */,
-				70A4DF4E234C856300BA2D74 /* Main.storyboard in Resources */,
+				70979CEA234DA04B00579395 /* SearchView.storyboard in Resources */,
+				70A551F52359F0C5005F4699 /* Preloader2.gif in Resources */,
+				7059B8A7234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib in Resources */,
+				70918AB3235C8D3900C18CA2 /* HistoryRowTableViewCell.xib in Resources */,
+				70D9BE2E234CD9BC004DA3BF /* nativeListRowTableViewCell.xib in Resources */,
+				70A551F32359F076005F4699 /* Preloader.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,15 +461,173 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2880804CD9F824DBEA33F616 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talkative-talkativeUITests/Pods-talkative-talkativeUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talkative-talkativeUITests/Pods-talkative-talkativeUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-talkative-talkativeUITests/Pods-talkative-talkativeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30804E653C1C6E33B371D41C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talkative/Pods-talkative-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talkative/Pods-talkative-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-talkative/Pods-talkative-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		527D054E85338DF553D6CB31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-talkative-talkativeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		561A447E96E189C48ED90807 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-talkative-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		839E402B421975E96C1101D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talkative/Pods-talkative-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talkative/Pods-talkative-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-talkative/Pods-talkative-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92A722472141C912EA2FC961 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-talkativeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96541DF1FEF91DAD74294709 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talkative-talkativeUITests/Pods-talkative-talkativeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talkative-talkativeUITests/Pods-talkative-talkativeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-talkative-talkativeUITests/Pods-talkative-talkativeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		70A4DF3D234C856300BA2D74 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70A4DF4B234C856300BA2D74 /* SecondViewController.swift in Sources */,
-				70A4DF49234C856300BA2D74 /* FirstViewController.swift in Sources */,
+				70A4DF79234C8CFE00BA2D74 /* ProfileViewController.swift in Sources */,
+				7059B8A6234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift in Sources */,
+				70488CD623551A0900B3C1CD /* ChatroomModel.swift in Sources */,
+				70D9BE30234CDE03004DA3BF /* SearchResultViewController.swift in Sources */,
+				7059B8A9234F6EBA005BB6D4 /* chatroomViewController.swift in Sources */,
+				70979CEC234DB37A00579395 /* ReviewViewController.swift in Sources */,
+				701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */,
+				70979CF7234DF2DD00579395 /* logInViewController.swift in Sources */,
+				70D9BE26234CB71B004DA3BF /* SearchConditionViewController.swift in Sources */,
+				70488D352356871400B3C1CD /* UserModel.swift in Sources */,
+				7069528C234D6C8900D936EC /* Uitl.swift in Sources */,
+				70979CF5234DF07400579395 /* registerProfViewController.swift in Sources */,
+				70979CEE234DB8FA00579395 /* signUpViewController.swift in Sources */,
+				70D9BE2D234CD9BC004DA3BF /* nativeListRowTableViewCell.swift in Sources */,
+				70488D3723568AC000B3C1CD /* OfferModel.swift in Sources */,
+				70A4DF4B234C856300BA2D74 /* ChatroomListViewController.swift in Sources */,
+				70695288234D697000D936EC /* nativeDetailViewController.swift in Sources */,
+				70979CF9234E2C8400579395 /* extentions.swift in Sources */,
+				7059B899234F1472005BB6D4 /* ImagePickerController.swift in Sources */,
+				7059B89B234F1479005BB6D4 /* ImageRow.swift in Sources */,
+				70A4DF49234C856300BA2D74 /* SearchViewController.swift in Sources */,
+				70918AB2235C8D3900C18CA2 /* HistoryRowTableViewCell.swift in Sources */,
 				70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */,
-				70A4DF47234C856300BA2D74 /* SceneDelegate.swift in Sources */,
+				7030DCD2235264F000F29566 /* Settings.swift in Sources */,
+				70A4DF77234C8C6800BA2D74 /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +663,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		70A4DF4C234C856300BA2D74 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70A4DF4D234C856300BA2D74 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		70A4DF51234C856500BA2D74 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -370,7 +724,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -424,7 +778,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -436,6 +790,7 @@
 		};
 		70A4DF6E234C856500BA2D74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EDD02C4D06691FF1C1374DF /* Pods-talkative.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -445,7 +800,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yusuke.talkative;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoue.talkative;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,6 +809,7 @@
 		};
 		70A4DF6F234C856500BA2D74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6C845B4B0B2811624086446 /* Pods-talkative.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -463,7 +819,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yusuke.talkative;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoue.talkative;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -472,6 +828,7 @@
 		};
 		70A4DF71234C856500BA2D74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F01EB9263CB3E8418687117E /* Pods-talkativeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -494,6 +851,7 @@
 		};
 		70A4DF72234C856500BA2D74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B6823FD47379237AEBC8B0C /* Pods-talkativeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -516,6 +874,7 @@
 		};
 		70A4DF74234C856500BA2D74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1BE3EA45B811FE4BE869C06 /* Pods-talkative-talkativeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -536,6 +895,7 @@
 		};
 		70A4DF75234C856500BA2D74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3C7F868771151DA3D91C7B4 /* Pods-talkative-talkativeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
