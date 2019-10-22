@@ -17,11 +17,13 @@ class OfferModel {
     var nativeNationality: Int
     var nativeRating: Int
     var nativeImageURL: URL
+    var nativeLocation: GeoPoint
     var learnerID: String
     var learnerName: String
     var learnerImageURL: URL
     var learnerNationality: Int
     var learnerRating: Int
+    var learnerLocation: GeoPoint
     var offerPrice: Int
     var offerTime: Int
     var targetLanguage: Int
@@ -41,18 +43,20 @@ class OfferModel {
         return "\(offerID)\(createdAt.timeIntervalSince1970)".hashValue
     }
 
-    init(offerID: String, nativeID: String, nativeName: String, nativeNationality: Int, nativeRating: Int, nativeImageURL: URL, learnerID: String, learnerName: String, learnerNationality: Int, learnerRating: Int, learnerImageURL: URL, offerPrice: Int, offerTime: Int, targetLanguage: Int, supportLanguage: Int, peerID: String) {
+    init(offerID: String, nativeID: String, nativeName: String, nativeNationality: Int, nativeRating: Int, nativeImageURL: URL, nativeLocation: GeoPoint, learnerID: String, learnerName: String, learnerNationality: Int, learnerRating: Int, learnerImageURL: URL, learnerLocation: GeoPoint, offerPrice: Int, offerTime: Int, targetLanguage: Int, supportLanguage: Int, peerID: String) {
         self.offerID = offerID
         self.nativeID = nativeID
         self.nativeName = nativeName
         self.nativeNationality = nativeNationality
         self.nativeRating = nativeRating
         self.nativeImageURL = nativeImageURL
+        self.nativeLocation = nativeLocation
         self.learnerID = learnerID
         self.learnerName = learnerName
         self.learnerNationality = learnerNationality
         self.learnerRating = learnerRating
         self.learnerImageURL = learnerImageURL
+        self.learnerLocation = learnerLocation
         self.offerPrice = offerPrice
         self.offerTime = offerTime
         self.targetLanguage = targetLanguage
@@ -75,11 +79,13 @@ class OfferModel {
         self.nativeNationality = from.get("nativeNationality") as? Int ?? 0
         self.nativeRating = from.get("nativeRating") as? Int ?? 0
         self.nativeImageURL = URL(string: from.get("nativeImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/talkative-21c6c.appspot.com/o/profImages%2Favatar1.jpg?alt=media&token=76d3a6c2-42bd-45f9-badb-d6398b129eaf")!
+        self.nativeLocation = from.get("nativeLocation") as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         self.learnerID = from.get("learnerID") as? String ?? ""
         self.learnerName = from.get("learnerName") as? String ?? ""
         self.learnerNationality = from.get("learnerNationality") as? Int ?? 0
         self.learnerRating = from.get("learnerRating") as? Int ?? 0
         self.learnerImageURL = URL(string: from.get("learnerImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/talkative-21c6c.appspot.com/o/profImages%2Favatar1.jpg?alt=media&token=76d3a6c2-42bd-45f9-badb-d6398b129eaf")!
+        self.learnerLocation = from.get("learnerLocation") as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         self.offerPrice = from.get("offerPrice") as? Int ?? 9999
         self.offerTime = from.get("offerTime") as? Int ?? 9999
         self.targetLanguage = from.get("targetLanguage") as? Int ?? 0
@@ -107,11 +113,13 @@ class OfferModel {
             "nativeNationality" : nativeNationality,
             "nativeRating" : nativeRating,
             "nativeImageURL" : nativeImageURL.absoluteString,
+            "nativeLocation" : nativeLocation,
             "learnerID" : learnerID,
             "learnerName" : learnerName,
             "learnerNationality" : learnerNationality,
             "learnerRating" : learnerRating,
             "learnerImageURL" : learnerImageURL.absoluteString,
+            "learnerLocation" : learnerLocation,
             "offerPrice" : offerPrice,
             "offerTime" : offerTime,
             "targetLanguage" : targetLanguage,

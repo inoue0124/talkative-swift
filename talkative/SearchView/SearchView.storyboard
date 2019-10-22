@@ -65,6 +65,7 @@
                     <navigationItem key="navigationItem" id="zf2-bz-oPt"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="MapView" destination="IfJ-vH-2Eg" id="Qk4-gM-ZXk"/>
                         <outlet property="searchButton" destination="eAr-6M-4TV" id="qTc-gM-tnE"/>
                         <segue destination="c8G-eR-bzm" kind="presentation" identifier="presentConditions" id="CJF-6O-ItJ"/>
                         <segue destination="fPB-sT-qMa" kind="show" identifier="showResult" id="nFH-Ip-jwa"/>

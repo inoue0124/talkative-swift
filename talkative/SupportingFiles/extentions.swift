@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import FirebaseAuth
+import FirebaseFirestore
 
 extension UITableViewCell {
     func getUserData() -> RealmUserModel {
@@ -117,5 +118,59 @@ extension UIImage {
             print("Error : \(err.localizedDescription)")
         }
         self.init()
+    }
+}
+
+class AppEventHandler: NSObject {
+    let Usersdb = Firestore.firestore().collection("Users")
+    static let sharedInstance = AppEventHandler()
+    let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
+
+    override private init() {
+        super.init()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    // 各イベントの通知を受け取れるよう、NotificationCenterに自身を登録
+    func startObserving() {
+        // アプリ起動時
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishLaunch),
+                                               name: UIApplication.didFinishLaunchingNotification, object: nil)
+
+        // フォアグラウンド復帰時
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground),
+                                               name: UIApplication.willEnterForegroundNotification, object: nil)
+
+        // バックグラウンド移行時
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground),
+                                               name: UIApplication.didEnterBackgroundNotification, object: nil)
+
+        // アプリ終了時
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willTerminate),
+                                               name: UIApplication.willTerminateNotification, object: nil)
+    }
+
+    // アプリ起動時の処理
+    @objc func didFinishLaunch() {
+        self.Usersdb.document(self.uid).setData(["isOnline" : true], merge: true)
+    }
+
+    // フォアグラウンドへの復帰時の処理
+    @objc func willEnterForeground() {
+        self.Usersdb.document(self.uid).setData(["isOnline" : true], merge: true)
+    }
+
+    // バックグラウンドへの移行時の処理
+    @objc func didEnterBackground() {
+    }
+
+    // アプリ終了時の処理
+    @objc func willTerminate() {
+        self.Usersdb.document(self.uid).setData(["isOnline" : false], merge: true)
+        sleep(1)
+        NotificationCenter.default.removeObserver(self)
     }
 }

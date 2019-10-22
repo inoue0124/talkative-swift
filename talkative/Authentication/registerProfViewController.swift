@@ -105,6 +105,7 @@ class registerProfViewController: FormViewController {
                         "gender": Gender.fromString(string: values["gender"] as! String).rawValue,
                         "birthDate": Timestamp(date: values["birthDate"] as! Date),
                         "isWroteProf": true,
+                        "isOnline" : true,
                         "createdAt": FieldValue.serverTimestamp(),
                         "updatedAt": FieldValue.serverTimestamp(),
                         "nationality": Nationality.fromString(string: values["nationality"] as! String).rawValue,

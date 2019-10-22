@@ -26,6 +26,7 @@ class UserModel: Identifiable {
     var timestamp: Timestamp = Timestamp()
     var peerID: String
     var rating: Int
+    var location: GeoPoint
     var point: Int
     var createdAt: Date // data of registration
     var updatedAt: Date // date of updating of user info
@@ -48,6 +49,7 @@ class UserModel: Identifiable {
         self.timestamp = from.get("createdAt") as? Timestamp ?? Timestamp()
         self.peerID = from.get("peerID") as? String ?? ""
         self.rating = from.get("rating") as? Int ?? 0
+        self.location = from.get("location") as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         self.point = from.get("point") as? Int ?? 0
         self.createdAt = timestamp.dateValue()
         self.timestamp = from.get("updatedAt") as? Timestamp ?? Timestamp()
@@ -68,6 +70,7 @@ class UserModel: Identifiable {
             "secondLanguage": secondLanguage,
             "peerID": peerID,
             "rating": rating,
+            "location" : location,
             "point": point,
             "createdAt": createdAt,
             "updatedAt": updatedAt,

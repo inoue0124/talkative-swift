@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var skywayAPIKey:String? = "6aa642bb-37f2-46bd-b78c-4a148ce7efb6"
-    var skywayDomain:String? = "localhost"
+    var skywayDomain:String? = "talkative.io"
 
     override init() {
          super.init()
@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        AppEventHandler.sharedInstance.startObserving()
         return true
     }
 
