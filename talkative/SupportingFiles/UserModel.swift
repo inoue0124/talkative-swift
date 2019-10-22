@@ -26,6 +26,7 @@ class UserModel: Identifiable {
     var timestamp: Timestamp = Timestamp()
     var peerID: String
     var rating: Int
+    var point: Int
     var createdAt: Date // data of registration
     var updatedAt: Date // date of updating of user info
 
@@ -47,6 +48,7 @@ class UserModel: Identifiable {
         self.timestamp = from.get("createdAt") as? Timestamp ?? Timestamp()
         self.peerID = from.get("peerID") as? String ?? ""
         self.rating = from.get("rating") as? Int ?? 0
+        self.point = from.get("point") as? Int ?? 0
         self.createdAt = timestamp.dateValue()
         self.timestamp = from.get("updatedAt") as? Timestamp ?? Timestamp()
         self.updatedAt = timestamp.dateValue()
@@ -66,6 +68,7 @@ class UserModel: Identifiable {
             "secondLanguage": secondLanguage,
             "peerID": peerID,
             "rating": rating,
+            "point": point,
             "createdAt": createdAt,
             "updatedAt": updatedAt,
         ]
@@ -84,6 +87,7 @@ class RealmUserModel: Object{
     @objc dynamic var motherLanguage = 0 // Language_ID
     @objc dynamic var secondLanguage = 0 // Language_ID
     @objc dynamic var rating = 0
+    @objc dynamic var point = 100
     @objc dynamic var createdAt = Date() // data of registration
     @objc dynamic var updatedAt = Date() // date of updating of user info
 }

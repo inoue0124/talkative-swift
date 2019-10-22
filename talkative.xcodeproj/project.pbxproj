@@ -11,6 +11,9 @@
 		3CC88CC274CDFE21DF1512AE /* Pods_talkative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */; };
 		5F447A9537E886BBEC1B0DBB /* Pods_talkative_talkativeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */; };
 		70188E0A235ED15100D2FAB8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70188E0C235ED15100D2FAB8 /* Localizable.strings */; };
+		70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E14235F56C000D2FAB8 /* followeeViewController.swift */; };
+		70188E18235F668D00D2FAB8 /* followeeRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */; };
+		70188E19235F668D00D2FAB8 /* followeeRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */; };
 		701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF3BA234D6E1B006A3F82 /* callingViewController.swift */; };
 		7030DCD2235264F000F29566 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030DCD1235264F000F29566 /* Settings.swift */; };
 		703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 703976BB23577BB100F4207A /* GoogleService-Info.plist */; };
@@ -78,6 +81,9 @@
 		65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70188E0B235ED15100D2FAB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		70188E0D235ED18A00D2FAB8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		70188E14235F56C000D2FAB8 /* followeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followeeViewController.swift; sourceTree = "<group>"; };
+		70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followeeRowTableViewCell.swift; sourceTree = "<group>"; };
+		70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = followeeRowTableViewCell.xib; sourceTree = "<group>"; };
 		701AF3BA234D6E1B006A3F82 /* callingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callingViewController.swift; sourceTree = "<group>"; };
 		701AF3BC234D7733006A3F82 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7030DCD1235264F000F29566 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -303,6 +309,9 @@
 			isa = PBXGroup;
 			children = (
 				70A4DF78234C8CFE00BA2D74 /* ProfileViewController.swift */,
+				70188E14235F56C000D2FAB8 /* followeeViewController.swift */,
+				70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */,
+				70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */,
 				70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */,
 			);
 			path = ProfileView;
@@ -443,6 +452,7 @@
 				70A4DF50234C856500BA2D74 /* Assets.xcassets in Resources */,
 				70979CEA234DA04B00579395 /* SearchView.storyboard in Resources */,
 				70A551F52359F0C5005F4699 /* Preloader2.gif in Resources */,
+				70188E19235F668D00D2FAB8 /* followeeRowTableViewCell.xib in Resources */,
 				70188E0A235ED15100D2FAB8 /* Localizable.strings in Resources */,
 				7059B8A7234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib in Resources */,
 				70918AB3235C8D3900C18CA2 /* HistoryRowTableViewCell.xib in Resources */,
@@ -631,9 +641,11 @@
 				7059B89B234F1479005BB6D4 /* ImageRow.swift in Sources */,
 				70A4DF49234C856300BA2D74 /* SearchViewController.swift in Sources */,
 				70918AB2235C8D3900C18CA2 /* HistoryRowTableViewCell.swift in Sources */,
+				70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */,
 				70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */,
 				7030DCD2235264F000F29566 /* Settings.swift in Sources */,
 				70A4DF77234C8C6800BA2D74 /* HistoryViewController.swift in Sources */,
+				70188E18235F668D00D2FAB8 /* followeeRowTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

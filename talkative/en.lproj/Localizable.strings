@@ -18,6 +18,7 @@
 "prof_nationality" = "Nationality";
 "prof_motherLanguage" = "I am native in";
 "prof_secondLanguage" = "I am learning";
+"prof_setting_following" = "Following";
 "prof_setting_wallet" = "Wallet";
 "prof_setting_setting" = "Setting";
 "largetitle_message" = "Message";
@@ -26,7 +27,7 @@
 "search" = "SEARCH";
 "reloading" = "Reloading";
 "unit_min" = "min";
-"unit_money" = "$";
+"unit_money" = "P";
 "label_motherLanguage" = "Tutor for";
 "label_secondLanguage" = "Also speaks";
 "setting_unknown" = "None";

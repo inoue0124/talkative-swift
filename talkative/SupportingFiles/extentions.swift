@@ -10,6 +10,18 @@ import UIKit
 import RealmSwift
 import FirebaseAuth
 
+extension UITableViewCell {
+    func getUserData() -> RealmUserModel {
+        let realm = try! Realm()
+        return realm.objects(RealmUserModel.self)[0]
+    }
+
+    func getUserUid() -> String {
+        let realm = try! Realm()
+        return realm.objects(RealmUserModel.self)[0].uid
+    }
+}
+
 extension UIViewController {
     /// NavigationBarの左にローカライズされたタイトルを表示する
     func largeTitle(_ title: String) {

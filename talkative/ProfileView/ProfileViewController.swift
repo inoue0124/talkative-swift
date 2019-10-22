@@ -88,18 +88,28 @@ class ProfileViewController: UIViewController, UITableViewDelegate , UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == 0 {
+            performSegue(withIdentifier: "showFolloweeView", sender: nil)
+        }
+    }
 }
 
 enum settingType: Int {
+    case favorite
     case wallet
     case setting
 
     var prop: (title: String, icon: UIImage) {
         switch self {
-            case .wallet:
-                return (title: NSLocalizedString("prof_setting_wallet", comment: ""), icon: UIImage(named: "wallet")!)
-            case .setting:
-                return (title: NSLocalizedString("prof_setting_setting", comment: ""), icon: UIImage(named: "setting")!)
+        case .favorite:
+            return (title: NSLocalizedString("prof_setting_following", comment: ""), icon: UIImage(named: "heart_fill")!)
+        case .wallet:
+            return (title: NSLocalizedString("prof_setting_wallet", comment: ""), icon: UIImage(named: "wallet")!)
+        case .setting:
+            return (title: NSLocalizedString("prof_setting_setting", comment: ""), icon: UIImage(named: "setting")!)
         }
     }
 }

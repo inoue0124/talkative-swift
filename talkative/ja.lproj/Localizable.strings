@@ -18,6 +18,7 @@
 "prof_nationality" = "国籍";
 "prof_motherLanguage" = "母国語";
 "prof_secondLanguage" = "学習言語";
+"prof_setting_following" = "お気に入り";
 "prof_setting_wallet" = "ウォレット";
 "prof_setting_setting" = "設定";
 "largetitle_message" = "メッセージ";
@@ -26,7 +27,7 @@
 "search" = "検索";
 "reloading" = "読み込み中";
 "unit_min" = "分";
-"unit_money" = "¥";
+"unit_money" = "P";
 "label_motherLanguage" = "母国語";
 "label_secondLanguage" = "話せる言語";
 "setting_unknown" = "なし";

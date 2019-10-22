@@ -20,15 +20,12 @@ class SearchViewController: UIViewController {
 //        var config = Realm.Configuration()
 //        config.deleteRealmIfMigrationNeeded = true
 //        let realm = try! Realm(configuration: config)
-        do {
-            try Auth.auth().signOut()
-        } catch let error {
-            print(error)
-        }
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let error {
+//            print(error)
+//        }
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        //searchButton.layer.backgroundColor = UIColor.green.cgColor
-        //searchButton.layer.cornerRadius = 50
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +38,6 @@ class SearchViewController: UIViewController {
     }
 
     func showSearchResult() {
-        print(self.searchConditions)
         performSegue(withIdentifier: "showResult", sender: nil)
     }
 
