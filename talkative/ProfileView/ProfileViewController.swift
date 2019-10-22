@@ -21,6 +21,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate , UITableView
     @IBOutlet weak var motherLanguage: UILabel!
     @IBOutlet weak var profTable: UITableView!
     @IBOutlet weak var settingsTable: UITableView!
+    @IBOutlet weak var label_motherLanguage: UILabel!
+    @IBOutlet weak var label_secondLanguage: UILabel!
+    
 
     func loadUserInfo() {
         self.UserData = self.getUserData()
@@ -45,6 +48,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate , UITableView
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.label_motherLanguage.text = NSLocalizedString("prof_motherLanguage", comment: "")
+        self.label_secondLanguage.text = NSLocalizedString("prof_secondLanguage", comment: "")
         Auth.auth().addStateDidChangeListener { (auth, user) in
             guard user != nil else {
                 let loginStoryboard: UIStoryboard = UIStoryboard(name: "loginView", bundle: nil)
@@ -56,7 +61,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate , UITableView
                 self.loadUserInfo()
             }
         }
-        largeTitle("プロフィール")
+        largeTitle(NSLocalizedString("largetitle_profile", comment: ""))
         settingsTable.dataSource = self
         settingsTable.delegate = self
         settingsTable.reloadData()
@@ -92,9 +97,9 @@ enum settingType: Int {
     var prop: (title: String, icon: UIImage) {
         switch self {
             case .wallet:
-                return (title: "ウォレット", icon: UIImage(named: "wallet")!)
+                return (title: NSLocalizedString("prof_setting_wallet", comment: ""), icon: UIImage(named: "wallet")!)
             case .setting:
-                return (title: "設定", icon: UIImage(named: "setting")!)
+                return (title: NSLocalizedString("prof_setting_setting", comment: ""), icon: UIImage(named: "setting")!)
         }
     }
 }

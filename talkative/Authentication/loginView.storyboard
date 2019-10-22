@@ -72,7 +72,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysB-2k-Vod">
-                                <rect key="frame" x="156" y="642" width="102" height="30"/>
+                                <rect key="frame" x="176" y="642" width="62" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="gjr-xh-VuC"/>
                                 </constraints>
@@ -85,9 +85,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dNL-Vt-c0P" firstAttribute="leading" secondItem="Z8f-gc-dBY" secondAttribute="leading" id="3sn-hq-82a"/>
-                            <constraint firstAttribute="trailing" secondItem="ysB-2k-Vod" secondAttribute="trailing" constant="156" id="G6Y-nh-VZO"/>
+                            <constraint firstItem="ysB-2k-Vod" firstAttribute="centerX" secondItem="Z8f-gc-dBY" secondAttribute="centerX" id="Cbi-Yz-OcE"/>
                             <constraint firstItem="5T4-Z2-hJ9" firstAttribute="top" secondItem="Q8M-UB-kQO" secondAttribute="bottom" constant="41" id="IMb-Sa-Rjb"/>
-                            <constraint firstItem="ysB-2k-Vod" firstAttribute="leading" secondItem="Z8f-gc-dBY" secondAttribute="leading" constant="156" id="Nz2-mF-0wj"/>
                             <constraint firstItem="Q8M-UB-kQO" firstAttribute="top" secondItem="mbP-zU-UL6" secondAttribute="bottom" constant="19" id="Pg0-EG-kaE"/>
                             <constraint firstItem="Q8M-UB-kQO" firstAttribute="leading" secondItem="Z8f-gc-dBY" secondAttribute="leadingMargin" constant="48" id="ZIV-At-tyk"/>
                             <constraint firstItem="mbP-zU-UL6" firstAttribute="top" secondItem="dNL-Vt-c0P" secondAttribute="bottom" constant="66" id="aea-47-aVe"/>
@@ -113,6 +112,8 @@
                     <connections>
                         <outlet property="backButton" destination="X84-MV-er4" id="jgo-B7-0pk"/>
                         <outlet property="emailTextField" destination="mbP-zU-UL6" id="efZ-5M-fc7"/>
+                        <outlet property="loginButton" destination="5T4-Z2-hJ9" id="lCE-um-MS8"/>
+                        <outlet property="newRegisterButton" destination="ysB-2k-Vod" id="7u8-en-4ld"/>
                         <outlet property="passwordTextField" destination="Q8M-UB-kQO" id="qCe-bA-cTa"/>
                     </connections>
                 </viewController>
@@ -190,6 +191,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="eLj-QN-yvW" id="3X7-TO-tph"/>
                         <outlet property="passwordTextField" destination="iSR-IK-aEO" id="QOj-ZI-DEr"/>
+                        <outlet property="signUpButton" destination="yvF-BM-LmX" id="Hdl-5o-kM7"/>
                         <segue destination="aPs-Pv-ex0" kind="show" identifier="showRegisterView" id="edn-uH-Mat"/>
                     </connections>
                 </viewController>

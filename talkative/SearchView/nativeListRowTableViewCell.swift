@@ -17,13 +17,17 @@ class nativeListRowTableViewCell: UITableViewCell {
     @IBOutlet weak var supportLanguage: UILabel!
     @IBOutlet weak var timeLength: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var label_motherLanguage: UILabel!
+    @IBOutlet weak var label_secondLanguage: UILabel!
 
 
     func setRowData(numOfCells: IndexPath, offer: OfferModel){
+        self.label_motherLanguage.text = NSLocalizedString("label_motherLanguage", comment: "")
+        self.label_secondLanguage.text = NSLocalizedString("label_secondLanguage", comment: "")
         self.NativeThumbnail.layer.cornerRadius = 40
         self.NativeName.text = String(offer.nativeName)
-        self.timeLength.text = String(offer.offerTime) + String("分")
-        self.price.text = String("¥") + String(offer.offerPrice)
+        self.timeLength.text = String(offer.offerTime) + String(NSLocalizedString("unit_min", comment: ""))
+        self.price.text = String(NSLocalizedString("unit_money", comment: "")) + String(offer.offerPrice)
         self.NativeThumbnail.image = UIImage.gif(name: "Preloader2")
         DispatchQueue.global().async {
             let image = UIImage(url: offer.nativeImageURL)

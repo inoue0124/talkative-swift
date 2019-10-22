@@ -53,7 +53,7 @@ class HistoryViewController: UIViewController , UITableViewDelegate , UITableVie
         }
         self.navigationItem.hidesBackButton = false
         tabBarController?.tabBar.isHidden = false
-        largeTitle("通話履歴")
+        largeTitle(NSLocalizedString("largetitle_history", comment: ""))
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

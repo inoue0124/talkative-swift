@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  talkative
+
+  Created by Yusuke Inoue on 2019/10/22.
+  Copyright © 2019 Yusuke Inoue. All rights reserved.
+*/
+
+"conditions" = "Search conditions";
+"conditions_language" = "Target language";
+"conditions_price" = "Price";
+"conditions_time" = "Time of Length";
+"prof_section_base" = "Profile";
+"prof_image" = "Image";
+"prof_name" = "Name";
+"prof_gender" = "Gender";
+"prof_birthDate" = "Date of Birth";
+"prof_nationality" = "Nationality";
+"prof_motherLanguage" = "I am native in";
+"prof_secondLanguage" = "I am learning";
+"prof_setting_wallet" = "Wallet";
+"prof_setting_setting" = "Setting";
+"largetitle_message" = "Message";
+"largetitle_history" = "History";
+"largetitle_profile" = "Profile";
+"search" = "SEARCH";
+"reloading" = "Reloading";
+"unit_min" = "min";
+"unit_money" = "$";
+"label_motherLanguage" = "Tutor for";
+"label_secondLanguage" = "Also speaks";
+"setting_unknown" = "None";
+"setting_gender_male" = "Male";
+"setting_gender_female" = "Female";
+"setting_language_japanese" = "Japanese";
+"setting_language_english" = "English";
+"setting_language_chinese" = "Chinese";
+"setting_nationality_japan" = "Japan";
+"setting_nationality_usa" = "USA";
+"setting_nationality_china" = "China";
+"placeholder_email" = "E-mail";
+"placeholder_password" = "Password";
+"alert_ok" = "OK";
+"alert_cancel" = "Cancel";
+"alert_finish" = "Finish";
+"alert_confirm_payment_title" = "Confirm payment";
+"alert_confirm_payment_message" = "Pay %d points and call %d minites. OK?";
+"alert_confirm_finish_title" = "Confirm finishing call";
+"alert_confirm_finish_message" = "Finish?";
+"rate_instruction" = "RATE YOUR TALKING WITH";
+"login" = "Login";
+"newRegister" = "New User?";
+"signUp" = "Sign up";

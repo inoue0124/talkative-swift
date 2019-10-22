@@ -296,38 +296,38 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHt-qo-mD8" userLabel="star">
-                                <rect key="frame" x="-113" y="311" width="640" height="128"/>
+                                <rect key="frame" x="47" y="311" width="320" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGh-eY-V1c">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                         <state key="normal" image="star"/>
                                         <connections>
                                             <action selector="tappedStar1:" destination="DBR-7m-G5a" eventType="touchUpInside" id="X3O-Ar-agU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsy-mf-6CY">
-                                        <rect key="frame" x="128" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="64" y="0.0" width="64" height="64"/>
                                         <state key="normal" image="star"/>
                                         <connections>
                                             <action selector="tappedStar2:" destination="DBR-7m-G5a" eventType="touchUpInside" id="qvH-Ka-hyz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzw-z2-77x">
-                                        <rect key="frame" x="256" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="128" y="0.0" width="64" height="64"/>
                                         <state key="normal" image="star"/>
                                         <connections>
                                             <action selector="tappedStar3:" destination="DBR-7m-G5a" eventType="touchUpInside" id="YLS-qW-Gll"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbl-iV-BNn">
-                                        <rect key="frame" x="384" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="192" y="0.0" width="64" height="64"/>
                                         <state key="normal" image="star"/>
                                         <connections>
                                             <action selector="tappedStar4:" destination="DBR-7m-G5a" eventType="touchUpInside" id="mbB-1N-rb8"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRE-pY-un1">
-                                        <rect key="frame" x="512" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="256" y="0.0" width="64" height="64"/>
                                         <state key="normal" image="star"/>
                                         <connections>
                                             <action selector="tappedStar5:" destination="DBR-7m-G5a" eventType="touchUpInside" id="9pi-eG-axI"/>
@@ -335,33 +335,30 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bp0-UL-ipx" userLabel="label">
-                                <rect key="frame" x="65" y="106" width="286" height="24"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75X-fB-osh">
-                                        <rect key="frame" x="0.0" y="0.0" width="41" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="さんを評価してください！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ND8-gk-ISf">
-                                        <rect key="frame" x="41" y="0.0" width="245" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75X-fB-osh">
+                                <rect key="frame" x="186.5" y="129" width="41" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="評価をお願いします！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ND8-gk-ISf">
+                                <rect key="frame" x="85.5" y="82" width="243.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="bp0-UL-ipx" firstAttribute="leading" secondItem="0OQ-x7-Gpk" secondAttribute="leadingMargin" constant="45" id="HW4-ac-qlw"/>
+                            <constraint firstItem="ND8-gk-ISf" firstAttribute="centerX" secondItem="75X-fB-osh" secondAttribute="centerX" id="5WL-KM-zZv"/>
+                            <constraint firstItem="tmT-DF-WfJ" firstAttribute="top" secondItem="75X-fB-osh" secondAttribute="bottom" constant="8" id="Dbu-TB-Flo"/>
                             <constraint firstItem="tmT-DF-WfJ" firstAttribute="centerX" secondItem="bHt-qo-mD8" secondAttribute="centerX" id="IP2-2n-Ig5"/>
                             <constraint firstItem="XWH-K9-2CL" firstAttribute="top" secondItem="oen-OZ-OdK" secondAttribute="bottom" constant="55" id="L5A-u1-biq"/>
-                            <constraint firstItem="tmT-DF-WfJ" firstAttribute="top" secondItem="bp0-UL-ipx" secondAttribute="bottom" constant="31" id="XBy-wE-41N"/>
+                            <constraint firstItem="ND8-gk-ISf" firstAttribute="top" secondItem="fOd-YF-WWs" secondAttribute="bottom" constant="38" id="LSq-s1-JZf"/>
+                            <constraint firstItem="75X-fB-osh" firstAttribute="top" secondItem="ND8-gk-ISf" secondAttribute="bottom" constant="18" id="VEa-JK-DXd"/>
                             <constraint firstItem="tmT-DF-WfJ" firstAttribute="centerX" secondItem="0OQ-x7-Gpk" secondAttribute="centerX" id="Y3B-yO-tbt"/>
                             <constraint firstItem="bHt-qo-mD8" firstAttribute="centerX" secondItem="oen-OZ-OdK" secondAttribute="centerX" id="d31-x8-xNP"/>
-                            <constraint firstItem="bp0-UL-ipx" firstAttribute="top" secondItem="fOd-YF-WWs" secondAttribute="bottom" constant="62" id="tKS-EG-bCu"/>
+                            <constraint firstItem="75X-fB-osh" firstAttribute="centerX" secondItem="tmT-DF-WfJ" secondAttribute="centerX" id="tmm-KB-uzS"/>
                             <constraint firstItem="bHt-qo-mD8" firstAttribute="top" secondItem="tmT-DF-WfJ" secondAttribute="bottom" constant="50" id="uaL-V8-pYS"/>
                         </constraints>
                     </view>
@@ -370,6 +367,7 @@
                         <outlet property="NativeName" destination="75X-fB-osh" id="OGx-0H-OND"/>
                         <outlet property="NativeThumbnail" destination="tmT-DF-WfJ" id="sTG-uq-lbX"/>
                         <outlet property="backHomeButton" destination="oen-OZ-OdK" id="O7F-kL-Byc"/>
+                        <outlet property="instructLabel" destination="ND8-gk-ISf" id="OWL-M4-BPd"/>
                         <outlet property="star1" destination="iGh-eY-V1c" id="4FD-x6-msL"/>
                         <outlet property="star2" destination="qsy-mf-6CY" id="JIE-eT-a1s"/>
                         <outlet property="star3" destination="mzw-z2-77x" id="2c2-Rh-pCF"/>

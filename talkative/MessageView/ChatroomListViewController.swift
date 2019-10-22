@@ -63,7 +63,7 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
         }
         self.navigationItem.hidesBackButton = false
         tabBarController?.tabBar.isHidden = false
-        largeTitle("メッセージ")
+        largeTitle(NSLocalizedString("largetitle_message", comment: ""))
     }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

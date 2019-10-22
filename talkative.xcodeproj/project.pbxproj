@@ -10,6 +10,7 @@
 		357751F20904743882F1793A /* Pods_talkativeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CE1B02D5EF776DF1F9FE9 /* Pods_talkativeTests.framework */; };
 		3CC88CC274CDFE21DF1512AE /* Pods_talkative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */; };
 		5F447A9537E886BBEC1B0DBB /* Pods_talkative_talkativeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */; };
+		70188E0A235ED15100D2FAB8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70188E0C235ED15100D2FAB8 /* Localizable.strings */; };
 		701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF3BA234D6E1B006A3F82 /* callingViewController.swift */; };
 		7030DCD2235264F000F29566 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030DCD1235264F000F29566 /* Settings.swift */; };
 		703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 703976BB23577BB100F4207A /* GoogleService-Info.plist */; };
@@ -75,6 +76,8 @@
 		507CE1B02D5EF776DF1F9FE9 /* Pods_talkativeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkativeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkative_talkativeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70188E0B235ED15100D2FAB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		70188E0D235ED18A00D2FAB8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		701AF3BA234D6E1B006A3F82 /* callingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callingViewController.swift; sourceTree = "<group>"; };
 		701AF3BC234D7733006A3F82 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7030DCD1235264F000F29566 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 			children = (
 				70A551F22359F076005F4699 /* Preloader.gif */,
 				70A551F42359F0C5005F4699 /* Preloader2.gif */,
+				7030DCD1235264F000F29566 /* Settings.swift */,
 				70488D342356871400B3C1CD /* UserModel.swift */,
 				70488D3623568AC000B3C1CD /* OfferModel.swift */,
 				70488CD523551A0900B3C1CD /* ChatroomModel.swift */,
@@ -190,7 +194,6 @@
 				70979CF6234DF2DD00579395 /* logInViewController.swift */,
 				70979CED234DB8FA00579395 /* signUpViewController.swift */,
 				70979CF4234DF07400579395 /* registerProfViewController.swift */,
-				7030DCD1235264F000F29566 /* Settings.swift */,
 				70979CF0234DCEEF00579395 /* loginView.storyboard */,
 			);
 			path = Authentication;
@@ -233,6 +236,7 @@
 				70A4DF7E234CAB8B00BA2D74 /* Main.storyboard */,
 				70A4DF51234C856500BA2D74 /* LaunchScreen.storyboard */,
 				703976BB23577BB100F4207A /* GoogleService-Info.plist */,
+				70188E0C235ED15100D2FAB8 /* Localizable.strings */,
 				70A4DF54234C856500BA2D74 /* Info.plist */,
 			);
 			path = talkative;
@@ -410,6 +414,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 70A4DF38234C856300BA2D74;
 			productRefGroup = 70A4DF42234C856300BA2D74 /* Products */;
@@ -438,6 +443,7 @@
 				70A4DF50234C856500BA2D74 /* Assets.xcassets in Resources */,
 				70979CEA234DA04B00579395 /* SearchView.storyboard in Resources */,
 				70A551F52359F0C5005F4699 /* Preloader2.gif in Resources */,
+				70188E0A235ED15100D2FAB8 /* Localizable.strings in Resources */,
 				7059B8A7234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib in Resources */,
 				70918AB3235C8D3900C18CA2 /* HistoryRowTableViewCell.xib in Resources */,
 				70D9BE2E234CD9BC004DA3BF /* nativeListRowTableViewCell.xib in Resources */,
@@ -663,6 +669,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		70188E0C235ED15100D2FAB8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70188E0B235ED15100D2FAB8 /* en */,
+				70188E0D235ED18A00D2FAB8 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		70A4DF51234C856500BA2D74 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -678,6 +693,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -738,6 +754,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

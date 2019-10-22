@@ -26,7 +26,7 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
     SearchResultTable.delegate = self
     SearchResultTable.register(UINib(nibName: "nativeListRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
     refreshControl = UIRefreshControl()
-    refreshControl.attributedTitle = NSAttributedString(string: "再読み込み中")
+    refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("reloading", comment: ""))
     refreshControl.addTarget(self, action: #selector(SearchResultViewController.refresh), for: UIControl.Event.valueChanged)
     SearchResultTable.addSubview(refreshControl)
   }

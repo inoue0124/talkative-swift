@@ -25,9 +25,9 @@ class registerProfViewController: FormViewController {
         if UserData == nil {
             UserData = RealmUserModel()
         }
-        form +++ Section("基本情報")
+        form +++ Section(NSLocalizedString("prof_section_base", comment: ""))
                 <<< ImageRow {
-                    $0.title = "プロフィール画像"
+                    $0.title = NSLocalizedString("prof_image", comment: "")
                     $0.sourceTypes = [.PhotoLibrary, .Camera]
                     $0.value = UIImage(named: "avatar")
                     $0.clearAction = .no
@@ -38,41 +38,41 @@ class registerProfViewController: FormViewController {
                 }
 
                 <<< NameRow {
-                    $0.title = "ユーザーネーム(ローマ字)"
+                    $0.title = NSLocalizedString("prof_name", comment: "")
                     $0.placeholder = "Taro Yamada"
                     $0.value = UserData!.name
                     $0.tag = "name"
                 }
 
                 <<< PushRow<String> {
-                    $0.title = "性別"
+                    $0.title = NSLocalizedString("prof_gender", comment: "")
                     $0.options = [Gender.Unknown.string(), Gender.Male.string(), Gender.Female.string()]
                     $0.value = Gender.strings[UserData!.gender]
                     $0.tag = "gender"
                 }
 
                 <<< DateRow {
-                    $0.title = "誕生日"
+                    $0.title = NSLocalizedString("prof_birthDate", comment: "")
                     $0.value = UserData!.birthDate
                     $0.tag = "birthDate"
                 }
 
                 <<< PushRow<String> {
-                    $0.title = "国籍"
+                    $0.title = NSLocalizedString("prof_nationality", comment: "")
                     $0.options = [Nationality.Japanese.string(), Nationality.American.string(), Nationality.Chinese.string()]
                     $0.value = Nationality.strings[UserData!.nationality]
                     $0.tag = "nationality"
                 }
 
                 <<< PushRow<String> {
-                    $0.title = "母国語"
+                    $0.title = NSLocalizedString("prof_motherLanguage", comment: "")
                     $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
                     $0.value = Language.strings[UserData!.motherLanguage]
                     $0.tag = "motherLanguage"
                 }
 
                 <<< PushRow<String> {
-                    $0.title = "学習言語"
+                    $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
                     $0.options = [Language.Unknown.string(), Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
                     $0.value = Language.strings[UserData!.secondLanguage]
                     $0.tag = "secondLanguage"
@@ -91,7 +91,7 @@ class registerProfViewController: FormViewController {
         let originalImageRef = profImagesDirRef.child(uid+".jpg")
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        let uploadTask = originalImageRef.putData(((values["profImage"] as! UIImage).scaledToSafeUploadSize)!.jpegData(compressionQuality: 0.1)!, metadata: metadata) { (meta, error) in
+        originalImageRef.putData(((values["profImage"] as! UIImage).scaledToSafeUploadSize)!.jpegData(compressionQuality: 0.1)!, metadata: metadata) { (meta, error) in
             guard meta != nil else {
             print("error")
             return
@@ -126,11 +126,9 @@ class registerProfViewController: FormViewController {
                 let realm = try! Realm()
                 try! realm.write {
                     realm.deleteAll()
-                    print("deleted")
                 }
                 try! realm.write {
                   realm.add(UserData)
-                    print("added")
                 }
             }
                 self.navigationController?.popToRootViewController(animated: true)

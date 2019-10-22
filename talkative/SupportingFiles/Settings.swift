@@ -5,6 +5,7 @@
 //  Created by Yusuke Inoue on 2019/10/13.
 //  Copyright © 2019 Yusuke Inoue. All rights reserved.
 //
+import UIKit
 
 enum Gender: Int {
     case Unknown        = 0
@@ -12,7 +13,7 @@ enum Gender: Int {
     case Female         = 2
 
     static let all      = [Unknown, Male, Female]
-    static let strings  = ["回答なし", "男", "女"]
+    static let strings  = [NSLocalizedString("setting_unknown", comment: ""), NSLocalizedString("setting_gender_male", comment: ""), NSLocalizedString("setting_gender_female", comment: "")]
 
     func string() -> String {
         let index = Gender.all.firstIndex(of: self) ?? 0
@@ -34,7 +35,7 @@ enum Nationality: Int {
     case Chinese            = 3
 
     static let all      = [Unknown, Japanese, American, Chinese]
-    static let strings  = ["回答なし", "日本","アメリカ","中国"]
+    static let strings  = [NSLocalizedString("setting_unknown", comment: ""), NSLocalizedString("setting_nationality_japan", comment: ""),NSLocalizedString("setting_nationality_usa", comment: ""),NSLocalizedString("setting_nationality_china", comment: "")]
 
     func string() -> String {
         let index = Nationality.all.firstIndex(of: self) ?? 0
@@ -56,7 +57,7 @@ enum Language: Int {
     case Chinese            = 3
 
     static let all      = [Unknown, Japanese, English, Chinese]
-    static let strings  = ["なし", "日本語","英語","中国語"]
+    static let strings  = [NSLocalizedString("setting_unknown", comment: ""), NSLocalizedString("setting_language_japanese", comment: ""),NSLocalizedString("setting_language_english", comment: ""),NSLocalizedString("setting_language_chinese", comment: "")]
 
     func string() -> String {
         let index = Language.all.firstIndex(of: self) ?? 0

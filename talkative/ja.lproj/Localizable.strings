@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  talkative
+
+  Created by Yusuke Inoue on 2019/10/22.
+  Copyright © 2019 Yusuke Inoue. All rights reserved.
+*/
+
+"conditions" = "検索条件";
+"conditions_language" = "話したい言語";
+"conditions_price" = "価格上限(¥)";
+"conditions_time" = "通話時間(分)";
+"prof_section_base" = "基本情報";
+"prof_image" = "プロフィール画像";
+"prof_name" = "ユーザーネーム（ローマ字）";
+"prof_gender" = "性別";
+"prof_birthDate" = "誕生日";
+"prof_nationality" = "国籍";
+"prof_motherLanguage" = "母国語";
+"prof_secondLanguage" = "学習言語";
+"prof_setting_wallet" = "ウォレット";
+"prof_setting_setting" = "設定";
+"largetitle_message" = "メッセージ";
+"largetitle_history" = "通話履歴";
+"largetitle_profile" = "プロフィール";
+"search" = "検索";
+"reloading" = "読み込み中";
+"unit_min" = "分";
+"unit_money" = "¥";
+"label_motherLanguage" = "母国語";
+"label_secondLanguage" = "話せる言語";
+"setting_unknown" = "なし";
+"setting_gender_male" = "男";
+"setting_gender_female" = "女";
+"setting_language_japanese" = "日本語";
+"setting_language_english" = "英語";
+"setting_language_chinese" = "中国語";
+"setting_nationality_japan" = "日本";
+"setting_nationality_usa" = "アメリカ";
+"setting_nationality_china" = "中国";
+"placeholder_email" = "メールアドレス";
+"placeholder_password" = "パスワード";
+"alert_ok" = "決定";
+"alert_cancel" = "キャンセル";
+"alert_finish" = "終了";
+"alert_confirm_payment_title" = "支払い確認";
+"alert_confirm_payment_message" = "%dポイントを支払い、%d分間通話します。よろしいですか？";
+"alert_confirm_finish_title" = "終了確認";
+"alert_confirm_finish_message" = "通話を終了します。よろしいですか？";
+"rate_instruction" = "評価をお願いします！";
+"login" = "ログイン";
+"newRegister" = "新規登録";
+"signUp" = "登録";

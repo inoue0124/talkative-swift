@@ -90,13 +90,14 @@ class nativeDetailViewController: UIViewController {
             if user == nil {
                 self.tabBarController!.selectedIndex = 3
             } else {
-                let alertController = UIAlertController(title: "支払い確認", message: "¥"+String(self.offer!.offerPrice)+"を支払い、"+String(self.offer!.offerTime)+"分間通話します。よろしいですか？", preferredStyle: UIAlertController.Style.alert)
-                let okAction = UIAlertAction(title: "決定", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                let alertController = UIAlertController(title: NSLocalizedString("alert_confirm_payment_title", comment: ""),
+                                                        message: String(format: NSLocalizedString("alert_confirm_payment_message", comment: ""), self.offer!.offerPrice,self.offer!.offerTime), preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: NSLocalizedString("alert_ok", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.performSegue(withIdentifier: "show_media", sender: nil)
                     }
                 })
-                let cancelAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                let cancelAction = UIAlertAction(title: NSLocalizedString("alert_cancel", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
                     return
                 })
                 alertController.addAction(okAction)

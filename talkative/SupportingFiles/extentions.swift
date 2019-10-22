@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseAuth
 
 extension UIViewController {
     /// NavigationBarの左にローカライズされたタイトルを表示する
@@ -42,6 +43,33 @@ extension UIViewController {
     func getUserUid() -> String {
         let realm = try! Realm()
         return realm.objects(RealmUserModel.self)[0].uid
+    }
+
+    func errorMessage(of error: Error) -> String {
+        var message = "エラーが発生しました"
+        guard let errcd = AuthErrorCode(rawValue: (error as NSError).code) else {
+            return message
+        }
+
+        switch errcd {
+        case .networkError: message = "ネットワークに接続できません"
+        case .userNotFound: message = "ユーザが見つかりません"
+        case .invalidEmail: message = "不正なメールアドレスです"
+        case .emailAlreadyInUse: message = "このメールアドレスは既に使われています"
+        case .wrongPassword: message = "入力した認証情報でサインインできません"
+        case .userDisabled: message = "このアカウントは無効です"
+        case .weakPassword: message = "パスワードが脆弱すぎます"
+        default: break
+        }
+        return message
+    }
+
+    func showError(_ errorOrNil: Error?) {
+        guard let error = errorOrNil else { return }
+        let message = errorMessage(of: error)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("alert_ok", comment: ""), style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 

@@ -59,15 +59,15 @@ class callingViewController: UIViewController {
         }
 
         @IBAction func tapEndCall(){
-            let alertController = UIAlertController(title: "終了確認", message: "通話を終了します。よろしいですか？", preferredStyle: UIAlertController.Style.alert)
-            let okAction = UIAlertAction(title: "終了", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+            let alertController = UIAlertController(title: NSLocalizedString("alert_confirm_finish_title", comment: ""), message: NSLocalizedString("alert_confirm_finish_message", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: NSLocalizedString("alert_finish", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
                 self.offersDb.document(self.offer!.offerID).setData([
                     "finishedAt" : FieldValue.serverTimestamp()
                 ], merge: true)
                 self.mediaConnection?.close()
                 self.performSegue(withIdentifier: "showReview", sender: nil)
             })
-            let cancelAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+            let cancelAction = UIAlertAction(title: NSLocalizedString("alert_cancel", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
                  return
             })
             alertController.addAction(okAction)

@@ -20,11 +20,11 @@ class SearchViewController: UIViewController {
 //        var config = Realm.Configuration()
 //        config.deleteRealmIfMigrationNeeded = true
 //        let realm = try! Realm(configuration: config)
-//        do {
-//            try Auth.auth().signOut()
-//        } catch let error {
-//            print(error)
-//        }
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print(error)
+        }
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //searchButton.layer.backgroundColor = UIColor.green.cgColor
