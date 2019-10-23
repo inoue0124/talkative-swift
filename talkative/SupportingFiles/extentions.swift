@@ -121,6 +121,12 @@ extension UIImage {
     }
 }
 
+class DismissControllerSegue: UIStoryboardSegue {
+    override func perform() {
+        self.source.dismiss(animated: true, completion: nil)
+    }
+}
+
 class AppEventHandler: NSObject {
     let Usersdb = Firestore.firestore().collection("Users")
     static let sharedInstance = AppEventHandler()

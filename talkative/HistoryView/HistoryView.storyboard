@@ -35,7 +35,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="HistoryTable" destination="oX5-8V-wT9" id="nyv-1e-xpe"/>
-                        <segue destination="5kN-kr-Tgz" kind="show" id="81A-Gk-FlI"/>
+                        <segue destination="5kN-kr-Tgz" kind="presentation" identifier="toLoginView" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="81A-Gk-FlI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALt-YM-XUl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

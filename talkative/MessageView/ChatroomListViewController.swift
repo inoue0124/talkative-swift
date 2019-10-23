@@ -55,9 +55,7 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
         ChatroomListTable.allowsSelection = true
         Auth.auth().addStateDidChangeListener { (auth, user) in
             guard user != nil else {
-                let loginStoryboard: UIStoryboard = UIStoryboard(name: "loginView", bundle: nil)
-                let loginVC = loginStoryboard.instantiateInitialViewController()
-                self.show(loginVC!, sender: self)
+                self.performSegue(withIdentifier: "toLoginView", sender: nil)
                 return
             }
         }

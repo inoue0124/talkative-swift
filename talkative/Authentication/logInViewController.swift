@@ -17,17 +17,15 @@ class logInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var newRegisterButton: UIButton!
 
     let Usersdb = Firestore.firestore().collection("Users")
 
     override func viewWillAppear(_ animated: Bool) {
         self.loginButton.setTitle(NSLocalizedString("login", comment: ""), for: .normal)
-        self.newRegisterButton.setTitle(NSLocalizedString("newRegister", comment: ""), for: .normal)
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationItem.hidesBackButton = true
-        tabBarController?.tabBar.isHidden = true
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationItem.hidesBackButton = true
+//        tabBarController?.tabBar.isHidden = true
         self.emailTextField.placeholder = NSLocalizedString("placeholder_email", comment: "")
         self.passwordTextField.placeholder = NSLocalizedString("placeholder_password", comment: "")
         emailTextField.delegate = self

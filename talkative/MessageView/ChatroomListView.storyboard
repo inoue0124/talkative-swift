@@ -35,7 +35,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ChatroomListTable" destination="nQC-lu-vBU" id="75N-YR-7ic"/>
-                        <segue destination="Cyt-4m-12D" kind="show" id="AoE-3l-fCt"/>
+                        <segue destination="Cyt-4m-12D" kind="presentation" identifier="toLoginView" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="AoE-3l-fCt"/>
                         <segue destination="qir-iD-Gjj" kind="show" identifier="showChatroomView" id="DEs-bC-hey"/>
                     </connections>
                 </viewController>

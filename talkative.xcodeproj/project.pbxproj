@@ -14,6 +14,7 @@
 		70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E14235F56C000D2FAB8 /* followeeViewController.swift */; };
 		70188E18235F668D00D2FAB8 /* followeeRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */; };
 		70188E19235F668D00D2FAB8 /* followeeRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */; };
+		70188E202360176100D2FAB8 /* loginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70188E1C23600EC500D2FAB8 /* loginView.storyboard */; };
 		701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF3BA234D6E1B006A3F82 /* callingViewController.swift */; };
 		7030DCD2235264F000F29566 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030DCD1235264F000F29566 /* Settings.swift */; };
 		703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 703976BB23577BB100F4207A /* GoogleService-Info.plist */; };
@@ -32,10 +33,10 @@
 		70979CEA234DA04B00579395 /* SearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70979CE9234DA04B00579395 /* SearchView.storyboard */; };
 		70979CEC234DB37A00579395 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CEB234DB37A00579395 /* ReviewViewController.swift */; };
 		70979CEE234DB8FA00579395 /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CED234DB8FA00579395 /* signUpViewController.swift */; };
-		70979CF1234DCEEF00579395 /* loginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70979CF0234DCEEF00579395 /* loginView.storyboard */; };
 		70979CF5234DF07400579395 /* registerProfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF4234DF07400579395 /* registerProfViewController.swift */; };
 		70979CF7234DF2DD00579395 /* logInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF6234DF2DD00579395 /* logInViewController.swift */; };
 		70979CF9234E2C8400579395 /* extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF8234E2C8400579395 /* extentions.swift */; };
+		709E39DA2360493B00A74EF0 /* registerView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 709E39D92360492800A74EF0 /* registerView.storyboard */; };
 		70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF44234C856300BA2D74 /* AppDelegate.swift */; };
 		70A4DF49234C856300BA2D74 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF48234C856300BA2D74 /* SearchViewController.swift */; };
 		70A4DF4B234C856300BA2D74 /* ChatroomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF4A234C856300BA2D74 /* ChatroomListViewController.swift */; };
@@ -84,6 +85,9 @@
 		70188E14235F56C000D2FAB8 /* followeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followeeViewController.swift; sourceTree = "<group>"; };
 		70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followeeRowTableViewCell.swift; sourceTree = "<group>"; };
 		70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = followeeRowTableViewCell.xib; sourceTree = "<group>"; };
+		70188E21236017A400D2FAB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/loginView.storyboard; sourceTree = "<group>"; };
+		70188E23236017BD00D2FAB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/loginView.strings; sourceTree = "<group>"; };
+		70188E24236017CC00D2FAB8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/loginView.strings; sourceTree = "<group>"; };
 		701AF3BA234D6E1B006A3F82 /* callingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callingViewController.swift; sourceTree = "<group>"; };
 		701AF3BC234D7733006A3F82 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7030DCD1235264F000F29566 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -103,10 +107,10 @@
 		70979CE9234DA04B00579395 /* SearchView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchView.storyboard; sourceTree = "<group>"; };
 		70979CEB234DB37A00579395 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		70979CED234DB8FA00579395 /* signUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
-		70979CF0234DCEEF00579395 /* loginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = loginView.storyboard; sourceTree = "<group>"; };
 		70979CF4234DF07400579395 /* registerProfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerProfViewController.swift; sourceTree = "<group>"; };
 		70979CF6234DF2DD00579395 /* logInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logInViewController.swift; sourceTree = "<group>"; };
 		70979CF8234E2C8400579395 /* extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extentions.swift; sourceTree = "<group>"; };
+		709E39D92360492800A74EF0 /* registerView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = registerView.storyboard; path = "/Users/yusuke/Desktop/talkative-swift/talkative/talkative/Authentication/registerView.storyboard"; sourceTree = "<absolute>"; };
 		70A4DF41234C856300BA2D74 /* talkative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talkative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A4DF44234C856300BA2D74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70A4DF48234C856300BA2D74 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -199,8 +203,8 @@
 			children = (
 				70979CF6234DF2DD00579395 /* logInViewController.swift */,
 				70979CED234DB8FA00579395 /* signUpViewController.swift */,
-				70979CF4234DF07400579395 /* registerProfViewController.swift */,
-				70979CF0234DCEEF00579395 /* loginView.storyboard */,
+				709E39D92360492800A74EF0 /* registerView.storyboard */,
+				70188E1C23600EC500D2FAB8 /* loginView.storyboard */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -311,6 +315,7 @@
 				70A4DF78234C8CFE00BA2D74 /* ProfileViewController.swift */,
 				70188E14235F56C000D2FAB8 /* followeeViewController.swift */,
 				70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */,
+				70979CF4234DF07400579395 /* registerProfViewController.swift */,
 				70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */,
 				70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */,
 			);
@@ -442,10 +447,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				709E39DA2360493B00A74EF0 /* registerView.storyboard in Resources */,
+				70188E202360176100D2FAB8 /* loginView.storyboard in Resources */,
 				70A4DF53234C856500BA2D74 /* LaunchScreen.storyboard in Resources */,
 				70A4DF83234CABA600BA2D74 /* ProfileView.storyboard in Resources */,
 				70A4DF81234CAB9900BA2D74 /* HistoryView.storyboard in Resources */,
-				70979CF1234DCEEF00579395 /* loginView.storyboard in Resources */,
 				70A4DF85234CAD9000BA2D74 /* ChatroomListView.storyboard in Resources */,
 				703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */,
 				70A4DF7F234CAB8B00BA2D74 /* Main.storyboard in Resources */,
@@ -688,6 +694,16 @@
 				70188E0D235ED18A00D2FAB8 /* ja */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		70188E1C23600EC500D2FAB8 /* loginView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70188E21236017A400D2FAB8 /* Base */,
+				70188E23236017BD00D2FAB8 /* en */,
+				70188E24236017CC00D2FAB8 /* ja */,
+			);
+			name = loginView.storyboard;
 			sourceTree = "<group>";
 		};
 		70A4DF51234C856500BA2D74 /* LaunchScreen.storyboard */ = {

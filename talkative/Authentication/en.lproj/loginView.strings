@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "Facebook ログイン"; ObjectID = "1gQ-xD-8kV"; */
+"1gQ-xD-8kV.text" = "Facebook ログイン";
+
+/* Class = "UIButton"; normalTitle = "ログイン"; ObjectID = "5T4-Z2-hJ9"; */
+"5T4-Z2-hJ9.normalTitle" = "ログイン";
+
+/* Class = "UIButton"; normalTitle = "メールでログイン"; ObjectID = "ATN-ha-Xgc"; */
+"ATN-ha-Xgc.normalTitle" = "メールでログイン";
+
+/* Class = "UILabel"; text = "すでにアカウントがある方は"; ObjectID = "BgY-Ug-a3q"; */
+"BgY-Ug-a3q.text" = "すでにアカウントがある方は";
+
+/* Class = "UIButton"; normalTitle = "facebookで登録する"; ObjectID = "Ces-HJ-J12"; */
+"Ces-HJ-J12.normalTitle" = "facebookで登録する";
+
+/* Class = "UIButton"; normalTitle = "ログイン"; ObjectID = "O3a-qL-fu8"; */
+"O3a-qL-fu8.normalTitle" = "ログイン";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "OKb-la-A7g"; */
+"OKb-la-A7g.title" = "保存";
+
+/* Class = "UIButton"; normalTitle = "メールで登録する"; ObjectID = "Sfd-V7-GFR"; */
+"Sfd-V7-GFR.normalTitle" = "メールで登録する";
+
+/* Class = "UILabel"; text = "Facebook 登録"; ObjectID = "cO3-c4-RVL"; */
+"cO3-c4-RVL.text" = "Facebook 登録";
+
+/* Class = "UIButton"; normalTitle = "Facebookでログイン"; ObjectID = "mxN-AL-cSh"; */
+"mxN-AL-cSh.normalTitle" = "Facebookでログイン";
+
+/* Class = "UILabel"; text = "Talkative へようこそ！"; ObjectID = "rhH-Or-C95"; */
+"rhH-Or-C95.text" = "Talkative へようこそ！";
+
+/* Class = "UIButton"; normalTitle = "新規登録"; ObjectID = "ysB-2k-Vod"; */
+"ysB-2k-Vod.normalTitle" = "新規登録";
+
+/* Class = "UIButton"; normalTitle = "サインイン"; ObjectID = "yvF-BM-LmX"; */
+"yvF-BM-LmX.normalTitle" = "サインイン";

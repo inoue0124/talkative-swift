@@ -17,6 +17,7 @@ pod 'MessageKit'
 pod 'MessageInputBar'
 pod 'RealmSwift'
 pod 'SwiftGifOrigin', '~> 1.7.0'
+pod 'FBSDKLoginKit'
 
   # Pods for talkative
 

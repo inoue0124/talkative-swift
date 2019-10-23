@@ -83,7 +83,7 @@
                     <navigationItem key="navigationItem" id="tuW-TE-zF7">
                         <barButtonItem key="rightBarButtonItem" image="edit" id="jhQ-j6-wjo">
                             <connections>
-                                <segue destination="1M0-rf-lpr" kind="show" identifier="showProfileEditor" id="Jbx-3J-K3e"/>
+                                <segue destination="AMs-pX-5nf" kind="show" id="ejR-Gf-Rvn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -97,7 +97,6 @@
                         <outlet property="profTable" destination="UsA-eD-gnj" id="Xyb-B0-hOc"/>
                         <outlet property="secondLanguage" destination="ZBm-d0-Qfy" id="3vo-LA-ElF"/>
                         <outlet property="settingsTable" destination="UsA-eD-gnj" id="bqN-2T-4kL"/>
-                        <segue destination="x3a-yS-RVa" kind="show" id="Z31-Wz-nIT"/>
                         <segue destination="NjZ-IW-iVF" kind="show" identifier="showFolloweeView" id="caP-hs-Ny2"/>
                     </connections>
                 </viewController>
@@ -105,25 +104,21 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="115.84821428571428"/>
         </scene>
-        <!--editProfile-->
-        <scene sceneID="nzi-05-wfZ">
+        <!--Register Prof View Controller-->
+        <scene sceneID="anl-qc-7A4">
             <objects>
-                <viewControllerPlaceholder storyboardName="loginView" referencedIdentifier="editProfile" id="1M0-rf-lpr" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="0Y8-Z6-RVx"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RIN-yK-L0K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="AMs-pX-5nf" customClass="registerProfViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QIb-Yz-ic0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ypt-8u-AP2"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jdy-K1-m5L"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hBZ-lG-KmL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="839" y="-236"/>
-        </scene>
-        <!--loginView-->
-        <scene sceneID="pon-pn-NWV">
-            <objects>
-                <viewControllerPlaceholder storyboardName="loginView" id="x3a-yS-RVa" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="gj9-nL-PXU"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4RB-65-9OZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="836" y="-186"/>
+            <point key="canvasLocation" x="1275" y="-115"/>
         </scene>
         <!--Followee View Controller-->
         <scene sceneID="PuV-kt-ooc">
@@ -154,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmX-zR-hRe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1421" y="125"/>
+            <point key="canvasLocation" x="1262" y="608"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ihm-e8-4eK">
