@@ -77,6 +77,7 @@ class logInViewController: UIViewController, UITextFieldDelegate {
             try! realm.write {
               realm.add(UserData)
             }
+            self.performSegue(withIdentifier: "toMain", sender: nil)
         }
     }
 }

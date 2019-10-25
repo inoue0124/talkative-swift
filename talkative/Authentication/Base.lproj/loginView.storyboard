@@ -92,11 +92,20 @@
                         <outlet property="emailTextField" destination="mbP-zU-UL6" id="efZ-5M-fc7"/>
                         <outlet property="loginButton" destination="O3a-qL-fu8" id="KbT-3W-csS"/>
                         <outlet property="passwordTextField" destination="Q8M-UB-kQO" id="qCe-bA-cTa"/>
+                        <segue destination="GlK-Jf-YZP" kind="presentation" identifier="toMain" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Pti-bJ-ppg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8X2-13-nCf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1258" y="-659"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="8jK-2V-TUO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="GlK-Jf-YZP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mVl-NT-EmT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2168" y="-665"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DLU-04-CHk">

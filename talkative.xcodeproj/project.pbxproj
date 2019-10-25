@@ -40,6 +40,9 @@
 		709E39DE23604DBC00A74EF0 /* registerProfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39DD23604DBC00A74EF0 /* registerProfViewController.swift */; };
 		709E39E3236196F300A74EF0 /* registerProfViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E39E2236196F300A74EF0 /* registerProfViewHeader.xib */; };
 		709E39E72361C84700A74EF0 /* selectMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39E62361C84700A74EF0 /* selectMethodViewController.swift */; };
+		709E39E92363247000A74EF0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39E82363247000A74EF0 /* ProfileViewController.swift */; };
+		709E39EB2363323E00A74EF0 /* ProfViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E39EA2363323E00A74EF0 /* ProfViewHeader.xib */; };
+		709E39F02363697400A74EF0 /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39EF2363697400A74EF0 /* settingViewController.swift */; };
 		70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF44234C856300BA2D74 /* AppDelegate.swift */; };
 		70A4DF49234C856300BA2D74 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF48234C856300BA2D74 /* SearchViewController.swift */; };
 		70A4DF4B234C856300BA2D74 /* ChatroomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF4A234C856300BA2D74 /* ChatroomListViewController.swift */; };
@@ -48,7 +51,7 @@
 		70A4DF5E234C856500BA2D74 /* talkativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF5D234C856500BA2D74 /* talkativeTests.swift */; };
 		70A4DF69234C856500BA2D74 /* talkativeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF68234C856500BA2D74 /* talkativeUITests.swift */; };
 		70A4DF77234C8C6800BA2D74 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF76234C8C6800BA2D74 /* HistoryViewController.swift */; };
-		70A4DF79234C8CFE00BA2D74 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF78234C8CFE00BA2D74 /* ProfileViewController.swift */; };
+		70A4DF79234C8CFE00BA2D74 /* ProfileViewController_bk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF78234C8CFE00BA2D74 /* ProfileViewController_bk.swift */; };
 		70A4DF7F234CAB8B00BA2D74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF7E234CAB8B00BA2D74 /* Main.storyboard */; };
 		70A4DF81234CAB9900BA2D74 /* HistoryView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF80234CAB9900BA2D74 /* HistoryView.storyboard */; };
 		70A4DF83234CABA600BA2D74 /* ProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */; };
@@ -117,6 +120,9 @@
 		709E39DD23604DBC00A74EF0 /* registerProfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerProfViewController.swift; sourceTree = "<group>"; };
 		709E39E2236196F300A74EF0 /* registerProfViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = registerProfViewHeader.xib; sourceTree = "<group>"; };
 		709E39E62361C84700A74EF0 /* selectMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectMethodViewController.swift; sourceTree = "<group>"; };
+		709E39E82363247000A74EF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		709E39EA2363323E00A74EF0 /* ProfViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfViewHeader.xib; sourceTree = "<group>"; };
+		709E39EF2363697400A74EF0 /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
 		70A4DF41234C856300BA2D74 /* talkative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talkative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A4DF44234C856300BA2D74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70A4DF48234C856300BA2D74 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +137,7 @@
 		70A4DF68234C856500BA2D74 /* talkativeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkativeUITests.swift; sourceTree = "<group>"; };
 		70A4DF6A234C856500BA2D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70A4DF76234C8C6800BA2D74 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		70A4DF78234C8CFE00BA2D74 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		70A4DF78234C8CFE00BA2D74 /* ProfileViewController_bk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController_bk.swift; sourceTree = "<group>"; };
 		70A4DF7E234CAB8B00BA2D74 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		70A4DF80234CAB9900BA2D74 /* HistoryView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HistoryView.storyboard; sourceTree = "<group>"; };
 		70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileView.storyboard; sourceTree = "<group>"; };
@@ -321,12 +327,15 @@
 		70D9BE2A234CD8A9004DA3BF /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
-				70A4DF78234C8CFE00BA2D74 /* ProfileViewController.swift */,
+				709E39E82363247000A74EF0 /* ProfileViewController.swift */,
+				709E39EF2363697400A74EF0 /* settingViewController.swift */,
+				70A4DF78234C8CFE00BA2D74 /* ProfileViewController_bk.swift */,
 				70188E14235F56C000D2FAB8 /* followeeViewController.swift */,
 				70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */,
 				70979CF4234DF07400579395 /* editProfViewController.swift */,
 				70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */,
 				70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */,
+				709E39EA2363323E00A74EF0 /* ProfViewHeader.xib */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -468,6 +477,7 @@
 				70A4DF50234C856500BA2D74 /* Assets.xcassets in Resources */,
 				70979CEA234DA04B00579395 /* SearchView.storyboard in Resources */,
 				70A551F52359F0C5005F4699 /* Preloader2.gif in Resources */,
+				709E39EB2363323E00A74EF0 /* ProfViewHeader.xib in Resources */,
 				70188E19235F668D00D2FAB8 /* followeeRowTableViewCell.xib in Resources */,
 				70188E0A235ED15100D2FAB8 /* Localizable.strings in Resources */,
 				7059B8A7234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib in Resources */,
@@ -635,7 +645,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70A4DF79234C8CFE00BA2D74 /* ProfileViewController.swift in Sources */,
+				70A4DF79234C8CFE00BA2D74 /* ProfileViewController_bk.swift in Sources */,
 				7059B8A6234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift in Sources */,
 				70488CD623551A0900B3C1CD /* ChatroomModel.swift in Sources */,
 				70D9BE30234CDE03004DA3BF /* SearchResultViewController.swift in Sources */,
@@ -643,6 +653,7 @@
 				70979CEC234DB37A00579395 /* ReviewViewController.swift in Sources */,
 				701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */,
 				70979CF7234DF2DD00579395 /* logInViewController.swift in Sources */,
+				709E39F02363697400A74EF0 /* settingViewController.swift in Sources */,
 				70D9BE26234CB71B004DA3BF /* SearchConditionViewController.swift in Sources */,
 				70488D352356871400B3C1CD /* UserModel.swift in Sources */,
 				7069528C234D6C8900D936EC /* Uitl.swift in Sources */,
@@ -661,6 +672,7 @@
 				70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */,
 				70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */,
 				7030DCD2235264F000F29566 /* Settings.swift in Sources */,
+				709E39E92363247000A74EF0 /* ProfileViewController.swift in Sources */,
 				70A4DF77234C8C6800BA2D74 /* HistoryViewController.swift in Sources */,
 				709E39E72361C84700A74EF0 /* selectMethodViewController.swift in Sources */,
 				70188E18235F668D00D2FAB8 /* followeeRowTableViewCell.swift in Sources */,

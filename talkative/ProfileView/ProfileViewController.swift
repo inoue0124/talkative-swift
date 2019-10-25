@@ -1,106 +1,77 @@
 //
-//  ProfileViewController.swift
+//  ProfileViewController_.swift
 //  talkative
 //
-//  Created by Yusuke Inoue on 2019/10/08.
+//  Created by Yusuke Inoue on 2019/10/25.
 //  Copyright © 2019 Yusuke Inoue. All rights reserved.
 //
 
 import UIKit
+import Eureka
 import FirebaseAuth
 import SwiftGifOrigin
 import RealmSwift
 
-class ProfileViewController: UIViewController, UITableViewDelegate , UITableViewDataSource, UIPopoverPresentationControllerDelegate {
+class ProfileViewController: FormViewController, UINavigationControllerDelegate {
+    var email: String?
+        var password: String?
+//        @IBOutlet weak var saveButton: UIBarButtonItem!
+        let UserData: RealmUserModel = RealmUserModel()
 
-    var UserData:RealmUserModel?
-    var uid: String?
-    @IBOutlet weak var UserIcon: UIImageView!
-    @IBOutlet weak var UserName: UILabel!
+        override func viewDidLoad() {
+            super.viewDidLoad()
+
+            form +++ Section() {
+                var header = HeaderFooterView<ProfHeaderViewNib>(.nibFile(name: "ProfViewHeader", bundle: nil))
+                header.onSetupView = { (view, section) -> () in
+                    view.setUpCell(userData: self.getUserData())
+                }
+                $0.header = header
+            }
+
+            <<< ButtonRow(NSLocalizedString("prof_setting_wallet", comment: "")) {
+                $0.title = $0.tag
+                $0.presentationMode = .segueName(segueName: "walletSegue", onDismiss: nil)
+            }.cellUpdate { cell, row in
+                cell.height = ({return 80})
+            }
+
+            <<< ButtonRow(NSLocalizedString("prof_setting_setting", comment: "")) {
+                $0.title = $0.tag
+                $0.presentationMode = .segueName(segueName: "settingSegue", onDismiss: nil)
+            }.cellUpdate { cell, row in
+                cell.height = ({return 80})
+            }
+        }
+
+        func validateForm(dict: [String : Any?]) -> Bool {
+            for (_, value) in dict {
+                if value == nil {
+                    UIAlertController.oneButton("エラー", message: "未入力項目があります。", handler: nil)
+
+                    return false
+                }
+            }
+            return true
+        }
+}
+
+class ProfHeaderViewNib: UIView {
+
+    @IBOutlet weak var Thumbnail: UIImageView!
+    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var secondLanguage: UILabel!
     @IBOutlet weak var motherLanguage: UILabel!
-    @IBOutlet weak var profTable: UITableView!
-    @IBOutlet weak var settingsTable: UITableView!
-    @IBOutlet weak var label_motherLanguage: UILabel!
-    @IBOutlet weak var label_secondLanguage: UILabel!
 
-    func loadUserInfo() {
-        self.UserData = self.getUserData()
-        self.uid = self.UserData!.uid
-        self.UserIcon.layer.cornerRadius = 50
-        self.UserName.text = self.UserData!.name
-        self.secondLanguage.text = Language.strings[self.UserData!.secondLanguage]
-        self.motherLanguage.text = Language.strings[self.UserData!.motherLanguage]
-        self.profTable.dataSource = self
-        self.UserIcon.image = UIImage(data: self.UserData!.profImage)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        self.label_motherLanguage.text = NSLocalizedString("prof_motherLanguage", comment: "")
-        self.label_secondLanguage.text = NSLocalizedString("prof_secondLanguage", comment: "")
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            guard user != nil else {
-                self.performSegue(withIdentifier: "toLoginView", sender: nil)
-                return
-            }
-            if self.UserData != self.getUserData() {
-                self.loadUserInfo()
-            }
-        }
-        largeTitle(NSLocalizedString("largetitle_profile", comment: ""))
-        settingsTable.dataSource = self
-        settingsTable.delegate = self
-        settingsTable.reloadData()
-        self.navigationItem.hidesBackButton = false
-        tabBarController?.tabBar.isHidden = false
-    }
-
-    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showProfileEditor" {
-            let ProfEditorVC = segue.destination as! editProfViewController
-            ProfEditorVC.UserData = self.UserData
-        }
-    }
-    // cellを返す。
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let settings = settingType(rawValue: indexPath.row)
-        cell.imageView?.image = settings?.prop.icon
-        cell.textLabel?.text = settings?.prop.title
-        return cell
-    }
-
-    //セルの数をいくつにするか。
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 0 {
-            performSegue(withIdentifier: "showFolloweeView", sender: nil)
-        }
+    func setUpCell(userData: RealmUserModel) {
+        Thumbnail.image = UIImage(data: userData.profImage)
+        Thumbnail.layer.cornerRadius = 50
+        name.text = userData.name
+        secondLanguage.text = Language.strings[userData.secondLanguage]
+        motherLanguage.text = Language.strings[userData.motherLanguage]
     }
 }
-
-enum settingType: Int {
-    case favorite
-    case wallet
-    case setting
-
-    var prop: (title: String, icon: UIImage) {
-        switch self {
-        case .favorite:
-            return (title: NSLocalizedString("prof_setting_following", comment: ""), icon: UIImage(named: "heart_fill")!)
-        case .wallet:
-            return (title: NSLocalizedString("prof_setting_wallet", comment: ""), icon: UIImage(named: "wallet")!)
-        case .setting:
-            return (title: NSLocalizedString("prof_setting_setting", comment: ""), icon: UIImage(named: "setting")!)
-        }
-    }
-}
-

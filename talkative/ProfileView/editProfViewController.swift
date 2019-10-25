@@ -26,63 +26,57 @@ class editProfViewController: FormViewController {
             UserData = RealmUserModel()
         }
         form +++ Section(NSLocalizedString("prof_section_base", comment: ""))
-                <<< ImageRow {
-                    $0.title = NSLocalizedString("prof_image", comment: "")
-                    $0.sourceTypes = [.PhotoLibrary, .Camera]
-                    $0.value = UIImage(named: "avatar")
-                    $0.clearAction = .no
-                    $0.tag = "profImage"
-                }
-                .cellUpdate { cell, row in
-                    cell.accessoryView?.layer.cornerRadius = 20
-                }
+        <<< ImageRow {
+            $0.title = NSLocalizedString("prof_image", comment: "")
+            $0.sourceTypes = [.PhotoLibrary, .Camera]
+            $0.value = UIImage(named: "avatar")
+            $0.clearAction = .no
+            $0.tag = "profImage"
+        }
+        .cellUpdate { cell, row in
+            cell.height = ({return 80})
+            cell.accessoryView?.layer.cornerRadius = 35
+            cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
+        }
 
-                <<< NameRow {
-                    $0.title = NSLocalizedString("prof_name", comment: "")
-                    $0.placeholder = "Taro Yamada"
-                    $0.value = UserData!.name
-                    $0.tag = "name"
+        <<< NameRow {
+            $0.title = NSLocalizedString("prof_name", comment: "")
+            $0.placeholder = "Taro Yamada"
+            $0.tag = "name"
+            $0.validationOptions = .validatesOnChangeAfterBlurred
+        }.cellUpdate { cell, row in
+            cell.height = ({return 80})
+            if !row.isValid {
+                cell.titleLabel?.textColor = .red
+                var errors = "必須項目です"
+                for error in row.validationErrors {
+                    let errorString = error.msg + "\n"
+                    errors = errors + errorString
                 }
+                print(errors)
+                cell.detailTextLabel?.text = errors
+                cell.detailTextLabel?.isHidden = false
+                cell.detailTextLabel?.textAlignment = .left
 
-                <<< PushRow<String> {
-                    $0.title = NSLocalizedString("prof_gender", comment: "")
-                    $0.options = [Gender.Unknown.string(), Gender.Male.string(), Gender.Female.string()]
-                    $0.value = Gender.strings[UserData!.gender]
-                    $0.tag = "gender"
-                }
+            }
+        }
 
-                <<< DateRow {
-                    $0.title = NSLocalizedString("prof_birthDate", comment: "")
-                    $0.value = UserData!.birthDate
-                    $0.tag = "birthDate"
-                }
+            +++ Section(NSLocalizedString("prof_section_base", comment: ""))
+        <<< PushRow<String> {
+            $0.title = NSLocalizedString("prof_motherLanguage", comment: "")
+            $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
+            $0.tag = "motherLanguage"
+        }.cellUpdate { cell, row in
+            cell.height = ({return 80})
+        }
 
-                <<< PushRow<String> {
-                    $0.title = NSLocalizedString("prof_nationality", comment: "")
-                    $0.options = [Nationality.Japanese.string(), Nationality.American.string(), Nationality.Chinese.string()]
-                    $0.value = Nationality.strings[UserData!.nationality]
-                    $0.tag = "nationality"
-                }
-
-                <<< PushRow<String> {
-                    $0.title = NSLocalizedString("prof_motherLanguage", comment: "")
-                    $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
-                    $0.value = Language.strings[UserData!.motherLanguage]
-                    $0.tag = "motherLanguage"
-                }
-
-                <<< PushRow<String> {
-                    $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
-                    $0.options = [Language.Unknown.string(), Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
-                    $0.value = Language.strings[UserData!.secondLanguage]
-                    $0.tag = "secondLanguage"
-                }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationItem.hidesBackButton = true
+        <<< PushRow<String> {
+            $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
+            $0.options = [Language.Unknown.string(), Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
+            $0.tag = "secondLanguage"
+        }.cellUpdate { cell, row in
+            cell.height = ({return 80})
+        }
     }
 
     @IBAction func tappedSaveButton(_ sender: Any) {

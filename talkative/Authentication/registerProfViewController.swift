@@ -121,7 +121,6 @@ class registerProfViewController: FormViewController {
             let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
             self.saveImageToStorate(uid: uid, values: values, image: values["profImage"] as! UIImage)
             self.saveToFirestore(uid: uid, values: values)
-            performSegue(withIdentifier: "toMain", sender: nil)
         }
     }
 
@@ -141,7 +140,7 @@ class registerProfViewController: FormViewController {
                         "imageURL": downloadURL.absoluteString
                     ], merge: true)
                     self.saveToRealm(uid: uid, values: values, imageURL: downloadURL)
-                    print(downloadURL)
+                    self.performSegue(withIdentifier: "toMain", sender: nil)
                 }
             }
         }
