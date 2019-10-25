@@ -51,7 +51,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Clp-Mc-rva" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="540" y="-439"/>
+            <point key="canvasLocation" x="-233" y="450"/>
         </scene>
         <!--Chatroom View Controller-->
         <scene sceneID="93M-8G-GeC">

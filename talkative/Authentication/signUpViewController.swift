@@ -16,6 +16,9 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    var email: String?
+    var password: String?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,35 +40,30 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
-        @IBAction private func didTapSignUpButton() {
-            let realm = try! Realm()
-           try! realm.write {
-               realm.deleteAll()
-           }
-            let email = emailTextField.text ?? ""
-            let password = passwordTextField.text ?? ""
-            signUp(email: email, password: password)
-        }
+    @IBAction private func didTapSignUpButton() {
+        self.email = emailTextField.text ?? ""
+        self.password = passwordTextField.text ?? ""
+        self.signUp(email: self.email!, password: self.password!)
+    }
 
-        private func signUp(email: String, password: String) {
-            let realm = try! Realm()
-            try! realm.write {
-                realm.deleteAll()
+    private func signUp(email: String, password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
+            guard let self = self else { return }
+            if let user = result?.user {
+                //self.sendEmailVerification(to: _user)
+                self.performSegue(withIdentifier: "toRegisterProfView", sender: nil)
             }
-            try! realm.write {
-              realm.add(RealmUserModel())
-            }
-            Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
-                guard let self = self else { return }
-                if let user = result?.user {
-                    self.showSignUpCompletion()
-                }
-                self.showError(error)
-            }
+            self.showError(error)
         }
+    }
 
-        private func showSignUpCompletion() {
-            performSegue(withIdentifier: "showRegisterView", sender: nil)
+    private func sendEmailVerification(to user: User) {
+        user.sendEmailVerification() { [weak self] error in
+            guard let self = self else { return }
+            if error != nil {
+            }
+            self.showError(error)
         }
+    }
 }
 

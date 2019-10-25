@@ -14,7 +14,7 @@ import FirebaseAuth
 import RealmSwift
 import FirebaseStorage
 
-class registerProfViewController: FormViewController {
+class editProfViewController: FormViewController {
 
     let Usersdb = Firestore.firestore().collection("Users")
     let profImagesDirRef = Storage.storage().reference().child("profImages")
@@ -118,7 +118,7 @@ class registerProfViewController: FormViewController {
                 UserData.imageURL = downloadURL.absoluteString
                 UserData.gender = Gender.fromString(string: values["gender"] as! String).rawValue
                 UserData.birthDate = values["birthDate"] as! Date
-                UserData.isWroteProf = true
+                UserData.isRegisteredProf = true
                 UserData.createdAt = Date()
                 UserData.updatedAt = Date()
                 UserData.nationality = Nationality.fromString(string: values["nationality"] as! String).rawValue

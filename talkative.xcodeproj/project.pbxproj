@@ -33,10 +33,13 @@
 		70979CEA234DA04B00579395 /* SearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70979CE9234DA04B00579395 /* SearchView.storyboard */; };
 		70979CEC234DB37A00579395 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CEB234DB37A00579395 /* ReviewViewController.swift */; };
 		70979CEE234DB8FA00579395 /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CED234DB8FA00579395 /* signUpViewController.swift */; };
-		70979CF5234DF07400579395 /* registerProfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF4234DF07400579395 /* registerProfViewController.swift */; };
+		70979CF5234DF07400579395 /* editProfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF4234DF07400579395 /* editProfViewController.swift */; };
 		70979CF7234DF2DD00579395 /* logInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF6234DF2DD00579395 /* logInViewController.swift */; };
 		70979CF9234E2C8400579395 /* extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70979CF8234E2C8400579395 /* extentions.swift */; };
-		709E39DA2360493B00A74EF0 /* registerView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 709E39D92360492800A74EF0 /* registerView.storyboard */; };
+		709E39DC236049D700A74EF0 /* registerView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 709E39DB236049D700A74EF0 /* registerView.storyboard */; };
+		709E39DE23604DBC00A74EF0 /* registerProfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39DD23604DBC00A74EF0 /* registerProfViewController.swift */; };
+		709E39E3236196F300A74EF0 /* registerProfViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E39E2236196F300A74EF0 /* registerProfViewHeader.xib */; };
+		709E39E72361C84700A74EF0 /* selectMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39E62361C84700A74EF0 /* selectMethodViewController.swift */; };
 		70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF44234C856300BA2D74 /* AppDelegate.swift */; };
 		70A4DF49234C856300BA2D74 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF48234C856300BA2D74 /* SearchViewController.swift */; };
 		70A4DF4B234C856300BA2D74 /* ChatroomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A4DF4A234C856300BA2D74 /* ChatroomListViewController.swift */; };
@@ -107,10 +110,13 @@
 		70979CE9234DA04B00579395 /* SearchView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchView.storyboard; sourceTree = "<group>"; };
 		70979CEB234DB37A00579395 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		70979CED234DB8FA00579395 /* signUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
-		70979CF4234DF07400579395 /* registerProfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerProfViewController.swift; sourceTree = "<group>"; };
+		70979CF4234DF07400579395 /* editProfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editProfViewController.swift; sourceTree = "<group>"; };
 		70979CF6234DF2DD00579395 /* logInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logInViewController.swift; sourceTree = "<group>"; };
 		70979CF8234E2C8400579395 /* extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extentions.swift; sourceTree = "<group>"; };
-		709E39D92360492800A74EF0 /* registerView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = registerView.storyboard; path = "/Users/yusuke/Desktop/talkative-swift/talkative/talkative/Authentication/registerView.storyboard"; sourceTree = "<absolute>"; };
+		709E39DB236049D700A74EF0 /* registerView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = registerView.storyboard; sourceTree = "<group>"; };
+		709E39DD23604DBC00A74EF0 /* registerProfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerProfViewController.swift; sourceTree = "<group>"; };
+		709E39E2236196F300A74EF0 /* registerProfViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = registerProfViewHeader.xib; sourceTree = "<group>"; };
+		709E39E62361C84700A74EF0 /* selectMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectMethodViewController.swift; sourceTree = "<group>"; };
 		70A4DF41234C856300BA2D74 /* talkative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talkative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A4DF44234C856300BA2D74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70A4DF48234C856300BA2D74 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +209,10 @@
 			children = (
 				70979CF6234DF2DD00579395 /* logInViewController.swift */,
 				70979CED234DB8FA00579395 /* signUpViewController.swift */,
-				709E39D92360492800A74EF0 /* registerView.storyboard */,
+				709E39E62361C84700A74EF0 /* selectMethodViewController.swift */,
+				709E39DD23604DBC00A74EF0 /* registerProfViewController.swift */,
+				709E39E2236196F300A74EF0 /* registerProfViewHeader.xib */,
+				709E39DB236049D700A74EF0 /* registerView.storyboard */,
 				70188E1C23600EC500D2FAB8 /* loginView.storyboard */,
 			);
 			path = Authentication;
@@ -315,7 +324,7 @@
 				70A4DF78234C8CFE00BA2D74 /* ProfileViewController.swift */,
 				70188E14235F56C000D2FAB8 /* followeeViewController.swift */,
 				70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */,
-				70979CF4234DF07400579395 /* registerProfViewController.swift */,
+				70979CF4234DF07400579395 /* editProfViewController.swift */,
 				70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */,
 				70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */,
 			);
@@ -447,9 +456,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				709E39DA2360493B00A74EF0 /* registerView.storyboard in Resources */,
 				70188E202360176100D2FAB8 /* loginView.storyboard in Resources */,
+				709E39DC236049D700A74EF0 /* registerView.storyboard in Resources */,
 				70A4DF53234C856500BA2D74 /* LaunchScreen.storyboard in Resources */,
+				709E39E3236196F300A74EF0 /* registerProfViewHeader.xib in Resources */,
 				70A4DF83234CABA600BA2D74 /* ProfileView.storyboard in Resources */,
 				70A4DF81234CAB9900BA2D74 /* HistoryView.storyboard in Resources */,
 				70A4DF85234CAD9000BA2D74 /* ChatroomListView.storyboard in Resources */,
@@ -636,7 +646,7 @@
 				70D9BE26234CB71B004DA3BF /* SearchConditionViewController.swift in Sources */,
 				70488D352356871400B3C1CD /* UserModel.swift in Sources */,
 				7069528C234D6C8900D936EC /* Uitl.swift in Sources */,
-				70979CF5234DF07400579395 /* registerProfViewController.swift in Sources */,
+				70979CF5234DF07400579395 /* editProfViewController.swift in Sources */,
 				70979CEE234DB8FA00579395 /* signUpViewController.swift in Sources */,
 				70D9BE2D234CD9BC004DA3BF /* nativeListRowTableViewCell.swift in Sources */,
 				70488D3723568AC000B3C1CD /* OfferModel.swift in Sources */,
@@ -645,12 +655,14 @@
 				70979CF9234E2C8400579395 /* extentions.swift in Sources */,
 				7059B899234F1472005BB6D4 /* ImagePickerController.swift in Sources */,
 				7059B89B234F1479005BB6D4 /* ImageRow.swift in Sources */,
+				709E39DE23604DBC00A74EF0 /* registerProfViewController.swift in Sources */,
 				70A4DF49234C856300BA2D74 /* SearchViewController.swift in Sources */,
 				70918AB2235C8D3900C18CA2 /* HistoryRowTableViewCell.swift in Sources */,
 				70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */,
 				70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */,
 				7030DCD2235264F000F29566 /* Settings.swift in Sources */,
 				70A4DF77234C8C6800BA2D74 /* HistoryViewController.swift in Sources */,
+				709E39E72361C84700A74EF0 /* selectMethodViewController.swift in Sources */,
 				70188E18235F668D00D2FAB8 /* followeeRowTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -772,6 +784,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -826,6 +839,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

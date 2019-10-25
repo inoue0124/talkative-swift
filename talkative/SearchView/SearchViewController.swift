@@ -26,11 +26,6 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
 //        var config = Realm.Configuration()
 //        config.deleteRealmIfMigrationNeeded = true
 //        let realm = try! Realm(configuration: config)
-        do {
-            try Auth.auth().signOut()
-        } catch let error {
-            print(error)
-        }
         super.viewDidLoad()
         setupLocationManager()
         self.MapView.region.span.latitudeDelta = 120

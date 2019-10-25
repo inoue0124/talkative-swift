@@ -8,6 +8,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--loginView-->
+        <scene sceneID="lFk-gA-QYm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="loginView" id="GqN-MF-ijc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f7T-cQ-lw7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="638"/>
+        </scene>
         <!--ProfileView-->
         <scene sceneID="3on-IU-5UJ">
             <objects>
@@ -98,16 +106,17 @@
                         <outlet property="secondLanguage" destination="ZBm-d0-Qfy" id="3vo-LA-ElF"/>
                         <outlet property="settingsTable" destination="UsA-eD-gnj" id="bqN-2T-4kL"/>
                         <segue destination="NjZ-IW-iVF" kind="show" identifier="showFolloweeView" id="caP-hs-Ny2"/>
+                        <segue destination="GqN-MF-ijc" kind="presentation" identifier="toLoginView" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Afr-PU-zUO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1I1-u3-Yep" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="115.84821428571428"/>
         </scene>
-        <!--Register Prof View Controller-->
+        <!--Edit Prof View Controller-->
         <scene sceneID="anl-qc-7A4">
             <objects>
-                <viewController id="AMs-pX-5nf" customClass="registerProfViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AMs-pX-5nf" customClass="editProfViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QIb-Yz-ic0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

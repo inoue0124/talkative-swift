@@ -80,11 +80,12 @@ class UserModel: Identifiable {
 
 class RealmUserModel: Object{
     @objc dynamic var uid = ""  // uid of firebase
+    @objc dynamic var profImage = Data()
     @objc dynamic var imageURL = "https://firebasestorage.googleapis.com/v0/b/talkative-21c6c.appspot.com/o/profImages%2Favatar.jpg?alt=media&token=3c705f19-eaef-40cc-be56-23d5bd01a596"
     @objc dynamic var name = "名称未登録"// username
     @objc dynamic var gender = 0 // 1: male, 2: female, 3: None
     @objc dynamic var birthDate = Date()
-    @objc dynamic var isWroteProf = false
+    @objc dynamic var isRegisteredProf = false
     @objc dynamic var isOnline = false
     @objc dynamic var nationality = 0 // Country_ID
     @objc dynamic var motherLanguage = 0 // Language_ID

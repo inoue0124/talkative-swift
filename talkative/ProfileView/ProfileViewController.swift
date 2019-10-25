@@ -23,7 +23,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate , UITableView
     @IBOutlet weak var settingsTable: UITableView!
     @IBOutlet weak var label_motherLanguage: UILabel!
     @IBOutlet weak var label_secondLanguage: UILabel!
-    
 
     func loadUserInfo() {
         self.UserData = self.getUserData()
@@ -33,14 +32,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate , UITableView
         self.secondLanguage.text = Language.strings[self.UserData!.secondLanguage]
         self.motherLanguage.text = Language.strings[self.UserData!.motherLanguage]
         self.profTable.dataSource = self
-        self.UserIcon.image = UIImage.gif(name: "Preloader")
-        let downloadurl = URL(string: self.UserData!.imageURL)!
-        DispatchQueue.global().async {
-            let image = UIImage(url: downloadurl)
-            DispatchQueue.main.async {
-                self.UserIcon.image = image
-            }
-        }
+        self.UserIcon.image = UIImage(data: self.UserData!.profImage)
     }
 
     override func viewDidLoad() {
@@ -69,7 +61,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate , UITableView
 
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showProfileEditor" {
-            let ProfEditorVC = segue.destination as! registerProfViewController
+            let ProfEditorVC = segue.destination as! editProfViewController
             ProfEditorVC.UserData = self.UserData
         }
     }

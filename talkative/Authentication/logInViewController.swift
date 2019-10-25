@@ -22,10 +22,6 @@ class logInViewController: UIViewController, UITextFieldDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         self.loginButton.setTitle(NSLocalizedString("login", comment: ""), for: .normal)
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        self.navigationItem.hidesBackButton = true
-//        tabBarController?.tabBar.isHidden = true
         self.emailTextField.placeholder = NSLocalizedString("placeholder_email", comment: "")
         self.passwordTextField.placeholder = NSLocalizedString("placeholder_password", comment: "")
         emailTextField.delegate = self
@@ -54,6 +50,7 @@ class logInViewController: UIViewController, UITextFieldDelegate {
         let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
         self.Usersdb.whereField("uid", isEqualTo: uid).addSnapshotListener() { snapshot, error in
             if let _error = error {
+                self.showError(_error)
                 return
             }
             guard let documents = snapshot?.documents else {
@@ -64,9 +61,10 @@ class logInViewController: UIViewController, UITextFieldDelegate {
             UserData.uid = downloadedUserData[0].uid
             UserData.name = downloadedUserData[0].name
             UserData.imageURL = downloadedUserData[0].imageURL.absoluteString
+            UserData.profImage = UIImage(url: downloadedUserData[0].imageURL).jpegData(compressionQuality: 1.0)!
             UserData.gender = downloadedUserData[0].gender
             UserData.birthDate = downloadedUserData[0].birthDate
-            UserData.isWroteProf = true
+            UserData.isRegisteredProf = true
             UserData.createdAt = downloadedUserData[0].createdAt
             UserData.updatedAt = downloadedUserData[0].updatedAt
             UserData.nationality = downloadedUserData[0].nationality
@@ -80,11 +78,5 @@ class logInViewController: UIViewController, UITextFieldDelegate {
               realm.add(UserData)
             }
         }
-        self.navigationController?.popViewController(animated: true)
     }
-
-    @IBAction func tappedBackButton(_ sender: Any) {
-        self.tabBarController!.selectedIndex = 0
-    }
-
 }
