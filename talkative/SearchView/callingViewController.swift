@@ -16,7 +16,7 @@ class callingViewController: UIViewController {
     fileprivate var mediaConnection: SKWMediaConnection?
     fileprivate var localStream: SKWMediaStream?
     fileprivate var remoteStream: SKWMediaStream?
-
+    var timer = Timer()
 
     @IBOutlet weak var remoteStreamView: SKWVideo!
     @IBOutlet weak var localStreamView: SKWVideo!
@@ -55,7 +55,19 @@ class callingViewController: UIViewController {
             guard let _peer = self.peer else{
                 return
             }
+            self.showPreloader()
             self.call(targetPeerId: self.offer!.peerID)
+            timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false, block: { (timer) in
+                if self.remoteStream == nil {
+                    let alertController = UIAlertController(title: NSLocalizedString("alert_confirm_finish_title", comment: ""), message: NSLocalizedString("alert_confirm_finish_message", comment: ""), preferredStyle: UIAlertController.Style.alert)
+                    let okAction = UIAlertAction(title: NSLocalizedString("alert_finish", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                        self.mediaConnection?.close()
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            })
         }
 
         @IBAction func tapEndCall(){
@@ -166,6 +178,7 @@ class callingViewController: UIViewController {
                     self.remoteStream = msStream
                     DispatchQueue.main.async {
                         self.remoteStream?.addVideoRenderer(self.remoteStreamView, track: 0)
+                        self.dissmisPreloader()
                     }
                 }
             })

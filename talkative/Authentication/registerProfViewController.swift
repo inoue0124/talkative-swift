@@ -116,15 +116,16 @@ class registerProfViewController: FormViewController {
     }
 
     @IBAction func tappedSaveButton(_ sender: Any) {
+        self.showPreloader()
         let values = form.values()
         if self.validateForm(dict: values) {
             let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
-            self.saveImageToStorate(uid: uid, values: values, image: values["profImage"] as! UIImage)
+            self.saveImageToStorage(uid: uid, values: values, image: values["profImage"] as! UIImage)
             self.saveToFirestore(uid: uid, values: values)
         }
     }
 
-    func saveImageToStorate(uid: String, values: [String : Any?], image: UIImage) {
+    func saveImageToStorage(uid: String, values: [String : Any?], image: UIImage) {
         let profImagesDirRef = Storage.storage().reference().child("profImages")
         let fileRef = profImagesDirRef.child(uid+".jpg")
         let metadata = StorageMetadata()
@@ -173,11 +174,12 @@ class registerProfViewController: FormViewController {
             "gender": Gender.fromString(string: values["gender"] as! String).rawValue,
             "birthDate": Timestamp(date: values["birthDate"] as! Date),
             "isOnline" : true,
-            "createdAt": FieldValue.serverTimestamp(),
-            "updatedAt": FieldValue.serverTimestamp(),
             "nationality": Nationality.fromString(string: values["nationality"] as! String).rawValue,
             "motherLanguage": Language.fromString(string: values["motherLanguage"] as! String).rawValue,
-            "secondLanguage": Language.fromString(string: values["secondLanguage"] as! String).rawValue
+            "secondLanguage": Language.fromString(string: values["secondLanguage"] as! String).rawValue,
+            "point": 100,
+            "createdAt": FieldValue.serverTimestamp(),
+            "updatedAt": FieldValue.serverTimestamp()
         ], merge: true)
     }
 }

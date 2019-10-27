@@ -24,11 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        do {
-//            try Auth.auth().signOut()
-//        } catch let error {
-//            print(error)
-//        }
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print(error)
+        }
 //        var config = Realm.Configuration()
 //        config.deleteRealmIfMigrationNeeded = true
 //        try! realm.write {
@@ -80,7 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // エラーの時の処理を書く
     }
-
 
     // MARK: UISceneSession Lifecycle
 

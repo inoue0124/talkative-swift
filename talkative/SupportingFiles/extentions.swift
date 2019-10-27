@@ -84,6 +84,26 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("alert_ok", comment: ""), style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+
+    func showPreloader() {
+        let image:UIImage? = UIImage.gif(name: "Preloader2")
+        let imageView:UIImageView! = UIImageView(image:image)
+        imageView.frame = CGRect(x: self.view.bounds.width/2-25,
+                                 y: self.view.bounds.height/2-25,
+                                 width: 50,
+                                 height: 50)
+        imageView.layer.cornerRadius = 10
+
+        //インスタンスビューに表示して一番前に表示
+        self.view.addSubview(imageView)
+        self.view.bringSubviewToFront(imageView)
+        self.view.isUserInteractionEnabled = false
+    }
+
+    func dissmisPreloader() {
+        self.view.isUserInteractionEnabled = true
+        self.view.subviews.last?.removeFromSuperview()
+    }
 }
 
 extension UIImage {

@@ -34,6 +34,7 @@ class logInViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction private func didTapSignInButton() {
+        self.showPreloader()
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
 
@@ -42,6 +43,7 @@ class logInViewController: UIViewController, UITextFieldDelegate {
             if let user = result?.user {
                 self.showLogInCompletion()
             }
+            self.dissmisPreloader()
             self.showError(error)
         }
     }

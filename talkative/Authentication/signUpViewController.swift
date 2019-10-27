@@ -47,12 +47,14 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
     }
 
     private func signUp(email: String, password: String) {
+        self.showPreloader()
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             guard let self = self else { return }
             if let user = result?.user {
                 //self.sendEmailVerification(to: _user)
                 self.performSegue(withIdentifier: "toRegisterProfView", sender: nil)
             }
+            self.dissmisPreloader()
             self.showError(error)
         }
     }

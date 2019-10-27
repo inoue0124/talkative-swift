@@ -30,12 +30,6 @@ class HistoryViewController: UIViewController , UITableViewDelegate , UITableVie
 
     override func viewWillAppear(_ animated: Bool) {
         HistoryTable.allowsSelection = true
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            guard user != nil else {
-                self.performSegue(withIdentifier: "toLoginView", sender: nil)
-                return
-            }
-        }
         let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
         self.offersDb.whereField("learnerID", isEqualTo: uid).order(by: "finishedAt", descending: true).getDocuments() { snapshot, error in
             if let _error = error {

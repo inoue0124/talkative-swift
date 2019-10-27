@@ -35,23 +35,12 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ChatroomListTable" destination="nQC-lu-vBU" id="75N-YR-7ic"/>
-                        <segue destination="Cyt-4m-12D" kind="presentation" identifier="toLoginView" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="AoE-3l-fCt"/>
                         <segue destination="qir-iD-Gjj" kind="show" identifier="showChatroomView" id="DEs-bC-hey"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EuA-On-GfX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-233" y="-115"/>
-        </scene>
-        <!--loginView-->
-        <scene sceneID="TVM-jJ-fiU">
-            <objects>
-                <viewControllerPlaceholder storyboardName="loginView" id="Cyt-4m-12D" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="51U-pZ-czN"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Clp-Mc-rva" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-233" y="450"/>
         </scene>
         <!--Chatroom View Controller-->
         <scene sceneID="93M-8G-GeC">

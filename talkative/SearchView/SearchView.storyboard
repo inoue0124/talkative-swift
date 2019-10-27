@@ -41,24 +41,51 @@
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAr-6M-4TV">
                                 <rect key="frame" x="157" y="712" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="dq0-cd-SCb"/>
-                                    <constraint firstAttribute="width" constant="100" id="orb-ax-5Sa"/>
+                                    <constraint firstAttribute="height" constant="100" id="TzT-Zt-6Gl"/>
+                                    <constraint firstAttribute="width" constant="100" id="zLW-xe-c7I"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="search"/>
                                 <connections>
                                     <action selector="presentConditions:" destination="qZS-HR-mOO" eventType="touchUpInside" id="aB7-jf-ykM"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJV-Gu-haz">
+                                <rect key="frame" x="68" y="664" width="278" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="OYS-nm-YKf">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="igo-37-Pob"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="をタップして母語話者を検索！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYp-Ib-66V">
+                                        <rect key="frame" x="30" y="0.0" width="248" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.94999999999999996"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Lgf-BG-YG6"/>
+                                    <constraint firstAttribute="width" constant="278" id="Wfp-bx-wEQ"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="IfJ-vH-2Eg" firstAttribute="leading" secondItem="tgr-z8-VL7" secondAttribute="leading" id="0Mc-7t-BhE"/>
-                            <constraint firstItem="IfJ-vH-2Eg" firstAttribute="top" secondItem="0LN-QM-ATV" secondAttribute="bottom" constant="-44" id="0jm-3J-IPq"/>
-                            <constraint firstItem="ISR-yV-XVW" firstAttribute="top" secondItem="IfJ-vH-2Eg" secondAttribute="bottom" id="4o5-KJ-bUs"/>
-                            <constraint firstItem="eAr-6M-4TV" firstAttribute="centerX" secondItem="IfJ-vH-2Eg" secondAttribute="centerX" id="Dq1-45-Y4S"/>
-                            <constraint firstItem="ISR-yV-XVW" firstAttribute="top" secondItem="eAr-6M-4TV" secondAttribute="bottom" constant="50" id="KAq-60-i88"/>
-                            <constraint firstAttribute="trailing" secondItem="IfJ-vH-2Eg" secondAttribute="trailing" id="KKi-j9-WWr"/>
+                            <constraint firstItem="IfJ-vH-2Eg" firstAttribute="top" secondItem="tgr-z8-VL7" secondAttribute="topMargin" constant="-44" id="6Ga-Pk-WKu"/>
+                            <constraint firstItem="eAr-6M-4TV" firstAttribute="top" secondItem="pJV-Gu-haz" secondAttribute="bottom" constant="8" id="GsS-eR-hyh"/>
+                            <constraint firstItem="pJV-Gu-haz" firstAttribute="centerX" secondItem="tgr-z8-VL7" secondAttribute="centerX" id="OpK-mJ-h6D"/>
+                            <constraint firstItem="pJV-Gu-haz" firstAttribute="centerX" secondItem="eAr-6M-4TV" secondAttribute="centerX" id="WPf-Cm-qjI"/>
+                            <constraint firstItem="pJV-Gu-haz" firstAttribute="centerX" secondItem="IfJ-vH-2Eg" secondAttribute="centerX" id="fEa-Az-0e3"/>
+                            <constraint firstItem="eAr-6M-4TV" firstAttribute="top" secondItem="pJV-Gu-haz" secondAttribute="bottom" constant="8" id="hbP-jQ-gz5"/>
+                            <constraint firstItem="ISR-yV-XVW" firstAttribute="top" secondItem="eAr-6M-4TV" secondAttribute="bottom" constant="50" id="oCs-r4-60D"/>
+                            <constraint firstItem="IfJ-vH-2Eg" firstAttribute="leading" secondItem="tgr-z8-VL7" secondAttribute="leadingMargin" constant="-20" id="qmY-vT-Ocu"/>
+                            <constraint firstItem="IfJ-vH-2Eg" firstAttribute="bottom" secondItem="tgr-z8-VL7" secondAttribute="bottomMargin" id="uyt-BM-4oQ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="magnifying glass" id="Zja-CH-HOY"/>
@@ -73,7 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="png-it-wtd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="228" y="116"/>
+            <point key="canvasLocation" x="227.536231884058" y="115.84821428571428"/>
         </scene>
         <!--Search Condtion View Controller-->
         <scene sceneID="lAo-Iq-owF">
@@ -237,7 +264,7 @@
                                     <constraint firstAttribute="width" constant="100" id="Aua-0N-xXM"/>
                                     <constraint firstAttribute="height" constant="100" id="Kfq-gt-GcA"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="call"/>
                                 <connections>
                                     <action selector="tapEndCall" destination="OVG-NE-QJX" eventType="touchUpInside" id="psM-3I-H52"/>

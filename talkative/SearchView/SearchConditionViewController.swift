@@ -17,28 +17,26 @@ class SearchCondtionViewController: FormViewController {
             <<< AlertRow<String> {
                 $0.title = NSLocalizedString("conditions_language", comment: "")
                 $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
-                $0.value = Language.English.string()
+                $0.value = Language.strings[getUserData().secondLanguage]
                 $0.tag = "targetLanguage"
+            }.cellUpdate { cell, row in
+                cell.height = ({return 80})
             }
 
             <<< IntRow() {
                 $0.title = NSLocalizedString("conditions_price", comment: "")
-                $0.placeholder = "¥100"
-                $0.value = 100
+                $0.value = 10
                 $0.tag = "maxPrice"
-            }
-
-            <<< IntRow() {
-                $0.title = NSLocalizedString("conditions_time", comment: "")
-                $0.placeholder = "15分"
-                $0.value = 15
-                $0.tag = "timeLength"
+            }.cellUpdate { cell, row in
+                cell.height = ({return 80})
             }
 
         +++ Section("")
             <<< ButtonRow() {
                 $0.title = NSLocalizedString("search", comment: "")
                 $0.onCellSelection(self.buttonTapped)
+            }.cellUpdate { cell, row in
+                cell.height = ({return 80})
             }
     }
 

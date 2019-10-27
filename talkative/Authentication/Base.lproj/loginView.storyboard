@@ -59,11 +59,17 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3a-qL-fu8">
-                                <rect key="frame" x="176" y="619" width="62" height="40"/>
+                                <rect key="frame" x="68" y="619" width="278" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="25t-ex-VBs"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="ULx-Yc-8Ng"/>
+                                    <constraint firstAttribute="width" constant="278" id="mUI-Wv-YM6"/>
                                 </constraints>
-                                <state key="normal" title="ログイン"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="ログイン">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="didTapSignInButton" destination="6Un-OV-799" eventType="touchUpInside" id="Kwt-Of-a0k"/>
                                 </connections>

@@ -53,12 +53,6 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarItem.badgeValue = nil
         ChatroomListTable.allowsSelection = true
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            guard user != nil else {
-                self.performSegue(withIdentifier: "toLoginView", sender: nil)
-                return
-            }
-        }
         self.navigationItem.hidesBackButton = false
         tabBarController?.tabBar.isHidden = false
         largeTitle(NSLocalizedString("largetitle_message", comment: ""))

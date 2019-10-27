@@ -47,7 +47,7 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             }
              self.natives = documents.map{ UserModel(from: $0) }
             for native in self.natives! {
-                print(native.location)
+                //print(native.location)
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = CLLocationCoordinate2DMake(native.location.latitude, native.location.longitude)
                 self.MapView.addAnnotation(annotation)
@@ -87,7 +87,7 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         let location = locations.first
         self.fetchCityAndCountry(location: location!) { city, country, error in
             guard let city = city, let country = country, error == nil else { return }
-            print(city + ", " + country)
+            //print(city + ", " + country)
         }
     }
 

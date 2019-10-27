@@ -16,6 +16,7 @@ class settingViewController: UIViewController {
     let realm = try! Realm()
     @IBOutlet weak var loguotButton: UIButton!
     @IBAction func tappedLogoutButton(_ sender: Any) {
+        print("hello")
         do {
             var config = Realm.Configuration()
             config.deleteRealmIfMigrationNeeded = true
