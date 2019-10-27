@@ -18,6 +18,10 @@ pod 'MessageInputBar'
 pod 'RealmSwift'
 pod 'SwiftGifOrigin', '~> 1.7.0'
 pod 'FBSDKLoginKit'
+pod 'FBSDKCoreKit'
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'SCLAlertView'
 
   # Pods for talkative
 

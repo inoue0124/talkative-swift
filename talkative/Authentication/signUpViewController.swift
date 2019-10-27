@@ -32,7 +32,7 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        tabBarController?.tabBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

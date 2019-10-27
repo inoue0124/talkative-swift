@@ -23,6 +23,7 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var instructLabel: UILabel!
     var rating: Int!
     let offersDb = Firestore.firestore().collection("offers")
+    let Usersdb = Firestore.firestore().collection("Users")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,26 @@ class ReviewViewController: UIViewController {
             }
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        tabBarController?.tabBar.isHidden = true
+    }
+
     @IBAction func tappedBackHomeButton(_ sender: Any) {
+        self.Usersdb.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
+            if let _error = error {
+                self.showError(_error)
+                return
+            }
+            guard let documents = snapshot?.documents else {
+            return
+            }
+            let downloadedUserData = documents.map{ UserModel(from: $0) }
+            self.Usersdb.document(self.getUserUid()).setData([
+                "point" : downloadedUserData[0].point-self.offer!.offerPrice
+            ], merge: true)
+        }
         self.offersDb.document(self.offer!.offerID).setData([
             "ratingForNative" : self.rating!
         ], merge: true)

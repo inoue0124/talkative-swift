@@ -24,17 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        do {
-            try Auth.auth().signOut()
-        } catch let error {
-            print(error)
-        }
+        let realm = try! Realm()
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let error {
+//            print(error)
+//        }
 //        var config = Realm.Configuration()
 //        config.deleteRealmIfMigrationNeeded = true
 //        try! realm.write {
 //            realm.deleteAll()
 //        }
-        let realm = try! Realm()
         Auth.auth().addStateDidChangeListener { (auth, user) in
             print(realm.objects(RealmUserModel.self).isEmpty)
             if user == nil {

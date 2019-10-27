@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Select Method View Controller-->
+        <!--Select Register Method View Controller-->
         <scene sceneID="7fK-xG-3fb">
             <objects>
-                <viewController id="892-Y4-cL1" customClass="selectMethodViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="892-Y4-cL1" customClass="selectRegisterMethodViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia4-OC-aci"/>
                         <viewControllerLayoutGuide type="bottom" id="ga1-Li-eHL"/>
@@ -40,9 +40,6 @@
                                     <constraint firstAttribute="width" constant="278" id="i3O-Ip-eeL"/>
                                 </constraints>
                                 <state key="normal" title="Facebookで登録する"/>
-                                <connections>
-                                    <segue destination="wHa-uX-bvp" kind="show" id="JxT-rj-YIh"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -62,6 +59,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="facebookButton" destination="Ces-HJ-J12" id="S14-qG-H7s"/>
+                        <segue destination="qU9-WQ-wJU" kind="show" identifier="toRegisterProfView" id="meP-66-Rff"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5cr-p3-bgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -150,7 +151,7 @@
         <!--Register Prof View Controller-->
         <scene sceneID="ZD3-hw-Gwh">
             <objects>
-                <viewController id="qU9-WQ-wJU" customClass="registerProfViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registerProfView" id="qU9-WQ-wJU" customClass="registerProfViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zt7-84-abm"/>
                         <viewControllerLayoutGuide type="bottom" id="AYU-tk-xwN"/>
@@ -174,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JwN-pO-Aed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2182.608695652174" y="-1105.5803571428571"/>
+            <point key="canvasLocation" x="2067" y="-313"/>
         </scene>
         <!--Main-->
         <scene sceneID="Y3e-Ks-sGD">
@@ -184,38 +185,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ap9-zX-GoU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2983" y="-1106"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="URY-ua-huT">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yWC-h3-smt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="wHa-uX-bvp" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YGD-Ol-hMZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="rit-2e-gmb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="flp-98-WUv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook 登録" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cO3-c4-RVL">
-                                <rect key="frame" x="150" y="287" width="114" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="cO3-c4-RVL" firstAttribute="top" secondItem="YGD-Ol-hMZ" secondAttribute="bottom" constant="199" id="FrL-5O-NjI"/>
-                            <constraint firstItem="cO3-c4-RVL" firstAttribute="centerX" secondItem="flp-98-WUv" secondAttribute="centerX" id="REL-B8-aMD"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="wnl-Md-uG5"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="1199" y="-313"/>
+            <point key="canvasLocation" x="2717" y="-313"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uQH-a1-WmQ">
@@ -241,4 +211,7 @@
         <image name="logoimage1" width="680" height="454"/>
         <image name="mail" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="meP-66-Rff"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -42,6 +42,8 @@ class callingViewController: UIViewController {
 
         override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            tabBarController?.tabBar.isHidden = false
             self.mediaConnection?.close()
             self.peer?.destroy()
         }

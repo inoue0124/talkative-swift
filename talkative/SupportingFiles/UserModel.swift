@@ -30,6 +30,7 @@ class UserModel: Identifiable {
     var point: Int
     var createdAt: Date // data of registration
     var updatedAt: Date // date of updating of user info
+    var lastLoginBonus: Date
 
     var diff: Int {
         return "\(id)\(name)\(nationality)\(updatedAt)".hashValue
@@ -46,14 +47,16 @@ class UserModel: Identifiable {
         self.nationality = from.get("nationality") as? Int ?? 1
         self.motherLanguage = from.get("motherLanguage") as? Int ?? 1
         self.secondLanguage = from.get("secondLanguage") as? Int ?? 1
-        self.timestamp = from.get("createdAt") as? Timestamp ?? Timestamp()
         self.peerID = from.get("peerID") as? String ?? ""
         self.rating = from.get("rating") as? Int ?? 0
         self.location = from.get("location") as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         self.point = from.get("point") as? Int ?? 0
+        self.timestamp = from.get("createdAt") as? Timestamp ?? Timestamp()
         self.createdAt = timestamp.dateValue()
         self.timestamp = from.get("updatedAt") as? Timestamp ?? Timestamp()
         self.updatedAt = timestamp.dateValue()
+        self.timestamp = from.get("lastLoginBonus") as? Timestamp ?? Timestamp()
+        self.lastLoginBonus = timestamp.dateValue()
         self.id = self.uid
     }
 
@@ -74,6 +77,7 @@ class UserModel: Identifiable {
             "point": point,
             "createdAt": createdAt,
             "updatedAt": updatedAt,
+            "lastLoginBonus" : lastLoginBonus,
         ]
     }
 }
@@ -94,5 +98,6 @@ class RealmUserModel: Object{
     @objc dynamic var point = 100
     @objc dynamic var createdAt = Date() // data of registration
     @objc dynamic var updatedAt = Date() // date of updating of user info
+    @objc dynamic var lastLoginBonus = Date()
 }
 

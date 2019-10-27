@@ -86,24 +86,31 @@ class nativeDetailViewController: UIViewController {
 
 
     @IBAction func tappedCallButton(_ sender: Any) {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user == nil {
-                self.tabBarController!.selectedIndex = 3
-            } else {
-                let alertController = UIAlertController(title: NSLocalizedString("alert_confirm_payment_title", comment: ""),
-                                                        message: String(format: NSLocalizedString("alert_confirm_payment_message", comment: ""), self.offer!.offerPrice,self.offer!.offerTime), preferredStyle: UIAlertController.Style.alert)
-                let okAction = UIAlertAction(title: NSLocalizedString("alert_ok", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self.performSegue(withIdentifier: "show_media", sender: nil)
-                    }
-                })
-                let cancelAction = UIAlertAction(title: NSLocalizedString("alert_cancel", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
-                    return
-                })
-                alertController.addAction(okAction)
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true, completion: nil)
+        self.usersDb.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
+            if let _error = error {
+                self.showError(_error)
+                return
             }
+            guard let documents = snapshot?.documents else {
+            return
+            }
+            let downloadedUserData = documents.map{ UserModel(from: $0) }
+            if downloadedUserData[0].point-self.offer!.offerPrice < 0 {
+                return
+            }
+            let alertController = UIAlertController(title: NSLocalizedString("alert_confirm_payment_title", comment: ""),
+                                                    message: String(format: NSLocalizedString("alert_confirm_payment_message", comment: ""), self.offer!.offerPrice,self.offer!.offerTime), preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: NSLocalizedString("alert_ok", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.performSegue(withIdentifier: "show_media", sender: nil)
+                }
+            })
+            let cancelAction = UIAlertAction(title: NSLocalizedString("alert_cancel", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                return
+            })
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 

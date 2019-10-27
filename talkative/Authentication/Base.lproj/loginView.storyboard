@@ -21,7 +21,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FfY-ta-PFh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1804" y="116"/>
+            <point key="canvasLocation" x="-2212" y="116"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="XAi-xK-UXb">
@@ -78,7 +78,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dNL-Vt-c0P" firstAttribute="leading" secondItem="Z8f-gc-dBY" secondAttribute="leading" id="3sn-hq-82a"/>
-                            <constraint firstItem="Q4p-oZ-DWh" firstAttribute="top" secondItem="O3a-qL-fu8" secondAttribute="bottom" constant="154" id="Dbv-bt-kX1"/>
                             <constraint firstItem="Q8M-UB-kQO" firstAttribute="top" secondItem="mbP-zU-UL6" secondAttribute="bottom" constant="19" id="Pg0-EG-kaE"/>
                             <constraint firstItem="Q8M-UB-kQO" firstAttribute="leading" secondItem="Z8f-gc-dBY" secondAttribute="leadingMargin" constant="48" id="ZIV-At-tyk"/>
                             <constraint firstItem="mbP-zU-UL6" firstAttribute="top" secondItem="dNL-Vt-c0P" secondAttribute="bottom" constant="66" id="aea-47-aVe"/>
@@ -93,56 +92,37 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="GDt-Qy-jr5"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="mbP-zU-UL6" id="efZ-5M-fc7"/>
                         <outlet property="loginButton" destination="O3a-qL-fu8" id="KbT-3W-csS"/>
                         <outlet property="passwordTextField" destination="Q8M-UB-kQO" id="qCe-bA-cTa"/>
-                        <segue destination="GlK-Jf-YZP" kind="presentation" identifier="toMain" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Pti-bJ-ppg"/>
+                        <segue destination="5Re-5u-xDb" kind="show" identifier="toRegisterProfView" id="nXJ-I6-9dQ"/>
+                        <segue destination="Kjf-wW-OtT" kind="presentation" identifier="toMain" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="49X-oj-dJu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8X2-13-nCf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1258" y="-659"/>
+            <point key="canvasLocation" x="1586" y="-389"/>
+        </scene>
+        <!--registerProfView-->
+        <scene sceneID="zeE-iP-sYb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="registerView" referencedIdentifier="registerProfView" id="5Re-5u-xDb" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Z32-2s-P2n"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="63J-Q9-JHF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1586" y="116"/>
         </scene>
         <!--Main-->
-        <scene sceneID="8jK-2V-TUO">
+        <scene sceneID="thZ-wi-E37">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="GlK-Jf-YZP" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mVl-NT-EmT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Main" id="Kjf-wW-OtT" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="BQe-ky-Mgp"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5vI-0C-Xv8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2168" y="-665"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="DLU-04-CHk">
-            <objects>
-                <viewController id="yTS-me-oKz" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bbf-ss-FII"/>
-                        <viewControllerLayoutGuide type="bottom" id="K5r-Xm-hHa"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="n25-tp-QAR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook ログイン" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gQ-xD-8kV">
-                                <rect key="frame" x="132.5" y="317" width="149" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="1gQ-xD-8kV" firstAttribute="top" secondItem="bbf-ss-FII" secondAttribute="bottom" constant="229" id="fUi-tR-s9r"/>
-                            <constraint firstItem="1gQ-xD-8kV" firstAttribute="centerX" secondItem="n25-tp-QAR" secondAttribute="centerX" id="xXb-S2-4kE"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="5YA-mt-H9K"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ROc-WB-tfz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1259" y="116"/>
+            <point key="canvasLocation" x="2106" y="340"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="EFN-xj-EtN">
@@ -217,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7FG-TE-m85" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-849.27536231884062" y="115.84821428571428"/>
+            <point key="canvasLocation" x="-1275" y="116"/>
         </scene>
         <!--registerView-->
         <scene sceneID="rLp-Wp-slf">
@@ -225,7 +205,7 @@
                 <viewControllerPlaceholder storyboardName="registerView" id="rLT-PX-SPj" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ZE-on-YAM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-849" y="727"/>
+            <point key="canvasLocation" x="-1275" y="727"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aNY-qi-7Ij">
@@ -242,12 +222,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Cb-kf-CKX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141" y="-659"/>
+            <point key="canvasLocation" x="-341" y="116"/>
         </scene>
-        <!--Select Method View Controller-->
+        <!--Select Login Method View Controller-->
         <scene sceneID="k4A-O9-7gO">
             <objects>
-                <viewController id="nqw-oG-2bP" customClass="selectMethodViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nqw-oG-2bP" customClass="selectLoginMethodViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pVl-sX-zFD"/>
                         <viewControllerLayoutGuide type="bottom" id="PBS-kH-Kt4"/>
@@ -277,9 +257,6 @@
                                     <constraint firstAttribute="width" constant="278" id="e9m-Vl-0DA"/>
                                 </constraints>
                                 <state key="normal" title="Facebookでログイン"/>
-                                <connections>
-                                    <segue destination="yTS-me-oKz" kind="show" id="zDs-kJ-nfx"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -299,10 +276,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="facebookButton" destination="mxN-AL-cSh" id="9zH-xa-OSz"/>
+                        <segue destination="5Re-5u-xDb" kind="show" identifier="toRegisterProfView" id="DCB-QQ-qgg"/>
+                        <segue destination="Kjf-wW-OtT" kind="presentation" identifier="toMain" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="edf-9t-SCC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TJ8-So-zVU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140.57971014492756" y="115.84821428571428"/>
+            <point key="canvasLocation" x="512" y="116"/>
         </scene>
     </scenes>
     <resources>
@@ -311,4 +293,8 @@
         <image name="logoimage1" width="680" height="454"/>
         <image name="mail" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="edf-9t-SCC"/>
+        <segue reference="DCB-QQ-qgg"/>
+    </inferredMetricsTieBreakers>
 </document>

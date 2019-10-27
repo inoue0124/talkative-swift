@@ -12,6 +12,7 @@ import FirebaseAuth
 import Eureka
 import RealmSwift
 import FirebaseStorage
+import SCLAlertView
 
 class registerProfViewController: FormViewController {
 
@@ -23,6 +24,7 @@ class registerProfViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
 
         form +++ Section() {
             let header = HeaderFooterView<LogoViewNib>(.nibFile(name: "registerProfViewHeader", bundle: nil))
@@ -107,8 +109,8 @@ class registerProfViewController: FormViewController {
     func validateForm(dict: [String : Any?]) -> Bool {
         for (key, value) in dict {
             if value == nil {
+                self.dissmisPreloader()
                 UIAlertController.oneButton("エラー", message: "未入力項目があります。", handler: nil)
-
                 return false
             }
         }
@@ -141,7 +143,7 @@ class registerProfViewController: FormViewController {
                         "imageURL": downloadURL.absoluteString
                     ], merge: true)
                     self.saveToRealm(uid: uid, values: values, imageURL: downloadURL)
-                    self.performSegue(withIdentifier: "toMain", sender: nil)
+                    self.performSegue(withIdentifier: "toMain", sender: nil)                    
                 }
             }
         }
@@ -179,7 +181,8 @@ class registerProfViewController: FormViewController {
             "secondLanguage": Language.fromString(string: values["secondLanguage"] as! String).rawValue,
             "point": 100,
             "createdAt": FieldValue.serverTimestamp(),
-            "updatedAt": FieldValue.serverTimestamp()
+            "updatedAt": FieldValue.serverTimestamp(),
+            "lastLoginBonus": FieldValue.serverTimestamp(),
         ], merge: true)
     }
 }

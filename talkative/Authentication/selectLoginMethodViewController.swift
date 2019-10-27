@@ -1,53 +1,56 @@
 //
-//  signInViewController.swift
+//  selectMethodViewController.swift
 //  talkative
 //
-//  Created by Yusuke Inoue on 2019/10/09.
+//  Created by Yusuke Inoue on 2019/10/24.
 //  Copyright © 2019 Yusuke Inoue. All rights reserved.
 //
 
 import UIKit
-import Firebase
-import RealmSwift
 import FirebaseFirestore
+import FBSDKLoginKit
+import FirebaseAuth
+import RealmSwift
 
-class logInViewController: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet private weak var emailTextField: UITextField!
-    @IBOutlet private weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
+class selectLoginMethodViewController: UIViewController, LoginButtonDelegate {
 
     let Usersdb = Firestore.firestore().collection("Users")
+    @IBOutlet weak var facebookButton: FBLoginButton!
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.loginButton.setTitle(NSLocalizedString("login", comment: ""), for: .normal)
-        self.emailTextField.placeholder = NSLocalizedString("placeholder_email", comment: "")
-        self.passwordTextField.placeholder = NSLocalizedString("placeholder_password", comment: "")
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
+        facebookButton.delegate = self
+        super.viewWillAppear(animated)
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
+        tabBarController?.tabBar.isHidden = false
     }
 
-    @IBAction private func didTapSignInButton() {
-        self.showPreloader()
-        let email = emailTextField.text ?? ""
-        let password = passwordTextField.text ?? ""
-
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-            guard let self = self else { return }
-            if let user = result?.user {
-                self.showLogInCompletion()
-            }
-            self.dissmisPreloader()
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if let error = error {
             self.showError(error)
+            return
         }
+        if result!.isCancelled {
+            return
+        }
+        self.showPreloader()
+        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+        Auth.auth().signIn(with: credential) { [weak self] result, error in
+          guard let self = self else { return }
+              if let user = result?.user {
+                  self.showLogInCompletion()
+              }
+              self.dissmisPreloader()
+              self.showError(error)
+          }
+    }
+
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
     }
 
     private func showLogInCompletion() {

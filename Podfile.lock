@@ -11,6 +11,12 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
   - Eureka (5.1.0)
+  - FacebookCore (0.9.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookLogin (0.9.0):
+    - FacebookCore (~> 0.9.0)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKLoginKit (~> 5.0)
   - FBSDKCoreKit (5.6.0):
     - FBSDKCoreKit/Basics (= 5.6.0)
     - FBSDKCoreKit/Core (= 5.6.0)
@@ -205,6 +211,7 @@ PODS:
   - Realm/Headers (3.19.0)
   - RealmSwift (3.19.0):
     - Realm (= 3.19.0)
+  - SCLAlertView (0.8)
   - SDWebImage (5.2.0):
     - SDWebImage/Core (= 5.2.0)
   - SDWebImage/Core (5.2.0)
@@ -213,6 +220,9 @@ PODS:
 
 DEPENDENCIES:
   - Eureka
+  - FacebookCore
+  - FacebookLogin
+  - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Analytics
   - Firebase/Auth
@@ -223,11 +233,15 @@ DEPENDENCIES:
   - MessageInputBar
   - MessageKit
   - RealmSwift
+  - SCLAlertView
   - SkyWay
   - SwiftGifOrigin (~> 1.7.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - FacebookCore
+    - FacebookLogin
+    - SCLAlertView
     - SwiftGifOrigin
   trunk:
     - AppAuth
@@ -272,6 +286,8 @@ SPEC CHECKSUMS:
   AppAuth: bce82c76043657c99d91e7882e8a9e1a93650cd4
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
+  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
+  FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
   FBSDKCoreKit: d6655a343868d4bb5c29a60859bab07c3be14a0b
   FBSDKLoginKit: c5a623de88a6b0cda35b35582921f6cec2efcc36
   Firebase: 2d750c54cda57d5a6ae31212cfe5cc813c6be7e4
@@ -304,10 +320,11 @@ SPEC CHECKSUMS:
   Protobuf: 67fb42ba613def994e61854de2b3164f13790cc4
   Realm: 995d585bcf699aaff226715886c849a29dd3d07f
   RealmSwift: 35f284a537989f2187b413e5917091948cb87a3f
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: 609192dcf3898c910a2848032372ead951e66364
   SkyWay: 1dc4379cd757dff9690c944d589f029ed15155a1
   SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
 
-PODFILE CHECKSUM: 6c5ba315b20ffa1ae1d25954b65cc14abb466930
+PODFILE CHECKSUM: 921f54da04db59670451dc2a9fcdaeb94fef67a3
 
 COCOAPODS: 1.8.1

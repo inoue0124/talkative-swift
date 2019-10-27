@@ -99,13 +99,7 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
         self.selectedOffer = self.offers![indexPath.row]
         tableView.allowsSelection = false
         tableView.deselectRow(at: indexPath, animated: true)
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user == nil {
-                self.tabBarController!.selectedIndex = 3
-            } else{
-                self.performSegue(withIdentifier: "showNativeDetailView", sender: nil)
-            }
-       }
+        self.performSegue(withIdentifier: "showNativeDetailView", sender: nil)
     }
 
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {

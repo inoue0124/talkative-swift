@@ -14,11 +14,14 @@ import FirebaseFirestore
 import MapKit
 
 class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-    var natives: [UserModel]?
+    var offers: [OfferModel]?
     var searchConditions: [String:Any]?
     var locationManager: CLLocationManager!
-    let UsersDb = Firestore.firestore().collection("Users")
+    let offersDb = Firestore.firestore().collection("offers")
+    let Usersdb = Firestore.firestore().collection("Users")
 
+    @IBOutlet weak var targetLanguage: UILabel!
+    @IBOutlet weak var numOfOnline: UILabel!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var MapView: MKMapView!
 
@@ -31,12 +34,38 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         self.MapView.region.span.latitudeDelta = 120
         self.MapView.region.span.longitudeDelta = 120
         self.MapView.isZoomEnabled = false
+        let realm = try! Realm()
+        if realm.objects(RealmUserModel.self).isEmpty {
+            return
+        }
+        print(self.getUserData().lastLoginBonus.timeIntervalSinceNow)
+        if -self.getUserData().lastLoginBonus.timeIntervalSinceNow > 60*60*24 {
+            self.Usersdb.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
+                if let _error = error {
+                    self.showError(_error)
+                    return
+                }
+                guard let documents = snapshot?.documents else {
+                return
+                }
+                let downloadedUserData = documents.map{ UserModel(from: $0) }
+                self.Usersdb.document(self.getUserUid()).setData([
+                    "point" : downloadedUserData[0].point+5
+                ], merge: true)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         tabBarController?.tabBar.isHidden = false
-        self.UsersDb.whereField("isOnline", isEqualTo: true).addSnapshotListener() { snapshot, error in
+        let realm = try! Realm()
+        if realm.objects(RealmUserModel.self).isEmpty {
+            return
+        }
+        let targetLanguage = self.getUserData().secondLanguage
+        self.targetLanguage.text = Language.strings[targetLanguage]
+        self.offersDb.whereField("targetLanguage", isEqualTo: targetLanguage).whereField("isOnline", isEqualTo: true).addSnapshotListener() { snapshot, error in
              if let _error = error {
                  print("error\(_error)")
                  return
@@ -45,11 +74,13 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
              print("error")
                 return
             }
-             self.natives = documents.map{ UserModel(from: $0) }
-            for native in self.natives! {
-                //print(native.location)
+             self.offers = documents.map{ OfferModel(from: $0) }
+            self.numOfOnline.text = String(self.offers!.count)
+            self.MapView.removeAnnotations(self.MapView.annotations)
+            for offer in self.offers! {
+                print(offer.nativeLocation)
                 let annotation = MKPointAnnotation()
-                annotation.coordinate = CLLocationCoordinate2DMake(native.location.latitude, native.location.longitude)
+                annotation.coordinate = CLLocationCoordinate2DMake(offer.nativeLocation.latitude, offer.nativeLocation.longitude)
                 self.MapView.addAnnotation(annotation)
             }
         }
@@ -71,6 +102,10 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     }
 
     func setupLocationManager() {
+        let realm = try! Realm()
+        if realm.objects(RealmUserModel.self).isEmpty {
+            return
+        }
         locationManager = CLLocationManager()
         guard let locationManager = locationManager else { return }
         locationManager.requestWhenInUseAuthorization()

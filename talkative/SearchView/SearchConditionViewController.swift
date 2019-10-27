@@ -24,7 +24,7 @@ class SearchCondtionViewController: FormViewController {
             }
 
             <<< IntRow() {
-                $0.title = NSLocalizedString("conditions_price", comment: "")
+                $0.title = NSLocalizedString("conditions_e", comment: "")
                 $0.value = 10
                 $0.tag = "maxPrice"
             }.cellUpdate { cell, row in

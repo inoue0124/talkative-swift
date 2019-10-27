@@ -90,6 +90,7 @@ class editProfViewController: FormViewController {
     }
 
     @IBAction func tappedSaveButton(_ sender: Any) {
+        self.showPreloader()
         let values = form.values()
         if self.validateForm(dict: values) {
             let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")

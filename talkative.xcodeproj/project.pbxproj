@@ -28,6 +28,7 @@
 		7059B8A9234F6EBA005BB6D4 /* chatroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059B8A8234F6EBA005BB6D4 /* chatroomViewController.swift */; };
 		70695288234D697000D936EC /* nativeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70695287234D697000D936EC /* nativeDetailViewController.swift */; };
 		7069528C234D6C8900D936EC /* Uitl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069528B234D6C8900D936EC /* Uitl.swift */; };
+		707E0067236542EE00CBE8E1 /* selectLoginMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707E0066236542EE00CBE8E1 /* selectLoginMethodViewController.swift */; };
 		70918AB2235C8D3900C18CA2 /* HistoryRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918AB0235C8D3900C18CA2 /* HistoryRowTableViewCell.swift */; };
 		70918AB3235C8D3900C18CA2 /* HistoryRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70918AB1235C8D3900C18CA2 /* HistoryRowTableViewCell.xib */; };
 		70979CEA234DA04B00579395 /* SearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70979CE9234DA04B00579395 /* SearchView.storyboard */; };
@@ -39,7 +40,7 @@
 		709E39DC236049D700A74EF0 /* registerView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 709E39DB236049D700A74EF0 /* registerView.storyboard */; };
 		709E39DE23604DBC00A74EF0 /* registerProfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39DD23604DBC00A74EF0 /* registerProfViewController.swift */; };
 		709E39E3236196F300A74EF0 /* registerProfViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E39E2236196F300A74EF0 /* registerProfViewHeader.xib */; };
-		709E39E72361C84700A74EF0 /* selectMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39E62361C84700A74EF0 /* selectMethodViewController.swift */; };
+		709E39E72361C84700A74EF0 /* selectRegisterMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39E62361C84700A74EF0 /* selectRegisterMethodViewController.swift */; };
 		709E39E92363247000A74EF0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39E82363247000A74EF0 /* ProfileViewController.swift */; };
 		709E39F02363697400A74EF0 /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39EF2363697400A74EF0 /* settingViewController.swift */; };
 		709E39F223636DCB00A74EF0 /* walletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E39F123636DCB00A74EF0 /* walletViewController.swift */; };
@@ -107,6 +108,7 @@
 		7059B8A8234F6EBA005BB6D4 /* chatroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatroomViewController.swift; sourceTree = "<group>"; };
 		70695287234D697000D936EC /* nativeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nativeDetailViewController.swift; sourceTree = "<group>"; };
 		7069528B234D6C8900D936EC /* Uitl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uitl.swift; sourceTree = "<group>"; };
+		707E0066236542EE00CBE8E1 /* selectLoginMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectLoginMethodViewController.swift; sourceTree = "<group>"; };
 		70918AB0235C8D3900C18CA2 /* HistoryRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRowTableViewCell.swift; sourceTree = "<group>"; };
 		70918AB1235C8D3900C18CA2 /* HistoryRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryRowTableViewCell.xib; sourceTree = "<group>"; };
 		70979CE9234DA04B00579395 /* SearchView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchView.storyboard; sourceTree = "<group>"; };
@@ -118,7 +120,7 @@
 		709E39DB236049D700A74EF0 /* registerView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = registerView.storyboard; sourceTree = "<group>"; };
 		709E39DD23604DBC00A74EF0 /* registerProfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerProfViewController.swift; sourceTree = "<group>"; };
 		709E39E2236196F300A74EF0 /* registerProfViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = registerProfViewHeader.xib; sourceTree = "<group>"; };
-		709E39E62361C84700A74EF0 /* selectMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectMethodViewController.swift; sourceTree = "<group>"; };
+		709E39E62361C84700A74EF0 /* selectRegisterMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectRegisterMethodViewController.swift; sourceTree = "<group>"; };
 		709E39E82363247000A74EF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		709E39EF2363697400A74EF0 /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
 		709E39F123636DCB00A74EF0 /* walletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletViewController.swift; sourceTree = "<group>"; };
@@ -214,7 +216,8 @@
 				70979CF6234DF2DD00579395 /* logInViewController.swift */,
 				70979CED234DB8FA00579395 /* signUpViewController.swift */,
 				709E39DD23604DBC00A74EF0 /* registerProfViewController.swift */,
-				709E39E62361C84700A74EF0 /* selectMethodViewController.swift */,
+				709E39E62361C84700A74EF0 /* selectRegisterMethodViewController.swift */,
+				707E0066236542EE00CBE8E1 /* selectLoginMethodViewController.swift */,
 				709E39E2236196F300A74EF0 /* registerProfViewHeader.xib */,
 				709E39DB236049D700A74EF0 /* registerView.storyboard */,
 				70188E1C23600EC500D2FAB8 /* loginView.storyboard */,
@@ -666,11 +669,12 @@
 				70918AB2235C8D3900C18CA2 /* HistoryRowTableViewCell.swift in Sources */,
 				70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */,
 				70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */,
+				707E0067236542EE00CBE8E1 /* selectLoginMethodViewController.swift in Sources */,
 				7030DCD2235264F000F29566 /* Settings.swift in Sources */,
 				709E39E92363247000A74EF0 /* ProfileViewController.swift in Sources */,
 				70A4DF77234C8C6800BA2D74 /* HistoryViewController.swift in Sources */,
 				709E39F223636DCB00A74EF0 /* walletViewController.swift in Sources */,
-				709E39E72361C84700A74EF0 /* selectMethodViewController.swift in Sources */,
+				709E39E72361C84700A74EF0 /* selectRegisterMethodViewController.swift in Sources */,
 				70188E18235F668D00D2FAB8 /* followeeRowTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
