@@ -12,10 +12,9 @@ import FirebaseFirestore
 import SwiftGifOrigin
 import SCLAlertView
 
-class nativeDetailViewController: UIViewController {
+class followeeDetailViewController: UIViewController {
 
     var native: UserModel?
-    var offer: OfferModel?
     var selectedChatroom: ChatroomModel?
     @IBOutlet weak var NativeThumbnail: UIImageView!
     @IBOutlet weak var callButton: UIButton!
@@ -36,9 +35,6 @@ class nativeDetailViewController: UIViewController {
         callButton.layer.backgroundColor = UIColor.green.cgColor
         callButton.layer.cornerRadius = 20
         callButton.isEnabled = false
-        if offer!.isOnline {
-            callButton.isEnabled = true
-        }
         messageButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         messageButton.imageView?.contentMode = .scaleAspectFit
         messageButton.contentHorizontalAlignment = .fill
@@ -48,18 +44,18 @@ class nativeDetailViewController: UIViewController {
         messageButton.isEnabled = false
         self.NativeThumbnail.image = UIImage.gif(name: "Preloader")
         DispatchQueue.global().async {
-            let image = UIImage(url: self.offer!.nativeImageURL)
+            let image = UIImage(url: self.native!.imageURL)
             DispatchQueue.main.async {
                 self.NativeThumbnail.image = image
                 self.NativeThumbnail.layer.cornerRadius = 50
             }
         }
-        self.navigationItem.title = self.offer!.nativeName
+        self.navigationItem.title = self.native!.name
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.name.text = self.offer!.nativeName
-        self.rating.text = String(self.offer!.nativeRating)
-        self.usersDb.whereField("uid", isEqualTo: self.offer!.nativeID).getDocuments() { (querySnapshot, err) in
+        self.name.text = self.native!.name
+        self.rating.text = String(self.native!.rating)
+        self.usersDb.whereField("uid", isEqualTo: self.native!.uid).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if querySnapshot!.documents.isEmpty {
@@ -96,42 +92,12 @@ class nativeDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
-    @IBAction func tappedCallButton(_ sender: Any) {
-        self.usersDb.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
-            if let _error = error {
-                self.showError(_error)
-                return
-            }
-            guard let documents = snapshot?.documents else {
-            return
-            }
-            let downloadedUserData = documents.map{ UserModel(from: $0) }
-            if downloadedUserData[0].point-self.offer!.offerPrice < 0 {
-                SCLAlertView().showError("残念。。", subTitle:"ポイントが足りないようです。Talkative-nativeで"+Language.strings[self.getUserData().motherLanguage]+"を教えて、ポイントを貰おう！", closeButtonTitle:"OK")
-                return
-            }
-            let alert = SCLAlertView()
-            alert.addButton(NSLocalizedString("alert_ok", comment: "")) { self.performSegue(withIdentifier: "show_media", sender: nil) }
-            alert.showInfo(NSLocalizedString("alert_confirm_payment_title", comment: ""),
-                                    subTitle: String(format: NSLocalizedString("alert_confirm_payment_message", comment: ""), self.offer!.offerPrice,self.offer!.offerTime))
-        }
-    }
-
     @IBAction func tappedMessageButton(_ sender: Any) {
         self.performSegue(withIdentifier: "show_chatroom", sender: nil)
     }
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == "show_media" {
-            if (UIApplication.shared.delegate as? AppDelegate)?.skywayAPIKey == nil || (UIApplication.shared.delegate as? AppDelegate)?.skywayDomain == nil{
-                UIAlertController.oneButton("エラー", message: "APIKEYかDOMAINが設定されていません", handler: nil)
-            } else {
-                let callVC = segue.destination as! callingViewController
-                callVC.offer = self.offer!
-            }
-        }
         if segue.identifier == "show_chatroom" {
             let chatroomVC = segue.destination as! ChatroomViewController
             chatroomVC.chatroom = self.selectedChatroom

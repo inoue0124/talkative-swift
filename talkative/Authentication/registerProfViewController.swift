@@ -21,6 +21,7 @@ class registerProfViewController: FormViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     let Usersdb = Firestore.firestore().collection("Users")
     let UserData: RealmUserModel = RealmUserModel()
+    let registerBonus: Int = 30
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +100,7 @@ class registerProfViewController: FormViewController {
 
         <<< PushRow<String> {
             $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
-            $0.options = [Language.Unknown.string(), Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
+            $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
             $0.tag = "secondLanguage"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
@@ -110,7 +111,7 @@ class registerProfViewController: FormViewController {
         for (key, value) in dict {
             if value == nil {
                 self.dissmisPreloader()
-                UIAlertController.oneButton("エラー", message: "未入力項目があります。", handler: nil)
+                SCLAlertView().showError("エラー", subTitle:"未入力項目があります。", closeButtonTitle:"OK")
                 return false
             }
         }
@@ -170,6 +171,7 @@ class registerProfViewController: FormViewController {
     }
 
     func saveToFirestore(uid: String, values: [String : Any?]) {
+        let pointHistoryDB = Usersdb.document(uid).collection("pointHistory")
         self.Usersdb.document(uid).setData([
             "uid": uid,
             "name": values["name"] as! String,
@@ -179,11 +181,18 @@ class registerProfViewController: FormViewController {
             "nationality": Nationality.fromString(string: values["nationality"] as! String).rawValue,
             "motherLanguage": Language.fromString(string: values["motherLanguage"] as! String).rawValue,
             "secondLanguage": Language.fromString(string: values["secondLanguage"] as! String).rawValue,
-            "point": 100,
+            "point": self.registerBonus,
             "createdAt": FieldValue.serverTimestamp(),
             "updatedAt": FieldValue.serverTimestamp(),
             "lastLoginBonus": FieldValue.serverTimestamp(),
         ], merge: true)
+        pointHistoryDB.document().setData([
+            "point": self.registerBonus,
+            "method": Method.fromString(string: "ログインボーナス").rawValue,
+            "createdAt": FieldValue.serverTimestamp()
+        ], merge: true)
+        let alert = SCLAlertView()
+        _ = alert.showSuccess("登録ありがとうございます！", subTitle: "P"+String(self.registerBonus)+"を獲得しました！")
     }
 }
 

@@ -9,6 +9,7 @@
 import UIKit
 import SkyWay
 import FirebaseFirestore
+import SCLAlertView
 
 class callingViewController: UIViewController {
     var offer: OfferModel?
@@ -17,6 +18,8 @@ class callingViewController: UIViewController {
     fileprivate var localStream: SKWMediaStream?
     fileprivate var remoteStream: SKWMediaStream?
     var timer = Timer()
+    var waitingAlert: SCLAlertView?
+    var errorAlert: SCLAlertView?
 
     @IBOutlet weak var remoteStreamView: SKWVideo!
     @IBOutlet weak var localStreamView: SKWVideo!
@@ -46,6 +49,9 @@ class callingViewController: UIViewController {
             tabBarController?.tabBar.isHidden = false
             self.mediaConnection?.close()
             self.peer?.destroy()
+            self.waitingAlert?.hideView()
+            self.errorAlert?.hideView()
+            self.timer.invalidate()
         }
 
         override func didReceiveMemoryWarning() {
@@ -57,17 +63,22 @@ class callingViewController: UIViewController {
             guard let _peer = self.peer else{
                 return
             }
-            self.showPreloader()
             self.call(targetPeerId: self.offer!.peerID)
-            timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false, block: { (timer) in
+            let appearance = SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            )
+            waitingAlert = SCLAlertView(appearance: appearance)
+            waitingAlert!.showWait("応答待機中", subTitle: "少々お待ちください。", closeButtonTitle: nil, timeout: nil, colorStyle: nil, colorTextButton: 0xFFFFFF, circleIconImage: UIImage.gif(name: "Preloader2"), animationStyle: SCLAnimationStyle.topToBottom)
+            timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true, block: { (timer) in
                 if self.remoteStream == nil {
-                    let alertController = UIAlertController(title: NSLocalizedString("alert_confirm_finish_title", comment: ""), message: NSLocalizedString("alert_confirm_finish_message", comment: ""), preferredStyle: UIAlertController.Style.alert)
-                    let okAction = UIAlertAction(title: NSLocalizedString("alert_finish", comment: ""), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                    self.errorAlert?.hideView()
+                    self.errorAlert = SCLAlertView(appearance: appearance)
+                    self.errorAlert!.addButton("続ける") {}
+                    self.errorAlert!.addButton(NSLocalizedString("alert_finish", comment: "")) {
                         self.mediaConnection?.close()
                         self.navigationController?.popViewController(animated: true)
-                    })
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
+                    }
+                    self.errorAlert!.showError("エラー", subTitle:"応答がありませんでした。", closeButtonTitle: nil)
                 }
             })
         }
@@ -180,7 +191,9 @@ class callingViewController: UIViewController {
                     self.remoteStream = msStream
                     DispatchQueue.main.async {
                         self.remoteStream?.addVideoRenderer(self.remoteStreamView, track: 0)
-                        self.dissmisPreloader()
+                        self.waitingAlert?.hideView()
+                        self.errorAlert?.hideView()
+                        self.timer.invalidate()
                     }
                 }
             })

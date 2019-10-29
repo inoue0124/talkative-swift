@@ -13,6 +13,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import RealmSwift
 import FirebaseStorage
+import SCLAlertView
 
 class editProfViewController: FormViewController {
 
@@ -23,6 +24,8 @@ class editProfViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title =  "編集"
+        self.navigationItem.largeTitleDisplayMode = .never
         form +++ Section(NSLocalizedString("prof_section_base", comment: ""))
         <<< ImageRow {
             $0.title = NSLocalizedString("prof_image", comment: "")
@@ -82,7 +85,8 @@ class editProfViewController: FormViewController {
     func validateForm(dict: [String : Any?]) -> Bool {
         for (key, value) in dict {
             if value == nil {
-                UIAlertController.oneButton("エラー", message: "未入力項目があります。", handler: nil)
+                self.dissmisPreloader()
+                SCLAlertView().showError("エラー", subTitle:"未入力項目があります。", closeButtonTitle:"OK")
                 return false
             }
         }

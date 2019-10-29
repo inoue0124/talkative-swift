@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        let realm = try! Realm()
+//        let realm = try! Realm()
 //        do {
 //            try Auth.auth().signOut()
 //        } catch let error {
@@ -36,18 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            realm.deleteAll()
 //        }
         Auth.auth().addStateDidChangeListener { (auth, user) in
-            print(realm.objects(RealmUserModel.self).isEmpty)
             if user == nil {
                 self.window = UIWindow(frame: UIScreen.main.bounds)
                 let loginStoryboard: UIStoryboard = UIStoryboard(name: "loginView", bundle: nil)
                 let loginVC = loginStoryboard.instantiateInitialViewController()
                 self.window?.rootViewController = loginVC
-                self.window?.makeKeyAndVisible()
-            } else if !realm.objects(RealmUserModel.self).isEmpty {
-                self.window = UIWindow(frame: UIScreen.main.bounds)
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let mainVC = mainStoryboard.instantiateInitialViewController()
-                self.window?.rootViewController = mainVC
                 self.window?.makeKeyAndVisible()
             }
         }

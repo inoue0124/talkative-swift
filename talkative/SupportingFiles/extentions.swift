@@ -92,7 +92,8 @@ extension UIViewController {
                                  y: self.view.bounds.height/2-25,
                                  width: 50,
                                  height: 50)
-        imageView.layer.cornerRadius = 10
+        imageView.layer.borderColor = UIColor.gray.cgColor
+        imageView.layer.borderWidth = 1
 
         //インスタンスビューに表示して一番前に表示
         self.view.addSubview(imageView)

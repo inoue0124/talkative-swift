@@ -11,6 +11,7 @@ import Eureka
 import FirebaseAuth
 import SwiftGifOrigin
 import RealmSwift
+import SCLAlertView
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var Thumbnail: UIImageView!
@@ -50,22 +51,49 @@ class ProfileCollectionViewController: FormViewController, UINavigationControlle
         <<< ButtonRow {
             $0.title = NSLocalizedString("prof_setting_following", comment: "")
             $0.presentationMode = .segueName(segueName: "followeeSegue", onDismiss: nil)
-        }.cellUpdate { cell, row in
+        }.cellSetup { cell, row in
+            cell.imageView?.image = UIImage(named: "heart_fill")
             cell.height = ({return 80})
         }
 
         <<< ButtonRow {
             $0.title = NSLocalizedString("prof_setting_wallet", comment: "")
             $0.presentationMode = .segueName(segueName: "walletSegue", onDismiss: nil)
-        }.cellUpdate { cell, row in
+        }.cellSetup { cell, row in
+            cell.imageView?.image = UIImage(named: "wallet")
             cell.height = ({return 80})
         }
 
-        <<< ButtonRow {
-            $0.title = NSLocalizedString("prof_setting_setting", comment: "")
-            $0.presentationMode = .segueName(segueName: "settingSegue", onDismiss: nil)
+//        <<< ButtonRow {
+//            $0.title = NSLocalizedString("prof_setting_setting", comment: "")
+//            $0.presentationMode = .segueName(segueName: "settingSegue", onDismiss: nil)
+//        }.cellUpdate { cell, row in
+//            cell.height = ({return 80})
+//        }
+
+        <<< ButtonRow() {
+            $0.title = NSLocalizedString("ログアウト", comment: "")
+            $0.onCellSelection(self.buttonTapped)
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
         }
+    }
+
+    func buttonTapped(cell: ButtonCellOf<String>, row: ButtonRow) {
+        let alert = SCLAlertView()
+        alert.addButton(NSLocalizedString("alert_ok", comment: "")) {
+            let realm = try! Realm()
+            do {
+                var config = Realm.Configuration()
+                config.deleteRealmIfMigrationNeeded = true
+                try! realm.write {
+                    realm.deleteAll()
+                }
+                try Auth.auth().signOut()
+            } catch let error {
+                print(error)
+            }
+        }
+        alert.showWarning(NSLocalizedString("ログアウト", comment: ""), subTitle: "ログアウトします。よろしいですか？")
     }
 }

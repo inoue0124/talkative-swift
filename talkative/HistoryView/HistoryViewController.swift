@@ -60,15 +60,15 @@ class HistoryViewController: UIViewController , UITableViewDelegate , UITableVie
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         history = histories![indexPath.row]
-        //tableView.allowsSelection = false
+        tableView.allowsSelection = false
         tableView.deselectRow(at: indexPath, animated: true)
-        //performSegue(withIdentifier: "showHistoryView", sender: nil)
+        performSegue(withIdentifier: "showDetailView", sender: nil)
        }
 
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showHistoryView" {
-            let HistoryDetailVC = segue.destination as! HistoryViewController
-            HistoryDetailVC.history = self.history
+        if segue.identifier == "showDetailView" {
+            let HistoryDetailVC = segue.destination as! nativeDetailViewController
+            HistoryDetailVC.offer = self.history
         }
     }
 

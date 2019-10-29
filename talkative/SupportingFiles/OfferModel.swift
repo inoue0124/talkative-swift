@@ -68,8 +68,8 @@ class OfferModel {
         self.acceptedAt = Date()
         self.withdrawedAt = Date()
         self.finishedAt = Date()
-        self.ratingForNative = 0
-        self.ratingForLearner = 0
+        self.ratingForNative = 1
+        self.ratingForLearner = 1
     }
 
     init(from: QueryDocumentSnapshot) {
@@ -101,8 +101,8 @@ class OfferModel {
         self.withdrawedAt = timestamp.dateValue()
         self.timestamp = from.get("finishedAt") as? Timestamp ?? Timestamp()
         self.finishedAt = timestamp.dateValue()
-        self.ratingForNative = from.get("ratingForNative") as? Int ?? 0
-        self.ratingForLearner = from.get("ratingForLearner") as? Int ?? 0
+        self.ratingForNative = from.get("ratingForNative") as? Int ?? 1
+        self.ratingForLearner = from.get("ratingForLearner") as? Int ?? 1
     }
 
     var toAnyObject: [String: Any] {

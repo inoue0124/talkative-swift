@@ -13,7 +13,7 @@ class SearchCondtionViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        form +++ Section(NSLocalizedString("conditions", comment: ""))
+        form +++ Section(header: NSLocalizedString("conditions", comment: ""), footer: "*1分=1ポイント")
             <<< AlertRow<String> {
                 $0.title = NSLocalizedString("conditions_language", comment: "")
                 $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
@@ -24,7 +24,7 @@ class SearchCondtionViewController: FormViewController {
             }
 
             <<< IntRow() {
-                $0.title = NSLocalizedString("conditions_e", comment: "")
+                $0.title = NSLocalizedString("conditions_time", comment: "")
                 $0.value = 10
                 $0.tag = "maxPrice"
             }.cellUpdate { cell, row in

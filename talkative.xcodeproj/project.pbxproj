@@ -58,6 +58,10 @@
 		70A4DF85234CAD9000BA2D74 /* ChatroomListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A4DF84234CAD9000BA2D74 /* ChatroomListView.storyboard */; };
 		70A551F32359F076005F4699 /* Preloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 70A551F22359F076005F4699 /* Preloader.gif */; };
 		70A551F52359F0C5005F4699 /* Preloader2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 70A551F42359F0C5005F4699 /* Preloader2.gif */; };
+		70BD697E236703330063768C /* pointHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD697D236703330063768C /* pointHistoryModel.swift */; };
+		70BD6981236708B70063768C /* walletHistoryRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD697F236708B70063768C /* walletHistoryRowTableViewCell.swift */; };
+		70BD6982236708B70063768C /* walletHistoryRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70BD6980236708B70063768C /* walletHistoryRowTableViewCell.xib */; };
+		70BD698623681E1B0063768C /* followeeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD698523681E1B0063768C /* followeeDetailViewController.swift */; };
 		70D9BE26234CB71B004DA3BF /* SearchConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */; };
 		70D9BE2D234CD9BC004DA3BF /* nativeListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */; };
 		70D9BE2E234CD9BC004DA3BF /* nativeListRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70D9BE2C234CD9BC004DA3BF /* nativeListRowTableViewCell.xib */; };
@@ -144,6 +148,10 @@
 		70A4DF84234CAD9000BA2D74 /* ChatroomListView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatroomListView.storyboard; sourceTree = "<group>"; };
 		70A551F22359F076005F4699 /* Preloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Preloader.gif; sourceTree = "<group>"; };
 		70A551F42359F0C5005F4699 /* Preloader2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Preloader2.gif; sourceTree = "<group>"; };
+		70BD697D236703330063768C /* pointHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pointHistoryModel.swift; sourceTree = "<group>"; };
+		70BD697F236708B70063768C /* walletHistoryRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletHistoryRowTableViewCell.swift; sourceTree = "<group>"; };
+		70BD6980236708B70063768C /* walletHistoryRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = walletHistoryRowTableViewCell.xib; sourceTree = "<group>"; };
+		70BD698523681E1B0063768C /* followeeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followeeDetailViewController.swift; sourceTree = "<group>"; };
 		70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConditionViewController.swift; sourceTree = "<group>"; };
 		70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nativeListRowTableViewCell.swift; sourceTree = "<group>"; };
 		70D9BE2C234CD9BC004DA3BF /* nativeListRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = nativeListRowTableViewCell.xib; sourceTree = "<group>"; };
@@ -202,6 +210,7 @@
 				70488D342356871400B3C1CD /* UserModel.swift */,
 				70488D3623568AC000B3C1CD /* OfferModel.swift */,
 				70488CD523551A0900B3C1CD /* ChatroomModel.swift */,
+				70BD697D236703330063768C /* pointHistoryModel.swift */,
 				7069528B234D6C8900D936EC /* Uitl.swift */,
 				70979CF8234E2C8400579395 /* extentions.swift */,
 				7059B898234F1472005BB6D4 /* ImagePickerController.swift */,
@@ -330,10 +339,13 @@
 			children = (
 				709E39E82363247000A74EF0 /* ProfileViewController.swift */,
 				709E39EF2363697400A74EF0 /* settingViewController.swift */,
+				70979CF4234DF07400579395 /* editProfViewController.swift */,
 				709E39F123636DCB00A74EF0 /* walletViewController.swift */,
 				70188E14235F56C000D2FAB8 /* followeeViewController.swift */,
+				70BD698523681E1B0063768C /* followeeDetailViewController.swift */,
+				70BD697F236708B70063768C /* walletHistoryRowTableViewCell.swift */,
+				70BD6980236708B70063768C /* walletHistoryRowTableViewCell.xib */,
 				70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */,
-				70979CF4234DF07400579395 /* editProfViewController.swift */,
 				70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */,
 				70A4DF82234CABA600BA2D74 /* ProfileView.storyboard */,
 			);
@@ -471,6 +483,7 @@
 				709E39E3236196F300A74EF0 /* registerProfViewHeader.xib in Resources */,
 				70A4DF83234CABA600BA2D74 /* ProfileView.storyboard in Resources */,
 				70A4DF81234CAB9900BA2D74 /* HistoryView.storyboard in Resources */,
+				70BD6982236708B70063768C /* walletHistoryRowTableViewCell.xib in Resources */,
 				70A4DF85234CAD9000BA2D74 /* ChatroomListView.storyboard in Resources */,
 				703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */,
 				70A4DF7F234CAB8B00BA2D74 /* Main.storyboard in Resources */,
@@ -644,6 +657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70BD697E236703330063768C /* pointHistoryModel.swift in Sources */,
 				7059B8A6234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift in Sources */,
 				70488CD623551A0900B3C1CD /* ChatroomModel.swift in Sources */,
 				70D9BE30234CDE03004DA3BF /* SearchResultViewController.swift in Sources */,
@@ -664,7 +678,9 @@
 				70979CF9234E2C8400579395 /* extentions.swift in Sources */,
 				7059B899234F1472005BB6D4 /* ImagePickerController.swift in Sources */,
 				7059B89B234F1479005BB6D4 /* ImageRow.swift in Sources */,
+				70BD698623681E1B0063768C /* followeeDetailViewController.swift in Sources */,
 				709E39DE23604DBC00A74EF0 /* registerProfViewController.swift in Sources */,
+				70BD6981236708B70063768C /* walletHistoryRowTableViewCell.swift in Sources */,
 				70A4DF49234C856300BA2D74 /* SearchViewController.swift in Sources */,
 				70918AB2235C8D3900C18CA2 /* HistoryRowTableViewCell.swift in Sources */,
 				70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */,

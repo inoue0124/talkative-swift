@@ -12,6 +12,7 @@ import RealmSwift
 import CoreLocation
 import FirebaseFirestore
 import MapKit
+import SCLAlertView
 
 class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var offers: [OfferModel]?
@@ -19,39 +20,57 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var locationManager: CLLocationManager!
     let offersDb = Firestore.firestore().collection("offers")
     let Usersdb = Firestore.firestore().collection("Users")
+    let loginBonus: Int = 5
 
     @IBOutlet weak var targetLanguage: UILabel!
     @IBOutlet weak var numOfOnline: UILabel!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var MapView: MKMapView!
+    @IBOutlet weak var labelStack1: UIStackView!
+    @IBOutlet weak var labelStack2: UIStackView!
+    var window: UIWindow?
 
     override func viewDidLoad() {
 //        var config = Realm.Configuration()
 //        config.deleteRealmIfMigrationNeeded = true
 //        let realm = try! Realm(configuration: config)
-        super.viewDidLoad()
         setupLocationManager()
         self.MapView.region.span.latitudeDelta = 120
         self.MapView.region.span.longitudeDelta = 120
         self.MapView.isZoomEnabled = false
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
         let realm = try! Realm()
         if realm.objects(RealmUserModel.self).isEmpty {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let loginStoryboard: UIStoryboard = UIStoryboard(name: "loginView", bundle: nil)
+            let loginVC = loginStoryboard.instantiateInitialViewController()
+            self.window?.rootViewController = loginVC
+            self.window?.makeKeyAndVisible()
             return
         }
-        print(self.getUserData().lastLoginBonus.timeIntervalSinceNow)
-        if -self.getUserData().lastLoginBonus.timeIntervalSinceNow > 60*60*24 {
-            self.Usersdb.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
-                if let _error = error {
-                    self.showError(_error)
-                    return
-                }
-                guard let documents = snapshot?.documents else {
+        let pointHistoryDB = Usersdb.document(self.getUserUid()).collection("pointHistory")
+        self.Usersdb.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
+            if let _error = error {
+                self.showError(_error)
                 return
-                }
-                let downloadedUserData = documents.map{ UserModel(from: $0) }
+            }
+            guard let documents = snapshot?.documents else {
+            return
+            }
+            let downloadedUserData = documents.map{ UserModel(from: $0) }
+            if -downloadedUserData[0].lastLoginBonus.timeIntervalSinceNow > 60*60*24 {
                 self.Usersdb.document(self.getUserUid()).setData([
-                    "point" : downloadedUserData[0].point+5
+                    "point" : downloadedUserData[0].point+self.loginBonus,
+                    "lastLoginBonus": FieldValue.serverTimestamp()
                 ], merge: true)
+                pointHistoryDB.document().setData([
+                    "point": self.loginBonus,
+                    "method": Method.fromString(string: "ログインボーナス").rawValue,
+                    "createdAt": FieldValue.serverTimestamp()
+                ], merge: true)
+                SCLAlertView().showSuccess("ログインボーナス！", subTitle: "P5獲得しました！")
             }
         }
     }
@@ -61,24 +80,29 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         tabBarController?.tabBar.isHidden = false
         let realm = try! Realm()
         if realm.objects(RealmUserModel.self).isEmpty {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let loginStoryboard: UIStoryboard = UIStoryboard(name: "loginView", bundle: nil)
+            let loginVC = loginStoryboard.instantiateInitialViewController()
+            self.window?.rootViewController = loginVC
+            self.window?.makeKeyAndVisible()
             return
         }
         let targetLanguage = self.getUserData().secondLanguage
         self.targetLanguage.text = Language.strings[targetLanguage]
         self.offersDb.whereField("targetLanguage", isEqualTo: targetLanguage).whereField("isOnline", isEqualTo: true).addSnapshotListener() { snapshot, error in
-             if let _error = error {
-                 print("error\(_error)")
-                 return
-             }
-             guard let documents = snapshot?.documents else {
-             print("error")
+            if let _error = error {
+                print("error\(_error)")
+                return
+
+            }
+            guard let documents = snapshot?.documents else {
+                print("error")
                 return
             }
-             self.offers = documents.map{ OfferModel(from: $0) }
+            self.offers = documents.map{ OfferModel(from: $0) }
             self.numOfOnline.text = String(self.offers!.count)
             self.MapView.removeAnnotations(self.MapView.annotations)
             for offer in self.offers! {
-                print(offer.nativeLocation)
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = CLLocationCoordinate2DMake(offer.nativeLocation.latitude, offer.nativeLocation.longitude)
                 self.MapView.addAnnotation(annotation)
@@ -87,7 +111,25 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     }
 
     @IBAction func presentConditions(_ sender: Any) {
-        performSegue(withIdentifier: "presentConditions", sender: nil)
+        if let user = Auth.auth().currentUser {
+            user.reload()
+            if user.isEmailVerified {
+                self.performSegue(withIdentifier: "presentConditions", sender: nil)
+            } else {
+                self.sendEmailVerification(to: user)
+                SCLAlertView().showInfo("メール認証", subTitle: "登録メールアドレスに認証メールをお送りしました。ご確認おねがいします。")
+            }
+        }
+    }
+
+    private func sendEmailVerification(to user: User) {
+        Auth.auth().useAppLanguage()
+        user.sendEmailVerification() { [weak self] error in
+            guard let self = self else { return }
+            if error != nil {
+            }
+            self.showError(error)
+        }
     }
 
     func showSearchResult() {
@@ -115,20 +157,6 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             locationManager.delegate = self
             locationManager.distanceFilter = 10
             locationManager.startUpdatingLocation()
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.first
-        self.fetchCityAndCountry(location: location!) { city, country, error in
-            guard let city = city, let country = country, error == nil else { return }
-            //print(city + ", " + country)
-        }
-    }
-
-    func fetchCityAndCountry(location: CLLocation, completion: @escaping (_ city: String?, _ country:  String?, _ error: Error?) -> ()) {
-        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
-            completion(placemarks?.first?.locality, placemarks?.first?.country, error)
         }
     }
 }

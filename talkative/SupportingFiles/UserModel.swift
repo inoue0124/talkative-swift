@@ -48,7 +48,7 @@ class UserModel: Identifiable {
         self.motherLanguage = from.get("motherLanguage") as? Int ?? 1
         self.secondLanguage = from.get("secondLanguage") as? Int ?? 1
         self.peerID = from.get("peerID") as? String ?? ""
-        self.rating = from.get("rating") as? Int ?? 0
+        self.rating = from.get("rating") as? Int ?? 4
         self.location = from.get("location") as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         self.point = from.get("point") as? Int ?? 0
         self.timestamp = from.get("createdAt") as? Timestamp ?? Timestamp()

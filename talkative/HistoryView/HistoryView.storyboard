@@ -35,11 +35,22 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="HistoryTable" destination="oX5-8V-wT9" id="nyv-1e-xpe"/>
+                        <segue destination="zIF-nM-vNd" kind="show" identifier="showDetailView" id="rUC-re-Pjn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALt-YM-XUl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="116"/>
+        </scene>
+        <!--nativeDetail-->
+        <scene sceneID="34D-3U-aCI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SearchView" referencedIdentifier="nativeDetail" id="zIF-nM-vNd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="1vz-Ax-eJL"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jmb-gP-bLX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1016" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r6K-AV-Ys1">

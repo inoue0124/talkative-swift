@@ -51,19 +51,9 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             guard let self = self else { return }
             if let user = result?.user {
-                //self.sendEmailVerification(to: _user)
                 self.performSegue(withIdentifier: "toRegisterProfView", sender: nil)
             }
             self.dissmisPreloader()
-            self.showError(error)
-        }
-    }
-
-    private func sendEmailVerification(to user: User) {
-        user.sendEmailVerification() { [weak self] error in
-            guard let self = self else { return }
-            if error != nil {
-            }
             self.showError(error)
         }
     }

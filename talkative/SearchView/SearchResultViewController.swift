@@ -37,7 +37,10 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
 
     override func viewWillAppear(_ animated: Bool) {
         SearchResultTable.allowsSelection = true
+        self.navigationItem.title = "検索結果"
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.offersDb.whereField("isOnline", isEqualTo: true)
             .whereField("targetLanguage", isEqualTo: Language.fromString(string: self.searchConditions!["targetLanguage"] as! String).rawValue)
             .whereField("offerPrice", isLessThanOrEqualTo: self.searchConditions!["maxPrice"]!).getDocuments() { snapshot, error in

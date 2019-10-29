@@ -71,3 +71,25 @@ enum Language: Int {
         return Language.Unknown
     }
 }
+
+enum Method: Int {
+    case Unknown            = 0
+    case Call               = 1
+    case Bonus              = 2
+    case Purchase           = 3
+
+    static let all      = [Unknown, Call, Bonus, Purchase]
+    static let strings  = ["不明", "通話", "ログインボーナス", "購入"]
+
+    func string() -> String {
+        let index = Method.all.firstIndex(of: self) ?? 0
+        return Method.strings[index]
+    }
+
+    static func fromString(string: String) -> Method {
+        if let index = Method.strings.firstIndex(of: string) {
+            return Method.all[index]
+        }
+        return Method.Unknown
+    }
+}
