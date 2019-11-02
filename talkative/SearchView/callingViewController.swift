@@ -32,7 +32,8 @@ class callingViewController: UIViewController {
                 "learnerID" : self.getUserUid(),
                 "learnerName" : self.getUserData().name,
                 "learnerNationality" : self.getUserData().nationality,
-                "learnerRating" : self.getUserData().rating,
+                "learnerLevel" : self.getUserData().level,
+                "learnerRating" : self.getUserData().ratingAsLearner,
                 "learnerImageURL" : self.getUserData().imageURL
             ], merge: true)
             super.viewDidLoad()

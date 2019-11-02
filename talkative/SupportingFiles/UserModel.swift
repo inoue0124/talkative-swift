@@ -23,9 +23,13 @@ class UserModel: Identifiable {
     var nationality: Int // Country_ID
     var motherLanguage: Int // Language_ID
     var secondLanguage: Int // Language_ID
+    var level: Int
     var timestamp: Timestamp = Timestamp()
     var peerID: String
-    var rating: Int
+    var ratingAsLearner: Double
+    var ratingAsNative: Double
+    var callCountAsLearner: Int
+    var callCountAsNative: Int
     var location: GeoPoint
     var point: Int
     var createdAt: Date // data of registration
@@ -47,8 +51,12 @@ class UserModel: Identifiable {
         self.nationality = from.get("nationality") as? Int ?? 1
         self.motherLanguage = from.get("motherLanguage") as? Int ?? 1
         self.secondLanguage = from.get("secondLanguage") as? Int ?? 1
+        self.level = from.get("level") as? Int ?? 0
         self.peerID = from.get("peerID") as? String ?? ""
-        self.rating = from.get("rating") as? Int ?? 4
+        self.ratingAsLearner = from.get("ratingAsLearner") as? Double ?? 4.0
+        self.ratingAsNative = from.get("ratingAsNative") as? Double ?? 4.0
+        self.callCountAsLearner = from.get("callCountAsLearner") as? Int ?? 1
+        self.callCountAsNative = from.get("callCountAsNaitve") as? Int ?? 1
         self.location = from.get("location") as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         self.point = from.get("point") as? Int ?? 0
         self.timestamp = from.get("createdAt") as? Timestamp ?? Timestamp()
@@ -71,8 +79,12 @@ class UserModel: Identifiable {
             "nationality": nationality,
             "motherLanguage": motherLanguage,
             "secondLanguage": secondLanguage,
+            "level": level,
             "peerID": peerID,
-            "rating": rating,
+            "ratingAsLearner": ratingAsLearner,
+            "ratingAsNative": ratingAsNative,
+            "callCountAsLearner": callCountAsLearner,
+            "callCountAsNative": callCountAsNative,
             "location" : location,
             "point": point,
             "createdAt": createdAt,
@@ -94,7 +106,11 @@ class RealmUserModel: Object{
     @objc dynamic var nationality = 0 // Country_ID
     @objc dynamic var motherLanguage = 0 // Language_ID
     @objc dynamic var secondLanguage = 0 // Language_ID
-    @objc dynamic var rating = 0
+    @objc dynamic var level = 0
+    @objc dynamic var ratingAsLearner = 5.0
+    @objc dynamic var ratingAsNative = 5.0
+    @objc dynamic var callCountAsLearner = 1
+    @objc dynamic var callCountAsNative = 1
     @objc dynamic var point = 100
     @objc dynamic var createdAt = Date() // data of registration
     @objc dynamic var updatedAt = Date() // date of updating of user info

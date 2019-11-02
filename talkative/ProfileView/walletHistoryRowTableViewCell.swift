@@ -29,7 +29,7 @@ class walletHistoryRowTableViewCell: UITableViewCell {
         self.Thumbnail.image = UIImage.gif(name: "Preloader2")
         self.Thumbnail.layer.cornerRadius = 25
         DispatchQueue.global().async {
-            let image = UIImage(url: pointHistory.nativeImageURL)
+            let image = UIImage(url: pointHistory.imageURL)
             DispatchQueue.main.async {
                 self.Thumbnail.image = image
             }

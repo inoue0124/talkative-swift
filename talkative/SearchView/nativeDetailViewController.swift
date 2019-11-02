@@ -58,7 +58,7 @@ class nativeDetailViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.name.text = self.offer!.nativeName
-        self.rating.text = String(self.offer!.nativeRating)
+        self.rating.text = String(format: "%.1f", self.offer!.nativeRating)
         self.usersDb.whereField("uid", isEqualTo: self.offer!.nativeID).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")

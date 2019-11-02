@@ -26,8 +26,7 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     @IBOutlet weak var numOfOnline: UILabel!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var MapView: MKMapView!
-    @IBOutlet weak var labelStack1: UIStackView!
-    @IBOutlet weak var labelStack2: UIStackView!
+    @IBOutlet weak var instructionLabel: UIView!
     var window: UIWindow?
 
     override func viewDidLoad() {
@@ -50,6 +49,10 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             self.window?.makeKeyAndVisible()
             return
         }
+        self.instructionLabel.center.y = -65
+        UIView.animate(withDuration: 1.0, delay: 0.0, animations: {
+            self.instructionLabel.center.y = 65
+        }, completion: nil)
         let pointHistoryDB = Usersdb.document(self.getUserUid()).collection("pointHistory")
         self.Usersdb.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
             if let _error = error {
@@ -60,6 +63,13 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             return
             }
             let downloadedUserData = documents.map{ UserModel(from: $0) }
+            let realm = try! Realm()
+            let UserData = realm.objects(RealmUserModel.self)
+            if let UserData = UserData.first {
+                try! realm.write {
+                    UserData.ratingAsLearner = downloadedUserData[0].ratingAsLearner
+                }
+            }
             if -downloadedUserData[0].lastLoginBonus.timeIntervalSinceNow > 60*60*24 {
                 self.Usersdb.document(self.getUserUid()).setData([
                     "point" : downloadedUserData[0].point+self.loginBonus,
@@ -73,6 +83,10 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 SCLAlertView().showSuccess("ログインボーナス！", subTitle: "P5獲得しました！")
             }
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.instructionLabel.center.y = -65
     }
 
     override func viewWillAppear(_ animated: Bool) {

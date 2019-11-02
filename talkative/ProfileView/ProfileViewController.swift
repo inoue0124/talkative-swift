@@ -18,7 +18,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var secondLanguage: UILabel!
     @IBOutlet weak var motherLanguage: UILabel!
-
+    @IBOutlet weak var level: UIImageView!
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.hidesBackButton = false
         tabBarController?.tabBar.isHidden = false
@@ -29,6 +30,7 @@ class ProfileViewController: UIViewController {
         name.text = userData.name
         secondLanguage.text = Language.strings[userData.secondLanguage]
         motherLanguage.text = Language.strings[userData.motherLanguage]
+        level.image = UIImage(named: String(userData.level))
     }
 
 }

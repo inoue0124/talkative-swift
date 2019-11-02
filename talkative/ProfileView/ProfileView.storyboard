@@ -35,30 +35,37 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学習言語" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpK-qF-Jgm">
-                                <rect key="frame" x="147" y="152" width="70" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="母国語" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpK-qF-Jgm">
+                                <rect key="frame" x="147" y="152" width="52" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRc-Tu-x5a">
-                                <rect key="frame" x="147" y="181" width="56" height="21"/>
+                                <rect key="frame" x="147" y="181" width="56" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Japanese" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyb-jy-4sK">
-                                <rect key="frame" x="275" y="180" width="74" height="21"/>
+                                <rect key="frame" x="257" y="180" width="74" height="22.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="母国語" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOq-B8-ELu">
-                                <rect key="frame" x="275" y="152" width="52" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="話せる言語" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOq-B8-ELu">
+                                <rect key="frame" x="257" y="152" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mNm-Bs-iCF">
+                                <rect key="frame" x="334" y="186.5" width="20" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Ovf-4r-p9i"/>
+                                    <constraint firstAttribute="height" constant="10" id="t8H-wM-ysA"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -69,10 +76,13 @@
                             <constraint firstItem="3CQ-oJ-aj4" firstAttribute="leading" secondItem="f2z-7C-qd8" secondAttribute="leading" constant="20" id="SO1-a1-cBQ"/>
                             <constraint firstItem="Z4I-8M-HpD" firstAttribute="leading" secondItem="EpK-qF-Jgm" secondAttribute="leading" id="SwK-F3-qXJ"/>
                             <constraint firstItem="VOq-B8-ELu" firstAttribute="leading" secondItem="kyb-jy-4sK" secondAttribute="leading" id="TEW-Vd-Nvj"/>
+                            <constraint firstItem="mNm-Bs-iCF" firstAttribute="centerY" secondItem="MRc-Tu-x5a" secondAttribute="centerY" id="Uim-4T-75q"/>
                             <constraint firstItem="f2z-7C-qd8" firstAttribute="top" secondItem="3CQ-oJ-aj4" secondAttribute="bottom" constant="8" id="Xbq-Ac-d3t"/>
                             <constraint firstItem="kyb-jy-4sK" firstAttribute="top" secondItem="VOq-B8-ELu" secondAttribute="bottom" constant="7" id="cg6-QD-4fz"/>
+                            <constraint firstItem="mNm-Bs-iCF" firstAttribute="centerY" secondItem="kyb-jy-4sK" secondAttribute="centerY" id="eel-Z0-R0T"/>
                             <constraint firstItem="f2z-7C-qd8" firstAttribute="leading" secondItem="rUj-qX-xnj" secondAttribute="leading" id="fF6-By-Ogk"/>
                             <constraint firstItem="f2z-7C-qd8" firstAttribute="top" secondItem="rUj-qX-xnj" secondAttribute="top" constant="127" id="hXv-GI-FQb"/>
+                            <constraint firstItem="mNm-Bs-iCF" firstAttribute="leading" secondItem="kyb-jy-4sK" secondAttribute="trailing" constant="3" id="izs-EW-uwa"/>
                             <constraint firstItem="MRc-Tu-x5a" firstAttribute="top" secondItem="EpK-qF-Jgm" secondAttribute="bottom" constant="8" id="myJ-03-Wyf"/>
                             <constraint firstItem="EpK-qF-Jgm" firstAttribute="leading" secondItem="MRc-Tu-x5a" secondAttribute="leading" id="pEU-Et-HMx"/>
                             <constraint firstItem="VOq-B8-ELu" firstAttribute="top" secondItem="rUj-qX-xnj" secondAttribute="top" constant="64" id="qkZ-Jb-zo8"/>
@@ -92,9 +102,10 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="Thumbnail" destination="3CQ-oJ-aj4" id="xo3-hX-vzf"/>
-                        <outlet property="motherLanguage" destination="kyb-jy-4sK" id="zOQ-Vt-eww"/>
+                        <outlet property="level" destination="mNm-Bs-iCF" id="BXb-ch-3XX"/>
+                        <outlet property="motherLanguage" destination="MRc-Tu-x5a" id="gPA-P6-fXR"/>
                         <outlet property="name" destination="Z4I-8M-HpD" id="nCU-7a-NIj"/>
-                        <outlet property="secondLanguage" destination="MRc-Tu-x5a" id="AgI-kz-6Pp"/>
+                        <outlet property="secondLanguage" destination="kyb-jy-4sK" id="DRg-2r-lJB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1I1-u3-Yep" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -120,11 +131,37 @@
                     </navigationItem>
                     <connections>
                         <outlet property="saveButton" destination="ADM-8v-J7o" id="3Nr-dN-RbS"/>
+                        <segue destination="dsd-sE-cXv" kind="show" identifier="selectSecondLanguage" id="B9E-E7-bji"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBZ-lG-KmL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1029" y="-610"/>
+        </scene>
+        <!--Select Second Language View Controller-->
+        <scene sceneID="iZp-zF-Ed0">
+            <objects>
+                <viewController id="dsd-sE-cXv" customClass="selectSecondLanguageViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iQD-Qj-Shr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="XyC-cJ-Rwn"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zjD-3V-xF1">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="eYQ-nc-aJT">
+                            <connections>
+                                <action selector="tappedSaveButton:" destination="dsd-sE-cXv" id="kw2-y7-KS3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="eYQ-nc-aJT" id="M4x-2o-xTF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kBh-Qs-sbF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1926" y="-610"/>
         </scene>
         <!--Followee View Controller-->
         <scene sceneID="PuV-kt-ooc">

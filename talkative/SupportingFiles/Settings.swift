@@ -93,3 +93,27 @@ enum Method: Int {
         return Method.Unknown
     }
 }
+
+enum Level: Int {
+    case Unknown            = 0
+    case Beginner           = 1
+    case PreIntermediate    = 2
+    case Intermediate       = 3
+    case PreAdvanced        = 4
+    case Advanced           = 5
+
+    static let all      = [Unknown, Beginner, PreIntermediate, Intermediate, PreAdvanced, Advanced]
+    static let strings  = ["なし", "初級", "初中級", "中級", "中上級", "上級"]
+
+    func string() -> String {
+        let index = Level.all.firstIndex(of: self) ?? 0
+        return Level.strings[index]
+    }
+
+    static func fromString(string: String) -> Level {
+        if let index = Level.strings.firstIndex(of: string) {
+            return Level.all[index]
+        }
+        return Level.Unknown
+    }
+}

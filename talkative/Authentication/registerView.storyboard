@@ -10,7 +10,7 @@
         <!--Select Register Method View Controller-->
         <scene sceneID="7fK-xG-3fb">
             <objects>
-                <viewController id="892-Y4-cL1" customClass="selectRegisterMethodViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="892-Y4-cL1" customClass="selectRegisterMethodViewController" customModule="talkative_native" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia4-OC-aci"/>
                         <viewControllerLayoutGuide type="bottom" id="ga1-Li-eHL"/>
@@ -42,7 +42,7 @@
                                 <state key="normal" title="Facebookで登録する"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ces-HJ-J12" firstAttribute="top" secondItem="OeY-S3-X4J" secondAttribute="bottom" constant="46" id="7Ae-eu-GCU"/>
                             <constraint firstItem="OeY-S3-X4J" firstAttribute="centerX" secondItem="f3t-v5-UWA" secondAttribute="centerX" id="DlQ-uH-QkD"/>
@@ -52,9 +52,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Go6-OQ-EtN">
                         <barButtonItem key="rightBarButtonItem" image="cross" id="l1J-Lp-h0F">
-                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="892-Y4-cL1" kind="custom" customClass="DismissControllerSegue" customModule="talkative" customModuleProvider="target" id="whX-hf-Mq4"/>
+                                <segue destination="892-Y4-cL1" kind="custom" customClass="DismissControllerSegue" customModule="talkative_native" customModuleProvider="target" id="whX-hf-Mq4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -71,7 +71,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="oLI-ke-nLF">
             <objects>
-                <viewController id="Ohf-pp-HML" customClass="signUpViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ohf-pp-HML" customClass="signUpViewController" customModule="talkative_native" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bBQ-MV-Krx"/>
                         <viewControllerLayoutGuide type="bottom" id="dya-JM-z6D"/>
@@ -151,7 +151,7 @@
         <!--Register Prof View Controller-->
         <scene sceneID="ZD3-hw-Gwh">
             <objects>
-                <viewController storyboardIdentifier="registerProfView" id="qU9-WQ-wJU" customClass="registerProfViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registerProfView" id="qU9-WQ-wJU" customClass="registerProfViewController" customModule="talkative_native" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zt7-84-abm"/>
                         <viewControllerLayoutGuide type="bottom" id="AYU-tk-xwN"/>
@@ -171,11 +171,40 @@
                     <connections>
                         <outlet property="saveButton" destination="QnK-UB-HRR" id="jA2-DI-hec"/>
                         <segue destination="IJ9-vo-h0b" kind="presentation" identifier="toMain" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="S4f-kc-uwd"/>
+                        <segue destination="TRF-v7-H9v" kind="show" identifier="registerSecondLanguage" id="BBC-sm-hFU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JwN-pO-Aed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2067" y="-313"/>
+        </scene>
+        <!--Register Second Language View Controller-->
+        <scene sceneID="9SH-im-aBr">
+            <objects>
+                <viewController id="TRF-v7-H9v" customClass="registerSecondLanguageViewController" customModule="talkative_native" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ybg-aG-ZM2"/>
+                        <viewControllerLayoutGuide type="bottom" id="g9H-QK-Ntz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SMy-hW-iF5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="To9-MC-VET">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="1QP-pp-9ur">
+                            <connections>
+                                <action selector="tappedSaveButton:" destination="TRF-v7-H9v" id="af3-77-spf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="1QP-pp-9ur" id="b1e-LV-pQb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G1t-yA-lsw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3196" y="-581"/>
         </scene>
         <!--Main-->
         <scene sceneID="Y3e-Ks-sGD">
@@ -185,7 +214,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ap9-zX-GoU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2717" y="-313"/>
+            <point key="canvasLocation" x="2939" y="-78"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uQH-a1-WmQ">

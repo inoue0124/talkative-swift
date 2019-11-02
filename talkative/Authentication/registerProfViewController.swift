@@ -16,12 +16,22 @@ import SCLAlertView
 
 class registerProfViewController: FormViewController {
 
+    public final class DetailedButtonRowOf<T: Equatable> : _ButtonRowOf<T>, RowType {
+        public required init(tag: String?) {
+            super.init(tag: tag)
+            cellStyle = .value1
+        }
+    }
+    public typealias DetailedButtonRow = DetailedButtonRowOf<String>
+
     var email: String?
     var password: String?
     @IBOutlet weak var saveButton: UIBarButtonItem!
     let Usersdb = Firestore.firestore().collection("Users")
     let UserData: RealmUserModel = RealmUserModel()
     let registerBonus: Int = 30
+    var secondLanguage: Int = 0
+    var level: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,12 +77,14 @@ class registerProfViewController: FormViewController {
             }
         }
 
-        <<< AlertRow<String> {
+        <<< PushRow<String> {
             $0.title = NSLocalizedString("prof_gender", comment: "")
             $0.options = [Gender.Unknown.string(), Gender.Male.string(), Gender.Female.string()]
             $0.tag = "gender"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
+        }.onPresent { form, selectorController in
+            selectorController.enableDeselection = false
         }
 
         <<< DateRow {
@@ -88,6 +100,8 @@ class registerProfViewController: FormViewController {
             $0.tag = "nationality"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
+        }.onPresent { form, selectorController in
+            selectorController.enableDeselection = false
         }
 
         <<< PushRow<String> {
@@ -96,14 +110,24 @@ class registerProfViewController: FormViewController {
             $0.tag = "motherLanguage"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
+        }.onPresent { form, selectorController in
+            selectorController.enableDeselection = false
         }
 
-        <<< PushRow<String> {
+        <<< DetailedButtonRow {
             $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
-            $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
-            $0.tag = "secondLanguage"
+            $0.presentationMode = .segueName(segueName: "registerSecondLanguage", onDismiss: nil)
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
+            cell.detailTextLabel?.text = Language.strings[self.secondLanguage]+":"+Level.strings[self.level]
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == "registerSecondLanguage" {
+            let registerSecondLanguageVC = segue.destination as! registerSecondLanguageViewController
+            registerSecondLanguageVC.secondLanguage = secondLanguage
+            registerSecondLanguageVC.level = level
         }
     }
 
@@ -162,7 +186,8 @@ class registerProfViewController: FormViewController {
         self.UserData.updatedAt = Date()
         self.UserData.nationality = Nationality.fromString(string: values["nationality"] as! String).rawValue
         self.UserData.motherLanguage = Language.fromString(string: values["motherLanguage"] as! String).rawValue
-        self.UserData.secondLanguage = Language.fromString(string: values["secondLanguage"] as! String).rawValue
+        self.UserData.secondLanguage = self.secondLanguage
+        self.UserData.level = self.level
         let realm = try! Realm()
         try! realm.write {
           realm.add(UserData)
@@ -180,7 +205,12 @@ class registerProfViewController: FormViewController {
             "isOnline" : true,
             "nationality": Nationality.fromString(string: values["nationality"] as! String).rawValue,
             "motherLanguage": Language.fromString(string: values["motherLanguage"] as! String).rawValue,
-            "secondLanguage": Language.fromString(string: values["secondLanguage"] as! String).rawValue,
+            "secondLanguage": self.secondLanguage,
+            "level": self.level,
+            "ratingAsLearner": 5,
+            "ratingAsNative": 5,
+            "callCountAsLearner": 1,
+            "callCountAsNative": 1,
             "point": self.registerBonus,
             "createdAt": FieldValue.serverTimestamp(),
             "updatedAt": FieldValue.serverTimestamp(),
@@ -201,4 +231,63 @@ class LogoViewNib: UIView {
         super.init(coder: aDecoder)
     }
 }
+
+class registerSecondLanguageViewController: FormViewController {
+
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    var presentingVC: UIViewController?
+    var secondLanguage: Int?
+    var level: Int?
+
+    @IBAction func tappedSaveButton(_ sender: Any) {
+        let values = form.values()
+        let nc = self.navigationController
+        let vcNum = nc!.viewControllers.count
+        let registerProfVC = nc!.viewControllers[vcNum - 2] as! registerProfViewController
+        registerProfVC.secondLanguage = Language.fromString(string: values["secondLanguage"] as! String).rawValue
+        if Language.fromString(string: values["secondLanguage"] as! String).rawValue == 0 {
+            registerProfVC.level = 0
+        } else {
+            registerProfVC.level = Level.fromString(string: values["level"] as! String).rawValue
+        }
+        if Language.fromString(string: values["secondLanguage"] as! String).rawValue != 0 &&
+            Level.fromString(string: values["level"] as! String).rawValue == 0 {
+            SCLAlertView().showError("エラー", subTitle:"レベルを選択してください。", closeButtonTitle:"OK")
+            return
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.title =  "編集"
+        self.navigationItem.hidesBackButton = true
+
+        form
+        +++ Section(NSLocalizedString("prof_secondLanguage", comment: ""))
+
+        <<< PushRow<String> {
+            $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
+            $0.options = [Language.Unknown.string(), Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
+            $0.value = Language.strings[self.secondLanguage!]
+            $0.tag = "secondLanguage"
+        }.cellUpdate { cell, row in
+            cell.height = ({return 80})
+        }.onPresent { form, selectorController in
+            selectorController.enableDeselection = false
+        }
+
+        <<< PushRow<String> {
+            $0.title = "Level"
+            $0.options = [Level.Unknown.string(), Level.Beginner.string(), Level.PreIntermediate.string(), Level.Intermediate.string(), Level.PreAdvanced.string(), Level.Advanced.string()]
+            $0.value = Level.strings[self.level!]
+            $0.tag = "level"
+        }.cellUpdate { cell, row in
+            cell.height = ({return 80})
+        }.onPresent { form, selectorController in
+            selectorController.enableDeselection = false
+        }
+    }
+}
+
 

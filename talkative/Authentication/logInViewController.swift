@@ -75,6 +75,7 @@ class logInViewController: UIViewController, UITextFieldDelegate {
                 UserData.nationality = downloadedUserData[0].nationality
                 UserData.motherLanguage = downloadedUserData[0].motherLanguage
                 UserData.secondLanguage = downloadedUserData[0].secondLanguage
+                UserData.level = downloadedUserData[0].level
                 let realm = try! Realm()
                 try! realm.write {
                     realm.deleteAll()

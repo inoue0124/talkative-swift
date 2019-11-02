@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        let realm = try! Realm()
 //        do {
 //            try Auth.auth().signOut()
 //        } catch let error {
@@ -32,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        var config = Realm.Configuration()
 //        config.deleteRealmIfMigrationNeeded = true
+//        let realm = try! Realm(configuration: config)
 //        try! realm.write {
 //            realm.deleteAll()
 //        }

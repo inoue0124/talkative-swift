@@ -100,16 +100,10 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Lid-pP-ld3">
-                        <rect key="frame" x="320" y="45" width="46.5" height="53"/>
+                        <rect key="frame" x="320" y="62" width="46.5" height="26.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G05-SV-wky">
-                                <rect key="frame" x="0.0" y="0.0" width="46.5" height="26.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVz-DT-ha8">
-                                <rect key="frame" x="0.0" y="26.5" width="46.5" height="26.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="46.5" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -125,7 +119,7 @@
                     <constraint firstAttribute="bottom" secondItem="eAN-no-13c" secondAttribute="bottom" constant="14" id="Mvv-cN-f8o"/>
                     <constraint firstItem="akl-2I-sfu" firstAttribute="centerY" secondItem="laJ-7E-Und" secondAttribute="centerY" id="ODw-ho-ZWh"/>
                     <constraint firstItem="3xt-jj-7r6" firstAttribute="top" secondItem="laJ-7E-Und" secondAttribute="bottom" constant="8" id="OFR-ah-OdG"/>
-                    <constraint firstItem="Lid-pP-ld3" firstAttribute="top" secondItem="eL6-Qh-Hcv" secondAttribute="bottom" constant="8" id="PbS-Ct-y9b"/>
+                    <constraint firstItem="Lid-pP-ld3" firstAttribute="top" secondItem="eL6-Qh-Hcv" secondAttribute="bottom" constant="25" id="PbS-Ct-y9b"/>
                     <constraint firstItem="akl-2I-sfu" firstAttribute="leading" secondItem="laJ-7E-Und" secondAttribute="trailing" constant="20" id="Rjs-XX-vXL"/>
                     <constraint firstItem="eAN-no-13c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="SbE-Jl-T2v"/>
                     <constraint firstItem="3xt-jj-7r6" firstAttribute="leading" secondItem="eAN-no-13c" secondAttribute="trailing" constant="8" id="ieo-0n-h2n"/>
@@ -140,7 +134,6 @@
                 <outlet property="followButton" destination="eL6-Qh-Hcv" id="CsZ-J7-cZW"/>
                 <outlet property="label_motherLanguage" destination="ecD-fC-W3h" id="9wy-Jd-y8e"/>
                 <outlet property="label_secondLanguage" destination="gbx-XD-Als" id="zlR-lb-vDa"/>
-                <outlet property="price" destination="G05-SV-wky" id="AI4-Cw-oRx"/>
                 <outlet property="rating" destination="Z09-TI-oYQ" id="8NB-Ll-jl6"/>
                 <outlet property="supportLanguage" destination="6t4-0X-mqO" id="bc9-Ep-ivA"/>
                 <outlet property="targetLanguage" destination="TZb-AJ-Hsg" id="Mk7-dx-Jsm"/>

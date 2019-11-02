@@ -54,7 +54,7 @@ class followeeDetailViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.name.text = self.native!.name
-        self.rating.text = String(self.native!.rating)
+        self.rating.text = String(format: "%.1f", self.native!.ratingAsNative)
         self.usersDb.whereField("uid", isEqualTo: self.native!.uid).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")

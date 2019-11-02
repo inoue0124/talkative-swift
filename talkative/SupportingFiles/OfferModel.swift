@@ -15,22 +15,25 @@ class OfferModel {
     var nativeID: String // username
     var nativeName: String
     var nativeNationality: Int
-    var nativeRating: Int
+    var nativeMotherLanguage: Int
+    var nativeRating: Double
     var nativeImageURL: URL
     var nativeLocation: GeoPoint
     var learnerID: String
     var learnerName: String
     var learnerImageURL: URL
     var learnerNationality: Int
-    var learnerRating: Int
+    var learnerMotherLanguage: Int
+    var learnerRating: Double
     var learnerLocation: GeoPoint
     var offerPrice: Int
     var offerTime: Int
     var targetLanguage: Int
     var supportLanguage: Int
+    var nativeLevel: Int
+    var learnerLevel: Int
     var peerID: String
     var isOnline: Bool
-    var isAccepted: Bool
     var timestamp: Timestamp = Timestamp()
     var createdAt: Date
     var acceptedAt: Date
@@ -38,61 +41,69 @@ class OfferModel {
     var finishedAt: Date
     var ratingForNative: Int
     var ratingForLearner: Int
+    var flagPayForNative: Bool
+    var flagWithdrawFromLearner: Bool
 
     var diff: Int {
         return "\(offerID)\(createdAt.timeIntervalSince1970)".hashValue
     }
 
-    init(offerID: String, nativeID: String, nativeName: String, nativeNationality: Int, nativeRating: Int, nativeImageURL: URL, nativeLocation: GeoPoint, learnerID: String, learnerName: String, learnerNationality: Int, learnerRating: Int, learnerImageURL: URL, learnerLocation: GeoPoint, offerPrice: Int, offerTime: Int, targetLanguage: Int, supportLanguage: Int, peerID: String) {
-        self.offerID = offerID
-        self.nativeID = nativeID
-        self.nativeName = nativeName
-        self.nativeNationality = nativeNationality
-        self.nativeRating = nativeRating
-        self.nativeImageURL = nativeImageURL
-        self.nativeLocation = nativeLocation
-        self.learnerID = learnerID
-        self.learnerName = learnerName
-        self.learnerNationality = learnerNationality
-        self.learnerRating = learnerRating
-        self.learnerImageURL = learnerImageURL
-        self.learnerLocation = learnerLocation
-        self.offerPrice = offerPrice
-        self.offerTime = offerTime
-        self.targetLanguage = targetLanguage
-        self.supportLanguage = supportLanguage
-        self.peerID = peerID
-        self.isOnline = true
-        self.isAccepted = false
-        self.createdAt = Date()
-        self.acceptedAt = Date()
-        self.withdrawedAt = Date()
-        self.finishedAt = Date()
-        self.ratingForNative = 1
-        self.ratingForLearner = 1
-    }
+//    init(offerID: String, nativeID: String, nativeName: String, nativeNationality: Int, nativeMotherLanguage: Int, nativeRating: Int, nativeImageURL: URL, nativeLocation: GeoPoint, learnerID: String, learnerName: String, learnerNationality: Int, learnerMotherLanguage: Int, learnerRating: Int, learnerImageURL: URL, learnerLocation: GeoPoint, offerPrice: Int, offerTime: Int, targetLanguage: Int, supportLanguage: Int, peerID: String) {
+//        self.offerID = offerID
+//        self.nativeID = nativeID
+//        self.nativeName = nativeName
+//        self.nativeNationality = nativeNationality
+//        self.nativeMotherLanguage = nativeMotherLanguage
+//        self.nativeRating = nativeRating
+//        self.nativeImageURL = nativeImageURL
+//        self.nativeLocation = nativeLocation
+//        self.learnerID = learnerID
+//        self.learnerName = learnerName
+//        self.learnerNationality = learnerNationality
+//        self.learnerMotherLanguage = learnerMotherLanguage
+//        self.learnerRating = learnerRating
+//        self.learnerImageURL = learnerImageURL
+//        self.learnerLocation = learnerLocation
+//        self.offerPrice = offerPrice
+//        self.offerTime = offerTime
+//        self.targetLanguage = targetLanguage
+//        self.supportLanguage = supportLanguage
+//        self.nativeLevel
+//        self.peerID = peerID
+//        self.isOnline = true
+//        self.isFinished = false
+//        self.createdAt = Date()
+//        self.acceptedAt = Date()
+//        self.withdrawedAt = Date()
+//        self.finishedAt = Date()
+//        self.ratingForNative = 1
+//        self.ratingForLearner = 1
+//    }
 
     init(from: QueryDocumentSnapshot) {
         self.offerID = from.documentID
         self.nativeID = from.get("nativeID") as? String ?? ""
         self.nativeName = from.get("nativeName") as? String ?? ""
         self.nativeNationality = from.get("nativeNationality") as? Int ?? 0
-        self.nativeRating = from.get("nativeRating") as? Int ?? 0
+        self.nativeMotherLanguage = from.get("nativeMotherLanguage") as? Int ?? 0
+        self.nativeRating = from.get("nativeRating") as? Double ?? 4.0
         self.nativeImageURL = URL(string: from.get("nativeImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/talkative-21c6c.appspot.com/o/profImages%2Favatar1.jpg?alt=media&token=76d3a6c2-42bd-45f9-badb-d6398b129eaf")!
         self.nativeLocation = from.get("nativeLocation") as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         self.learnerID = from.get("learnerID") as? String ?? ""
         self.learnerName = from.get("learnerName") as? String ?? ""
         self.learnerNationality = from.get("learnerNationality") as? Int ?? 0
-        self.learnerRating = from.get("learnerRating") as? Int ?? 0
+        self.learnerMotherLanguage = from.get("learnerMotherLanguage") as? Int ?? 0
+        self.learnerRating = from.get("learnerRating") as? Double ?? 4.0
         self.learnerImageURL = URL(string: from.get("learnerImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/talkative-21c6c.appspot.com/o/profImages%2Favatar1.jpg?alt=media&token=76d3a6c2-42bd-45f9-badb-d6398b129eaf")!
         self.learnerLocation = from.get("learnerLocation") as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         self.offerPrice = from.get("offerPrice") as? Int ?? 9999
         self.offerTime = from.get("offerTime") as? Int ?? 9999
         self.targetLanguage = from.get("targetLanguage") as? Int ?? 0
         self.supportLanguage = from.get("supportLanguage") as? Int ?? 0
+        self.nativeLevel = from.get("nativeLevel") as? Int ?? 0
+        self.learnerLevel = from.get("learnerLevel") as? Int ?? 0
         self.peerID = from.get("peerID") as? String ?? ""
         self.isOnline = from.get("isOnline") as? Bool ?? false
-        self.isAccepted = from.get("isAccepted") as? Bool ?? true
         self.timestamp = from.get("createdAt") as? Timestamp ?? Timestamp()
         self.createdAt = timestamp.dateValue()
         self.timestamp = from.get("acceptedAt") as? Timestamp ?? Timestamp()
@@ -103,6 +114,8 @@ class OfferModel {
         self.finishedAt = timestamp.dateValue()
         self.ratingForNative = from.get("ratingForNative") as? Int ?? 1
         self.ratingForLearner = from.get("ratingForLearner") as? Int ?? 1
+        self.flagPayForNative = from.get("flagPayForNative") as? Bool ?? false
+        self.flagWithdrawFromLearner = from.get("flagWithdrawFromLearner") as? Bool ?? false
     }
 
     var toAnyObject: [String: Any] {
@@ -111,12 +124,14 @@ class OfferModel {
             "nativeID" : nativeID,
             "nativeName" : nativeName,
             "nativeNationality" : nativeNationality,
+            "nativeMotherLanguage" : nativeMotherLanguage,
             "nativeRating" : nativeRating,
             "nativeImageURL" : nativeImageURL.absoluteString,
             "nativeLocation" : nativeLocation,
             "learnerID" : learnerID,
             "learnerName" : learnerName,
             "learnerNationality" : learnerNationality,
+            "learnerMotherLanguage" : learnerMotherLanguage,
             "learnerRating" : learnerRating,
             "learnerImageURL" : learnerImageURL.absoluteString,
             "learnerLocation" : learnerLocation,
@@ -124,15 +139,18 @@ class OfferModel {
             "offerTime" : offerTime,
             "targetLanguage" : targetLanguage,
             "supportLanguage" : supportLanguage,
+            "nativeLevel" : nativeLevel,
+            "learnerLevel" : learnerLevel,
             "peerID" : peerID,
             "isOnline": isOnline,
-            "isAccepted" : isAccepted,
             "createdAt" : createdAt,
             "acceptedAt" : acceptedAt,
             "withdrawedAt" : withdrawedAt,
             "finishedAt" : finishedAt,
             "ratingForNative" : ratingForNative,
             "ratingForLearner" : ratingForLearner,
+            "flagPayForNative" : flagPayForNative,
+            "flagWithdrawFromLearner" : flagWithdrawFromLearner,
         ]
     }
 }

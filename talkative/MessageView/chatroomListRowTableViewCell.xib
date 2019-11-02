@@ -36,10 +36,18 @@
                             <constraint firstAttribute="width" constant="60" id="rQ8-vz-FZf"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019/6/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HrW-vE-R1q">
+                        <rect key="frame" x="277" y="11.5" width="78" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="p4v-uM-kh0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="2tg-2A-dJk"/>
+                    <constraint firstItem="HrW-vE-R1q" firstAttribute="centerY" secondItem="gxw-p2-fOe" secondAttribute="centerY" id="3H1-f8-pEv"/>
                     <constraint firstItem="p4v-uM-kh0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="435-Qr-dvC"/>
+                    <constraint firstAttribute="trailing" secondItem="HrW-vE-R1q" secondAttribute="trailing" constant="20" id="AUR-kh-kXX"/>
                     <constraint firstItem="ClW-ij-h4h" firstAttribute="top" secondItem="gxw-p2-fOe" secondAttribute="bottom" constant="13" id="C5U-da-Yyc"/>
                     <constraint firstItem="gxw-p2-fOe" firstAttribute="leading" secondItem="p4v-uM-kh0" secondAttribute="trailing" constant="21" id="V6Q-vs-Lvp"/>
                     <constraint firstAttribute="bottom" secondItem="p4v-uM-kh0" secondAttribute="bottom" constant="10" id="WsJ-CF-O3f"/>
@@ -52,6 +60,7 @@
                 <outlet property="Name" destination="gxw-p2-fOe" id="B83-0l-dIJ"/>
                 <outlet property="Thumbnail" destination="p4v-uM-kh0" id="OTR-da-cL3"/>
                 <outlet property="latestMsg" destination="ClW-ij-h4h" id="3gi-KD-5oh"/>
+                <outlet property="updatedDate" destination="HrW-vE-R1q" id="lBS-RW-uS5"/>
             </connections>
             <point key="canvasLocation" x="364.49275362318843" y="270.53571428571428"/>
         </tableViewCell>
