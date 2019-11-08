@@ -26,7 +26,7 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
     SearchResultTable.delegate = self
     SearchResultTable.register(UINib(nibName: "nativeListRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
     refreshControl = UIRefreshControl()
-    refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("reloading", comment: ""))
+    refreshControl.attributedTitle = NSAttributedString(string: LString("Reloading"))
     refreshControl.addTarget(self, action: #selector(SearchResultViewController.refresh), for: UIControl.Event.valueChanged)
     SearchResultTable.addSubview(refreshControl)
   }
@@ -37,12 +37,12 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
 
     override func viewWillAppear(_ animated: Bool) {
         SearchResultTable.allowsSelection = true
-        self.navigationItem.title = "検索結果"
+        self.navigationItem.title = LString("Result")
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.offersDb.whereField("isOnline", isEqualTo: true)
-            .whereField("targetLanguage", isEqualTo: Language.fromString(string: self.searchConditions!["targetLanguage"] as! String).rawValue)
+            .whereField("targetLanguage", isEqualTo: self.searchConditions!["targetLanguage"]!)
             .whereField("offerPrice", isLessThanOrEqualTo: self.searchConditions!["maxPrice"]!).getDocuments() { snapshot, error in
          if let _error = error {
              print("error\(_error)")
@@ -61,7 +61,7 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
         DispatchQueue.global().async {
 
          self.offersDb.whereField("isOnline", isEqualTo: true)
-                .whereField("targetLanguage", isEqualTo: Language.fromString(string: self.searchConditions!["targetLanguage"] as! String).rawValue)
+                .whereField("targetLanguage", isEqualTo: self.searchConditions!["targetLanguage"]!)
                 .whereField("offerPrice", isLessThanOrEqualTo: self.searchConditions!["maxPrice"]!).getDocuments() { snapshot, error in
                  if let _error = error {
                      print("error\(_error)")

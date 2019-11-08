@@ -29,7 +29,7 @@ class registerProfViewController: FormViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     let Usersdb = Firestore.firestore().collection("Users")
     let UserData: RealmUserModel = RealmUserModel()
-    let registerBonus: Int = 30
+    let registerBonus: Double = 30.0
     var secondLanguage: Int = 0
     var level: Int = 0
 
@@ -43,7 +43,7 @@ class registerProfViewController: FormViewController {
         }
 
         <<< ImageRow {
-            $0.title = NSLocalizedString("prof_image", comment: "")
+            $0.title = LString("PROFILE IMAGE")
             $0.sourceTypes = [.PhotoLibrary, .Camera]
             $0.value = UIImage(named: "avatar")
             $0.clearAction = .no
@@ -56,30 +56,16 @@ class registerProfViewController: FormViewController {
         }
 
         <<< NameRow {
-            $0.title = NSLocalizedString("prof_name", comment: "")
-            $0.placeholder = "Taro Yamada"
+            $0.title = LString("USER NAME")
+            $0.placeholder = LString("John Smith")
             $0.tag = "name"
-            $0.validationOptions = .validatesOnChangeAfterBlurred
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
-            if !row.isValid {
-                cell.titleLabel?.textColor = .red
-                var errors = "必須項目です"
-                for error in row.validationErrors {
-                    let errorString = error.msg + "\n"
-                    errors = errors + errorString
-                }
-                print(errors)
-                cell.detailTextLabel?.text = errors
-                cell.detailTextLabel?.isHidden = false
-                cell.detailTextLabel?.textAlignment = .left
-
-            }
         }
 
         <<< PushRow<String> {
-            $0.title = NSLocalizedString("prof_gender", comment: "")
-            $0.options = [Gender.Unknown.string(), Gender.Male.string(), Gender.Female.string()]
+            $0.title = LString("Gender")
+            $0.options = Gender.strings
             $0.tag = "gender"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
@@ -88,15 +74,15 @@ class registerProfViewController: FormViewController {
         }
 
         <<< DateRow {
-            $0.title = NSLocalizedString("prof_birthDate", comment: "")
+            $0.title = LString("Date of birth")
             $0.tag = "birthDate"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
         }
 
         <<< PushRow<String> {
-            $0.title = NSLocalizedString("prof_nationality", comment: "")
-            $0.options = [Nationality.Japanese.string(), Nationality.American.string(), Nationality.Chinese.string()]
+            $0.title = LString("Nationality")
+            $0.options = Nationality.strings
             $0.tag = "nationality"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
@@ -105,8 +91,8 @@ class registerProfViewController: FormViewController {
         }
 
         <<< PushRow<String> {
-            $0.title = NSLocalizedString("prof_motherLanguage", comment: "")
-            $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
+            $0.title = LString("I am native in")
+            $0.options = Language.strings
             $0.tag = "motherLanguage"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
@@ -115,7 +101,7 @@ class registerProfViewController: FormViewController {
         }
 
         <<< DetailedButtonRow {
-            $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
+            $0.title = LString("I am learning")
             $0.presentationMode = .segueName(segueName: "registerSecondLanguage", onDismiss: nil)
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
@@ -135,7 +121,7 @@ class registerProfViewController: FormViewController {
         for (key, value) in dict {
             if value == nil {
                 self.dissmisPreloader()
-                SCLAlertView().showError("エラー", subTitle:"未入力項目があります。", closeButtonTitle:"OK")
+                SCLAlertView().showError(LString("Error"), subTitle:LString("Please fill all the blanks"), closeButtonTitle:LString("OK"))
                 return false
             }
         }
@@ -191,7 +177,6 @@ class registerProfViewController: FormViewController {
         let realm = try! Realm()
         try! realm.write {
           realm.add(UserData)
-            print("added")
         }
     }
 
@@ -218,11 +203,11 @@ class registerProfViewController: FormViewController {
         ], merge: true)
         pointHistoryDB.document().setData([
             "point": self.registerBonus,
-            "method": Method.fromString(string: "ログインボーナス").rawValue,
+            "method": Method.Bonus.rawValue,
             "createdAt": FieldValue.serverTimestamp()
         ], merge: true)
         let alert = SCLAlertView()
-        _ = alert.showSuccess("登録ありがとうございます！", subTitle: "P"+String(self.registerBonus)+"を獲得しました！")
+        _ = alert.showSuccess(LString("Thank you for your registration!"), subTitle: String(format: LString("Got %.1f points!"), self.registerBonus))
     }
 }
 
@@ -241,6 +226,7 @@ class registerSecondLanguageViewController: FormViewController {
 
     @IBAction func tappedSaveButton(_ sender: Any) {
         let values = form.values()
+        print(values)
         let nc = self.navigationController
         let vcNum = nc!.viewControllers.count
         let registerProfVC = nc!.viewControllers[vcNum - 2] as! registerProfViewController
@@ -252,7 +238,7 @@ class registerSecondLanguageViewController: FormViewController {
         }
         if Language.fromString(string: values["secondLanguage"] as! String).rawValue != 0 &&
             Level.fromString(string: values["level"] as! String).rawValue == 0 {
-            SCLAlertView().showError("エラー", subTitle:"レベルを選択してください。", closeButtonTitle:"OK")
+            SCLAlertView().showError(LString("Error"), subTitle:LString("Please select your level"), closeButtonTitle:LString("OK"))
             return
         }
         self.navigationController?.popViewController(animated: true)
@@ -260,15 +246,14 @@ class registerSecondLanguageViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title =  "編集"
         self.navigationItem.hidesBackButton = true
 
         form
-        +++ Section(NSLocalizedString("prof_secondLanguage", comment: ""))
+        +++ Section(LString("I am native in"))
 
         <<< PushRow<String> {
-            $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
-            $0.options = [Language.Unknown.string(), Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
+            $0.title = LString("I am native in")
+            $0.options = Language.strings
             $0.value = Language.strings[self.secondLanguage!]
             $0.tag = "secondLanguage"
         }.cellUpdate { cell, row in
@@ -278,8 +263,8 @@ class registerSecondLanguageViewController: FormViewController {
         }
 
         <<< PushRow<String> {
-            $0.title = "Level"
-            $0.options = [Level.Unknown.string(), Level.Beginner.string(), Level.PreIntermediate.string(), Level.Intermediate.string(), Level.PreAdvanced.string(), Level.Advanced.string()]
+            $0.title = LString("Level")
+            $0.options = Level.strings
             $0.value = Level.strings[self.level!]
             $0.tag = "level"
         }.cellUpdate { cell, row in

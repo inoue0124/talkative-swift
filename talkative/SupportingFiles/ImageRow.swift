@@ -47,11 +47,11 @@ extension ImageRowSourceTypes {
     var localizedString: String {
         switch self {
         case ImageRowSourceTypes.Camera:
-            return "写真を撮る"
+            return "Camera"
         case ImageRowSourceTypes.PhotoLibrary:
-            return "ライブラリから選択"
+            return "Album"
         case ImageRowSourceTypes.SavedPhotosAlbum:
-            return "保存"
+            return "Save"
         default:
             return ""
         }

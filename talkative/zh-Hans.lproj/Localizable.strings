@@ -1,0 +1,140 @@
+/*
+  Localizable.strings
+  talkative
+
+  Created by Yusuke Inoue on 2019/10/22.
+  Copyright © 2019 Yusuke Inoue. All rights reserved.
+*/
+
+// Authentication
+"EMAIL" = "邮箱地址";
+"PASSWORD" = "密码";
+"PROFILE IMAGE" = "头像";
+"USER NAME" = "名字";
+"John Smith" = "李華";
+"Gender" = "性别";
+"Date of birth" = "生日";
+"I am native in" = "母语";
+"I am learning" = "学习语言";
+"Error" = "出错";
+"Please fill all the blanks" = "全部必填";
+"OK" = "好";
+"Thank you for your registration!" = "谢谢注册！";
+"Please select your level" = "必须选择水平";
+"Level" = "水平";
+"Registration" = "注册";
+"Got %.1f points!" = "恭喜获得P%.1f!";
+
+// SearchView
+"Login bonus!" = "奖励!";
+"Sent a verification Email" = "邮箱地址认证";
+"Please verify your Email_address" = "发给你认证邮箱了，请确认一下。";
+"Reloading" = "更新中";
+"Result" = "搜索结果";
+"Oops" = "太遗憾了...";
+"Your have not enough points teach..." = "point不够。在Talkative-native教%%可以获得point哦！";
+"Confirm payment" = "确认支付";
+"Pay %d points and talk %d minutes" = "用P%d打%d分钟电话。可以吗？";
+"Waiting for answering" = "等待答应中";
+"Please wait a moment" = "请稍等一下。";
+"Continue" = "继续";
+"Quit" = "取消";
+"No answer" = "没有应答";
+"Finish calling?" = "确认取消";
+"Do you want to finish calling?" = "结束通话？";
+"Finish" = "结束";
+"Cancel" = "取消";
+"Back to home" = "返回到主页";
+
+// MessageView
+"Messages" = "信息";
+
+// HistoryView
+"History" = "通话历史";
+
+// ProfileView
+"Profile" = "个人资料";
+"Followee" = "关注";
+"Wallet" = "钱包";
+"SIGN OUT" = "退出账号";
+"Are you going to sign out?" = "想要退出账号吗？";
+"Edit" = "设定";
+"Basic profile" = "基本信息";
+"Language setting" = "语言设定";
+"Points history" = "point历史";
+"Followee" = "关注";
+
+// Setting
+"Unknown" = "不想回答";
+"Male" = "男";
+"Female" = "女";
+
+// nationality
+"Australia" = "Australia";
+"Brazil" = "Brazil";
+"Canada" = "Canada";
+"China" = "China";
+"Egypt" = "Egypt";
+"France" = "France";
+"Germany" = "Germany";
+"Hong Kong" = "Hong Kong";
+"India" = "India";
+"Indonesia" = "Indonesia";
+"Italia" = "Italia";
+"Japan" = "Japan";
+"Malaysia" = "Malaysia";
+"New Zealand" = "New Zealand";
+"Russia" = "Russia";
+"Singapore" = "Singapore";
+"South Korea" = "South Korea";
+"Spain" = "Spain";
+"Taiwan" = "Taiwan";
+"The Philippines" = "The Philippines";
+"Thailand" = "Thailand";
+"Turkey" = "Turkey";
+"UK" = "UK";
+"U.S." = "U.S.";
+"Vietnam" = "Vietnam";
+
+// language
+"Arabic" = "阿拉伯语";
+"Bengali" = "孟加拉语";
+"Chinese" = "中文";
+"Cantonese" = "粤语";
+"English" = "英语";
+"French" = "法语";
+"German" = "德语";
+"Hindi" = "印地语";
+"Indonesian" = "印尼语";
+"Italian" = "意大利语";
+"Japanese" = "日语";
+"Korean" = "韩语";
+"Portuguese" = "葡萄牙语";
+"Russian" = "俄罗斯语";
+"Spanish" = "西班牙语";
+"Tagalog" = "他加禄语";
+"Thai" = "泰语";
+"Turkish" = "土耳其语";
+"Vietnamese" = "越南语";
+
+// method
+"Call" = "通话";
+"Login bonus" = "每天奖励";
+"Purchase" = "购买";
+
+// level
+"Beginner" = "初级";
+"PreIntermediate" = "初中级";
+"Intermediate" = "中级";
+"PreAdvanced" = "准高级";
+"Advanced" = "高级";
+"None" = "无回答";
+
+// errorMessage
+"Network error" = "网络出错";
+"User not found" = "没有账号";
+"Invalid Email" = "邮箱地址无效";
+"The Email is already used" = "改邮箱地址已经使用过";
+"Wrong password" = "密码不正确";
+"This user is banned" = "该账号被限制";
+"The password is too weak" = "密码太简单";

@@ -1,0 +1,18 @@
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "1QP-pp-9ur"; */
+"1QP-pp-9ur.title" = "保存";
+
+/* Class = "UIBarButtonItem"; title = "back"; ObjectID = "35V-Kl-eFB"; */
+"35V-Kl-eFB.title" = "返回";
+
+/* Class = "UIButton"; normalTitle = "Facebookで登録する"; ObjectID = "Ces-HJ-J12"; */
+"Ces-HJ-J12.normalTitle" = "Facebook";
+
+/* Class = "UIButton"; normalTitle = "メールで登録する"; ObjectID = "OeY-S3-X4J"; */
+"OeY-S3-X4J.normalTitle" = "邮箱";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "QnK-UB-HRR"; */
+"QnK-UB-HRR.title" = "保存";
+
+/* Class = "UIButton"; normalTitle = "サインイン"; ObjectID = "yvF-BM-LmX"; */
+"yvF-BM-LmX.normalTitle" = "注册";

@@ -47,6 +47,9 @@ extension UIViewController {
         //largetitleの適用時の画面遷移でチラ見する黒背景はコイツ
         navigationController!.view.backgroundColor = UIColor.white
     }
+}
+
+extension UIViewController {
 
     func getUserData() -> RealmUserModel {
         let realm = try! Realm()
@@ -59,19 +62,19 @@ extension UIViewController {
     }
 
     func errorMessage(of error: Error) -> String {
-        var message = "エラーが発生しました"
+        var message = NSLocalizedString("Error", comment: "")
         guard let errcd = AuthErrorCode(rawValue: (error as NSError).code) else {
             return message
         }
 
         switch errcd {
-        case .networkError: message = "ネットワークに接続できません"
-        case .userNotFound: message = "ユーザが見つかりません"
-        case .invalidEmail: message = "不正なメールアドレスです"
-        case .emailAlreadyInUse: message = "このメールアドレスは既に使われています"
-        case .wrongPassword: message = "入力した認証情報でサインインできません"
-        case .userDisabled: message = "このアカウントは無効です"
-        case .weakPassword: message = "パスワードが脆弱すぎます"
+        case .networkError: message = LString("Cannot connect to the Internert")
+        case .userNotFound: message = LString("User not found")
+        case .invalidEmail: message = LString("Invalid Email")
+        case .emailAlreadyInUse: message = LString("The Email is already used")
+        case .wrongPassword: message = LString("Wrong password")
+        case .userDisabled: message = LString("This user is banned")
+        case .weakPassword: message = LString("The password is too weak")
         default: break
         }
         return message
@@ -81,9 +84,12 @@ extension UIViewController {
         guard let error = errorOrNil else { return }
         let message = errorMessage(of: error)
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("alert_ok", comment: ""), style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: LString("OK"), style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+}
+
+extension UIViewController {
 
     func showPreloader() {
         let image:UIImage? = UIImage.gif(name: "Preloader2")
@@ -104,6 +110,13 @@ extension UIViewController {
     func dissmisPreloader() {
         self.view.isUserInteractionEnabled = true
         self.view.subviews.last?.removeFromSuperview()
+    }
+}
+
+extension UIViewController {
+
+    func LString(_ string: String) -> String {
+        return NSLocalizedString(string, comment: "")
     }
 }
 

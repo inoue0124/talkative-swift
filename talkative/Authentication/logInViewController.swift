@@ -15,7 +15,6 @@ class logInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
 
     let Usersdb = Firestore.firestore().collection("Users")
 
@@ -23,9 +22,8 @@ class logInViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.loginButton.setTitle(NSLocalizedString("login", comment: ""), for: .normal)
-        self.emailTextField.placeholder = NSLocalizedString("placeholder_email", comment: "")
-        self.passwordTextField.placeholder = NSLocalizedString("placeholder_password", comment: "")
+        self.emailTextField.placeholder = LString("EMAIL")
+        self.passwordTextField.placeholder = LString("PASSWORD")
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }

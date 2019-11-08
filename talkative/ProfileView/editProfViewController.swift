@@ -36,12 +36,12 @@ class editProfViewController: FormViewController {
         super.viewDidLoad()
         secondLanguage = getUserData().secondLanguage
         level = getUserData().level
-        self.navigationItem.title =  "編集"
+        self.navigationItem.title = LString("Edit")
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.hidesBackButton = false
-        form +++ Section(NSLocalizedString("prof_section_base", comment: ""))
+        form +++ Section(LString("Basic profile"))
         <<< ImageRow {
-            $0.title = NSLocalizedString("prof_image", comment: "")
+            $0.title = LString("PROFILE IMAGE")
             $0.sourceTypes = [.PhotoLibrary, .Camera]
             $0.value = UIImage(data: getUserData().profImage)
             $0.clearAction = .no
@@ -54,31 +54,18 @@ class editProfViewController: FormViewController {
         }
 
         <<< NameRow {
-            $0.title = NSLocalizedString("prof_name", comment: "")
+            $0.title = LString("USER NAME")
             $0.value = getUserData().name
             $0.tag = "name"
             $0.validationOptions = .validatesOnChangeAfterBlurred
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
-            if !row.isValid {
-                cell.titleLabel?.textColor = .red
-                var errors = "必須項目です"
-                for error in row.validationErrors {
-                    let errorString = error.msg + "\n"
-                    errors = errors + errorString
-                }
-                print(errors)
-                cell.detailTextLabel?.text = errors
-                cell.detailTextLabel?.isHidden = false
-                cell.detailTextLabel?.textAlignment = .left
-
-            }
         }
 
-            +++ Section(NSLocalizedString("prof_section_base", comment: ""))
+            +++ Section(LString("Language setting"))
         <<< PushRow<String> {
-            $0.title = NSLocalizedString("prof_motherLanguage", comment: "")
-            $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
+            $0.title = LString("I am native in")
+            $0.options = Language.strings
             $0.value = Language.strings[getUserData().motherLanguage]
             $0.tag = "motherLanguage"
         }.cellUpdate { cell, row in
@@ -89,7 +76,7 @@ class editProfViewController: FormViewController {
 
 
         <<< DetailedButtonRow {
-            $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
+            $0.title = LString("I am learning")
             $0.presentationMode = .segueName(segueName: "selectSecondLanguage", onDismiss: nil)
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
@@ -109,7 +96,7 @@ class editProfViewController: FormViewController {
         for (key, value) in dict {
             if value == nil {
                 self.dissmisPreloader()
-                SCLAlertView().showError("エラー", subTitle:"未入力項目があります。", closeButtonTitle:"OK")
+                SCLAlertView().showError(LString("Error"), subTitle:LString("Please fill all the blanks"), closeButtonTitle:LString("OK"))
                 return false
             }
         }
@@ -196,7 +183,7 @@ class selectSecondLanguageViewController: FormViewController {
         }
         if Language.fromString(string: values["secondLanguage"] as! String).rawValue != 0 &&
             Level.fromString(string: values["level"] as! String).rawValue == 0 {
-            SCLAlertView().showError("エラー", subTitle:"レベルを選択してください。", closeButtonTitle:"OK")
+            SCLAlertView().showError(LString("Error"), subTitle:LString("Please select your level"), closeButtonTitle:LString("OK"))
             return
         }
         self.navigationController?.popViewController(animated: true)
@@ -204,15 +191,15 @@ class selectSecondLanguageViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title =  "編集"
+        self.navigationItem.title = LString("Edit")
         self.navigationItem.hidesBackButton = true
 
         form
-        +++ Section(NSLocalizedString("prof_secondLanguage", comment: ""))
+        +++ Section(LString("I am learning"))
 
         <<< PushRow<String> {
-            $0.title = NSLocalizedString("prof_secondLanguage", comment: "")
-            $0.options = [Language.Unknown.string(), Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
+            $0.title = LString("I am learning")
+            $0.options = Language.strings
             $0.value = Language.strings[self.secondLanguage!]
             $0.tag = "secondLanguage"
         }.cellUpdate { cell, row in
@@ -222,8 +209,8 @@ class selectSecondLanguageViewController: FormViewController {
         }
 
         <<< PushRow<String> {
-            $0.title = "Level"
-            $0.options = [Level.Unknown.string(), Level.Beginner.string(), Level.PreIntermediate.string(), Level.Intermediate.string(), Level.PreAdvanced.string(), Level.Advanced.string()]
+            $0.title = LString("Level")
+            $0.options = Level.strings
             $0.value = Level.strings[self.level!]
             $0.tag = "level"
         }.cellUpdate { cell, row in

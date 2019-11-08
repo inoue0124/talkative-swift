@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.hidesBackButton = false
         tabBarController?.tabBar.isHidden = false
-        largeTitle(NSLocalizedString("largetitle_profile", comment: ""))
+        largeTitle(LString("Profile"))
         let userData = self.getUserData()
         Thumbnail.image = UIImage(data: userData.profImage)
         Thumbnail.layer.cornerRadius = 50
@@ -51,7 +51,7 @@ class ProfileCollectionViewController: FormViewController, UINavigationControlle
         }
 
         <<< ButtonRow {
-            $0.title = NSLocalizedString("prof_setting_following", comment: "")
+            $0.title = LString("Followee")
             $0.presentationMode = .segueName(segueName: "followeeSegue", onDismiss: nil)
         }.cellSetup { cell, row in
             cell.imageView?.image = UIImage(named: "heart_fill")
@@ -59,22 +59,15 @@ class ProfileCollectionViewController: FormViewController, UINavigationControlle
         }
 
         <<< ButtonRow {
-            $0.title = NSLocalizedString("prof_setting_wallet", comment: "")
+            $0.title = LString("Wallet")
             $0.presentationMode = .segueName(segueName: "walletSegue", onDismiss: nil)
         }.cellSetup { cell, row in
             cell.imageView?.image = UIImage(named: "wallet")
             cell.height = ({return 80})
         }
 
-//        <<< ButtonRow {
-//            $0.title = NSLocalizedString("prof_setting_setting", comment: "")
-//            $0.presentationMode = .segueName(segueName: "settingSegue", onDismiss: nil)
-//        }.cellUpdate { cell, row in
-//            cell.height = ({return 80})
-//        }
-
         <<< ButtonRow() {
-            $0.title = NSLocalizedString("ログアウト", comment: "")
+            $0.title = LString("SIGN OUT")
             $0.onCellSelection(self.buttonTapped)
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
@@ -83,7 +76,7 @@ class ProfileCollectionViewController: FormViewController, UINavigationControlle
 
     func buttonTapped(cell: ButtonCellOf<String>, row: ButtonRow) {
         let alert = SCLAlertView()
-        alert.addButton(NSLocalizedString("alert_ok", comment: "")) {
+        alert.addButton(LString("OK")) {
             let realm = try! Realm()
             do {
                 var config = Realm.Configuration()
@@ -96,6 +89,6 @@ class ProfileCollectionViewController: FormViewController, UINavigationControlle
                 print(error)
             }
         }
-        alert.showWarning(NSLocalizedString("ログアウト", comment: ""), subTitle: "ログアウトします。よろしいですか？")
+        alert.showWarning(LString("SIGN OUT"), subTitle: LString("Are you going to sign out?"))
     }
 }

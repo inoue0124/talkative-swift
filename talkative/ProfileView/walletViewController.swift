@@ -25,7 +25,7 @@ class walletViewController: UIViewController, UITableViewDelegate , UITableViewD
         pointHistoryTable.delegate = self
         pointHistoryTable.allowsSelection = false
         pointHistoryTable.register(UINib(nibName: "walletHistoryRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
-        self.navigationItem.title =  "ポイント履歴"
+        self.navigationItem.title = LString("Points history")
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.Usersdb.whereField("uid", isEqualTo: self.getUserUid()).addSnapshotListener() { snapshot, error in

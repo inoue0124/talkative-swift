@@ -1,0 +1,18 @@
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "1QP-pp-9ur"; */
+"1QP-pp-9ur.title" = "Save";
+
+/* Class = "UIBarButtonItem"; title = "back"; ObjectID = "35V-Kl-eFB"; */
+"35V-Kl-eFB.title" = "back";
+
+/* Class = "UIButton"; normalTitle = "FACEBOOK"; ObjectID = "Ces-HJ-J12"; */
+"Ces-HJ-J12.normalTitle" = "FACEBOOK";
+
+/* Class = "UIButton"; normalTitle = "EMAIL"; ObjectID = "OeY-S3-X4J"; */
+"OeY-S3-X4J.normalTitle" = "EMAIL";
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "QnK-UB-HRR"; */
+"QnK-UB-HRR.title" = "Save";
+
+/* Class = "UIButton"; normalTitle = "SIGN UP"; ObjectID = "yvF-BM-LmX"; */
+"yvF-BM-LmX.normalTitle" = "SIGN UP";

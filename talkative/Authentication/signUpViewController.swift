@@ -15,16 +15,14 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
-    @IBOutlet weak var signUpButton: UIButton!
     var email: String?
     var password: String?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.signUpButton.setTitle(NSLocalizedString("signUp", comment: ""), for: .normal)
-        self.emailTextField.placeholder = NSLocalizedString("placeholder_email", comment: "")
-        self.passwordTextField.placeholder = NSLocalizedString("placeholder_password", comment: "")
+        self.emailTextField.placeholder = LString("EMAIL")
+        self.passwordTextField.placeholder = LString("PASSWORD")
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }

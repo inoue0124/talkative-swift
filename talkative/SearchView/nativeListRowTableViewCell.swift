@@ -18,8 +18,6 @@ class nativeListRowTableViewCell: UITableViewCell {
     @IBOutlet weak var targetLanguage: UILabel!
     @IBOutlet weak var supportLanguage: UILabel!
     @IBOutlet weak var timeLength: UILabel!
-    @IBOutlet weak var label_motherLanguage: UILabel!
-    @IBOutlet weak var label_secondLanguage: UILabel!
     @IBOutlet weak var followButton: UIButton!
     let Usersdb = Firestore.firestore().collection("Users")
     var offer: OfferModel?
@@ -28,12 +26,10 @@ class nativeListRowTableViewCell: UITableViewCell {
 
     func setRowData(numOfCells: IndexPath, offer: OfferModel){
         self.offer = offer
-        self.label_motherLanguage.text = NSLocalizedString("label_motherLanguage", comment: "")
-        self.label_secondLanguage.text = NSLocalizedString("label_secondLanguage", comment: "")
         self.NativeThumbnail.layer.cornerRadius = 40
         self.NativeName.text = String(offer.nativeName)
         self.rating.text = String(format: "%.1f", offer.nativeRating)
-        self.timeLength.text = String(offer.offerTime) + String(NSLocalizedString("unit_min", comment: ""))
+        self.timeLength.text = String(offer.offerTime)
         self.NativeThumbnail.image = UIImage.gif(name: "Preloader2")
         DispatchQueue.global().async {
             let image = UIImage(url: offer.nativeImageURL)

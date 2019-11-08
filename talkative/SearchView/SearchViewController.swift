@@ -20,19 +20,25 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var locationManager: CLLocationManager!
     let offersDb = Firestore.firestore().collection("offers")
     let Usersdb = Firestore.firestore().collection("Users")
-    let loginBonus: Int = 5
+    let loginBonus: Double = 5.0
+    var myLocation: CLLocation?
+    var window: UIWindow?
+    var offerPrice: Int = 10
 
     @IBOutlet weak var targetLanguage: UILabel!
     @IBOutlet weak var numOfOnline: UILabel!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var MapView: MKMapView!
     @IBOutlet weak var instructionLabel: UIView!
-    var window: UIWindow?
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timeStepper: UIStepper!
+
+    @IBAction func changeStepperValue(_ sender: UIStepper) {
+        timeLabel.text = "\(Int(sender.value))"
+        offerPrice = Int(sender.value)
+    }
 
     override func viewDidLoad() {
-//        var config = Realm.Configuration()
-//        config.deleteRealmIfMigrationNeeded = true
-//        let realm = try! Realm(configuration: config)
         setupLocationManager()
         self.MapView.region.span.latitudeDelta = 120
         self.MapView.region.span.longitudeDelta = 120
@@ -42,13 +48,9 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     override func viewDidAppear(_ animated: Bool) {
         let realm = try! Realm()
         if realm.objects(RealmUserModel.self).isEmpty {
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            let loginStoryboard: UIStoryboard = UIStoryboard(name: "loginView", bundle: nil)
-            let loginVC = loginStoryboard.instantiateInitialViewController()
-            self.window?.rootViewController = loginVC
-            self.window?.makeKeyAndVisible()
             return
         }
+        timeStepper.value = Double(offerPrice)
         self.instructionLabel.center.y = -65
         UIView.animate(withDuration: 1.0, delay: 0.0, animations: {
             self.instructionLabel.center.y = 65
@@ -77,10 +79,10 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 ], merge: true)
                 pointHistoryDB.document().setData([
                     "point": self.loginBonus,
-                    "method": Method.fromString(string: "ログインボーナス").rawValue,
+                    "method": Method.Bonus.rawValue,
                     "createdAt": FieldValue.serverTimestamp()
                 ], merge: true)
-                SCLAlertView().showSuccess("ログインボーナス！", subTitle: "P5獲得しました！")
+                SCLAlertView().showSuccess(self.LString("Login bonus!"), subTitle: String(format: self.LString("Got %.1f points!"), self.loginBonus))
             }
         }
     }
@@ -94,16 +96,11 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         tabBarController?.tabBar.isHidden = false
         let realm = try! Realm()
         if realm.objects(RealmUserModel.self).isEmpty {
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            let loginStoryboard: UIStoryboard = UIStoryboard(name: "loginView", bundle: nil)
-            let loginVC = loginStoryboard.instantiateInitialViewController()
-            self.window?.rootViewController = loginVC
-            self.window?.makeKeyAndVisible()
             return
         }
         let targetLanguage = self.getUserData().secondLanguage
         self.targetLanguage.text = Language.strings[targetLanguage]
-        self.offersDb.whereField("targetLanguage", isEqualTo: targetLanguage).whereField("isOnline", isEqualTo: true).addSnapshotListener() { snapshot, error in
+        self.offersDb.whereField("targetLanguage", isEqualTo: targetLanguage).whereField("isOnline", isEqualTo: true).getDocuments() { snapshot, error in
             if let _error = error {
                 print("error\(_error)")
                 return
@@ -127,11 +124,16 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     @IBAction func presentConditions(_ sender: Any) {
         if let user = Auth.auth().currentUser {
             user.reload()
+            if self.myLocation == nil {
+                self.setupLocationManager()
+                //self.timeStepper.isEnabled = true
+                return
+            }
             if user.isEmailVerified {
-                self.performSegue(withIdentifier: "presentConditions", sender: nil)
+                performSegue(withIdentifier: "showResult", sender: nil)
             } else {
                 self.sendEmailVerification(to: user)
-                SCLAlertView().showInfo("メール認証", subTitle: "登録メールアドレスに認証メールをお送りしました。ご確認おねがいします。")
+                SCLAlertView().showInfo(LString("Sent a verification Email"), subTitle: LString("Please verify your Email address"))
             }
         }
     }
@@ -153,7 +155,7 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showResult" {
             let ResultVC = segue.destination as! SearchResultViewController
-            ResultVC.searchConditions = self.searchConditions
+            ResultVC.searchConditions = ["targetLanguage": getUserData().secondLanguage, "maxPrice": self.offerPrice]
         }
     }
 
@@ -172,6 +174,13 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             locationManager.distanceFilter = 10
             locationManager.startUpdatingLocation()
         }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.myLocation = locations.first
+        self.Usersdb.document(self.getUserUid()).setData([
+            "location": GeoPoint(latitude: self.myLocation!.coordinate.latitude, longitude: self.myLocation!.coordinate.longitude)
+        ], merge: true)
     }
 }
 

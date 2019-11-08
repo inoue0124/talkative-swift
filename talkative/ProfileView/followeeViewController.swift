@@ -24,7 +24,7 @@ class followeeViewController: UIViewController, UITableViewDelegate , UITableVie
         followeeTable.allowsSelection = true
         followeeTable.dataSource = self
         followeeTable.delegate = self
-        self.navigationItem.title =  "お気に入り"
+        self.navigationItem.title = LString("Followee")
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         followeeTable.register(UINib(nibName: "followeeRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")

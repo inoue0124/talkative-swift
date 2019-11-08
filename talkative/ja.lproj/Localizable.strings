@@ -6,49 +6,135 @@
   Copyright © 2019 Yusuke Inoue. All rights reserved.
 */
 
-"conditions" = "検索条件";
-"conditions_language" = "話したい言語";
-"conditions_price" = "価格上限(¥)";
-"conditions_time" = "通話時間(分)";
-"prof_section_base" = "基本情報";
-"prof_image" = "プロフィール画像";
-"prof_name" = "ユーザーネーム（ローマ字）";
-"prof_gender" = "性別";
-"prof_birthDate" = "誕生日";
-"prof_nationality" = "国籍";
-"prof_motherLanguage" = "母国語";
-"prof_secondLanguage" = "学習言語";
-"prof_setting_following" = "お気に入り";
-"prof_setting_wallet" = "ウォレット";
-"prof_setting_setting" = "設定";
-"largetitle_message" = "メッセージ";
-"largetitle_history" = "通話履歴";
-"largetitle_profile" = "プロフィール";
-"search" = "検索";
-"reloading" = "読み込み中";
-"unit_min" = "分";
-"unit_money" = "P";
-"label_motherLanguage" = "母国語";
-"label_secondLanguage" = "話せる言語";
-"setting_unknown" = "なし";
-"setting_gender_male" = "男";
-"setting_gender_female" = "女";
-"setting_language_japanese" = "日本語";
-"setting_language_english" = "英語";
-"setting_language_chinese" = "中国語";
-"setting_nationality_japan" = "日本";
-"setting_nationality_usa" = "アメリカ";
-"setting_nationality_china" = "中国";
-"placeholder_email" = "メールアドレス";
-"placeholder_password" = "パスワード";
-"alert_ok" = "決定";
-"alert_cancel" = "キャンセル";
-"alert_finish" = "終了";
-"alert_confirm_payment_title" = "支払い確認";
-"alert_confirm_payment_message" = "%dポイントを支払い、%d分間通話します。よろしいですか？";
-"alert_confirm_finish_title" = "終了確認";
-"alert_confirm_finish_message" = "通話を終了します。よろしいですか？";
-"rate_instruction" = "評価をお願いします！";
-"login" = "ログイン";
-"newRegister" = "新規登録";
-"signUp" = "登録";
+// Authentication
+"EMAIL" = "Eメール";
+"PASSWORD" = "パスワード";
+"PROFILE IMAGE" = "プロフィール画像";
+"USER NAME" = "ユーザーネーム（ローマ字）";
+"John Smith" = "山田太郎";
+"Gender" = "性別";
+"Date of birth" = "誕生日";
+"I am native in" = "母国語";
+"I am learning" = "学習言語";
+"Error" = "エラー";
+"Please fill all the blanks" = "未入力項目があります。";
+"OK" = "はい";
+"Thank you for your registration!" = "登録ありがとうございます!";
+"Please select your level" = "レベルを選択してください";
+"Level" = "レベル";
+"Registration" = "登録";
+"Got %.1f points!" = "%.1fポイントをゲットしました!";
+
+// SearchView
+"Login bonus!" = "ログインボーナス!";
+"Sent a verification Email" = "メール認証";
+"Please verify your Email_address" = "登録先のメールアドレスに認証メールを送信しました。ご確認ください。";
+"Reloading" = "読み込み中";
+"Result" = "検索結果";
+"Oops" = "残念...";
+"Your have not enough points teach..." = "ポイントが不足しています。Talkative-nativeで%%を教えてポイントを稼ぎましょう！";
+"Confirm payment" = "支払い確認";
+"Pay %d points and talk %d minutes" = "%dポイントを支払い、%d分間通話します。よろしいですか？";
+"Waiting for answering" = "応答待機中";
+"Please wait a moment" = "しばらくお待ちください。";
+"Continue" = "続ける";
+"Quit" = "やめる";
+"No answer" = "応答なし";
+"Finish calling?" = "終了確認";
+"Do you want to finish calling?" = "通話を終了しますか？";
+"Finish" = "終了";
+"Cancel" = "キャンセル";
+"Back to home" = "ホームへ戻る";
+
+// MessageView
+"Messages" = "メッセージ";
+
+// HistoryView
+"History" = "通話履歴";
+
+// ProfileView
+"Profile" = "プロフィール";
+"Followee" = "お気に入り";
+"Wallet" = "ウォレット";
+"SIGN OUT" = "サインアウト";
+"Are you going to sign out?" = "サインアウトしますか?";
+"Edit" = "編集";
+"Basic profile" = "基本情報";
+"Language setting" = "言語設定";
+"Points history" = "ポイント履歴";
+"Followee" = "お気に入り";
+
+// Setting
+"Unknown" = "回答しない";
+"Male" = "男性";
+"Female" = "女性";
+
+// nationality
+"Australia" = "Australia";
+"Brazil" = "Brazil";
+"Canada" = "Canada";
+"China" = "China";
+"Egypt" = "Egypt";
+"France" = "France";
+"Germany" = "Germany";
+"Hong Kong" = "Hong Kong";
+"India" = "India";
+"Indonesia" = "Indonesia";
+"Italia" = "Italia";
+"Japan" = "Japan";
+"Malaysia" = "Malaysia";
+"New Zealand" = "New Zealand";
+"Russia" = "Russia";
+"Singapore" = "Singapore";
+"South Korea" = "South Korea";
+"Spain" = "Spain";
+"Taiwan" = "Taiwan";
+"The Philippines" = "The Philippines";
+"Thailand" = "Thailand";
+"Turkey" = "Turkey";
+"UK" = "UK";
+"U.S." = "U.S.";
+"Vietnam" = "Vietnam";
+
+// language
+"Arabic" = "アラビア語";
+"Bengali" = "ベンガル語";
+"Chinese" = "中国語";
+"Cantonese" = "広東語";
+"English" = "英語";
+"French" = "フランス語";
+"German" = "ドイツ語";
+"Hindi" = "ヒンディー語";
+"Indonesian" = "インドネシア語";
+"Italian" = "イタリア語";
+"Japanese" = "日本語";
+"Korean" = "韓国語";
+"Portuguese" = "ポルトガル語";
+"Russian" = "ロシア語";
+"Spanish" = "スペイン語";
+"Tagalog" = "タガログ語";
+"Thai" = "タイ語";
+"Turkish" = "トルコ語";
+"Vietnamese" = "ベトナム語";
+
+// method
+"Call" = "通話";
+"Login bonus" = "ログインボーナス";
+"Purchase" = "購入";
+
+// level
+"Beginner" = "初級";
+"PreIntermediate" = "初中級";
+"Intermediate" = "中級";
+"PreAdvanced" = "中上級";
+"Advanced" = "上級";
+"None" = "なし";
+
+// errorMessage
+"Network error" = "ネットワークエラー。";
+"User not found" = "ユーザーが見つかりません。";
+"Invalid Email" = "メールアドレスが無効です。";
+"The Email is already used" = "このメールアドレスは既に登録されています。";
+"Wrong password" = "パスワードが間違っています。";
+"This user is banned" = "該当ユーザーは無効です。";
+"The password is too weak" = "パスワードが弱すぎます。";

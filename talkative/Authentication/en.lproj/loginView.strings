@@ -1,0 +1,21 @@
+
+/* Class = "UIButton"; normalTitle = "SIGN IN"; ObjectID = "5T4-Z2-hJ9"; */
+"5T4-Z2-hJ9.normalTitle" = "SIGN IN";
+
+/* Class = "UIButton"; normalTitle = "EMAIL"; ObjectID = "ATN-ha-Xgc"; */
+"ATN-ha-Xgc.normalTitle" = "EMAIL";
+
+/* Class = "UILabel"; text = "Already have an account?"; ObjectID = "BgY-Ug-a3q"; */
+"BgY-Ug-a3q.text" = "Already have an account?";
+
+/* Class = "UIButton"; normalTitle = "SIGN IN"; ObjectID = "O3a-qL-fu8"; */
+"O3a-qL-fu8.normalTitle" = "SIGN IN";
+
+/* Class = "UIButton"; normalTitle = "FACEBOOK"; ObjectID = "mxN-AL-cSh"; */
+"mxN-AL-cSh.normalTitle" = "FACEBOOK";
+
+/* Class = "UILabel"; text = "Talkative"; ObjectID = "rhH-Or-C95"; */
+"rhH-Or-C95.text" = "Talkative";
+
+/* Class = "UIButton"; normalTitle = "CREATE ACCOUNT"; ObjectID = "ysB-2k-Vod"; */
+"ysB-2k-Vod.normalTitle" = "CREATE ACCOUNT";

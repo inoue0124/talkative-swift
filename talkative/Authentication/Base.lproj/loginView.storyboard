@@ -60,14 +60,14 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3a-qL-fu8">
                                 <rect key="frame" x="68" y="619" width="278" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="25t-ex-VBs"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="ULx-Yc-8Ng"/>
                                     <constraint firstAttribute="width" constant="278" id="mUI-Wv-YM6"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="ログイン">
+                                <state key="normal" title="SIGN IN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -94,7 +94,6 @@
                     <navigationItem key="navigationItem" id="GDt-Qy-jr5"/>
                     <connections>
                         <outlet property="emailTextField" destination="mbP-zU-UL6" id="efZ-5M-fc7"/>
-                        <outlet property="loginButton" destination="O3a-qL-fu8" id="KbT-3W-csS"/>
                         <outlet property="passwordTextField" destination="Q8M-UB-kQO" id="qCe-bA-cTa"/>
                         <segue destination="5Re-5u-xDb" kind="show" identifier="toRegisterProfView" id="nXJ-I6-9dQ"/>
                         <segue destination="Kjf-wW-OtT" kind="presentation" identifier="toMain" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="49X-oj-dJu"/>
@@ -141,37 +140,36 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysB-2k-Vod">
                                 <rect key="frame" x="68" y="627" width="278" height="40"/>
-                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="278" id="ThB-gg-rZu"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Udg-mP-8Bp"/>
                                 </constraints>
-                                <state key="normal" title="新規登録">
+                                <state key="normal" title="CREATE ACCOUNT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <segue destination="rLT-PX-SPj" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="1e9-Cn-2O0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Talkative へようこそ！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhH-Or-C95">
-                                <rect key="frame" x="32" y="204" width="350" height="43"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Talkative" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhH-Or-C95">
+                                <rect key="frame" x="62" y="204" width="290.5" height="95.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="zJ8-9M-moT">
-                                <rect key="frame" x="60.5" y="686" width="293.5" height="30"/>
+                                <rect key="frame" x="79" y="686" width="256" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="すでにアカウントがある方は" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgY-Ug-a3q">
-                                        <rect key="frame" x="0.0" y="0.0" width="225.5" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgY-Ug-a3q">
+                                        <rect key="frame" x="0.0" y="0.0" width="196" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5T4-Z2-hJ9">
-                                        <rect key="frame" x="231.5" y="0.0" width="62" height="30"/>
-                                        <state key="normal" title="ログイン"/>
+                                        <rect key="frame" x="202" y="0.0" width="54" height="30"/>
+                                        <state key="normal" title="SIGN IN"/>
                                         <connections>
                                             <segue destination="3YO-xb-UMb" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="hR8-uN-ihl"/>
                                         </connections>
@@ -236,40 +234,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATN-ha-Xgc">
-                                <rect key="frame" x="68" y="241" width="278" height="48"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="9Ix-ig-dRj"/>
-                                    <constraint firstAttribute="width" constant="278" id="zR6-DH-bDR"/>
-                                </constraints>
-                                <state key="normal" title="メールでログイン" image="mail">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="6Un-OV-799" kind="show" id="Zl0-fQ-EW8"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxN-AL-cSh" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="68" y="309" width="278" height="40"/>
+                                <rect key="frame" x="68" y="288" width="278" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="I1r-VO-pmR"/>
                                     <constraint firstAttribute="width" constant="278" id="e9m-Vl-0DA"/>
                                 </constraints>
-                                <state key="normal" title="Facebookでログイン"/>
+                                <state key="normal" title="FACEBOOK"/>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5BV-qk-IQB">
+                                <rect key="frame" x="68" y="238" width="278" height="30"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="ZPr-ge-jfC">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="2sw-6N-Kth"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATN-ha-Xgc">
+                                        <rect key="frame" x="30" y="0.0" width="248" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="248" id="zR6-DH-bDR"/>
+                                        </constraints>
+                                        <state key="normal" title="EMAIL">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="6Un-OV-799" kind="show" id="Zl0-fQ-EW8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ZDL-DX-mJN"/>
+                                    <constraint firstAttribute="width" constant="278" id="c54-1y-Wlz"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ATN-ha-Xgc" firstAttribute="top" secondItem="pVl-sX-zFD" secondAttribute="bottom" constant="153" id="OAm-SP-wvr"/>
-                            <constraint firstItem="ATN-ha-Xgc" firstAttribute="centerX" secondItem="67F-ZY-3bm" secondAttribute="centerX" id="Qe7-Qj-dMl"/>
-                            <constraint firstItem="mxN-AL-cSh" firstAttribute="top" secondItem="ATN-ha-Xgc" secondAttribute="bottom" constant="20" id="Ynk-Si-RjO"/>
-                            <constraint firstItem="ATN-ha-Xgc" firstAttribute="leading" secondItem="mxN-AL-cSh" secondAttribute="leading" id="wok-lW-DRe"/>
+                            <constraint firstItem="5BV-qk-IQB" firstAttribute="top" secondItem="pVl-sX-zFD" secondAttribute="bottom" constant="150" id="HX1-OD-fGS"/>
+                            <constraint firstItem="mxN-AL-cSh" firstAttribute="centerX" secondItem="67F-ZY-3bm" secondAttribute="centerX" id="VEf-JM-uev"/>
+                            <constraint firstItem="mxN-AL-cSh" firstAttribute="top" secondItem="5BV-qk-IQB" secondAttribute="bottom" constant="20" id="gfJ-he-LDv"/>
+                            <constraint firstItem="5BV-qk-IQB" firstAttribute="centerX" secondItem="67F-ZY-3bm" secondAttribute="centerX" id="yT0-16-7vy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WuH-nK-uoB">
                         <barButtonItem key="rightBarButtonItem" image="cross" id="cO4-Zf-aBV">
-                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="nqw-oG-2bP" kind="custom" customClass="DismissControllerSegue" customModule="talkative" customModuleProvider="target" id="rWM-YJ-9js"/>
                             </connections>
@@ -284,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TJ8-So-zVU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="512" y="116"/>
+            <point key="canvasLocation" x="511.59420289855075" y="115.84821428571428"/>
         </scene>
     </scenes>
     <resources>

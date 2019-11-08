@@ -107,14 +107,14 @@ class nativeDetailViewController: UIViewController {
             return
             }
             let downloadedUserData = documents.map{ UserModel(from: $0) }
-            if downloadedUserData[0].point-self.offer!.offerPrice < 0 {
-                SCLAlertView().showError("残念。。", subTitle:"ポイントが足りないようです。Talkative-nativeで"+Language.strings[self.getUserData().motherLanguage]+"を教えて、ポイントを貰おう！", closeButtonTitle:"OK")
+            if downloadedUserData[0].point - Double(self.offer!.offerPrice) < 0.0 {
+                SCLAlertView().showError(self.LString("Oops"), subTitle: String(format: self.LString("Your have not enough points teach...") , Language.strings[self.getUserData().motherLanguage]), closeButtonTitle: self.LString("OK"))
                 return
             }
             let alert = SCLAlertView()
-            alert.addButton(NSLocalizedString("alert_ok", comment: "")) { self.performSegue(withIdentifier: "show_media", sender: nil) }
-            alert.showInfo(NSLocalizedString("alert_confirm_payment_title", comment: ""),
-                                    subTitle: String(format: NSLocalizedString("alert_confirm_payment_message", comment: ""), self.offer!.offerPrice,self.offer!.offerTime))
+            alert.addButton(self.LString("OK")) { self.performSegue(withIdentifier: "show_media", sender: nil) }
+            alert.showInfo(self.LString("Confirm payment"),
+                           subTitle: String(format: self.LString("Pay %d points and talk %d minutes"), self.offer!.offerPrice,self.offer!.offerTime))
         }
     }
 
@@ -126,7 +126,7 @@ class nativeDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "show_media" {
             if (UIApplication.shared.delegate as? AppDelegate)?.skywayAPIKey == nil || (UIApplication.shared.delegate as? AppDelegate)?.skywayDomain == nil{
-                UIAlertController.oneButton("エラー", message: "APIKEYかDOMAINが設定されていません", handler: nil)
+                UIAlertController.oneButton(LString("Error"), message: "APIKEY or DOMAIN are not set", handler: nil)
             } else {
                 let callVC = segue.destination as! callingViewController
                 callVC.offer = self.offer!

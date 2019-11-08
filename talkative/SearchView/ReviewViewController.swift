@@ -20,15 +20,13 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var star4: UIButton!
     @IBOutlet weak var star5: UIButton!
-    @IBOutlet weak var instructLabel: UILabel!
     var rating: Int!
     let offersDb = Firestore.firestore().collection("offers")
     let Usersdb = Firestore.firestore().collection("Users")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.instructLabel.text = NSLocalizedString("rate_instruction", comment: "")
-        self.backHomeButton.setTitle(NSLocalizedString("alert_finish", comment: ""), for:.normal)
+        self.backHomeButton.setTitle(LString("Back to home"), for:.normal)
         self.backHomeButton.isEnabled = false
         self.NativeName.text = self.offer!.nativeName
         self.NativeThumbnail.image = UIImage.gif(name: "Preloader")

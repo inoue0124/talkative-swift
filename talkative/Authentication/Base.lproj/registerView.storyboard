@@ -10,7 +10,7 @@
         <!--Select Register Method View Controller-->
         <scene sceneID="7fK-xG-3fb">
             <objects>
-                <viewController id="892-Y4-cL1" customClass="selectRegisterMethodViewController" customModule="talkative_native" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="892-Y4-cL1" customClass="selectRegisterMethodViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia4-OC-aci"/>
                         <viewControllerLayoutGuide type="bottom" id="ga1-Li-eHL"/>
@@ -19,42 +19,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeY-S3-X4J">
-                                <rect key="frame" x="68" y="273" width="278" height="48"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWS-H1-a2T">
+                                <rect key="frame" x="68" y="238" width="278" height="30"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="d2G-jv-Gjn">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="sFY-lM-UJT"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeY-S3-X4J">
+                                        <rect key="frame" x="30" y="0.0" width="248" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="248" id="Je5-Aj-k7Z"/>
+                                        </constraints>
+                                        <state key="normal" title="EMAIL">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="Ohf-pp-HML" kind="show" id="7f2-Dm-U7D"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="278" id="Je5-Aj-k7Z"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="278" id="gNW-y3-AjN"/>
-                                    <constraint firstAttribute="height" constant="48" id="ql8-z9-VgS"/>
+                                    <constraint firstAttribute="width" constant="278" id="CSe-wU-xGy"/>
+                                    <constraint firstAttribute="height" constant="30" id="wHa-Id-KJJ"/>
                                 </constraints>
-                                <state key="normal" title="メールで登録する" image="mail">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Ohf-pp-HML" kind="show" id="7f2-Dm-U7D"/>
-                                </connections>
-                            </button>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ces-HJ-J12" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="68" y="367" width="278" height="30"/>
+                                <rect key="frame" x="68" y="288" width="278" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="278" id="i3O-Ip-eeL"/>
                                 </constraints>
-                                <state key="normal" title="Facebookで登録する"/>
+                                <state key="normal" title="FACEBOOK"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Ces-HJ-J12" firstAttribute="top" secondItem="OeY-S3-X4J" secondAttribute="bottom" constant="46" id="7Ae-eu-GCU"/>
-                            <constraint firstItem="OeY-S3-X4J" firstAttribute="centerX" secondItem="f3t-v5-UWA" secondAttribute="centerX" id="DlQ-uH-QkD"/>
-                            <constraint firstItem="OeY-S3-X4J" firstAttribute="centerX" secondItem="Ces-HJ-J12" secondAttribute="centerX" id="hli-PL-ORr"/>
-                            <constraint firstItem="OeY-S3-X4J" firstAttribute="top" secondItem="Ia4-OC-aci" secondAttribute="bottom" constant="185" id="vkL-AX-7Ci"/>
+                            <constraint firstItem="Ces-HJ-J12" firstAttribute="top" secondItem="iWS-H1-a2T" secondAttribute="bottom" constant="20" id="2Mc-CW-Y3C"/>
+                            <constraint firstItem="Ces-HJ-J12" firstAttribute="centerX" secondItem="f3t-v5-UWA" secondAttribute="centerX" id="EId-mo-8vC"/>
+                            <constraint firstItem="iWS-H1-a2T" firstAttribute="centerX" secondItem="f3t-v5-UWA" secondAttribute="centerX" id="h2R-fv-JZp"/>
+                            <constraint firstItem="iWS-H1-a2T" firstAttribute="top" secondItem="Ia4-OC-aci" secondAttribute="bottom" constant="150" id="jNd-CH-uby"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Go6-OQ-EtN">
                         <barButtonItem key="rightBarButtonItem" image="cross" id="l1J-Lp-h0F">
                             <color key="tintColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="892-Y4-cL1" kind="custom" customClass="DismissControllerSegue" customModule="talkative_native" customModuleProvider="target" id="whX-hf-Mq4"/>
+                                <segue destination="892-Y4-cL1" kind="custom" customClass="DismissControllerSegue" customModule="talkative" customModuleProvider="target" id="whX-hf-Mq4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -71,7 +85,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="oLI-ke-nLF">
             <objects>
-                <viewController id="Ohf-pp-HML" customClass="signUpViewController" customModule="talkative_native" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ohf-pp-HML" customClass="signUpViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bBQ-MV-Krx"/>
                         <viewControllerLayoutGuide type="bottom" id="dya-JM-z6D"/>
@@ -103,7 +117,7 @@
                                     <constraint firstAttribute="height" constant="40" id="xcJ-sj-5dH"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="サインイン">
+                                <state key="normal" title="SIGN UP">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -140,7 +154,6 @@
                     <connections>
                         <outlet property="emailTextField" destination="eLj-QN-yvW" id="3X7-TO-tph"/>
                         <outlet property="passwordTextField" destination="iSR-IK-aEO" id="QOj-ZI-DEr"/>
-                        <outlet property="signUpButton" destination="yvF-BM-LmX" id="Hdl-5o-kM7"/>
                         <segue destination="qU9-WQ-wJU" kind="show" identifier="toRegisterProfView" id="cnm-h4-GOq"/>
                     </connections>
                 </viewController>
@@ -151,7 +164,7 @@
         <!--Register Prof View Controller-->
         <scene sceneID="ZD3-hw-Gwh">
             <objects>
-                <viewController storyboardIdentifier="registerProfView" id="qU9-WQ-wJU" customClass="registerProfViewController" customModule="talkative_native" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registerProfView" id="qU9-WQ-wJU" customClass="registerProfViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zt7-84-abm"/>
                         <viewControllerLayoutGuide type="bottom" id="AYU-tk-xwN"/>
@@ -162,7 +175,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="n31-bC-3B0">
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="QnK-UB-HRR">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="QnK-UB-HRR">
                             <connections>
                                 <action selector="tappedSaveButton:" destination="qU9-WQ-wJU" id="0dq-aH-7xn"/>
                             </connections>
@@ -181,7 +194,7 @@
         <!--Register Second Language View Controller-->
         <scene sceneID="9SH-im-aBr">
             <objects>
-                <viewController id="TRF-v7-H9v" customClass="registerSecondLanguageViewController" customModule="talkative_native" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TRF-v7-H9v" customClass="registerSecondLanguageViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ybg-aG-ZM2"/>
                         <viewControllerLayoutGuide type="bottom" id="g9H-QK-Ntz"/>
@@ -192,7 +205,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="To9-MC-VET">
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="1QP-pp-9ur">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="1QP-pp-9ur">
                             <connections>
                                 <action selector="tappedSaveButton:" destination="TRF-v7-H9v" id="af3-77-spf"/>
                             </connections>

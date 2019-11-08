@@ -16,7 +16,7 @@ class SearchCondtionViewController: FormViewController {
         form +++ Section(header: NSLocalizedString("conditions", comment: ""), footer: "*1分=1ポイント")
             <<< AlertRow<String> {
                 $0.title = NSLocalizedString("conditions_language", comment: "")
-                $0.options = [Language.Japanese.string(), Language.English.string(), Language.Chinese.string()]
+                $0.options = Language.strings
                 $0.value = Language.strings[getUserData().secondLanguage]
                 $0.tag = "targetLanguage"
             }.cellUpdate { cell, row in

@@ -55,7 +55,7 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
         ChatroomListTable.allowsSelection = true
         self.navigationItem.hidesBackButton = false
         tabBarController?.tabBar.isHidden = false
-        largeTitle(NSLocalizedString("largetitle_message", comment: ""))
+        largeTitle(LString("Messages"))
     }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
