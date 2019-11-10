@@ -102,6 +102,7 @@
 		7059B8A4234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatroomListRowTableViewCell.swift; sourceTree = "<group>"; };
 		7059B8A5234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = chatroomListRowTableViewCell.xib; sourceTree = "<group>"; };
 		7059B8A8234F6EBA005BB6D4 /* chatroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatroomViewController.swift; sourceTree = "<group>"; };
+		705DB95F2375E8F100A1CAF2 /* talkative.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = talkative.entitlements; sourceTree = "<group>"; };
 		7061651E236ECA8400B26C40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/loginView.storyboard; sourceTree = "<group>"; };
 		70616523236ECA9300B26C40 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/loginView.strings; sourceTree = "<group>"; };
 		70616524236ECAB800B26C40 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/loginView.strings"; sourceTree = "<group>"; };
@@ -286,6 +287,7 @@
 		70A4DF43234C856300BA2D74 /* talkative */ = {
 			isa = PBXGroup;
 			children = (
+				705DB95F2375E8F100A1CAF2 /* talkative.entitlements */,
 				70A4DF44234C856300BA2D74 /* AppDelegate.swift */,
 				701AF3BC234D7733006A3F82 /* SceneDelegate.swift */,
 				70979CEF234DB90000579395 /* Authentication */,
@@ -969,6 +971,7 @@
 			baseConfigurationReference = 9EDD02C4D06691FF1C1374DF /* Pods-talkative.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = talkative/talkative.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JDLFM5MXDU;
 				INFOPLIST_FILE = talkative/Info.plist;
@@ -988,6 +991,7 @@
 			baseConfigurationReference = E6C845B4B0B2811624086446 /* Pods-talkative.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = talkative/talkative.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JDLFM5MXDU;
 				INFOPLIST_FILE = talkative/Info.plist;

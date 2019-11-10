@@ -44,17 +44,17 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
         self.offersDb.whereField("isOnline", isEqualTo: true)
             .whereField("targetLanguage", isEqualTo: self.searchConditions!["targetLanguage"]!)
             .whereField("offerPrice", isLessThanOrEqualTo: self.searchConditions!["maxPrice"]!).getDocuments() { snapshot, error in
-         if let _error = error {
-             print("error\(_error)")
-             return
-         }
-         guard let documents = snapshot?.documents else {
-         print("error")
+        if let _error = error {
+            print("error\(_error)")
             return
         }
-         self.offers = documents.map{ OfferModel(from: $0) }
+        guard let documents = snapshot?.documents else {
+        print("error")
+            return
+        }
+        self.offers = documents.map{ OfferModel(from: $0) }
         self.SearchResultTable.reloadData()
-    }
+        }
     }
 
     func updateTable () {

@@ -249,10 +249,10 @@ class registerSecondLanguageViewController: FormViewController {
         self.navigationItem.hidesBackButton = true
 
         form
-        +++ Section(LString("I am native in"))
+        +++ Section(LString("I am learning"))
 
         <<< PushRow<String> {
-            $0.title = LString("I am native in")
+            $0.title = LString("I am learning")
             $0.options = Language.strings
             $0.value = Language.strings[self.secondLanguage!]
             $0.tag = "secondLanguage"

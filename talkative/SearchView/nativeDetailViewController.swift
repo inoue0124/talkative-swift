@@ -71,17 +71,17 @@ class nativeDetailViewController: UIViewController {
                 self.motherLanguage.text = Language.strings[self.native!.motherLanguage]
                 self.secondLanguage.text = Language.strings[self.native!.secondLanguage]
                 self.chatroomsDb.whereField("nativeID", isEqualTo: self.native!.uid).whereField("learnerID", isEqualTo: self.getUserUid()).getDocuments() { (querySnapshot, err) in
-                        if let _err = err {
-                            print("\(_err)")
-                        } else if querySnapshot!.documents.isEmpty {
-                            print("chatroom is not exist")
-                            self.selectedChatroom = ChatroomModel(chatroomID: self.chatroomsDb.document().documentID, nativeID: self.native!.uid, nativeName: self.native!.name, nativeImageURL: self.native!.imageURL, learnerID: self.getUserUid(), learnerName: self.getUserData().name, learnerImageURL: URL(string: self.getUserData().imageURL)!)
-                            self.messageButton.isEnabled = true
-                        } else {
-                            print("chatroom is exist")
-                            self.selectedChatroom = ChatroomModel(from: querySnapshot!.documents[0])
-                            self.messageButton.isEnabled = true
-                        }
+                    if let _err = err {
+                        print("\(_err)")
+                    } else if querySnapshot!.documents.isEmpty {
+                        print("chatroom is not exist")
+                        self.selectedChatroom = ChatroomModel(chatroomID: self.chatroomsDb.document().documentID, nativeID: self.native!.uid, nativeName: self.native!.name, nativeImageURL: self.native!.imageURL, learnerID: self.getUserUid(), learnerName: self.getUserData().name, learnerImageURL: URL(string: self.getUserData().imageURL)!)
+                        self.messageButton.isEnabled = true
+                    } else {
+                        print("chatroom is exist")
+                        self.selectedChatroom = ChatroomModel(from: querySnapshot!.documents[0])
+                        self.messageButton.isEnabled = true
+                    }
                 }
             }
         }
@@ -121,7 +121,6 @@ class nativeDetailViewController: UIViewController {
     @IBAction func tappedMessageButton(_ sender: Any) {
         self.performSegue(withIdentifier: "show_chatroom", sender: nil)
     }
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "show_media" {

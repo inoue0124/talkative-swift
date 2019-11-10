@@ -6,49 +6,135 @@
   Copyright © 2019 Yusuke Inoue. All rights reserved.
 */
 
-"conditions" = "Search conditions";
-"conditions_language" = "Target language";
-"conditions_price" = "Price";
-"conditions_time" = "Time of Length";
-"prof_section_base" = "Profile";
-"prof_image" = "Image";
-"prof_name" = "Name";
-"prof_gender" = "Gender";
-"prof_birthDate" = "Date of Birth";
-"prof_nationality" = "Nationality";
-"prof_motherLanguage" = "I am native in";
-"prof_secondLanguage" = "I am learning";
-"prof_setting_following" = "Following";
-"prof_setting_wallet" = "Wallet";
-"prof_setting_setting" = "Setting";
-"largetitle_message" = "Message";
-"largetitle_history" = "History";
-"largetitle_profile" = "Profile";
-"search" = "SEARCH";
-"reloading" = "Reloading";
-"unit_min" = "min";
-"unit_money" = "P";
-"label_motherLanguage" = "Tutor for";
-"label_secondLanguage" = "Also speaks";
-"setting_unknown" = "None";
-"setting_gender_male" = "Male";
-"setting_gender_female" = "Female";
-"setting_language_japanese" = "Japanese";
-"setting_language_english" = "English";
-"setting_language_chinese" = "Chinese";
-"setting_nationality_japan" = "Japan";
-"setting_nationality_usa" = "USA";
-"setting_nationality_china" = "China";
-"placeholder_email" = "E-mail";
-"placeholder_password" = "Password";
-"alert_ok" = "OK";
-"alert_cancel" = "Cancel";
-"alert_finish" = "Finish";
-"alert_confirm_payment_title" = "Confirm payment";
-"alert_confirm_payment_message" = "Pay %d points and call %d minites. OK?";
-"alert_confirm_finish_title" = "Confirm finishing call";
-"alert_confirm_finish_message" = "Finish?";
-"rate_instruction" = "RATE YOUR TALKING WITH";
-"login" = "Login";
-"newRegister" = "New User?";
-"signUp" = "Sign up";
+// Authentication
+"EMAIL" = "EMAIL";
+"PASSWORD" = "PASSWORD";
+"PROFILE IMAGE" = "Profile image";
+"USER NAME" = "User name";
+"John Smith" = "John Smith";
+"Gender" = "Gender";
+"Date of birth" = "Date of birth";
+"I am native in" = "I am native in";
+"I am learning" = "Also speak";
+"Error" = "Error";
+"Please fill all the blanks" = "Please fill all the blanks";
+"OK" = "OK";
+"Thank you for your registration!" = "Thank you for your registration!";
+"Please select your level" = "Please select your level";
+"Level" = "Level";
+"Registration" = "Registration";
+"Got %.1f points!" = "Got %.1f points!";
+
+// SearchView
+"Login bonus!" = "Login bonus!";
+"Sent a verification Email" = "Sent a verification Email";
+"Please verify your Email_address" = "Please verify your Email address.";
+"Reloading" = "Reloading";
+"Result" = "Result";
+"Oops" = "Oops!";
+"Your have not enough points teach..." = "Your have not enough points. Teach %% and get points with app Talkative-native!";
+"Confirm payment" = "Confirm payment";
+"Pay %d points and talk %d minutes" = "Pay %d points and talk %d minutes.";
+"Waiting for answering" = "Waiting for answering";
+"Please wait a moment" = "Please wait a moment.";
+"Continue" = "Continue";
+"Quit" = "Quit";
+"No answer" = "No answer";
+"Finish calling?" = "Finish calling?";
+"Do you want to finish calling?" = "Do you want to finish calling?";
+"Finish" = "Finish";
+"Cancel" = "Cancel";
+"Back to home" = "Back to home";
+
+// MessageView
+"Messages" = "Messages";
+
+// HistoryView
+"History" = "History";
+
+// ProfileView
+"Profile" = "Profile";
+"Followee" = "Followee";
+"Wallet" = "Wallet";
+"SIGN OUT" = "SIGN OUT";
+"Are you going to sign out?" = "Are you going to sign out?";
+"Edit" = "Edit";
+"Basic profile" = "Basic profile";
+"Language setting" = "Language setting";
+"Points history" = "Points history";
+"Followee" = "Followee";
+
+// Setting
+"Unknown" = "Unknown";
+"Male" = "Male";
+"Female" = "Female";
+
+// nationality
+"Australia" = "Australia";
+"Brazil" = "Brazil";
+"Canada" = "Canada";
+"China" = "China";
+"Egypt" = "Egypt";
+"France" = "France";
+"Germany" = "Germany";
+"Hong Kong" = "Hong Kong";
+"India" = "India";
+"Indonesia" = "Indonesia";
+"Italia" = "Italia";
+"Japan" = "Japan";
+"Malaysia" = "Malaysia";
+"New Zealand" = "New Zealand";
+"Russia" = "Russia";
+"Singapore" = "Singapore";
+"South Korea" = "South Korea";
+"Spain" = "Spain";
+"Taiwan" = "Taiwan";
+"The Philippines" = "The Philippines";
+"Thailand" = "Thailand";
+"Turkey" = "Turkey";
+"UK" = "UK";
+"U.S." = "U.S.";
+"Vietnam" = "Vietnam";
+
+// language
+"Arabic" = "Arabic";
+"Bengali" = "Bengali";
+"Chinese" = "Chinese";
+"Cantonese" = "Cantonese";
+"English" = "English";
+"French" = "French";
+"German" = "German";
+"Hindi" = "Hindi";
+"Indonesian" = "Indonesian";
+"Italian" = "Italian";
+"Japanese" = "Japanese";
+"Korean" = "Korean";
+"Portuguese" = "Portuguese";
+"Russian" = "Russian";
+"Spanish" = "Spanish";
+"Tagalog" = "Tagalog";
+"Thai" = "Thai";
+"Turkish" = "Turkish";
+"Vietnamese" = "Vietnamese";
+
+// method
+"Call" = "Call";
+"Login bonus" = "Login bonus";
+"Purchase" = "Purchase";
+
+// level
+"Beginner" = "Beginner";
+"PreIntermediate" = "PreIntermediate";
+"Intermediate" = "Intermediate";
+"PreAdvanced" = "PreAdvanced";
+"Advanced" = "Advanced";
+"None" = "None";
+
+// errorMessage
+"Network error" = "Network error";
+"User not found" = "User not found";
+"Invalid Email" = "Invalid Email";
+"The Email is already used" = "The Email is already used";
+"Wrong password" = "Wrong password";
+"This user is banned" = "This user is banned";
+"The password is too weak" = "The password is too weak";

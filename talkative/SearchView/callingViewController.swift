@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import SkyWay
 import FirebaseFirestore
 import SCLAlertView
@@ -21,6 +22,7 @@ class callingViewController: UIViewController {
     var timer = Timer()
     var waitingAlert: SCLAlertView?
     var errorAlert: SCLAlertView?
+    var offerListener: ListenerRegistration?
 
     @IBOutlet weak var remoteStreamView: SKWVideo!
     @IBOutlet weak var localStreamView: SKWVideo!
@@ -31,44 +33,10 @@ class callingViewController: UIViewController {
 
 
     override func viewDidLoad() {
-        self.offersDb.document(self.offer!.offerID).setData([
-            "learnerID" : self.getUserUid(),
-            "learnerName" : self.getUserData().name,
-            "learnerNationality" : self.getUserData().nationality,
-            "learnerLevel" : self.getUserData().level,
-            "learnerRating" : self.getUserData().ratingAsLearner,
-            "learnerImageURL" : self.getUserData().imageURL
-        ], merge: true)
         super.viewDidLoad()
-        //endCallButton.layer.backgroundColor = UIColor.white.cgColor
-        //endCallButton.layer.cornerRadius = 50
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         tabBarController?.tabBar.isHidden = true
-        self.setup()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        tabBarController?.tabBar.isHidden = false
-        self.mediaConnection?.close()
-        self.peer?.destroy()
-        self.waitingAlert?.hideView()
-        self.errorAlert?.hideView()
-        self.waitingTimer.invalidate()
-        self.timer.invalidate()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func tapCall(){
-        guard let _peer = self.peer else{
-            return
-        }
-        self.call(targetPeerId: self.offer!.peerID)
+        setup()
         let appearance = SCLAlertView.SCLAppearance(
             showCloseButton: false
         )
@@ -80,12 +48,35 @@ class callingViewController: UIViewController {
                 self.errorAlert = SCLAlertView(appearance: appearance)
                 self.errorAlert!.addButton(self.LString("Continue")) {}
                 self.errorAlert!.addButton(self.LString("Quit")) {
+                    self.offersDb.document(self.offer!.offerID).setData([
+                        "peerID" : "",
+                        "isSelected" : false,
+                        "isOnline" : true
+                    ], merge: true)
                     self.mediaConnection?.close()
                     self.navigationController?.popViewController(animated: true)
                 }
                 self.errorAlert!.showError(self.LString("Error"), subTitle:self.LString("No answer"), closeButtonTitle: nil)
             }
         })
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        tabBarController?.tabBar.isHidden = false
+        mediaConnection?.close()
+        peer?.destroy()
+        waitingAlert?.hideView()
+        errorAlert?.hideView()
+        waitingTimer.invalidate()
+        timer.invalidate()
+        offerListener?.remove()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func tapEndCall() {
@@ -104,17 +95,12 @@ class callingViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
-override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "showReview" {
-        let ReviewVC = segue.destination as! ReviewViewController
-        ReviewVC.offer = self.offer!
+    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showReview" {
+            let ReviewVC = segue.destination as! ReviewViewController
+            ReviewVC.offer = self.offer!
+        }
     }
-}
-}
-
-// MARK: setup skyway
-
-extension callingViewController{
 
     func setup(){
 
@@ -129,10 +115,10 @@ extension callingViewController{
 
         peer = SKWPeer(options: option)
 
-        if let _peer = peer{
+        if let _peer = peer {
             self.setupPeerCallBacks(peer: _peer)
             self.setupStream(peer: _peer)
-        }else{
+        } else {
             print("failed to create peer setup")
         }
     }
@@ -154,11 +140,6 @@ extension callingViewController{
             print("failed to call :\(targetPeerId)")
         }
     }
-}
-
-// MARK: skyway callbacks
-
-extension callingViewController{
 
     func setupPeerCallBacks(peer:SKWPeer){
 
@@ -172,8 +153,17 @@ extension callingViewController{
         // MARK: PEER_EVENT_OPEN
         peer.on(SKWPeerEventEnum.PEER_EVENT_OPEN,callback:{ (obj) -> Void in
             if let peerId = obj as? String{
-                print("your peerId: \(peerId)")
-                self.tapCall()
+                self.offersDb.document(self.offer!.offerID).setData([
+                    "peerID" : peerId,
+                    "learnerID" : self.getUserUid(),
+                    "learnerName" : self.getUserData().name,
+                    "learnerNationality" : self.getUserData().nationality,
+                    "learnerLevel" : self.getUserData().level,
+                    "learnerRating" : self.getUserData().ratingAsLearner,
+                    "learnerImageURL" : self.getUserData().imageURL,
+                    "isSelected" : true,
+                    "isOnline" : false
+                ], merge: true)
             }
         })
 
@@ -192,6 +182,12 @@ extension callingViewController{
         // MARK: MEDIACONNECTION_EVENT_STREAM
         mediaConnection.on(SKWMediaConnectionEventEnum.MEDIACONNECTION_EVENT_STREAM, callback: { (obj) -> Void in
             if let msStream = obj as? SKWMediaStream{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    let audioSession = AVAudioSession.sharedInstance()
+                    try! audioSession.setCategory(AVAudioSession.Category.playAndRecord,
+                                                  mode: AVAudioSession.Mode.default)
+                    try! audioSession.overrideOutputAudioPort(.speaker)
+                }
                 self.remoteStream = msStream
                 DispatchQueue.main.async {
                     self.remoteStream?.addVideoRenderer(self.remoteStreamView, track: 0)
@@ -200,7 +196,7 @@ extension callingViewController{
                     self.waitingTimer.invalidate()
                     let formatter = DateFormatter()
                     formatter.dateFormat = "mm:ss"
-                    self.offersDb.whereField("offerID", isEqualTo: self.offer!.offerID).addSnapshotListener() { snapshot, error in
+                    self.offerListener = self.offersDb.whereField("offerID", isEqualTo: self.offer!.offerID).addSnapshotListener() { snapshot, error in
                          if let _error = error {
                              print("error\(_error)")
                              return
