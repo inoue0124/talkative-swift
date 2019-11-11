@@ -336,7 +336,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mzf-ww-byx">
-                                <rect key="frame" x="0.0" y="56" width="414" height="488"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="439"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhb-99-GT1">
@@ -371,7 +371,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kCb-rY-cYB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5T1-FQ-TeF"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="5T1-FQ-TeF">
+                        <barButtonItem key="rightBarButtonItem" title="Charge" id="O0u-RV-DeB"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="point" destination="zvv-tS-BKl" id="Yg9-vx-qHf"/>
                         <outlet property="pointHistoryTable" destination="mzf-ww-byx" id="yS0-MC-2hG"/>

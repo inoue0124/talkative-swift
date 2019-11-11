@@ -12,7 +12,7 @@
 "Aex-QJ-JeP.text" = "0";
 
 /* Class = "UILabel"; text = "Tap to start searching natives!"; ObjectID = "HYp-Ib-66V"; */
-"HYp-Ib-66V.text" = "点击开始搜索母语者!";
+"HYp-Ib-66V.text" = "▼点击开始搜索母语者!";
 
 /* Class = "UILabel"; text = "Please give stars!"; ObjectID = "ND8-gk-ISf"; */
 "ND8-gk-ISf.text" = "请给ta评分！";

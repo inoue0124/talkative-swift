@@ -23,6 +23,8 @@ class callingViewController: UIViewController {
     var waitingAlert: SCLAlertView?
     var errorAlert: SCLAlertView?
     var offerListener: ListenerRegistration?
+    var selectedChatroom: ChatroomModel?
+    var avatarImage: UIImage?
 
     @IBOutlet weak var remoteStreamView: SKWVideo!
     @IBOutlet weak var localStreamView: SKWVideo!
@@ -99,6 +101,11 @@ class callingViewController: UIViewController {
         if segue.identifier == "showReview" {
             let ReviewVC = segue.destination as! ReviewViewController
             ReviewVC.offer = self.offer!
+        }
+        if segue.identifier == "showChatroomView" {
+            let chatroomVC = segue.destination as! ChatroomViewController
+            chatroomVC.chatroom = self.selectedChatroom
+            chatroomVC.avatarImage = self.avatarImage
         }
     }
 

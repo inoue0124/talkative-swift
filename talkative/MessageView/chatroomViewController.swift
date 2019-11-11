@@ -63,6 +63,10 @@ class ChatroomViewController: MessagesViewController {
         messageInputBar.sendButton.tintColor = UIColor.lightGray
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        self.becomeFirstResponder()
+    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -206,6 +210,7 @@ extension ChatroomViewController: MessageCellDelegate {
 extension ChatroomViewController: MessageInputBarDelegate {
     // メッセージ送信ボタンをタップした時の挙動
     func inputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        self.messageInputBar.inputTextView.resignFirstResponder()
         let chatroomsDb = Firestore.firestore().collection("chatrooms")
         let messageDb = Firestore.firestore().collection(["chatrooms", self.chatroom!.chatroomID, "messages"].joined(separator: "/"))
         for component in inputBar.inputTextView.components {

@@ -56,7 +56,6 @@ class nativeDetailViewController: UIViewController {
         }
         self.navigationItem.title = self.offer!.nativeName
         self.navigationItem.largeTitleDisplayMode = .never
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.name.text = self.offer!.nativeName
         self.rating.text = String(format: "%.1f", self.offer!.nativeRating)
         self.usersDb.whereField("uid", isEqualTo: self.offer!.nativeID).getDocuments() { (querySnapshot, err) in
@@ -129,6 +128,8 @@ class nativeDetailViewController: UIViewController {
             } else {
                 let callVC = segue.destination as! callingViewController
                 callVC.offer = self.offer!
+                callVC.selectedChatroom = self.selectedChatroom
+                callVC.avatarImage = self.NativeThumbnail.image
             }
         }
         if segue.identifier == "show_chatroom" {
