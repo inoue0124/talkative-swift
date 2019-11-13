@@ -27,6 +27,8 @@
 
 // SearchView
 "Login bonus!" = "Login bonus!";
+"Tap to start searching learners!" = "▼ Tap to start searching learners!";
+"Searching..." = "Searching...";
 "Sent a verification Email" = "Sent a verification Email";
 "Please verify your Email_address" = "Please verify your Email address.";
 "Reloading" = "Reloading";

@@ -27,6 +27,8 @@
 
 // SearchView
 "Login bonus!" = "ログインボーナス!";
+"Tap to start searching learners!" = "▼タップして学習者を募集！";
+"Searching..." = "募集中...";
 "Sent a verification Email" = "メール認証";
 "Please verify your Email_address" = "登録先のメールアドレスに認証メールを送信しました。ご確認ください。";
 "Reloading" = "読み込み中";

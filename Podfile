@@ -13,6 +13,7 @@ pod 'Firebase/Messaging'
 pod 'GoogleSignIn'
 pod 'FirebaseUI'
 pod 'Firebase/Storage'
+pod 'Firebase/Functions'
 pod 'SkyWay'
 pod 'MessageKit'
 pod 'MessageInputBar'
@@ -23,6 +24,9 @@ pod 'FBSDKCoreKit'
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'SCLAlertView'
+pod 'HydraAsync'
+pod 'Stripe'
+pod 'XLPagerTabStrip'
 
   # Pods for talkative
 

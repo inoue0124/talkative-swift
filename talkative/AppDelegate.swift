@@ -1,15 +1,9 @@
-//
-//  AppDelegate.swift
-//  talkative
-//
-//  Created by Yusuke Inoue on 2019/10/08.
-//  Copyright © 2019 Yusuke Inoue. All rights reserved.
-//
-
 import UIKit
 import Firebase
 import FirebaseUI
 import RealmSwift
+import FirebaseMessaging
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,8 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var skywayDomain:String? = "talkative.io"
 
     override init() {
-         super.init()
-         FirebaseApp.configure()
+        super.init()
+        FirebaseApp.configure()
     }
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -48,46 +42,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: {_, _ in })
+        application.registerForRemoteNotifications()
         AppEventHandler.sharedInstance.startObserving()
         return true
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
-        // GoogleもしくはFacebook認証の場合、trueを返す
-        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
-            return true
-        }
-        // 電話番号認証の場合、trueを返す
-        if Auth.auth().canHandle(url) {
-            return true
-        }
-        return false
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+      if let messageID = userInfo["gcm.message_id"] {
+        print("Message ID: \(messageID)")
+      }
+      print(userInfo)
     }
 
-    func application(_ application: UIApplication, didReceiveRemoteNotification notification: [AnyHashable : Any],
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if Auth.auth().canHandleNotification(notification) {
-            completionHandler(.noData)
-            return
-        }
-        // エラーの時の処理を書く
+      if let messageID = userInfo["gcm.message_id"] {
+        print("Message ID: \(messageID)")
+      }
+      print(userInfo)
+      completionHandler(UIBackgroundFetchResult.newData)
     }
 
-    // MARK: UISceneSession Lifecycle
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+      print("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
 
-//    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-//        // Called when a new scene session is being created.
-//        // Use this method to select a configuration to create the new scene with.
-//        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-//    }
-//
-//    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-//        // Called when the user discards a scene session.
-//        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-//        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-//    }
-
-
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+      print("APNs token retrieved: \(deviceToken)")
+        Messaging.messaging().apnsToken = deviceToken
+    }
 }
 
+extension AppDelegate : UNUserNotificationCenterDelegate {
+
+    // 通知を受け取った時に(開く前に)呼ばれるメソッド
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+
+        if let messageID = userInfo["gcm.message_id"] {
+            print("Message ID: \(messageID)")
+        }
+        print(userInfo)
+        completionHandler([.alert])
+    }
+
+    // 通知を開いた時に呼ばれるメソッド
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+
+        if let messageID = userInfo["gcm.message_id"] {
+            print("Message ID: \(messageID)")
+        }
+        print(userInfo)
+        completionHandler()
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        UserDefaults.standard.set(fcmToken, forKey: "FCM_TOKEN")
+        UserDefaults.standard.synchronize()
+        print("Firebase registration token: \(fcmToken)")
+    }
+
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("Received data message: \(remoteMessage.appData)")
+    }
+}

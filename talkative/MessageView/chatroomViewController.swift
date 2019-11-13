@@ -32,12 +32,13 @@ class ChatroomViewController: MessagesViewController {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationItem.title = chatroom!.nativeName
+        //self.navigationItem.title = chatroom!.nativeName
         maintainPositionOnKeyboardFrameChanged = true
         scrollsToBottomOnKeyboardBeginsEditing = true
         if let layout = self.messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
-            // 自分のアイコンを非表示
+            // アイコンを非表示
             layout.setMessageOutgoingAvatarSize(.zero)
+            layout.setMessageIncomingAvatarSize(.zero)
             // 非表示の分、吹き出しを移動して空白を埋める
             let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
             layout.setMessageOutgoingMessageTopLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: insets))
@@ -96,16 +97,14 @@ class ChatroomViewController: MessagesViewController {
       guard let message = MockMessage(document: change.document) else {
         return
       }
-        print(change.type)
-
-      switch change.type {
-      case .added:
-          insertNewMessage(message)
-
-      default:
-        print("not added")
-        break
-      }
+        insertNewMessage(message)
+//      switch change.type {
+//      case .added:
+//          insertNewMessage(message)
+//      default:
+//        print("not added")
+//        break
+//      }
     }
 
     override func didReceiveMemoryWarning() {
@@ -116,7 +115,7 @@ class ChatroomViewController: MessagesViewController {
 extension ChatroomViewController: MessagesDataSource {
 
     func currentSender() -> SenderType {
-        return Sender(id: chatroom!.learnerID, displayName: chatroom!.learnerName)
+        return Sender(id: self.getUserUid(), displayName: self.getUserData().name)
     }
 
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -177,8 +176,26 @@ extension ChatroomViewController: MessagesDisplayDelegate {
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         // message.sender.displayNameとかで送信者の名前を取得できるので
         // そこからイニシャルを生成するとよい
-        let avatar = Avatar(image: self.avatarImage!, initials: "人")
+        
+        let avatar = Avatar(initials: "人")
         avatarView.set(avatar: avatar)
+    }
+    // URL青色、下線を表示
+    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key: Any] {
+        let detectorAttributes: [NSAttributedString.Key: Any] = {
+            [
+                NSAttributedString.Key.foregroundColor: UIColor.blue,
+                NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                NSAttributedString.Key.underlineColor: UIColor.blue,
+            ]
+        }()
+        MessageLabel.defaultAttributes = detectorAttributes
+        return MessageLabel.defaultAttributes
+    }
+
+    // メッセージのURLに属性を適用
+    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
+        return [.url]
     }
 }
 
@@ -215,18 +232,12 @@ extension ChatroomViewController: MessageInputBarDelegate {
         let messageDb = Firestore.firestore().collection(["chatrooms", self.chatroom!.chatroomID, "messages"].joined(separator: "/"))
         for component in inputBar.inputTextView.components {
             if let image = component as? UIImage {
-
                 let imageMessage = MockMessage(image: image, sender: currentSender(), messageId: UUID().uuidString, date: Date())
                 messageList.append(imageMessage)
                 messagesCollectionView.insertSections([messageList.count - 1])
-
             } else if let text = component as? String {
-                chatroom?.latestMsg = text
-                chatroom?.learnerImageURL = URL(string: getUserData().imageURL)!
-                chatroom?.learnerName = getUserData().name
-                chatroomsDb.document(chatroom!.chatroomID).setData(chatroom!.toAnyObject)
-                messageDb.addDocument(data: ["createdAt":Timestamp(),"senderID":chatroom!.learnerID,"senderName":chatroom!.learnerName,"text":text])
-
+                chatroomsDb.document(chatroom!.chatroomID).setData(["latestMsg": text, "updatedAt": FieldValue.serverTimestamp(), "chatroomID": chatroom!.chatroomID, "viewableUserIDs": chatroom!.viewableUserIDs], merge: true)
+                messageDb.addDocument(data: ["createdAt": FieldValue.serverTimestamp(),"senderID": self.getUserUid(),"senderName": self.getUserData().name,"text":text])
 //                let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15),
 //                                                                                   .foregroundColor: UIColor.white])
 //                let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
@@ -357,8 +368,6 @@ extension UIScrollView {
   }
 
 }
-
-
         // メッセージ入力欄の左に画像選択ボタンを追加
 //        let items = [
 //            makeButton(named: "camera").onTextViewDidChange { button, textView in

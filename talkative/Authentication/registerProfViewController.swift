@@ -13,6 +13,8 @@ import Eureka
 import RealmSwift
 import FirebaseStorage
 import SCLAlertView
+import FirebaseFunctions
+import Hydra
 
 class registerProfViewController: FormViewController {
 
@@ -32,6 +34,8 @@ class registerProfViewController: FormViewController {
     let registerBonus: Double = 30.0
     var secondLanguage: Int = 0
     var level: Int = 0
+    lazy var functions = Functions.functions()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,7 +158,7 @@ class registerProfViewController: FormViewController {
                         "imageURL": downloadURL.absoluteString
                     ], merge: true)
                     self.saveToRealm(uid: uid, values: values, imageURL: downloadURL)
-                    self.performSegue(withIdentifier: "toMain", sender: nil)                    
+                    self.performSegue(withIdentifier: "toMain", sender: nil)  
                 }
             }
         }
@@ -226,7 +230,6 @@ class registerSecondLanguageViewController: FormViewController {
 
     @IBAction func tappedSaveButton(_ sender: Any) {
         let values = form.values()
-        print(values)
         let nc = self.navigationController
         let vcNum = nc!.viewControllers.count
         let registerProfVC = nc!.viewControllers[vcNum - 2] as! registerProfViewController

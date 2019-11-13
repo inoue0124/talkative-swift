@@ -27,6 +27,8 @@
 
 // SearchView
 "Login bonus!" = "奖励!";
+"Tap to start searching learners!" = "▼点击开始搜索学习者!";
+"Searching..." = "等待中...";
 "Sent a verification Email" = "邮箱地址认证";
 "Please verify your Email_address" = "发给你认证邮箱了，请确认一下。";
 "Reloading" = "更新中";

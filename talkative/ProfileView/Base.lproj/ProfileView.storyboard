@@ -373,7 +373,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="5T1-FQ-TeF">
-                        <barButtonItem key="rightBarButtonItem" title="Charge" id="O0u-RV-DeB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Charge" id="O0u-RV-DeB">
+                            <connections>
+                                <segue destination="6mm-C7-Oeb" kind="show" id="n22-73-vnc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -384,6 +388,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mag-Kn-oF1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1064" y="688"/>
+        </scene>
+        <!--Select Payment Method View Controller-->
+        <scene sceneID="AEL-cz-Qf6">
+            <objects>
+                <viewController id="6mm-C7-Oeb" customClass="selectPaymentMethodViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kza-cU-5UR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="544"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6R-mW-znz">
+                                <rect key="frame" x="186" y="190" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aof-Gn-9bc">
+                                <rect key="frame" x="87" y="54" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="IYF-Id-lOX"/>
+                                    <constraint firstAttribute="height" constant="128" id="U9e-5C-lya"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EN-Ke-EAT">
+                                <rect key="frame" x="186" y="427" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="payButtonTapped:" destination="6mm-C7-Oeb" eventType="touchUpInside" id="Frf-Ol-WNP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjX-GV-zDQ">
+                                <rect key="frame" x="184" y="229" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="6mm-C7-Oeb" eventType="touchUpInside" id="eyA-pw-VEM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3EN-Ke-EAT" firstAttribute="top" secondItem="cjX-GV-zDQ" secondAttribute="bottom" constant="168" id="1oT-KH-VPy"/>
+                            <constraint firstItem="aof-Gn-9bc" firstAttribute="centerX" secondItem="Kza-cU-5UR" secondAttribute="centerX" id="2Ez-LE-vLx"/>
+                            <constraint firstItem="Y6R-mW-znz" firstAttribute="top" secondItem="aof-Gn-9bc" secondAttribute="bottom" constant="8" id="3KR-zm-ccc"/>
+                            <constraint firstItem="aof-Gn-9bc" firstAttribute="top" secondItem="Pfk-36-TAX" secondAttribute="top" constant="54" id="EbY-RU-eJY"/>
+                            <constraint firstItem="aof-Gn-9bc" firstAttribute="centerX" secondItem="Y6R-mW-znz" secondAttribute="centerX" id="GOW-eN-6ci"/>
+                            <constraint firstItem="Pfk-36-TAX" firstAttribute="bottom" secondItem="3EN-Ke-EAT" secondAttribute="bottom" constant="38" id="W7N-b1-9jd"/>
+                            <constraint firstItem="Y6R-mW-znz" firstAttribute="centerX" secondItem="cjX-GV-zDQ" secondAttribute="centerX" id="hcP-Y3-w5W"/>
+                            <constraint firstItem="Y6R-mW-znz" firstAttribute="leading" secondItem="3EN-Ke-EAT" secondAttribute="leading" id="mhv-Of-mPb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pfk-36-TAX"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ezB-2E-Dwd"/>
+                    <connections>
+                        <outlet property="cardImageView" destination="aof-Gn-9bc" id="ApF-zZ-yp6"/>
+                        <outlet property="cardNameLabel" destination="Y6R-mW-znz" id="13T-qF-4A8"/>
+                        <outlet property="payButton" destination="3EN-Ke-EAT" id="sLX-C3-nP2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="baJ-3a-UqX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1064" y="1275"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ihm-e8-4eK">

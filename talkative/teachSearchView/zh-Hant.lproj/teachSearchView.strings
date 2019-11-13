@@ -1,0 +1,33 @@
+
+/* Class = "UILabel"; text = "Tap to start searching learners!"; ObjectID = "2rN-p3-cqJ"; */
+"2rN-p3-cqJ.text" = "點擊開始搜索學習者";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "6qa-a1-zAs"; */
+"6qa-a1-zAs.text" = "名字";
+
+/* Class = "UILabel"; text = "are waiting for you!"; ObjectID = "Ecz-92-Gc0"; */
+"Ecz-92-Gc0.text" = "現在在線!";
+
+/* Class = "UILabel"; text = "Japanese"; ObjectID = "FKt-ku-Hvg"; */
+"FKt-ku-Hvg.text" = "日語";
+
+/* Class = "UILabel"; text = "Please give stars!"; ObjectID = "MRh-FP-9ow"; */
+"MRh-FP-9ow.text" = "請給ta評分!";
+
+/* Class = "UILabel"; text = " "; ObjectID = "PiV-7y-S4G"; */
+"PiV-7y-S4G.text" = " ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "XOV-kM-Zde"; */
+"XOV-kM-Zde.text" = "0";
+
+/* Class = "UILabel"; text = " learners"; ObjectID = "efc-aL-564"; */
+"efc-aL-564.text" = "學習者";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "h7y-N9-ebv"; */
+"h7y-N9-ebv.text" = "10";
+
+/* Class = "UIButton"; normalTitle = "Back to home"; ObjectID = "oen-OZ-OdK"; */
+"oen-OZ-OdK.normalTitle" = "返回到主頁";
+
+/* Class = "UILabel"; text = " min"; ObjectID = "sO1-H1-1VI"; */
+"sO1-H1-1VI.text" = "分";

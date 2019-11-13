@@ -13,6 +13,21 @@ import FirebaseAuth
 
 class selectRegisterMethodViewController: UIViewController, LoginButtonDelegate {
 
+    var email: String?
+
+    override func viewWillAppear(_ animated: Bool) {
+        facebookButton.delegate = self
+        super.viewWillAppear(animated)
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController!.navigationBar.shadowImage = nil
+    }
+
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         if let error = error {
             self.showError(error)
@@ -26,6 +41,7 @@ class selectRegisterMethodViewController: UIViewController, LoginButtonDelegate 
         Auth.auth().signIn(with: credential) { [weak self] result, error in
         guard let self = self else { return }
             if let user = result?.user {
+                self.email = user.email
                 self.dissmisPreloader()
                 self.performSegue(withIdentifier: "toRegisterProfView", sender: nil)
             }
@@ -40,16 +56,10 @@ class selectRegisterMethodViewController: UIViewController, LoginButtonDelegate 
 
     @IBOutlet weak var facebookButton: FBLoginButton!
 
-    override func viewWillAppear(_ animated: Bool) {
-        facebookButton.delegate = self
-        super.viewWillAppear(animated)
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController!.navigationBar.shadowImage = UIImage()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController!.navigationBar.shadowImage = nil
+    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRegisterProfView" {
+            let RegisterProfVC = segue.destination as! registerProfViewController
+            RegisterProfVC.email = self.email!
+        }
     }
 }

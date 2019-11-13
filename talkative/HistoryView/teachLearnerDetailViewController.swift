@@ -12,9 +12,9 @@ import FirebaseFirestore
 import SwiftGifOrigin
 import SCLAlertView
 
-class nativeDetailViewController: UIViewController {
+class teachLearnerDetailViewController: UIViewController {
 
-    var native: UserModel?
+    var learner: UserModel?
     var offer: OfferModel?
     var selectedChatroom: ChatroomModel?
     @IBOutlet weak var NativeThumbnail: UIImageView!
@@ -26,6 +26,7 @@ class nativeDetailViewController: UIViewController {
     @IBOutlet weak var secondLanguage: UILabel!
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var level: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,32 +49,34 @@ class nativeDetailViewController: UIViewController {
         messageButton.isEnabled = false
         self.NativeThumbnail.image = UIImage.gif(name: "Preloader")
         DispatchQueue.global().async {
-            let image = UIImage(url: self.offer!.nativeImageURL)
+            let image = UIImage(url: self.offer!.learnerImageURL)
             DispatchQueue.main.async {
                 self.NativeThumbnail.image = image
                 self.NativeThumbnail.layer.cornerRadius = 50
             }
         }
-        self.navigationItem.title = self.offer!.nativeName
+        self.navigationItem.title = self.offer!.learnerName
         self.navigationItem.largeTitleDisplayMode = .never
-        self.name.text = self.offer!.nativeName
-        self.rating.text = String(format: "%.1f", self.offer!.nativeRating)
-        self.usersDb.whereField("uid", isEqualTo: self.offer!.nativeID).getDocuments() { (querySnapshot, err) in
+        self.name.text = self.offer!.learnerName
+        self.rating.text = String(format: "%.1f", self.offer!.learnerRating)
+        self.usersDb.whereField("uid", isEqualTo: self.offer!.learnerID).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if querySnapshot!.documents.isEmpty {
                 print("user is not exist")
             } else {
                 print("user is exist")
-                self.native = UserModel(from: querySnapshot!.documents[0])
-                self.motherLanguage.text = Language.strings[self.native!.motherLanguage]
-                self.secondLanguage.text = Language.strings[self.native!.secondLanguage]
+                print(querySnapshot!.documents)
+                self.learner = UserModel(from: querySnapshot!.documents[0])
+                self.motherLanguage.text = Language.strings[self.learner!.motherLanguage]
+                self.secondLanguage.text = Language.strings[self.learner!.secondLanguage]
+                self.level.image = UIImage(named: String(self.learner!.level))
                 self.chatroomsDb.whereField("viewableUserIDs", arrayContains: self.getUserUid()).getDocuments() { (querySnapshot, err) in
                     if let _err = err {
                         print("\(_err)")
                     } else if querySnapshot!.documents.isEmpty {
                         print("chatroom is not exist")
-                        self.selectedChatroom = ChatroomModel(chatroomID: self.chatroomsDb.document().documentID, viewableUserIDs: [self.getUserUid(), self.native!.uid])
+                        self.selectedChatroom = ChatroomModel(chatroomID: self.chatroomsDb.document().documentID, viewableUserIDs: [self.getUserUid(), self.learner!.uid])
                         self.messageButton.isEnabled = true
                     } else {
                         print("chatroom is exist")
@@ -95,40 +98,39 @@ class nativeDetailViewController: UIViewController {
     }
 
 
-    @IBAction func tappedCallButton(_ sender: Any) {
-        self.usersDb.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
-            if let _error = error {
-                self.showError(_error)
-                return
-            }
-            guard let documents = snapshot?.documents else {
-            return
-            }
-            let downloadedUserData = documents.map{ UserModel(from: $0) }
-            if downloadedUserData[0].point - Double(self.offer!.offerPrice) < 0.0 {
-                SCLAlertView().showError(self.LString("Oops"), subTitle: String(format: self.LString("Your have not enough points teach...") , Language.strings[self.getUserData().motherLanguage]), closeButtonTitle: self.LString("OK"))
-                return
-            }
-            let alert = SCLAlertView()
-            alert.addButton(self.LString("OK")) { self.performSegue(withIdentifier: "show_media", sender: nil) }
-            alert.showInfo(self.LString("Confirm payment"),
-                           subTitle: String(format: self.LString("Pay %d points and talk %d minutes"), self.offer!.offerPrice,self.offer!.offerTime))
-        }
-    }
+//    @IBAction func tappedCallButton(_ sender: Any) {
+//        self.usersDb.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
+//            if let _error = error {
+//                self.showError(_error)
+//                return
+//            }
+//            guard let documents = snapshot?.documents else {
+//            return
+//            }
+//            let downloadedUserData = documents.map{ UserModel(from: $0) }
+//            if downloadedUserData[0].point-self.offer!.offerPrice < 0 {
+//                SCLAlertView().showError("残念。。", subTitle:"ポイントが足りないようです。Talkative-nativeで"+Language.strings[self.getUserData().motherLanguage]+"を教えて、ポイントを貰おう！", closeButtonTitle:"OK")
+//                return
+//            }
+//            let alert = SCLAlertView()
+//            alert.addButton(NSLocalizedString("alert_ok", comment: "")) { self.performSegue(withIdentifier: "show_media", sender: nil) }
+//            alert.showInfo(NSLocalizedString("alert_confirm_payment_title", comment: ""),
+//                                    subTitle: String(format: NSLocalizedString("alert_confirm_payment_message", comment: ""), self.offer!.offerPrice,self.offer!.offerTime))
+//        }
+//    }
 
     @IBAction func tappedMessageButton(_ sender: Any) {
         self.performSegue(withIdentifier: "show_chatroom", sender: nil)
     }
 
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "show_media" {
             if (UIApplication.shared.delegate as? AppDelegate)?.skywayAPIKey == nil || (UIApplication.shared.delegate as? AppDelegate)?.skywayDomain == nil{
-                UIAlertController.oneButton(LString("Error"), message: "APIKEY or DOMAIN are not set", handler: nil)
+                UIAlertController.oneButton("エラー", message: "APIKEYかDOMAINが設定されていません", handler: nil)
             } else {
-                let callVC = segue.destination as! callingViewController
+                let callVC = segue.destination as! teachCallingViewController
                 callVC.offer = self.offer!
-                callVC.selectedChatroom = self.selectedChatroom
-                callVC.avatarImage = self.NativeThumbnail.image
             }
         }
         if segue.identifier == "show_chatroom" {

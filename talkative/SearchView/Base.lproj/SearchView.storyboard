@@ -11,6 +11,7 @@
         <scene sceneID="NFF-R6-Kqk">
             <objects>
                 <navigationController id="vr6-LR-06D" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="A5z-fy-fce">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -479,7 +480,7 @@
                         <constraints>
                             <constraint firstItem="eal-yV-JNB" firstAttribute="top" secondItem="Yve-P5-6M6" secondAttribute="bottom" constant="20" id="6A3-mR-sG2"/>
                             <constraint firstItem="Mb3-A0-x7G" firstAttribute="height" secondItem="XHO-Vx-jbT" secondAttribute="height" id="87d-lv-0t3"/>
-                            <constraint firstItem="fJ6-0A-5K1" firstAttribute="top" secondItem="Mb3-A0-x7G" secondAttribute="bottom" constant="-34" id="939-jh-P0A"/>
+                            <constraint firstAttribute="bottom" secondItem="Mb3-A0-x7G" secondAttribute="bottom" id="939-jh-P0A"/>
                             <constraint firstItem="XHO-Vx-jbT" firstAttribute="top" secondItem="fPh-yx-Rof" secondAttribute="top" id="NjO-kD-dhC"/>
                             <constraint firstItem="XHO-Vx-jbT" firstAttribute="leading" secondItem="fPh-yx-Rof" secondAttribute="leading" id="P4g-Ev-cBf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zM7-1V-r8s" secondAttribute="trailing" constant="25" id="Ttg-2l-NpV"/>
@@ -626,6 +627,10 @@
         <scene sceneID="ylN-Cp-a23">
             <objects>
                 <viewController id="03j-vt-MZ5" customClass="ChatroomViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Ic-EE-kx1"/>
+                        <viewControllerLayoutGuide type="bottom" id="yYf-3N-lWw"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bKw-86-Ueo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

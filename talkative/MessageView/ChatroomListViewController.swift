@@ -26,8 +26,7 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
     ChatroomListTable.dataSource = self
     ChatroomListTable.delegate = self
     ChatroomListTable.register(UINib(nibName: "chatroomListRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
-    let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
-    self.chatroomListener = self.chatroomsDb.whereField("learnerID", isEqualTo: uid).order(by: "updatedAt", descending: true).addSnapshotListener() { snapshot, error in
+    self.chatroomListener = self.chatroomsDb.whereField("viewableUserIDs", arrayContains: self.getUserUid()).order(by: "updatedAt", descending: true).addSnapshotListener() { snapshot, error in
         if let _error = error {
             print("error\(_error)")
             return
@@ -79,7 +78,6 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
         if segue.identifier == "showChatroomView" {
             let ChatroomVC = segue.destination as! ChatroomViewController
             ChatroomVC.chatroom = self.chatroom
-            ChatroomVC.avatarImage = UIImage(url: self.chatroom!.nativeImageURL)
         }
     }
 

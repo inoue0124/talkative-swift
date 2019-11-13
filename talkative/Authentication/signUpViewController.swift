@@ -55,5 +55,12 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
             self.showError(error)
         }
     }
+
+    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRegisterProfView" {
+            let RegisterProfVC = segue.destination as! registerProfViewController
+            RegisterProfVC.email = self.email!
+        }
+    }
 }
 

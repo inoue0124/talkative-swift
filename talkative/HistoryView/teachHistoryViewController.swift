@@ -11,10 +11,11 @@ import Firebase
 import FirebaseAuth
 import XLPagerTabStrip
 
-class HistoryViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, UIPopoverPresentationControllerDelegate, IndicatorInfoProvider {
+class teachHistoryViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, UIPopoverPresentationControllerDelegate, IndicatorInfoProvider {
     var history: OfferModel?
     var histories: [OfferModel]?
     let offersDb = Firestore.firestore().collection("offers")
+    var itemInfo: IndicatorInfo = "As Tutor"
 
     @IBOutlet weak var HistoryTable: UITableView!
 
@@ -25,7 +26,7 @@ class HistoryViewController: UIViewController , UITableViewDelegate , UITableVie
     }
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "As Learner")
+        return IndicatorInfo(title: "As Tutor")
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +36,7 @@ class HistoryViewController: UIViewController , UITableViewDelegate , UITableVie
     override func viewWillAppear(_ animated: Bool) {
         HistoryTable.allowsSelection = true
         let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
-        self.offersDb.whereField("learnerID", isEqualTo: uid).order(by: "finishedAt", descending: true).getDocuments() { snapshot, error in
+        self.offersDb.whereField("nativeID", isEqualTo: uid).order(by: "finishedAt", descending: true).getDocuments() { snapshot, error in
             if let _error = error {
                 print("error\(_error)")
                 return
@@ -65,18 +66,19 @@ class HistoryViewController: UIViewController , UITableViewDelegate , UITableVie
         history = histories![indexPath.row]
         tableView.allowsSelection = false
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "showDetailView", sender: nil)
+        performSegue(withIdentifier: "showLearnerDetailView", sender: nil)
        }
 
-    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailView" {
-            let HistoryDetailVC = segue.destination as! nativeDetailViewController
-            HistoryDetailVC.offer = self.history
-        }
-    }
+//    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showLearnerDetailView" {
+//            let HistoryDetailVC = segue.destination as! teachLearnerDetailViewController
+//            HistoryDetailVC.offer = self.history
+//        }
+//    }
 
     // 表示スタイルの設定
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
+

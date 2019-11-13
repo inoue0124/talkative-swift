@@ -1,0 +1,36 @@
+
+/* Class = "UILabel"; text = "Tap to start searching learners!"; ObjectID = "2rN-p3-cqJ"; */
+"2rN-p3-cqJ.text" = "Tap to start searching learners!";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "6qa-a1-zAs"; */
+"6qa-a1-zAs.text" = "Name";
+
+/* Class = "UILabel"; text = "are waiting for you!"; ObjectID = "Ecz-92-Gc0"; */
+"Ecz-92-Gc0.text" = "are online!";
+
+/* Class = "UILabel"; text = "Japanese"; ObjectID = "FKt-ku-Hvg"; */
+"FKt-ku-Hvg.text" = "Japanese";
+
+/* Class = "UILabel"; text = "Please give stars!"; ObjectID = "MRh-FP-9ow"; */
+"MRh-FP-9ow.text" = "Please give stars!";
+
+/* Class = "UILabel"; text = " "; ObjectID = "PiV-7y-S4G"; */
+"PiV-7y-S4G.text" = " ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "XOV-kM-Zde"; */
+"XOV-kM-Zde.text" = "0";
+
+/* Class = "UILabel"; text = " learners"; ObjectID = "efc-aL-564"; */
+"efc-aL-564.text" = " learners";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "h7y-N9-ebv"; */
+"h7y-N9-ebv.text" = "10";
+
+/* Class = "UIButton"; normalTitle = "Back to home"; ObjectID = "oen-OZ-OdK"; */
+"oen-OZ-OdK.normalTitle" = "Back to home";
+
+/* Class = "UILabel"; text = " min"; ObjectID = "sO1-H1-1VI"; */
+"sO1-H1-1VI.text" = " min";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "vF2-3l-6aL"; */
+"vF2-3l-6aL.text" = "00:00";

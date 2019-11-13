@@ -43,6 +43,9 @@ PODS:
   - Firebase/Firestore (6.9.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.5.1)
+  - Firebase/Functions (6.9.0):
+    - Firebase/CoreOnly
+    - FirebaseFunctions (~> 2.5.1)
   - Firebase/Messaging (6.9.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 4.1.4)
@@ -96,6 +99,10 @@ PODS:
     - leveldb-library (~> 1.22)
     - nanopb (~> 0.3.901)
     - Protobuf (~> 3.1)
+  - FirebaseFunctions (2.5.1):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseInstanceID (4.2.5):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
@@ -204,6 +211,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.2)
   - GTMSessionFetcher/Full (1.2.2):
     - GTMSessionFetcher/Core (= 1.2.2)
+  - HydraAsync (2.0.2)
   - ImageRow (4.0.0):
     - Eureka (~> 5.0)
   - InputBarAccessoryView (4.2.2)
@@ -229,7 +237,9 @@ PODS:
     - SDWebImage/Core (= 5.2.0)
   - SDWebImage/Core (5.2.0)
   - SkyWay (1.2.0)
+  - Stripe (18.2.0)
   - SwiftGifOrigin (1.7.0)
+  - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
   - Eureka
@@ -239,26 +249,34 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Firebase/Analytics
   - Firebase/Auth
+  - Firebase/Functions
   - Firebase/Messaging
   - Firebase/Storage
   - FirebaseUI
   - GoogleSignIn
+  - HydraAsync
   - ImageRow (~> 4.0)
   - MessageInputBar
   - MessageKit
   - RealmSwift
   - SCLAlertView
   - SkyWay
+  - Stripe
   - SwiftGifOrigin (~> 1.7.0)
+  - XLPagerTabStrip
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - FacebookCore
     - FacebookLogin
     - FirebaseAnalyticsInterop
+    - FirebaseFunctions
     - FirebaseMessaging
+    - HydraAsync
     - SCLAlertView
+    - Stripe
     - SwiftGifOrigin
+    - XLPagerTabStrip
   trunk:
     - AppAuth
     - BoringSSL-GRPC
@@ -316,6 +334,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseDatabase: 518cd94286de2ee999e19383a2a6ae04c81ce993
   FirebaseFirestore: 5ee8bdb959541f0d55352f2d681efb03b9742a43
+  FirebaseFunctions: 5af7c35d1c5e41608fecbb667eb6c4e672e318d0
   FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
   FirebaseMessaging: 35edef69a6af9b34e9e44624089f054be3c09089
   FirebaseStorage: b7c6d00997bc21d4465453bdcc5cc65513110fed
@@ -329,6 +348,7 @@ SPEC CHECKSUMS:
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
+  HydraAsync: 690b8c1c9dcde7ee1093cee363a6c1ce36b56a83
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
@@ -341,8 +361,10 @@ SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: 609192dcf3898c910a2848032372ead951e66364
   SkyWay: 1dc4379cd757dff9690c944d589f029ed15155a1
+  Stripe: a468d5f39703807e840fdfed39572ffad0aaf053
   SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
+  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: f3eee33752c4049be290e019a1e744d674428fcf
+PODFILE CHECKSUM: 4a492567c9d0117d3d48dc44dc3fe2a1fda97a24
 
 COCOAPODS: 1.8.1

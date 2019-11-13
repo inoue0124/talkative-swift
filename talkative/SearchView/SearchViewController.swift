@@ -42,7 +42,7 @@ class SearchViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         setupLocationManager()
         self.MapView.region.span.latitudeDelta = 120
         self.MapView.region.span.longitudeDelta = 120
-        self.MapView.isZoomEnabled = false
+        //self.MapView.isZoomEnabled = false
     }
 
     override func viewDidAppear(_ animated: Bool) {

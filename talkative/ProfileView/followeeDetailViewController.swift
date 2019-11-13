@@ -66,12 +66,12 @@ class followeeDetailViewController: UIViewController {
                 self.native = UserModel(from: querySnapshot!.documents[0])
                 self.motherLanguage.text = Language.strings[self.native!.motherLanguage]
                 self.secondLanguage.text = Language.strings[self.native!.secondLanguage]
-                self.chatroomsDb.whereField("nativeID", isEqualTo: self.native!.uid).whereField("learnerID", isEqualTo: self.getUserUid()).getDocuments() { (querySnapshot, err) in
+                self.chatroomsDb.whereField("viewableUserIDs", arrayContains: self.getUserUid()).getDocuments() { (querySnapshot, err) in
                         if let _err = err {
                             print("\(_err)")
                         } else if querySnapshot!.documents.isEmpty {
                             print("chatroom is not exist")
-                            self.selectedChatroom = ChatroomModel(chatroomID: self.chatroomsDb.document().documentID, nativeID: self.native!.uid, nativeName: self.native!.name, nativeImageURL: self.native!.imageURL, learnerID: self.getUserUid(), learnerName: self.getUserData().name, learnerImageURL: URL(string: self.getUserData().imageURL)!)
+                            self.selectedChatroom = ChatroomModel(chatroomID: self.chatroomsDb.document().documentID, viewableUserIDs: [self.getUserUid(), self.native!.uid])
                             self.messageButton.isEnabled = true
                         } else {
                             print("chatroom is exist")

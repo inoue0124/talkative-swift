@@ -27,6 +27,21 @@
 		7061652E236ECE8600B26C40 /* nativeListRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70616530236ECE8600B26C40 /* nativeListRowTableViewCell.xib */; };
 		70616535236ECEF800B26C40 /* SearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70616537236ECEF800B26C40 /* SearchView.storyboard */; };
 		7061653C236ED06600B26C40 /* ProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7061653E236ED06600B26C40 /* ProfileView.storyboard */; };
+		70619140237A53370028B85D /* selectPaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7061913F237A53370028B85D /* selectPaymentMethodViewController.swift */; };
+		70619146237B0F7B0028B85D /* teachReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619141237B0F740028B85D /* teachReviewViewController.swift */; };
+		70619147237B0F7B0028B85D /* incomingCallViewNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70619142237B0F760028B85D /* incomingCallViewNib.xib */; };
+		70619149237B0F7B0028B85D /* teachCallingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619144237B0F790028B85D /* teachCallingViewController.swift */; };
+		7061914A237B0F7B0028B85D /* teachSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619145237B0F7A0028B85D /* teachSearchViewController.swift */; };
+		7061914E237B17C50028B85D /* searchButton.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7061914C237B17C30028B85D /* searchButton.gif */; };
+		7061914F237B17C50028B85D /* Preloader3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7061914D237B17C50028B85D /* Preloader3.gif */; };
+		70619150237B1D610028B85D /* teachSearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70619152237B1D610028B85D /* teachSearchView.storyboard */; };
+		70619160237BF98A0028B85D /* historyViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7061915F237BF98A0028B85D /* historyViewPager.swift */; };
+		70619166237BF9E50028B85D /* teachHistoryRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70619161237BF9DE0028B85D /* teachHistoryRowTableViewCell.xib */; };
+		70619167237BF9E50028B85D /* teachHistoryView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70619162237BF9E00028B85D /* teachHistoryView.storyboard */; };
+		70619168237BF9E50028B85D /* teachHistoryRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619163237BF9E20028B85D /* teachHistoryRowTableViewCell.swift */; };
+		70619169237BF9E50028B85D /* teachHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619164237BF9E40028B85D /* teachHistoryViewController.swift */; };
+		7061916A237BF9E50028B85D /* teachLearnerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619165237BF9E50028B85D /* teachLearnerDetailViewController.swift */; };
+		7061916C237BFB5A0028B85D /* historyViewPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7061916B237BFB5A0028B85D /* historyViewPager.storyboard */; };
 		7065D3BE236B2F9200814310 /* selectRegisterMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7065D3B6236B2F8700814310 /* selectRegisterMethodViewController.swift */; };
 		7065D3C0236B2F9200814310 /* registerProfViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7065D3B8236B2F8A00814310 /* registerProfViewHeader.xib */; };
 		7065D3C1236B2F9200814310 /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7065D3B9236B2F8C00814310 /* signUpViewController.swift */; };
@@ -140,6 +155,26 @@
 		706165FA236F232D00B26C40 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		706165FB236F2A6800B26C40 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		706165FC236F2C6900B26C40 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7061913F237A53370028B85D /* selectPaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectPaymentMethodViewController.swift; sourceTree = "<group>"; };
+		70619141237B0F740028B85D /* teachReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teachReviewViewController.swift; sourceTree = "<group>"; };
+		70619142237B0F760028B85D /* incomingCallViewNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = incomingCallViewNib.xib; sourceTree = "<group>"; };
+		70619144237B0F790028B85D /* teachCallingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teachCallingViewController.swift; sourceTree = "<group>"; };
+		70619145237B0F7A0028B85D /* teachSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teachSearchViewController.swift; sourceTree = "<group>"; };
+		7061914C237B17C30028B85D /* searchButton.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = searchButton.gif; sourceTree = "<group>"; };
+		7061914D237B17C50028B85D /* Preloader3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Preloader3.gif; sourceTree = "<group>"; };
+		70619151237B1D610028B85D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/teachSearchView.storyboard; sourceTree = "<group>"; };
+		70619154237B1D700028B85D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/teachSearchView.strings; sourceTree = "<group>"; };
+		70619156237B1D890028B85D /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/teachSearchView.strings"; sourceTree = "<group>"; };
+		70619158237B1D900028B85D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/teachSearchView.strings"; sourceTree = "<group>"; };
+		7061915A237B1D980028B85D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/teachSearchView.strings"; sourceTree = "<group>"; };
+		7061915C237B1D9E0028B85D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/teachSearchView.strings; sourceTree = "<group>"; };
+		7061915F237BF98A0028B85D /* historyViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = historyViewPager.swift; sourceTree = "<group>"; };
+		70619161237BF9DE0028B85D /* teachHistoryRowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = teachHistoryRowTableViewCell.xib; sourceTree = "<group>"; };
+		70619162237BF9E00028B85D /* teachHistoryView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = teachHistoryView.storyboard; sourceTree = "<group>"; };
+		70619163237BF9E20028B85D /* teachHistoryRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teachHistoryRowTableViewCell.swift; sourceTree = "<group>"; };
+		70619164237BF9E40028B85D /* teachHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teachHistoryViewController.swift; sourceTree = "<group>"; };
+		70619165237BF9E50028B85D /* teachLearnerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teachLearnerDetailViewController.swift; sourceTree = "<group>"; };
+		7061916B237BFB5A0028B85D /* historyViewPager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = historyViewPager.storyboard; sourceTree = "<group>"; };
 		7065D3B6236B2F8700814310 /* selectRegisterMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectRegisterMethodViewController.swift; sourceTree = "<group>"; };
 		7065D3B8236B2F8A00814310 /* registerProfViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registerProfViewHeader.xib; sourceTree = "<group>"; };
 		7065D3B9236B2F8C00814310 /* signUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +269,8 @@
 			children = (
 				70A551F22359F076005F4699 /* Preloader.gif */,
 				70A551F42359F0C5005F4699 /* Preloader2.gif */,
+				7061914D237B17C50028B85D /* Preloader3.gif */,
+				7061914C237B17C30028B85D /* searchButton.gif */,
 				7065D3CC236B30EC00814310 /* Settings.swift */,
 				7065D3D7236C91E200814310 /* UserModel.swift */,
 				7065D3D1236C5CFA00814310 /* OfferModel.swift */,
@@ -245,6 +282,18 @@
 				7059B89A234F1479005BB6D4 /* ImageRow.swift */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		7061914B237B0F830028B85D /* teachSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				70619145237B0F7A0028B85D /* teachSearchViewController.swift */,
+				70619142237B0F760028B85D /* incomingCallViewNib.xib */,
+				70619144237B0F790028B85D /* teachCallingViewController.swift */,
+				70619141237B0F740028B85D /* teachReviewViewController.swift */,
+				70619152237B1D610028B85D /* teachSearchView.storyboard */,
+			);
+			path = teachSearchView;
 			sourceTree = "<group>";
 		};
 		70979CEF234DB90000579395 /* Authentication */ = {
@@ -292,6 +341,7 @@
 				701AF3BC234D7733006A3F82 /* SceneDelegate.swift */,
 				70979CEF234DB90000579395 /* Authentication */,
 				70D9BE27234CD87E004DA3BF /* SearchView */,
+				7061914B237B0F830028B85D /* teachSearchView */,
 				70D9BE28234CD891004DA3BF /* MessageView */,
 				70D9BE29234CD89B004DA3BF /* HistoryView */,
 				70D9BE2A234CD8A9004DA3BF /* ProfileView */,
@@ -355,10 +405,17 @@
 		70D9BE29234CD89B004DA3BF /* HistoryView */ = {
 			isa = PBXGroup;
 			children = (
+				7061915F237BF98A0028B85D /* historyViewPager.swift */,
+				7061916B237BFB5A0028B85D /* historyViewPager.storyboard */,
 				70A4DF76234C8C6800BA2D74 /* HistoryViewController.swift */,
 				70918AB0235C8D3900C18CA2 /* HistoryRowTableViewCell.swift */,
 				70918AB1235C8D3900C18CA2 /* HistoryRowTableViewCell.xib */,
 				70A4DF80234CAB9900BA2D74 /* HistoryView.storyboard */,
+				70619164237BF9E40028B85D /* teachHistoryViewController.swift */,
+				70619163237BF9E20028B85D /* teachHistoryRowTableViewCell.swift */,
+				70619161237BF9DE0028B85D /* teachHistoryRowTableViewCell.xib */,
+				70619162237BF9E00028B85D /* teachHistoryView.storyboard */,
+				70619165237BF9E50028B85D /* teachLearnerDetailViewController.swift */,
 			);
 			path = HistoryView;
 			sourceTree = "<group>";
@@ -374,6 +431,7 @@
 				70BD698523681E1B0063768C /* followeeDetailViewController.swift */,
 				70BD697F236708B70063768C /* walletHistoryRowTableViewCell.swift */,
 				70BD6980236708B70063768C /* walletHistoryRowTableViewCell.xib */,
+				7061913F237A53370028B85D /* selectPaymentMethodViewController.swift */,
 				70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */,
 				70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */,
 			);
@@ -514,19 +572,26 @@
 				7065D3C0236B2F9200814310 /* registerProfViewHeader.xib in Resources */,
 				70BD6982236708B70063768C /* walletHistoryRowTableViewCell.xib in Resources */,
 				70A4DF85234CAD9000BA2D74 /* ChatroomListView.storyboard in Resources */,
+				70619150237B1D610028B85D /* teachSearchView.storyboard in Resources */,
 				7061651D236ECA8400B26C40 /* loginView.storyboard in Resources */,
 				703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */,
+				70619147237B0F7B0028B85D /* incomingCallViewNib.xib in Resources */,
 				70A4DF7F234CAB8B00BA2D74 /* Main.storyboard in Resources */,
 				70A4DF50234C856500BA2D74 /* Assets.xcassets in Resources */,
 				7061653C236ED06600B26C40 /* ProfileView.storyboard in Resources */,
 				70616535236ECEF800B26C40 /* SearchView.storyboard in Resources */,
+				7061914E237B17C50028B85D /* searchButton.gif in Resources */,
 				70A551F52359F0C5005F4699 /* Preloader2.gif in Resources */,
 				70188E19235F668D00D2FAB8 /* followeeRowTableViewCell.xib in Resources */,
+				70619167237BF9E50028B85D /* teachHistoryView.storyboard in Resources */,
 				70188E0A235ED15100D2FAB8 /* Localizable.strings in Resources */,
 				7059B8A7234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib in Resources */,
+				7061916C237BFB5A0028B85D /* historyViewPager.storyboard in Resources */,
 				70918AB3235C8D3900C18CA2 /* HistoryRowTableViewCell.xib in Resources */,
 				7061652E236ECE8600B26C40 /* nativeListRowTableViewCell.xib in Resources */,
 				70A551F32359F076005F4699 /* Preloader.gif in Resources */,
+				70619166237BF9E50028B85D /* teachHistoryRowTableViewCell.xib in Resources */,
+				7061914F237B17C50028B85D /* Preloader3.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,14 +754,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				70BD697E236703330063768C /* pointHistoryModel.swift in Sources */,
+				7061916A237BF9E50028B85D /* teachLearnerDetailViewController.swift in Sources */,
 				7059B8A6234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift in Sources */,
 				70488CD623551A0900B3C1CD /* ChatroomModel.swift in Sources */,
 				70D9BE30234CDE03004DA3BF /* SearchResultViewController.swift in Sources */,
 				7065D3CF236B30EC00814310 /* Settings.swift in Sources */,
 				7065D3BE236B2F9200814310 /* selectRegisterMethodViewController.swift in Sources */,
 				7059B8A9234F6EBA005BB6D4 /* chatroomViewController.swift in Sources */,
+				70619160237BF98A0028B85D /* historyViewPager.swift in Sources */,
 				70979CEC234DB37A00579395 /* ReviewViewController.swift in Sources */,
+				70619146237B0F7B0028B85D /* teachReviewViewController.swift in Sources */,
 				7065D3D8236C91E200814310 /* UserModel.swift in Sources */,
+				70619168237BF9E50028B85D /* teachHistoryRowTableViewCell.swift in Sources */,
 				701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */,
 				70D9BE26234CB71B004DA3BF /* SearchConditionViewController.swift in Sources */,
 				7065D3C1236B2F9200814310 /* signUpViewController.swift in Sources */,
@@ -704,6 +773,7 @@
 				70D9BE2D234CD9BC004DA3BF /* nativeListRowTableViewCell.swift in Sources */,
 				70A4DF4B234C856300BA2D74 /* ChatroomListViewController.swift in Sources */,
 				70695288234D697000D936EC /* nativeDetailViewController.swift in Sources */,
+				70619140237A53370028B85D /* selectPaymentMethodViewController.swift in Sources */,
 				7065D3C2236B2F9200814310 /* selectLoginMethodViewController.swift in Sources */,
 				70979CF9234E2C8400579395 /* extentions.swift in Sources */,
 				7059B899234F1472005BB6D4 /* ImagePickerController.swift in Sources */,
@@ -715,8 +785,11 @@
 				70918AB2235C8D3900C18CA2 /* HistoryRowTableViewCell.swift in Sources */,
 				70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */,
 				70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */,
+				70619169237BF9E50028B85D /* teachHistoryViewController.swift in Sources */,
 				7065D3C3236B2F9200814310 /* logInViewController.swift in Sources */,
 				709E39E92363247000A74EF0 /* ProfileViewController.swift in Sources */,
+				70619149237B0F7B0028B85D /* teachCallingViewController.swift in Sources */,
+				7061914A237B0F7B0028B85D /* teachSearchViewController.swift in Sources */,
 				70A4DF77234C8C6800BA2D74 /* HistoryViewController.swift in Sources */,
 				7065D3C8236B2FEA00814310 /* editProfViewController.swift in Sources */,
 				7065D3D2236C5CFA00814310 /* OfferModel.swift in Sources */,
@@ -832,6 +905,19 @@
 				706165F8236EFFEE00B26C40 /* en */,
 			);
 			name = ProfileView.storyboard;
+			sourceTree = "<group>";
+		};
+		70619152237B1D610028B85D /* teachSearchView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70619151237B1D610028B85D /* Base */,
+				70619154237B1D700028B85D /* en */,
+				70619156237B1D890028B85D /* zh-HK */,
+				70619158237B1D900028B85D /* zh-Hans */,
+				7061915A237B1D980028B85D /* zh-Hant */,
+				7061915C237B1D9E0028B85D /* ja */,
+			);
+			name = teachSearchView.storyboard;
 			sourceTree = "<group>";
 		};
 		70A4DF51234C856500BA2D74 /* LaunchScreen.storyboard */ = {
