@@ -30,10 +30,11 @@ class OfferModel {
     var offerTime: Int
     var targetLanguage: Int
     var supportLanguage: Int
-    var nativeLevel: Int
-    var learnerLevel: Int
+    var nativeProficiency: Int
+    var learnerProficiency: Int
     var peerID: String
     var isOnline: Bool
+    var isAccepted: Bool
     var timestamp: Timestamp = Timestamp()
     var createdAt: Date
     var acceptedAt: Date
@@ -100,10 +101,11 @@ class OfferModel {
         self.offerTime = from.get("offerTime") as? Int ?? 9999
         self.targetLanguage = from.get("targetLanguage") as? Int ?? 0
         self.supportLanguage = from.get("supportLanguage") as? Int ?? 0
-        self.nativeLevel = from.get("nativeLevel") as? Int ?? 0
-        self.learnerLevel = from.get("learnerLevel") as? Int ?? 0
+        self.nativeProficiency = from.get("nativeProficiency") as? Int ?? 0
+        self.learnerProficiency = from.get("learnerProficiency") as? Int ?? 0
         self.peerID = from.get("peerID") as? String ?? ""
         self.isOnline = from.get("isOnline") as? Bool ?? false
+        self.isAccepted = from.get("isAccepted") as? Bool ?? false
         self.timestamp = from.get("createdAt") as? Timestamp ?? Timestamp()
         self.createdAt = timestamp.dateValue()
         self.timestamp = from.get("acceptedAt") as? Timestamp ?? Timestamp()
@@ -139,10 +141,11 @@ class OfferModel {
             "offerTime" : offerTime,
             "targetLanguage" : targetLanguage,
             "supportLanguage" : supportLanguage,
-            "nativeLevel" : nativeLevel,
-            "learnerLevel" : learnerLevel,
+            "nativeProficiency" : nativeProficiency,
+            "learnerProficiency" : learnerProficiency,
             "peerID" : peerID,
             "isOnline": isOnline,
+            "isAccepted" : isAccepted,
             "createdAt" : createdAt,
             "acceptedAt" : acceptedAt,
             "withdrawedAt" : withdrawedAt,

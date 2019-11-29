@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nrc-S2-b7s">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--History View Pager-->
+        <scene sceneID="gJS-cy-Fmg">
+            <objects>
+                <viewController id="Nrc-S2-b7s" customClass="historyViewPager" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fI7-mK-WcM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vkc-Mo-28D">
+                                <rect key="frame" x="0.0" y="146" width="414" height="667"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Bxf-4c-5Lj"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="SyO-1v-ilN"/>
+                            </scrollView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wFF-ua-8fS" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cBZ-8w-tG9"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yLS-gE-pK5">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="moJ-un-uoI">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9s3-xj-FYA">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wFF-ua-8fS" firstAttribute="leading" secondItem="j5L-LT-QAt" secondAttribute="leading" id="2Rm-l9-8F5"/>
+                            <constraint firstItem="vkc-Mo-28D" firstAttribute="leading" secondItem="j5L-LT-QAt" secondAttribute="leading" id="5ao-gh-MrL"/>
+                            <constraint firstItem="vkc-Mo-28D" firstAttribute="trailing" secondItem="j5L-LT-QAt" secondAttribute="trailing" id="HOY-FE-x44"/>
+                            <constraint firstItem="vkc-Mo-28D" firstAttribute="top" secondItem="wFF-ua-8fS" secondAttribute="bottom" constant="8" id="bTT-s2-hJn"/>
+                            <constraint firstItem="vkc-Mo-28D" firstAttribute="bottom" secondItem="j5L-LT-QAt" secondAttribute="bottom" id="cnl-wK-430"/>
+                            <constraint firstItem="wFF-ua-8fS" firstAttribute="top" secondItem="j5L-LT-QAt" secondAttribute="top" id="hkU-2p-6fz"/>
+                            <constraint firstItem="wFF-ua-8fS" firstAttribute="trailing" secondItem="j5L-LT-QAt" secondAttribute="trailing" id="iIi-iz-JVd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="j5L-LT-QAt"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hy5-S6-vts"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="buttonBarView" destination="wFF-ua-8fS" id="bEX-sL-1JE"/>
+                        <outlet property="containerView" destination="vkc-Mo-28D" id="MCz-cd-7o3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PHy-zk-jxk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="82.608695652173921" y="241.74107142857142"/>
+        </scene>
+    </scenes>
+</document>

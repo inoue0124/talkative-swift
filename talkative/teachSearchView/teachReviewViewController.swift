@@ -15,6 +15,7 @@ class teachReviewViewController: UIViewController {
     @IBOutlet weak var backHomeButton: UIButton!
     @IBOutlet weak var LearnerThumbnail: UIImageView!
     @IBOutlet weak var LearnerName: UILabel!
+    @IBOutlet weak var nationalFlag: UIImageView!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
@@ -26,24 +27,19 @@ class teachReviewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.backHomeButton.isEnabled = false
-        self.LearnerName.text = self.offer!.learnerName
-        self.LearnerThumbnail.image = UIImage.gif(name: "Preloader")
-        DispatchQueue.global().async {
-            let image = UIImage(url: self.offer!.learnerImageURL)
-            DispatchQueue.main.async {
-                self.LearnerThumbnail.image = image
-                self.LearnerThumbnail.layer.cornerRadius = 50
-            }
-        }
+        backHomeButton.isEnabled = false
+        LearnerName.text = offer!.learnerName
+        setImage(uid: offer!.learnerID, imageView: LearnerThumbnail)
+        LearnerThumbnail.layer.cornerRadius = 50
+        makeFlagImageView(imageView: nationalFlag, nationality: offer!.learnerNationality, radius: 12.5)
     }
 
     @IBAction func tappedBackHomeButton(_ sender: Any) {
-        self.offersDb.document(self.offer!.offerID).setData([
-            "ratingForLearner" : self.rating!,
+        offersDb.document(offer!.offerID).setData([
+            "ratingForLearner" : rating!,
             "flagPayForNative" : true
         ], merge: true)
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 
     @IBAction func tappedStar1(_ sender: Any) {

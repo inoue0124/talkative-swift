@@ -20,10 +20,12 @@ class UserModel: Identifiable {
     var gender: Int // 1: male, 2: female, 3: None
     var birthDate: Date
     var isOnline: Bool
+    var isOffering: Bool
+    var offeringTime: Int
     var nationality: Int // Country_ID
     var motherLanguage: Int // Language_ID
     var secondLanguage: Int // Language_ID
-    var level: Int
+    var proficiency: Int
     var timestamp: Timestamp = Timestamp()
     var peerID: String
     var ratingAsLearner: Double
@@ -48,15 +50,17 @@ class UserModel: Identifiable {
         self.timestamp = from.get("birthDate") as? Timestamp ?? Timestamp()
         self.birthDate = timestamp.dateValue()
         self.isOnline = from.get("isOnline") as? Bool ?? false
+        self.isOffering = from.get("isOffering") as? Bool ?? false
+        self.offeringTime = from.get("offeringTime") as? Int ?? 10
         self.nationality = from.get("nationality") as? Int ?? 1
         self.motherLanguage = from.get("motherLanguage") as? Int ?? 1
         self.secondLanguage = from.get("secondLanguage") as? Int ?? 1
-        self.level = from.get("level") as? Int ?? 0
+        self.proficiency = from.get("proficiency") as? Int ?? 0
         self.peerID = from.get("peerID") as? String ?? ""
         self.ratingAsLearner = from.get("ratingAsLearner") as? Double ?? 4.0
         self.ratingAsNative = from.get("ratingAsNative") as? Double ?? 4.0
-        self.callCountAsLearner = from.get("callCountAsLearner") as? Int ?? 1
-        self.callCountAsNative = from.get("callCountAsNaitve") as? Int ?? 1
+        self.callCountAsLearner = from.get("callCountAsLearner") as? Int ?? 0
+        self.callCountAsNative = from.get("callCountAsNative") as? Int ?? 0
         self.location = from.get("location") as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         self.point = from.get("point") as? Double ?? 0.0
         self.timestamp = from.get("createdAt") as? Timestamp ?? Timestamp()
@@ -76,10 +80,12 @@ class UserModel: Identifiable {
             "gender": gender,
             "birthDate": birthDate,
             "isOnline": isOnline,
+            "isOffering": isOffering,
+            "offeringTime": offeringTime,
             "nationality": nationality,
             "motherLanguage": motherLanguage,
             "secondLanguage": secondLanguage,
-            "level": level,
+            "proficiency": proficiency,
             "peerID": peerID,
             "ratingAsLearner": ratingAsLearner,
             "ratingAsNative": ratingAsNative,
@@ -106,7 +112,7 @@ class RealmUserModel: Object{
     @objc dynamic var nationality = 0 // Country_ID
     @objc dynamic var motherLanguage = 0 // Language_ID
     @objc dynamic var secondLanguage = 0 // Language_ID
-    @objc dynamic var level = 0
+    @objc dynamic var proficiency = 0
     @objc dynamic var ratingAsLearner = 5.0
     @objc dynamic var ratingAsNative = 5.0
     @objc dynamic var callCountAsLearner = 1

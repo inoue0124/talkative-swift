@@ -9,12 +9,14 @@
 import UIKit
 import FirebaseFirestore
 
-class ReviewViewController: UIViewController {
+class ReviewViewController: UIViewController, UITextViewDelegate {
 
     var offer: OfferModel?
     @IBOutlet weak var backHomeButton: UIButton!
     @IBOutlet weak var NativeThumbnail: UIImageView!
     @IBOutlet weak var NativeName: UILabel!
+    @IBOutlet weak var nationalFlag: UIImageView!
+    @IBOutlet weak var commentField: UITextView!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
@@ -24,19 +26,27 @@ class ReviewViewController: UIViewController {
     let offersDb = Firestore.firestore().collection("offers")
     let Usersdb = Firestore.firestore().collection("Users")
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (self.commentField.isFirstResponder) {
+            self.commentField.resignFirstResponder()
+        }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.commentField.resignFirstResponder()
+        return true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        commentField.delegate = self
         self.backHomeButton.setTitle(LString("Back to home"), for:.normal)
         self.backHomeButton.isEnabled = false
         self.NativeName.text = self.offer!.nativeName
         self.NativeThumbnail.image = UIImage.gif(name: "Preloader")
-        DispatchQueue.global().async {
-            let image = UIImage(url: self.offer!.nativeImageURL)
-            DispatchQueue.main.async {
-                self.NativeThumbnail.image = image
-                self.NativeThumbnail.layer.cornerRadius = 50
-            }
-        }
+        self.setImage(uid: offer!.nativeID, imageView: self.NativeThumbnail)
+        self.makeFlagImageView(imageView: nationalFlag, nationality: self.offer!.nativeNationality, radius: 12.5)
+        self.designTextView(textView: commentField)
     }
 
     override func viewWillAppear(_ animated: Bool) {

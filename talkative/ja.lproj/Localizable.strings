@@ -56,15 +56,17 @@
 
 // ProfileView
 "Profile" = "プロフィール";
-"Followee" = "お気に入り";
-"Wallet" = "ウォレット";
+"followee" = "フォロー";
+"follower" = "フォロワー";
+"Purchase points"  = "ポイント購入(未実装)";
+"Points" = "ポイント";
+"Withdraw" = "ポイント現金化(未実装)";
 "SIGN OUT" = "サインアウト";
 "Are you going to sign out?" = "サインアウトしますか?";
 "Edit" = "編集";
 "Basic profile" = "基本情報";
 "Language setting" = "言語設定";
 "Points history" = "ポイント履歴";
-"Followee" = "お気に入り";
 
 // Setting
 "Unknown" = "回答しない";

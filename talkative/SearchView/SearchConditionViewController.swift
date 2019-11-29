@@ -11,43 +11,109 @@ import Eureka
 
 class SearchCondtionViewController: FormViewController {
 
+    var searchConditions: [String : Any?]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        form +++ Section(header: NSLocalizedString("conditions", comment: ""), footer: "*1分=1ポイント")
-            <<< AlertRow<String> {
-                $0.title = NSLocalizedString("conditions_language", comment: "")
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.title = LString("Search")
+        form +++ Section()
+
+            <<< SwitchRow() {
+                $0.title = LString("Only online")
+                $0.value = true
+                $0.tag = "online"
+            }
+
+            <<< DoublePickerInputRow<Int, Int>() {
+                $0.title = LString("Age")
+                $0.firstOptions = {([Int])(18...90)}
+                $0.secondOptions = { _ in return ([Int])(18...90)}
+                $0.value = Tuple(a:18, b:90)
+                $0.tag = "age"
+            }.onChange{ row in
+                if row.value!.a > row.value!.b {
+                    row.value = Tuple(a:row.value!.a, b:row.value!.a)
+                }
+            }
+
+            <<< ActionSheetRow<String> {
+                $0.title = LString("Gender")
+                $0.options = Gender.strings
+                $0.tag = "gender"
+            }
+
+            <<< PushRow<String> {
+                $0.title = LString("nationality")
+                $0.options = Nationality.strings
+                $0.tag = "nationality"
+            }
+
+        +++ Section()
+            <<< PushRow<String> {
+                $0.title = LString("Target Language")
                 $0.options = Language.strings
                 $0.value = Language.strings[getUserData().secondLanguage]
                 $0.tag = "targetLanguage"
-            }.cellUpdate { cell, row in
-                cell.height = ({return 80})
             }
 
-            <<< IntRow() {
-                $0.title = NSLocalizedString("conditions_time", comment: "")
-                $0.value = 10
+            <<< PushRow<String> {
+                $0.title = LString("Also speak")
+                $0.options = Language.strings
+                $0.tag = "secondLanguage"
+            }
+
+            <<< DoublePickerInputRow<String, String>() {
+                $0.title = LString("proficiency")
+                $0.firstOptions = {Proficiency.strings}
+                $0.secondOptions = { _ in return Proficiency.strings}
+                $0.value = Tuple(a: Proficiency.strings[1], b: Proficiency.strings[5])
+                $0.tag = "proficiency"
+            }.onChange{ row in
+                if Proficiency.fromString(string: row.value!.a).rawValue > Proficiency.fromString(string: row.value!.b).rawValue {
+                    row.value = Tuple(a:row.value!.a, b:row.value!.a)
+                }
+            }
+
+
+        +++ Section()
+            <<< DoublePickerInputRow<Int, Int>() {
+                $0.title = LString("Time of Length")
+                $0.firstOptions = {([Int])(5...30)}
+                $0.secondOptions = { _ in return ([Int])(5...30)}
+                $0.value = Tuple(a:5, b:30)
                 $0.tag = "maxPrice"
-            }.cellUpdate { cell, row in
-                cell.height = ({return 80})
+            }.onChange{ row in
+                if row.value!.a > row.value!.b {
+                    row.value = Tuple(a:row.value!.a, b:row.value!.a)
+                }
             }
 
-        +++ Section("")
+
+        +++ Section()
             <<< ButtonRow() {
-                $0.title = NSLocalizedString("search", comment: "")
+                $0.title = LString("search")
                 $0.onCellSelection(self.buttonTapped)
             }.cellUpdate { cell, row in
                 cell.height = ({return 80})
             }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+    }
+
     func buttonTapped(cell: ButtonCellOf<String>, row: ButtonRow) {
-        let searchConditions = form.values()
-        let tabVc = self.presentingViewController as! UITabBarController
-        let navigationVc = tabVc.selectedViewController as! UINavigationController
-        let searchViewVc = navigationVc.topViewController as! SearchViewController
-        searchViewVc.searchConditions = searchConditions
-        searchViewVc.showSearchResult()
-        dismiss(animated: true, completion: nil)
+        searchConditions = form.values()
+        performSegue(withIdentifier: "showResult", sender: nil)
+    }
+
+    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showResult" {
+            let ResultVC = segue.destination as! SearchResultViewController
+            ResultVC.searchConditions = searchConditions
+            ResultVC.navigationItem.rightBarButtonItems?.remove(at: 0)
+        }
     }
 }
 

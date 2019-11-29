@@ -253,6 +253,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - FirebaseUI
+  - FirebaseUI/Storage
   - GoogleSignIn
   - HydraAsync
   - ImageRow (~> 4.0)
@@ -365,6 +366,6 @@ SPEC CHECKSUMS:
   SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 4a492567c9d0117d3d48dc44dc3fe2a1fda97a24
+PODFILE CHECKSUM: af10b1ada5ff5dbc36ace365a9c1d75d461908d8
 
 COCOAPODS: 1.8.1

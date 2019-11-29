@@ -23,10 +23,11 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
     @IBOutlet weak var ChatroomListTable: UITableView!
 
   override func viewDidLoad() {
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     ChatroomListTable.dataSource = self
     ChatroomListTable.delegate = self
     ChatroomListTable.register(UINib(nibName: "chatroomListRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
-    self.chatroomListener = self.chatroomsDb.whereField("viewableUserIDs", arrayContains: self.getUserUid()).order(by: "updatedAt", descending: true).addSnapshotListener() { snapshot, error in
+    self.chatroomListener = self.chatroomsDb.whereField("viewableUserIDs." + self.getUserUid(), isEqualTo: true).addSnapshotListener() { snapshot, error in
         if let _error = error {
             print("error\(_error)")
             return
@@ -36,6 +37,7 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
         return
         }
         self.chatrooms = documents.map{ ChatroomModel(from: $0) }
+        
         DispatchQueue.main.async {
             // UI更新はメインスレッドで実行
             self.tabBarItem.badgeValue = "new"

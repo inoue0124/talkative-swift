@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NjZ-IW-iVF">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Follow View Controller-->
+        <scene sceneID="PuV-kt-ooc">
+            <objects>
+                <viewController id="NjZ-IW-iVF" customClass="followViewController" customModule="talkative" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mjZ-um-ern">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XFx-No-aKc">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="XFx-No-aKc" firstAttribute="leading" secondItem="ohB-9n-mqp" secondAttribute="leading" id="2z5-bl-KQ3"/>
+                            <constraint firstItem="XFx-No-aKc" firstAttribute="trailing" secondItem="ohB-9n-mqp" secondAttribute="trailing" id="fBN-WC-0Nk"/>
+                            <constraint firstItem="XFx-No-aKc" firstAttribute="bottom" secondItem="ohB-9n-mqp" secondAttribute="bottom" id="pOe-6U-1c3"/>
+                            <constraint firstItem="XFx-No-aKc" firstAttribute="top" secondItem="ohB-9n-mqp" secondAttribute="top" id="w5T-KS-Ut8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ohB-9n-mqp"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aNm-zu-0Ox"/>
+                    <connections>
+                        <outlet property="userTable" destination="XFx-No-aKc" id="H18-i7-eMQ"/>
+                        <segue destination="lKx-N5-g9Q" kind="show" identifier="nativeDetail" id="cut-kZ-oh2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cmX-zR-hRe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1925" y="116"/>
+        </scene>
+        <!--userDetailView-->
+        <scene sceneID="qRW-C6-ZdP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="userDetailView" id="lKx-N5-g9Q" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="upL-DX-zkb"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h2W-Be-ItQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2694" y="116"/>
+        </scene>
+    </scenes>
+</document>

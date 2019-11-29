@@ -112,6 +112,35 @@ enum Nationality: Int {
                             NSLocalizedString("Vietnam", comment: "")
     ]
 
+    static let flags = [
+        UIImage(named: "Unknown"),
+        UIImage(named: "Australia"),
+        UIImage(named: "Brazil"),
+        UIImage(named: "Canada"),
+        UIImage(named: "China"),
+        UIImage(named: "Egypt"),
+        UIImage(named: "France"),
+        UIImage(named: "Germany"),
+        UIImage(named: "Hong Kong"),
+        UIImage(named: "India"),
+        UIImage(named: "Indonesia"),
+        UIImage(named: "Italia"),
+        UIImage(named: "Japan"),
+        UIImage(named: "Malaysia"),
+        UIImage(named: "New Zealand"),
+        UIImage(named: "Russia"),
+        UIImage(named: "Singapore"),
+        UIImage(named: "South Korea"),
+        UIImage(named: "Spain"),
+        UIImage(named: "Taiwan"),
+        UIImage(named: "The Philippines"),
+        UIImage(named: "Thailand"),
+        UIImage(named: "Turkey"),
+        UIImage(named: "UK"),
+        UIImage(named: "U.S."),
+        UIImage(named: "Vietnam")
+    ]
+
     func string() -> String {
         let index = Nationality.all.firstIndex(of: self) ?? 0
         return Nationality.strings[index]
@@ -170,6 +199,28 @@ enum Language: Int {
                            NSLocalizedString("Vietnamese", comment: "")
     ]
 
+    static let shortStrings  = ["None",
+                               "AR",
+                               "BN",
+                               "CN",
+                               "Canto",
+                               "EN",
+                               "FR",
+                               "DE",
+                               "HI",
+                               "ID",
+                               "IT",
+                               "JP",
+                               "KR",
+                               "PT",
+                               "RU",
+                               "ES",
+                               "TL",
+                               "TH",
+                               "TR",
+                               "VI"
+    ]
+
     func string() -> String {
         let index = Language.all.firstIndex(of: self) ?? 0
         return Language.strings[index]
@@ -205,7 +256,7 @@ enum Method: Int {
     }
 }
 
-enum Level: Int {
+enum Proficiency: Int {
     case None               = 0
     case Beginner           = 1
     case PreIntermediate    = 2
@@ -217,14 +268,14 @@ enum Level: Int {
     static let strings  = [NSLocalizedString("None", comment: ""), NSLocalizedString("Beginner", comment: ""), NSLocalizedString("PreIntermediate", comment: ""), NSLocalizedString("Intermediate", comment: ""), NSLocalizedString("PreAdvanced", comment: ""), NSLocalizedString("Advanced", comment: "")]
 
     func string() -> String {
-        let index = Level.all.firstIndex(of: self) ?? 0
-        return Level.strings[index]
+        let index = Proficiency.all.firstIndex(of: self) ?? 0
+        return Proficiency.strings[index]
     }
 
-    static func fromString(string: String) -> Level {
-        if let index = Level.strings.firstIndex(of: string) {
-            return Level.all[index]
+    static func fromString(string: String) -> Proficiency {
+        if let index = Proficiency.strings.firstIndex(of: string) {
+            return Proficiency.all[index]
         }
-        return Level.None
+        return Proficiency.None
     }
 }

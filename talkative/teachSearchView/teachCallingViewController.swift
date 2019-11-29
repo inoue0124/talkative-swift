@@ -22,7 +22,7 @@ class teachCallingViewController: UIViewController {
     var offerID: String?
     var timer = Timer()
     var offerListener: ListenerRegistration?
-    var selectedChatroom: ChatroomModel?
+    var chatroom: ChatroomModel?
     var avatarImage: UIImage?
 
     @IBOutlet weak var remoteStreamView: SKWVideo!
@@ -70,12 +70,12 @@ class teachCallingViewController: UIViewController {
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showReview" {
             let ReviewVC = segue.destination as! teachReviewViewController
-            ReviewVC.offer = self.offer!
+            ReviewVC.offer = offer!
         }
         if segue.identifier == "showChatroomView" {
             let chatroomVC = segue.destination as! ChatroomViewController
-            chatroomVC.chatroom = self.selectedChatroom
-            chatroomVC.avatarImage = self.avatarImage
+            chatroomVC.chatroom = chatroom
+            chatroomVC.avatarImage = avatarImage
         }
     }
 

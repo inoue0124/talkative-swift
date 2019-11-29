@@ -12,12 +12,12 @@ import Firebase
 struct ChatroomModel {
 
     var chatroomID: String  // uid of firebase
-    var viewableUserIDs: [String]
+    var viewableUserIDs: [String:Bool]
     var latestMsg: String
     var timestamp: Timestamp = Timestamp()
     var updatedAt: Date
 
-    init(chatroomID: String, viewableUserIDs: [String], latestMsg: String = "", updatedAt: Date = Date()) {
+    init(chatroomID: String, viewableUserIDs: [String: Bool], latestMsg: String = "", updatedAt: Date = Date()) {
         self.chatroomID = chatroomID
         self.viewableUserIDs = viewableUserIDs
         self.latestMsg = latestMsg
@@ -26,7 +26,7 @@ struct ChatroomModel {
 
     init(from: QueryDocumentSnapshot) {
         self.chatroomID = from.documentID
-        self.viewableUserIDs = from.get("viewableUserIDs") as? [String] ?? []
+        self.viewableUserIDs = from.get("viewableUserIDs") as? [String: Bool] ?? [:]
         self.latestMsg = from.get("latestMsg") as? String ?? ""
         self.timestamp = from.get("updatedAt") as? Timestamp ?? Timestamp()
         self.updatedAt = timestamp.dateValue()

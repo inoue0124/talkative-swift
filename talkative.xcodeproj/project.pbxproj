@@ -11,9 +11,9 @@
 		3CC88CC274CDFE21DF1512AE /* Pods_talkative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */; };
 		5F447A9537E886BBEC1B0DBB /* Pods_talkative_talkativeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */; };
 		70188E0A235ED15100D2FAB8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70188E0C235ED15100D2FAB8 /* Localizable.strings */; };
-		70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E14235F56C000D2FAB8 /* followeeViewController.swift */; };
-		70188E18235F668D00D2FAB8 /* followeeRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */; };
-		70188E19235F668D00D2FAB8 /* followeeRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */; };
+		70188E15235F56C000D2FAB8 /* followViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E14235F56C000D2FAB8 /* followViewController.swift */; };
+		70188E18235F668D00D2FAB8 /* followRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E16235F668D00D2FAB8 /* followRowTableViewCell.swift */; };
+		70188E19235F668D00D2FAB8 /* followRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70188E17235F668D00D2FAB8 /* followRowTableViewCell.xib */; };
 		701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF3BA234D6E1B006A3F82 /* callingViewController.swift */; };
 		703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 703976BB23577BB100F4207A /* GoogleService-Info.plist */; };
 		70488CD623551A0900B3C1CD /* ChatroomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70488CD523551A0900B3C1CD /* ChatroomModel.swift */; };
@@ -40,8 +40,17 @@
 		70619167237BF9E50028B85D /* teachHistoryView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70619162237BF9E00028B85D /* teachHistoryView.storyboard */; };
 		70619168237BF9E50028B85D /* teachHistoryRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619163237BF9E20028B85D /* teachHistoryRowTableViewCell.swift */; };
 		70619169237BF9E50028B85D /* teachHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619164237BF9E40028B85D /* teachHistoryViewController.swift */; };
-		7061916A237BF9E50028B85D /* teachLearnerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619165237BF9E50028B85D /* teachLearnerDetailViewController.swift */; };
+		7061916A237BF9E50028B85D /* learnerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619165237BF9E50028B85D /* learnerDetailViewController.swift */; };
 		7061916C237BFB5A0028B85D /* historyViewPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7061916B237BFB5A0028B85D /* historyViewPager.storyboard */; };
+		7061917B237F8E040028B85D /* followView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7061917A237F8E040028B85D /* followView.storyboard */; };
+		7061917F2383B9BF0028B85D /* learnerDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7061917E2383B9BF0028B85D /* learnerDetailView.storyboard */; };
+		706191822383BA9A0028B85D /* userDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706191812383BA9A0028B85D /* userDetailView.storyboard */; };
+		706191842383BBA90028B85D /* nativeDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706191832383BBA90028B85D /* nativeDetailView.storyboard */; };
+		70619187238D10C10028B85D /* nativeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619185238D10C00028B85D /* nativeCollectionViewCell.swift */; };
+		70619188238D10C10028B85D /* nativeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70619186238D10C00028B85D /* nativeCollectionViewCell.xib */; };
+		7061918B238FCF830028B85D /* commentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619189238FCF830028B85D /* commentTableViewCell.swift */; };
+		7061918C238FCF830028B85D /* commentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7061918A238FCF830028B85D /* commentTableViewCell.xib */; };
+		7061918E238FD0900028B85D /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7061918D238FD0900028B85D /* CommentModel.swift */; };
 		7065D3BE236B2F9200814310 /* selectRegisterMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7065D3B6236B2F8700814310 /* selectRegisterMethodViewController.swift */; };
 		7065D3C0236B2F9200814310 /* registerProfViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7065D3B8236B2F8A00814310 /* registerProfViewHeader.xib */; };
 		7065D3C1236B2F9200814310 /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7065D3B9236B2F8C00814310 /* signUpViewController.swift */; };
@@ -76,7 +85,7 @@
 		70BD697E236703330063768C /* pointHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD697D236703330063768C /* pointHistoryModel.swift */; };
 		70BD6981236708B70063768C /* walletHistoryRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD697F236708B70063768C /* walletHistoryRowTableViewCell.swift */; };
 		70BD6982236708B70063768C /* walletHistoryRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70BD6980236708B70063768C /* walletHistoryRowTableViewCell.xib */; };
-		70BD698623681E1B0063768C /* followeeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD698523681E1B0063768C /* followeeDetailViewController.swift */; };
+		70BD698623681E1B0063768C /* userDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD698523681E1B0063768C /* userDetailViewController.swift */; };
 		70D9BE26234CB71B004DA3BF /* SearchConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */; };
 		70D9BE2D234CD9BC004DA3BF /* nativeListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */; };
 		70D9BE30234CDE03004DA3BF /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE2F234CDE03004DA3BF /* SearchResultViewController.swift */; };
@@ -105,9 +114,9 @@
 		54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkative_talkativeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70188E0B235ED15100D2FAB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		70188E14235F56C000D2FAB8 /* followeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followeeViewController.swift; sourceTree = "<group>"; };
-		70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followeeRowTableViewCell.swift; sourceTree = "<group>"; };
-		70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = followeeRowTableViewCell.xib; sourceTree = "<group>"; };
+		70188E14235F56C000D2FAB8 /* followViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followViewController.swift; sourceTree = "<group>"; };
+		70188E16235F668D00D2FAB8 /* followRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followRowTableViewCell.swift; sourceTree = "<group>"; };
+		70188E17235F668D00D2FAB8 /* followRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = followRowTableViewCell.xib; sourceTree = "<group>"; };
 		701AF3BA234D6E1B006A3F82 /* callingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callingViewController.swift; sourceTree = "<group>"; };
 		701AF3BC234D7733006A3F82 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		703976BB23577BB100F4207A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -173,8 +182,17 @@
 		70619162237BF9E00028B85D /* teachHistoryView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = teachHistoryView.storyboard; sourceTree = "<group>"; };
 		70619163237BF9E20028B85D /* teachHistoryRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teachHistoryRowTableViewCell.swift; sourceTree = "<group>"; };
 		70619164237BF9E40028B85D /* teachHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teachHistoryViewController.swift; sourceTree = "<group>"; };
-		70619165237BF9E50028B85D /* teachLearnerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teachLearnerDetailViewController.swift; sourceTree = "<group>"; };
+		70619165237BF9E50028B85D /* learnerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = learnerDetailViewController.swift; sourceTree = "<group>"; };
 		7061916B237BFB5A0028B85D /* historyViewPager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = historyViewPager.storyboard; sourceTree = "<group>"; };
+		7061917A237F8E040028B85D /* followView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = followView.storyboard; sourceTree = "<group>"; };
+		7061917E2383B9BF0028B85D /* learnerDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = learnerDetailView.storyboard; sourceTree = "<group>"; };
+		706191812383BA9A0028B85D /* userDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = userDetailView.storyboard; sourceTree = "<group>"; };
+		706191832383BBA90028B85D /* nativeDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = nativeDetailView.storyboard; sourceTree = "<group>"; };
+		70619185238D10C00028B85D /* nativeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nativeCollectionViewCell.swift; sourceTree = "<group>"; };
+		70619186238D10C00028B85D /* nativeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = nativeCollectionViewCell.xib; sourceTree = "<group>"; };
+		70619189238FCF830028B85D /* commentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commentTableViewCell.swift; sourceTree = "<group>"; };
+		7061918A238FCF830028B85D /* commentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = commentTableViewCell.xib; sourceTree = "<group>"; };
+		7061918D238FD0900028B85D /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		7065D3B6236B2F8700814310 /* selectRegisterMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectRegisterMethodViewController.swift; sourceTree = "<group>"; };
 		7065D3B8236B2F8A00814310 /* registerProfViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registerProfViewHeader.xib; sourceTree = "<group>"; };
 		7065D3B9236B2F8C00814310 /* signUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
@@ -215,7 +233,7 @@
 		70BD697D236703330063768C /* pointHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pointHistoryModel.swift; sourceTree = "<group>"; };
 		70BD697F236708B70063768C /* walletHistoryRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletHistoryRowTableViewCell.swift; sourceTree = "<group>"; };
 		70BD6980236708B70063768C /* walletHistoryRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = walletHistoryRowTableViewCell.xib; sourceTree = "<group>"; };
-		70BD698523681E1B0063768C /* followeeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followeeDetailViewController.swift; sourceTree = "<group>"; };
+		70BD698523681E1B0063768C /* userDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDetailViewController.swift; sourceTree = "<group>"; };
 		70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConditionViewController.swift; sourceTree = "<group>"; };
 		70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nativeListRowTableViewCell.swift; sourceTree = "<group>"; };
 		70D9BE2F234CDE03004DA3BF /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +291,7 @@
 				7061914C237B17C30028B85D /* searchButton.gif */,
 				7065D3CC236B30EC00814310 /* Settings.swift */,
 				7065D3D7236C91E200814310 /* UserModel.swift */,
+				7061918D238FD0900028B85D /* CommentModel.swift */,
 				7065D3D1236C5CFA00814310 /* OfferModel.swift */,
 				70488CD523551A0900B3C1CD /* ChatroomModel.swift */,
 				70BD697D236703330063768C /* pointHistoryModel.swift */,
@@ -290,10 +309,64 @@
 				70619145237B0F7A0028B85D /* teachSearchViewController.swift */,
 				70619142237B0F760028B85D /* incomingCallViewNib.xib */,
 				70619144237B0F790028B85D /* teachCallingViewController.swift */,
-				70619141237B0F740028B85D /* teachReviewViewController.swift */,
 				70619152237B1D610028B85D /* teachSearchView.storyboard */,
+				70619141237B0F740028B85D /* teachReviewViewController.swift */,
 			);
 			path = teachSearchView;
+			sourceTree = "<group>";
+		};
+		7061916D237D81E00028B85D /* wallet */ = {
+			isa = PBXGroup;
+			children = (
+				709E39F123636DCB00A74EF0 /* walletViewController.swift */,
+				7061913F237A53370028B85D /* selectPaymentMethodViewController.swift */,
+				70BD697F236708B70063768C /* walletHistoryRowTableViewCell.swift */,
+				70BD6980236708B70063768C /* walletHistoryRowTableViewCell.xib */,
+			);
+			path = wallet;
+			sourceTree = "<group>";
+		};
+		7061916E237D82070028B85D /* follow */ = {
+			isa = PBXGroup;
+			children = (
+				70188E14235F56C000D2FAB8 /* followViewController.swift */,
+				70188E16235F668D00D2FAB8 /* followRowTableViewCell.swift */,
+				70188E17235F668D00D2FAB8 /* followRowTableViewCell.xib */,
+				7061917A237F8E040028B85D /* followView.storyboard */,
+			);
+			path = follow;
+			sourceTree = "<group>";
+		};
+		7061916F237D82260028B85D /* history */ = {
+			isa = PBXGroup;
+			children = (
+				7061915F237BF98A0028B85D /* historyViewPager.swift */,
+				7061916B237BFB5A0028B85D /* historyViewPager.storyboard */,
+				70A4DF76234C8C6800BA2D74 /* HistoryViewController.swift */,
+				70918AB0235C8D3900C18CA2 /* HistoryRowTableViewCell.swift */,
+				70918AB1235C8D3900C18CA2 /* HistoryRowTableViewCell.xib */,
+				70A4DF80234CAB9900BA2D74 /* HistoryView.storyboard */,
+				70619164237BF9E40028B85D /* teachHistoryViewController.swift */,
+				70619163237BF9E20028B85D /* teachHistoryRowTableViewCell.swift */,
+				70619161237BF9DE0028B85D /* teachHistoryRowTableViewCell.xib */,
+				70619162237BF9E00028B85D /* teachHistoryView.storyboard */,
+			);
+			path = history;
+			sourceTree = "<group>";
+		};
+		7061917C2383B8F50028B85D /* userDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				70BD698523681E1B0063768C /* userDetailViewController.swift */,
+				706191812383BA9A0028B85D /* userDetailView.storyboard */,
+				70695287234D697000D936EC /* nativeDetailViewController.swift */,
+				706191832383BBA90028B85D /* nativeDetailView.storyboard */,
+				70619189238FCF830028B85D /* commentTableViewCell.swift */,
+				7061918A238FCF830028B85D /* commentTableViewCell.xib */,
+				70619165237BF9E50028B85D /* learnerDetailViewController.swift */,
+				7061917E2383B9BF0028B85D /* learnerDetailView.storyboard */,
+			);
+			path = userDetailView;
 			sourceTree = "<group>";
 		};
 		70979CEF234DB90000579395 /* Authentication */ = {
@@ -343,8 +416,8 @@
 				70D9BE27234CD87E004DA3BF /* SearchView */,
 				7061914B237B0F830028B85D /* teachSearchView */,
 				70D9BE28234CD891004DA3BF /* MessageView */,
-				70D9BE29234CD89B004DA3BF /* HistoryView */,
 				70D9BE2A234CD8A9004DA3BF /* ProfileView */,
+				7061917C2383B8F50028B85D /* userDetailView */,
 				7059B893234F1414005BB6D4 /* SupportingFiles */,
 				70A4DF4F234C856500BA2D74 /* Assets.xcassets */,
 				70A4DF7E234CAB8B00BA2D74 /* Main.storyboard */,
@@ -378,11 +451,12 @@
 			isa = PBXGroup;
 			children = (
 				70A4DF48234C856300BA2D74 /* SearchViewController.swift */,
-				70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */,
+				70619185238D10C00028B85D /* nativeCollectionViewCell.swift */,
+				70619186238D10C00028B85D /* nativeCollectionViewCell.xib */,
 				70D9BE2F234CDE03004DA3BF /* SearchResultViewController.swift */,
+				70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */,
 				70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */,
 				70616530236ECE8600B26C40 /* nativeListRowTableViewCell.xib */,
-				70695287234D697000D936EC /* nativeDetailViewController.swift */,
 				701AF3BA234D6E1B006A3F82 /* callingViewController.swift */,
 				70979CEB234DB37A00579395 /* ReviewViewController.swift */,
 				70616537236ECEF800B26C40 /* SearchView.storyboard */,
@@ -402,38 +476,15 @@
 			path = MessageView;
 			sourceTree = "<group>";
 		};
-		70D9BE29234CD89B004DA3BF /* HistoryView */ = {
-			isa = PBXGroup;
-			children = (
-				7061915F237BF98A0028B85D /* historyViewPager.swift */,
-				7061916B237BFB5A0028B85D /* historyViewPager.storyboard */,
-				70A4DF76234C8C6800BA2D74 /* HistoryViewController.swift */,
-				70918AB0235C8D3900C18CA2 /* HistoryRowTableViewCell.swift */,
-				70918AB1235C8D3900C18CA2 /* HistoryRowTableViewCell.xib */,
-				70A4DF80234CAB9900BA2D74 /* HistoryView.storyboard */,
-				70619164237BF9E40028B85D /* teachHistoryViewController.swift */,
-				70619163237BF9E20028B85D /* teachHistoryRowTableViewCell.swift */,
-				70619161237BF9DE0028B85D /* teachHistoryRowTableViewCell.xib */,
-				70619162237BF9E00028B85D /* teachHistoryView.storyboard */,
-				70619165237BF9E50028B85D /* teachLearnerDetailViewController.swift */,
-			);
-			path = HistoryView;
-			sourceTree = "<group>";
-		};
 		70D9BE2A234CD8A9004DA3BF /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
 				709E39E82363247000A74EF0 /* ProfileViewController.swift */,
 				7065D3C6236B2FE900814310 /* editProfViewController.swift */,
 				7061653E236ED06600B26C40 /* ProfileView.storyboard */,
-				709E39F123636DCB00A74EF0 /* walletViewController.swift */,
-				70188E14235F56C000D2FAB8 /* followeeViewController.swift */,
-				70BD698523681E1B0063768C /* followeeDetailViewController.swift */,
-				70BD697F236708B70063768C /* walletHistoryRowTableViewCell.swift */,
-				70BD6980236708B70063768C /* walletHistoryRowTableViewCell.xib */,
-				7061913F237A53370028B85D /* selectPaymentMethodViewController.swift */,
-				70188E16235F668D00D2FAB8 /* followeeRowTableViewCell.swift */,
-				70188E17235F668D00D2FAB8 /* followeeRowTableViewCell.xib */,
+				7061916F237D82260028B85D /* history */,
+				7061916D237D81E00028B85D /* wallet */,
+				7061916E237D82070028B85D /* follow */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -567,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70A4DF53234C856500BA2D74 /* LaunchScreen.storyboard in Resources */,
+				706191842383BBA90028B85D /* nativeDetailView.storyboard in Resources */,
 				70A4DF81234CAB9900BA2D74 /* HistoryView.storyboard in Resources */,
 				70616527236ECD6000B26C40 /* registerView.storyboard in Resources */,
 				7065D3C0236B2F9200814310 /* registerProfViewHeader.xib in Resources */,
@@ -576,22 +628,27 @@
 				7061651D236ECA8400B26C40 /* loginView.storyboard in Resources */,
 				703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */,
 				70619147237B0F7B0028B85D /* incomingCallViewNib.xib in Resources */,
+				706191822383BA9A0028B85D /* userDetailView.storyboard in Resources */,
 				70A4DF7F234CAB8B00BA2D74 /* Main.storyboard in Resources */,
 				70A4DF50234C856500BA2D74 /* Assets.xcassets in Resources */,
 				7061653C236ED06600B26C40 /* ProfileView.storyboard in Resources */,
+				7061917F2383B9BF0028B85D /* learnerDetailView.storyboard in Resources */,
 				70616535236ECEF800B26C40 /* SearchView.storyboard in Resources */,
 				7061914E237B17C50028B85D /* searchButton.gif in Resources */,
 				70A551F52359F0C5005F4699 /* Preloader2.gif in Resources */,
-				70188E19235F668D00D2FAB8 /* followeeRowTableViewCell.xib in Resources */,
+				70188E19235F668D00D2FAB8 /* followRowTableViewCell.xib in Resources */,
 				70619167237BF9E50028B85D /* teachHistoryView.storyboard in Resources */,
 				70188E0A235ED15100D2FAB8 /* Localizable.strings in Resources */,
 				7059B8A7234F6BDA005BB6D4 /* chatroomListRowTableViewCell.xib in Resources */,
 				7061916C237BFB5A0028B85D /* historyViewPager.storyboard in Resources */,
+				7061917B237F8E040028B85D /* followView.storyboard in Resources */,
 				70918AB3235C8D3900C18CA2 /* HistoryRowTableViewCell.xib in Resources */,
 				7061652E236ECE8600B26C40 /* nativeListRowTableViewCell.xib in Resources */,
+				70619188238D10C10028B85D /* nativeCollectionViewCell.xib in Resources */,
 				70A551F32359F076005F4699 /* Preloader.gif in Resources */,
 				70619166237BF9E50028B85D /* teachHistoryRowTableViewCell.xib in Resources */,
 				7061914F237B17C50028B85D /* Preloader3.gif in Resources */,
+				7061918C238FCF830028B85D /* commentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,11 +811,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				70BD697E236703330063768C /* pointHistoryModel.swift in Sources */,
-				7061916A237BF9E50028B85D /* teachLearnerDetailViewController.swift in Sources */,
+				7061916A237BF9E50028B85D /* learnerDetailViewController.swift in Sources */,
 				7059B8A6234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift in Sources */,
+				7061918B238FCF830028B85D /* commentTableViewCell.swift in Sources */,
 				70488CD623551A0900B3C1CD /* ChatroomModel.swift in Sources */,
 				70D9BE30234CDE03004DA3BF /* SearchResultViewController.swift in Sources */,
 				7065D3CF236B30EC00814310 /* Settings.swift in Sources */,
+				7061918E238FD0900028B85D /* CommentModel.swift in Sources */,
 				7065D3BE236B2F9200814310 /* selectRegisterMethodViewController.swift in Sources */,
 				7059B8A9234F6EBA005BB6D4 /* chatroomViewController.swift in Sources */,
 				70619160237BF98A0028B85D /* historyViewPager.swift in Sources */,
@@ -769,6 +828,7 @@
 				701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */,
 				70D9BE26234CB71B004DA3BF /* SearchConditionViewController.swift in Sources */,
 				7065D3C1236B2F9200814310 /* signUpViewController.swift in Sources */,
+				70619187238D10C10028B85D /* nativeCollectionViewCell.swift in Sources */,
 				7069528C234D6C8900D936EC /* Uitl.swift in Sources */,
 				70D9BE2D234CD9BC004DA3BF /* nativeListRowTableViewCell.swift in Sources */,
 				70A4DF4B234C856300BA2D74 /* ChatroomListViewController.swift in Sources */,
@@ -778,12 +838,12 @@
 				70979CF9234E2C8400579395 /* extentions.swift in Sources */,
 				7059B899234F1472005BB6D4 /* ImagePickerController.swift in Sources */,
 				7059B89B234F1479005BB6D4 /* ImageRow.swift in Sources */,
-				70BD698623681E1B0063768C /* followeeDetailViewController.swift in Sources */,
+				70BD698623681E1B0063768C /* userDetailViewController.swift in Sources */,
 				70BD6981236708B70063768C /* walletHistoryRowTableViewCell.swift in Sources */,
 				70A4DF49234C856300BA2D74 /* SearchViewController.swift in Sources */,
 				7065D3C4236B2F9200814310 /* registerProfViewController.swift in Sources */,
 				70918AB2235C8D3900C18CA2 /* HistoryRowTableViewCell.swift in Sources */,
-				70188E15235F56C000D2FAB8 /* followeeViewController.swift in Sources */,
+				70188E15235F56C000D2FAB8 /* followViewController.swift in Sources */,
 				70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */,
 				70619169237BF9E50028B85D /* teachHistoryViewController.swift in Sources */,
 				7065D3C3236B2F9200814310 /* logInViewController.swift in Sources */,
@@ -794,7 +854,7 @@
 				7065D3C8236B2FEA00814310 /* editProfViewController.swift in Sources */,
 				7065D3D2236C5CFA00814310 /* OfferModel.swift in Sources */,
 				709E39F223636DCB00A74EF0 /* walletViewController.swift in Sources */,
-				70188E18235F668D00D2FAB8 /* followeeRowTableViewCell.swift in Sources */,
+				70188E18235F668D00D2FAB8 /* followRowTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

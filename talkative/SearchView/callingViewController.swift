@@ -66,7 +66,6 @@ class callingViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        tabBarController?.tabBar.isHidden = false
         mediaConnection?.close()
         peer?.destroy()
         waitingAlert?.hideView()
@@ -165,7 +164,7 @@ class callingViewController: UIViewController {
                     "learnerID" : self.getUserUid(),
                     "learnerName" : self.getUserData().name,
                     "learnerNationality" : self.getUserData().nationality,
-                    "learnerLevel" : self.getUserData().level,
+                    "learnerProficiency" : self.getUserData().proficiency,
                     "learnerRating" : self.getUserData().ratingAsLearner,
                     "learnerImageURL" : self.getUserData().imageURL,
                     "isSelected" : true,

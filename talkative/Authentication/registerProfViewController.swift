@@ -33,7 +33,7 @@ class registerProfViewController: FormViewController {
     let UserData: RealmUserModel = RealmUserModel()
     let registerBonus: Double = 30.0
     var secondLanguage: Int = 0
-    var level: Int = 0
+    var proficiency: Int = 0
     lazy var functions = Functions.functions()
 
 
@@ -109,7 +109,7 @@ class registerProfViewController: FormViewController {
             $0.presentationMode = .segueName(segueName: "registerSecondLanguage", onDismiss: nil)
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
-            cell.detailTextLabel?.text = Language.strings[self.secondLanguage]+":"+Level.strings[self.level]
+            cell.detailTextLabel?.text = Language.strings[self.secondLanguage]+":"+Proficiency.strings[self.proficiency]
         }
     }
 
@@ -117,7 +117,7 @@ class registerProfViewController: FormViewController {
         if segue.identifier == "registerSecondLanguage" {
             let registerSecondLanguageVC = segue.destination as! registerSecondLanguageViewController
             registerSecondLanguageVC.secondLanguage = secondLanguage
-            registerSecondLanguageVC.level = level
+            registerSecondLanguageVC.proficiency = proficiency
         }
     }
 
@@ -177,7 +177,7 @@ class registerProfViewController: FormViewController {
         self.UserData.nationality = Nationality.fromString(string: values["nationality"] as! String).rawValue
         self.UserData.motherLanguage = Language.fromString(string: values["motherLanguage"] as! String).rawValue
         self.UserData.secondLanguage = self.secondLanguage
-        self.UserData.level = self.level
+        self.UserData.proficiency = self.proficiency
         let realm = try! Realm()
         try! realm.write {
           realm.add(UserData)
@@ -195,11 +195,11 @@ class registerProfViewController: FormViewController {
             "nationality": Nationality.fromString(string: values["nationality"] as! String).rawValue,
             "motherLanguage": Language.fromString(string: values["motherLanguage"] as! String).rawValue,
             "secondLanguage": self.secondLanguage,
-            "level": self.level,
-            "ratingAsLearner": 5,
-            "ratingAsNative": 5,
-            "callCountAsLearner": 1,
-            "callCountAsNative": 1,
+            "proficiency": self.proficiency,
+            "ratingAsLearner": 0,
+            "ratingAsNative": 0,
+            "callCountAsLearner": 0,
+            "callCountAsNative": 0,
             "point": self.registerBonus,
             "createdAt": FieldValue.serverTimestamp(),
             "updatedAt": FieldValue.serverTimestamp(),
@@ -226,7 +226,7 @@ class registerSecondLanguageViewController: FormViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var presentingVC: UIViewController?
     var secondLanguage: Int?
-    var level: Int?
+    var proficiency: Int?
 
     @IBAction func tappedSaveButton(_ sender: Any) {
         let values = form.values()
@@ -235,12 +235,12 @@ class registerSecondLanguageViewController: FormViewController {
         let registerProfVC = nc!.viewControllers[vcNum - 2] as! registerProfViewController
         registerProfVC.secondLanguage = Language.fromString(string: values["secondLanguage"] as! String).rawValue
         if Language.fromString(string: values["secondLanguage"] as! String).rawValue == 0 {
-            registerProfVC.level = 0
+            registerProfVC.proficiency = 0
         } else {
-            registerProfVC.level = Level.fromString(string: values["level"] as! String).rawValue
+            registerProfVC.proficiency = Proficiency.fromString(string: values["proficiency"] as! String).rawValue
         }
         if Language.fromString(string: values["secondLanguage"] as! String).rawValue != 0 &&
-            Level.fromString(string: values["level"] as! String).rawValue == 0 {
+            Proficiency.fromString(string: values["proficiency"] as! String).rawValue == 0 {
             SCLAlertView().showError(LString("Error"), subTitle:LString("Please select your level"), closeButtonTitle:LString("OK"))
             return
         }
@@ -266,10 +266,10 @@ class registerSecondLanguageViewController: FormViewController {
         }
 
         <<< PushRow<String> {
-            $0.title = LString("Level")
-            $0.options = Level.strings
-            $0.value = Level.strings[self.level!]
-            $0.tag = "level"
+            $0.title = LString("proficiency")
+            $0.options = Proficiency.strings
+            $0.value = Proficiency.strings[self.proficiency!]
+            $0.tag = "proficiency"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
         }.onPresent { form, selectorController in

@@ -29,16 +29,18 @@ class editProfViewController: FormViewController {
     let profImagesDirRef = Storage.storage().reference().child("profImages")
     var UserData: RealmUserModel?
     var secondLanguage: Int?
-    var level: Int?
+    var proficiency: Int?
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         secondLanguage = getUserData().secondLanguage
-        level = getUserData().level
-        self.navigationItem.title = LString("Edit")
-        self.navigationItem.largeTitleDisplayMode = .never
-        self.navigationItem.hidesBackButton = false
+        proficiency = getUserData().proficiency
+        navigationItem.title = LString("Edit")
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.hidesBackButton = false
+        navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        tabBarController?.tabBar.isHidden = true
         form +++ Section(LString("Basic profile"))
         <<< ImageRow {
             $0.title = LString("PROFILE IMAGE")
@@ -74,21 +76,28 @@ class editProfViewController: FormViewController {
             selectorController.enableDeselection = false
         }
 
-
         <<< DetailedButtonRow {
             $0.title = LString("I am learning")
             $0.presentationMode = .segueName(segueName: "selectSecondLanguage", onDismiss: nil)
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
-            cell.detailTextLabel?.text = Language.strings[self.secondLanguage!]+":"+Level.strings[self.level!]
+            cell.detailTextLabel?.text = Language.strings[self.secondLanguage!]+":"+Proficiency.strings[self.proficiency!]
         }
+
+            +++ Section()
+        <<< ButtonRow {
+            $0.title = LString("save")
+            $0.onCellSelection(self.tappedSaveButton)
+        }.cellUpdate { cell, row in
+                cell.height = ({return 60})
+            }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "selectSecondLanguage" {
             let selectSecondLanguageVC = segue.destination as! selectSecondLanguageViewController
             selectSecondLanguageVC.secondLanguage = secondLanguage!
-            selectSecondLanguageVC.level = level!
+            selectSecondLanguageVC.proficiency = proficiency!
         }
     }
 
@@ -103,7 +112,7 @@ class editProfViewController: FormViewController {
         return true
     }
 
-    @IBAction func tappedSaveButton(_ sender: Any) {
+    func tappedSaveButton(cell: ButtonCellOf<String>, row: ButtonRow) {
         self.showPreloader()
         let values = form.values()
         if self.validateForm(dict: values) {
@@ -145,7 +154,7 @@ class editProfViewController: FormViewController {
                 UserData.profImage = (values["profImage"] as! UIImage).scaledToSafeUploadSize!.jpegData(compressionQuality: 0.1)!
                 UserData.motherLanguage = Language.fromString(string: values["motherLanguage"] as! String).rawValue
                 UserData.secondLanguage = self.secondLanguage!
-                UserData.level = self.level!
+                UserData.proficiency = self.proficiency!
                 UserData.updatedAt = Date()
             }
         }
@@ -156,7 +165,7 @@ class editProfViewController: FormViewController {
             "name": values["name"] as! String,
             "motherLanguage": Language.fromString(string: values["motherLanguage"] as! String).rawValue,
             "secondLanguage": self.secondLanguage!,
-            "level": self.level!,
+            "proficiency": self.proficiency!,
             "updatedAt": FieldValue.serverTimestamp()
         ], merge: true)
     }
@@ -168,7 +177,7 @@ class selectSecondLanguageViewController: FormViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var presentingVC: UIViewController?
     var secondLanguage: Int?
-    var level: Int?
+    var proficiency: Int?
 
     @IBAction func tappedSaveButton(_ sender: Any) {
         let values = form.values()
@@ -177,12 +186,12 @@ class selectSecondLanguageViewController: FormViewController {
         let editProfVC = nc!.viewControllers[vcNum - 2] as! editProfViewController
         editProfVC.secondLanguage = Language.fromString(string: values["secondLanguage"] as! String).rawValue
         if Language.fromString(string: values["secondLanguage"] as! String).rawValue == 0 {
-            editProfVC.level = 0
+            editProfVC.proficiency = 0
         } else {
-            editProfVC.level = Level.fromString(string: values["level"] as! String).rawValue
+            editProfVC.proficiency = Proficiency.fromString(string: values["proficiency"] as! String).rawValue
         }
         if Language.fromString(string: values["secondLanguage"] as! String).rawValue != 0 &&
-            Level.fromString(string: values["level"] as! String).rawValue == 0 {
+            Proficiency.fromString(string: values["proficiency"] as! String).rawValue == 0 {
             SCLAlertView().showError(LString("Error"), subTitle:LString("Please select your level"), closeButtonTitle:LString("OK"))
             return
         }
@@ -209,10 +218,10 @@ class selectSecondLanguageViewController: FormViewController {
         }
 
         <<< PushRow<String> {
-            $0.title = LString("Level")
-            $0.options = Level.strings
-            $0.value = Level.strings[self.level!]
-            $0.tag = "level"
+            $0.title = LString("proficiency")
+            $0.options = Proficiency.strings
+            $0.value = Proficiency.strings[self.proficiency!]
+            $0.tag = "proficiency"
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
         }.onPresent { form, selectorController in

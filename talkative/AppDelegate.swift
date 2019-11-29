@@ -18,17 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        do {
-//            try Auth.auth().signOut()
-//        } catch let error {
-//            print(error)
-//        }
-//        var config = Realm.Configuration()
-//        config.deleteRealmIfMigrationNeeded = true
-//        let realm = try! Realm(configuration: config)
+        var config = Realm.Configuration()
+        config.deleteRealmIfMigrationNeeded = true
+        let realm = try! Realm(configuration: config)
 //        try! realm.write {
 //            realm.deleteAll()
 //        }
+        if realm.isEmpty {
+            do {
+                try Auth.auth().signOut()
+            } catch let error {
+                print(error)
+            }
+        }
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
                 self.window = UIWindow(frame: UIScreen.main.bounds)

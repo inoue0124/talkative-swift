@@ -56,8 +56,11 @@
 
 // ProfileView
 "Profile" = "Profile";
-"Followee" = "Followee";
-"Wallet" = "Wallet";
+"followee" = "Followee";
+"follower" = "Follower";
+"Purchase points" = "Purchase points";
+"Withdraw" = "Withdraw";
+"Points" = "Points";
 "SIGN OUT" = "SIGN OUT";
 "Are you going to sign out?" = "Are you going to sign out?";
 "Edit" = "Edit";
@@ -124,7 +127,7 @@
 "Login bonus" = "Login bonus";
 "Purchase" = "Purchase";
 
-// level
+// proficiency
 "Beginner" = "Beginner";
 "PreIntermediate" = "PreIntermediate";
 "Intermediate" = "Intermediate";
