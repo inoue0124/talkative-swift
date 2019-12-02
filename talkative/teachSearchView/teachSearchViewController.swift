@@ -55,29 +55,30 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
 
     @objc func applicationWillTerminate(_ notification: Notification?) {
         if let offerID = self.offerID {
-            self.offersDb.document(offerID).setData(["isOnline" : false], merge: true)
+            offersDb.document(offerID).setData(["isOnline" : false], merge: true)
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupLocationManager()
-        self.MapView.region.span.latitudeDelta = 120
-        self.MapView.region.span.longitudeDelta = 120
+        setupLocationManager()
+        MapView.region.span.latitudeDelta = 120
+        MapView.region.span.longitudeDelta = 120
         //self.MapView.isZoomEnabled = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         tabBarController?.tabBar.isHidden = false
+        largeTitle(LString("先生を見つける"))
         let realm = try! Realm()
         if realm.objects(RealmUserModel.self).isEmpty {
             return
         }
-        self.targetLanguage.text = Language.strings[self.getUserData().motherLanguage]
+        targetLanguage.text = Language.strings[self.getUserData().motherLanguage]
         searchButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(teachSearchViewController.searchButtonTapped(_:))))
         changeButtonState()
-        self.usersDB.whereField("secondLanguage", isEqualTo: self.getUserData().motherLanguage).whereField("isOnline", isEqualTo: true).getDocuments() { snapshot, error in
+        usersDB.whereField("secondLanguage", isEqualTo: self.getUserData().motherLanguage).whereField("isOnline", isEqualTo: true).getDocuments() { snapshot, error in
             if let _error = error {
                 print("error\(_error)")
                 return
@@ -103,19 +104,19 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
             return
         }
         timeStepper.value = Double(offerTime)
-        self.instructionLabel.center.y = -65
+        instructionLabel.center.y = -65
         UIView.animate(withDuration: 1.0, delay: 0.0, animations: {
             self.instructionLabel.center.y = 65
         }, completion: nil)
-        self.reloadUserRating()
+        reloadUserRatingNative()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        self.instructionLabel.center.y = -65
+        instructionLabel.center.y = -65
     }
 
     @objc func searchButtonTapped(_ sender: UITapGestureRecognizer) {
-        self.checkUnpaidOfferNative() { result in
+        checkUnpaidOfferNative() { result in
             self.isUnpaid = result
             self.offerListener?.remove()
             guard let user = Auth.auth().currentUser else { return }
@@ -134,7 +135,7 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
                     }
                     self.changeButtonState()
                     self.makeOffer()
-                    self.usersDB.document(self.getUserUid()).setData(["isOffering" : true, "offeringTime": self.offerTime], merge: true)
+                    self.usersDB.document(self.getUserUid()).setData(["isOffering" : true, "offeringTime": self.offerTime, "lastOnlineAt": FieldValue.serverTimestamp()], merge: true)
                     self.listenOffer()
                 } else {
                     self.changeButtonState()
@@ -199,7 +200,8 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
             "nativeProficiency": getUserData().proficiency,
             "isOnline": true,
             "createdAt" : FieldValue.serverTimestamp(),
-            //"fcmToken" : UserDefaults.standard.string(forKey: "FCM_TOKEN")!
+            "canExtend": true,
+            "fcmToken" : UserDefaults.standard.string(forKey: "FCM_TOKEN")!
         ], merge: true)
     }
 
@@ -210,17 +212,17 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
                 return
             }
             guard let documents = snapshot?.documents else { return }
-            let offerData = documents.map{ OfferModel(from: $0) }
-            if offerData[0].peerID != "" {
-                self.chatroomsDb.whereField("viewableUserIDs." + self.getUserUid(), isEqualTo: true).whereField("viewableUserIDs." + offerData[0].nativeID, isEqualTo: true).getDocuments() { (querySnapshot, err) in
+            self.offer = documents.map{ OfferModel(from: $0) }[0]
+            if self.offer!.peerID != "" {
+                self.chatroomsDb.whereField("viewableUserIDs." + self.getUserUid(), isEqualTo: true).whereField("viewableUserIDs." + self.offer!.learnerID, isEqualTo: true).getDocuments() { (querySnapshot, err) in
                     if let _err = err {
                         self.showError(_err)
                     } else if querySnapshot!.documents.isEmpty {
-                        self.chatroom = ChatroomModel(chatroomID: self.chatroomsDb.document().documentID, viewableUserIDs: [self.getUserUid():true, offerData[0].learnerID:true])
+                        self.chatroom = ChatroomModel(chatroomID: self.chatroomsDb.document().documentID, viewableUserIDs: [self.getUserUid():true, self.offer!.learnerID:true], viewableUserNames: [self.getUserUid(): self.getUserData().name, self.offer!.learnerID: self.offer!.learnerName])
                     } else {
                         self.chatroom = ChatroomModel(from: querySnapshot!.documents[0])
                     }
-                    self.showAlert(offerData: offerData[0])
+                    self.showAlert(offerData: self.offer!)
                 }
             } else {
                 self.incomingAlert?.hideView()
@@ -279,6 +281,7 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
             callVC.mediaConnection = mediaConnection
             callVC.offerID = offerID!
             callVC.chatroom = chatroom
+            callVC.chatPartnerName = offer!.learnerName
             callVC.avatarImage = avatarImage
         }
     }
@@ -325,9 +328,9 @@ class incomingCallViewNib: UIView {
     }
 
     func setData(offer: OfferModel) {
-        self.setImage(uid: offer.learnerID, imageView: imageView)
+        setImage(uid: offer.learnerID, imageView: imageView)
         imageView.layer.cornerRadius = 40
-        self.makeFlagImageView(imageView: self.nationalFlag, nationality: offer.learnerNationality, radius: 12.5)
+        makeFlagImageView(imageView: nationalFlag, nationality: offer.learnerNationality, radius: 12.5)
         name.text = offer.learnerName
         rating.text = String(format: "%.1f", offer.learnerRating)
         secondLanguage.text = Language.shortStrings[offer.targetLanguage]

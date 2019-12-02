@@ -19,11 +19,11 @@ class logInViewController: UIViewController, UITextFieldDelegate {
     let Usersdb = Firestore.firestore().collection("Users")
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.emailTextField.placeholder = LString("EMAIL")
-        self.passwordTextField.placeholder = LString("PASSWORD")
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        emailTextField.placeholder = LString("EMAIL")
+        passwordTextField.placeholder = LString("PASSWORD")
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
@@ -34,7 +34,7 @@ class logInViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction private func didTapSignInButton() {
-        self.showPreloader()
+        showPreloader()
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
 
@@ -62,18 +62,20 @@ class logInViewController: UIViewController, UITextFieldDelegate {
             if !downloadedUserData.isEmpty {
                 let UserData: RealmUserModel = RealmUserModel()
                 UserData.uid = downloadedUserData[0].uid
-                UserData.name = downloadedUserData[0].name
-                UserData.imageURL = downloadedUserData[0].imageURL.absoluteString
                 UserData.profImage = UIImage(url: downloadedUserData[0].imageURL).jpegData(compressionQuality: 1.0)!
+                UserData.imageURL = downloadedUserData[0].imageURL.absoluteString
+                UserData.name = downloadedUserData[0].name
                 UserData.gender = downloadedUserData[0].gender
                 UserData.birthDate = downloadedUserData[0].birthDate
                 UserData.isRegisteredProf = true
-                UserData.createdAt = downloadedUserData[0].createdAt
-                UserData.updatedAt = downloadedUserData[0].updatedAt
                 UserData.nationality = downloadedUserData[0].nationality
                 UserData.motherLanguage = downloadedUserData[0].motherLanguage
                 UserData.secondLanguage = downloadedUserData[0].secondLanguage
                 UserData.proficiency = downloadedUserData[0].proficiency
+                UserData.ratingAsLearner = downloadedUserData[0].ratingAsLearner
+                UserData.ratingAsNative = downloadedUserData[0].ratingAsNative
+                UserData.createdAt = downloadedUserData[0].createdAt
+                UserData.updatedAt = downloadedUserData[0].updatedAt
                 let realm = try! Realm()
                 try! realm.write {
                     realm.deleteAll()

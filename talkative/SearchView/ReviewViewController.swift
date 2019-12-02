@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseFirestore
 
-class ReviewViewController: UIViewController, UITextViewDelegate {
+class ReviewViewController: UIViewController {
 
     var offer: OfferModel?
     @IBOutlet weak var backHomeButton: UIButton!
@@ -22,44 +22,58 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var star4: UIButton!
     @IBOutlet weak var star5: UIButton!
+    @IBOutlet weak var acceptedAt: UILabel!
+    @IBOutlet weak var finishedAt: UILabel!
+    @IBOutlet weak var timeDuration: UILabel!
+    @IBOutlet weak var payPoint: UILabel!
     var rating: Int!
     let offersDb = Firestore.firestore().collection("offers")
     let Usersdb = Firestore.firestore().collection("Users")
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (self.commentField.isFirstResponder) {
-            self.commentField.resignFirstResponder()
-        }
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.commentField.resignFirstResponder()
-        return true
-    }
+    lazy var timeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        formatter.dateStyle = .none
+        return formatter
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        commentField.delegate = self
-        self.backHomeButton.setTitle(LString("Back to home"), for:.normal)
-        self.backHomeButton.isEnabled = false
-        self.NativeName.text = self.offer!.nativeName
-        self.NativeThumbnail.image = UIImage.gif(name: "Preloader")
-        self.setImage(uid: offer!.nativeID, imageView: self.NativeThumbnail)
-        self.makeFlagImageView(imageView: nationalFlag, nationality: self.offer!.nativeNationality, radius: 12.5)
-        self.designTextView(textView: commentField)
+        commentField.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
+        backHomeButton.setTitle(LString("Back to home"), for:.normal)
+        backHomeButton.backgroundColor = UIColor.lightGray
+        backHomeButton.isEnabled = false
+        NativeName.text = offer!.nativeName
+        setImage(uid: offer!.nativeID, imageView: NativeThumbnail)
+        NativeThumbnail.layer.cornerRadius = 50
+        makeFlagImageView(imageView: nationalFlag, nationality: offer!.nativeNationality, radius: 12.5)
+        designTextView(textView: commentField)
+        acceptedAt.text = timeFormatter.string(from: offer!.acceptedAt)
+        finishedAt.text = timeFormatter.string(from: offer!.finishedAt)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "mm分ss秒"
+        let duration = offer!.finishedAt.timeIntervalSince(offer!.acceptedAt)
+        timeDuration.text = formatter.string(from: Date(timeIntervalSinceReferenceDate: duration))
+        payPoint.text = String(format: "%.1fP", duration / 60)
     }
 
+    @objc func tapDone(sender: Any) {
+        view.endEditing(true)
+    } 
+
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         tabBarController?.tabBar.isHidden = true
     }
 
     @IBAction func tappedBackHomeButton(_ sender: Any) {
-        self.offersDb.document(self.offer!.offerID).setData([
-            "ratingForNative" : self.rating!,
-            "flagWithdrawFromLearner" : true
+        offersDb.document(offer!.offerID).setData([
+            "ratingForNative" : rating!,
+            "flagWithdrawFromLearner" : true,
+            "commentForNative": commentField.text ?? ""
         ], merge: true)
-        self.navigationController?.popToRootViewController(animated: true)
+
+        navigationController?.popToRootViewController(animated: true)
     }
 
     @IBAction func tappedStar1(_ sender: Any) {
@@ -68,8 +82,9 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         star3.setImage(UIImage(named: "star"), for: .normal)
         star4.setImage(UIImage(named: "star"), for: .normal)
         star5.setImage(UIImage(named: "star"), for: .normal)
-        self.rating = 1
-        self.backHomeButton.isEnabled = true
+        rating = 1
+        backHomeButton.isEnabled = true
+        backHomeButton.backgroundColor = UIColor.blue
     }
     @IBAction func tappedStar2(_ sender: Any) {
         star1.setImage(UIImage(named: "star_fill"), for: .normal)
@@ -77,8 +92,9 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         star3.setImage(UIImage(named: "star"), for: .normal)
         star4.setImage(UIImage(named: "star"), for: .normal)
         star5.setImage(UIImage(named: "star"), for: .normal)
-        self.rating = 2
-        self.backHomeButton.isEnabled = true
+        rating = 2
+        backHomeButton.isEnabled = true
+        backHomeButton.backgroundColor = UIColor.blue
     }
     @IBAction func tappedStar3(_ sender: Any) {
         star1.setImage(UIImage(named: "star_fill"), for: .normal)
@@ -86,8 +102,9 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         star3.setImage(UIImage(named: "star_fill"), for: .normal)
         star4.setImage(UIImage(named: "star"), for: .normal)
         star5.setImage(UIImage(named: "star"), for: .normal)
-        self.rating = 3
-        self.backHomeButton.isEnabled = true
+        rating = 3
+        backHomeButton.isEnabled = true
+        backHomeButton.backgroundColor = UIColor.blue
     }
     @IBAction func tappedStar4(_ sender: Any) {
         star1.setImage(UIImage(named: "star_fill"), for: .normal)
@@ -95,8 +112,9 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         star3.setImage(UIImage(named: "star_fill"), for: .normal)
         star4.setImage(UIImage(named: "star_fill"), for: .normal)
         star5.setImage(UIImage(named: "star"), for: .normal)
-        self.rating = 4
-        self.backHomeButton.isEnabled = true
+        rating = 4
+        backHomeButton.isEnabled = true
+        backHomeButton.backgroundColor = UIColor.blue
     }
     @IBAction func tappedStar5(_ sender: Any) {
         star1.setImage(UIImage(named: "star_fill"), for: .normal)
@@ -104,7 +122,8 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         star3.setImage(UIImage(named: "star_fill"), for: .normal)
         star4.setImage(UIImage(named: "star_fill"), for: .normal)
         star5.setImage(UIImage(named: "star_fill"), for: .normal)
-        self.rating = 5
-        self.backHomeButton.isEnabled = true
+        rating = 5
+        backHomeButton.isEnabled = true
+        backHomeButton.backgroundColor = UIColor.blue
     }
 }

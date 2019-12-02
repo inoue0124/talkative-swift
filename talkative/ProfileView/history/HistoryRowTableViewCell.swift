@@ -29,13 +29,13 @@ class HistoryRowTableViewCell: UITableViewCell {
     }()
 
     func setRowData(numOfCells: IndexPath, history: OfferModel){
-        self.Thumbnail.layer.cornerRadius = 30
-        self.Name.text = String(history.nativeName)
-        self.finishedDate.text = formatter.string(from: history.finishedAt)
-        self.resetStars()
-        self.drawStars(rating: history.ratingForNative)
-        self.setImage(uid: history.nativeID, imageView: Thumbnail)
-        self.makeFlagImageView(imageView: self.nationalFlag, nationality: history.nativeNationality, radius: 10)
+        Thumbnail.layer.cornerRadius = 30
+        Name.text = String(history.nativeName)
+        finishedDate.text = formatter.string(from: history.finishedAt)
+        resetStars()
+        drawStars(rating: history.ratingForNative)
+        setImage(uid: history.nativeID, imageView: Thumbnail)
+        makeFlagImageView(imageView: nationalFlag, nationality: history.nativeNationality, radius: 10)
     }
 
     func resetStars() {

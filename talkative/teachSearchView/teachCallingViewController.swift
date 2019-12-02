@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import SkyWay
 import FirebaseFirestore
+import SCLAlertView
 
 class teachCallingViewController: UIViewController {
     var offer: OfferModel?
@@ -23,13 +24,20 @@ class teachCallingViewController: UIViewController {
     var timer = Timer()
     var offerListener: ListenerRegistration?
     var chatroom: ChatroomModel?
+    var chatPartnerName: String?
     var avatarImage: UIImage?
+    var isMute = false
+    var isMuteVideo = false
 
     @IBOutlet weak var remoteStreamView: SKWVideo!
     @IBOutlet weak var localStreamView: SKWVideo!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var endCallButton: UIButton!
-
+    @IBOutlet weak var muteButton: UIButton!
+    @IBOutlet weak var muteVideoButton: UIButton!
+    @IBOutlet weak var switchCameraButton: UIButton!
+    @IBOutlet weak var localImage: UIImageView!
+    @IBOutlet weak var remoteImage: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +75,42 @@ class teachCallingViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
+    @IBAction func tappedMuteButton(_ sender: Any) {
+        isMute.toggle()
+        if isMute {
+            muteButton.tintColor = UIColor.blue
+            localStream?.setEnableAudioTrack(0, enable: false)
+        } else {
+            muteButton.tintColor = UIColor.gray
+            localStream?.setEnableAudioTrack(0, enable: true)
+        }
+    }
+
+    @IBAction func tappedVideoButton(_ sender: Any) {
+        isMuteVideo.toggle()
+        if isMuteVideo {
+            muteVideoButton.tintColor = UIColor.blue
+            localStream?.setEnableVideoTrack(0, enable: false)
+            localImage.image = UIImage(named: "muteVideo_button")
+        } else {
+            let appearance = SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            )
+            let videoAlert = SCLAlertView(appearance: appearance)
+            videoAlert.addButton(self.LString("OK")) {
+                self.muteVideoButton.tintColor = UIColor.gray
+                self.localStream?.setEnableVideoTrack(0, enable: true)
+                self.localImage.image = nil
+            }
+            videoAlert.addButton(self.LString("Cancel")) { return }
+            videoAlert.showInfo(self.LString("Confirm video usage"), subTitle:self.LString("Do you want to turn on the camera?"), closeButtonTitle: nil)
+        }
+    }
+
+    @IBAction func tappedSwitchCameraButton(_ sender: Any) {
+        localStream?.switchCamera()
+    }
+
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showReview" {
             let ReviewVC = segue.destination as! teachReviewViewController
@@ -76,6 +120,7 @@ class teachCallingViewController: UIViewController {
             let chatroomVC = segue.destination as! ChatroomViewController
             chatroomVC.chatroom = chatroom
             chatroomVC.avatarImage = avatarImage
+            chatroomVC.chatPartnerName = chatPartnerName
         }
     }
 

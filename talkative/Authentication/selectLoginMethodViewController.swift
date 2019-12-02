@@ -67,17 +67,20 @@ class selectLoginMethodViewController: UIViewController, LoginButtonDelegate {
             if !downloadedUserData.isEmpty {
                 let UserData: RealmUserModel = RealmUserModel()
                 UserData.uid = downloadedUserData[0].uid
-                UserData.name = downloadedUserData[0].name
-                UserData.imageURL = downloadedUserData[0].imageURL.absoluteString
                 UserData.profImage = UIImage(url: downloadedUserData[0].imageURL).jpegData(compressionQuality: 1.0)!
+                UserData.imageURL = downloadedUserData[0].imageURL.absoluteString
+                UserData.name = downloadedUserData[0].name
                 UserData.gender = downloadedUserData[0].gender
                 UserData.birthDate = downloadedUserData[0].birthDate
                 UserData.isRegisteredProf = true
-                UserData.createdAt = downloadedUserData[0].createdAt
-                UserData.updatedAt = downloadedUserData[0].updatedAt
                 UserData.nationality = downloadedUserData[0].nationality
                 UserData.motherLanguage = downloadedUserData[0].motherLanguage
                 UserData.secondLanguage = downloadedUserData[0].secondLanguage
+                UserData.proficiency = downloadedUserData[0].proficiency
+                UserData.ratingAsLearner = downloadedUserData[0].ratingAsLearner
+                UserData.ratingAsNative = downloadedUserData[0].ratingAsNative
+                UserData.createdAt = downloadedUserData[0].createdAt
+                UserData.updatedAt = downloadedUserData[0].updatedAt
                 let realm = try! Realm()
                 try! realm.write {
                     realm.deleteAll()

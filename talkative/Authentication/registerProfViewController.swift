@@ -185,7 +185,6 @@ class registerProfViewController: FormViewController {
     }
 
     func saveToFirestore(uid: String, values: [String : Any?]) {
-        let pointHistoryDB = Usersdb.document(uid).collection("pointHistory")
         self.Usersdb.document(uid).setData([
             "uid": uid,
             "name": values["name"] as! String,
@@ -200,15 +199,8 @@ class registerProfViewController: FormViewController {
             "ratingAsNative": 0,
             "callCountAsLearner": 0,
             "callCountAsNative": 0,
-            "point": self.registerBonus,
             "createdAt": FieldValue.serverTimestamp(),
             "updatedAt": FieldValue.serverTimestamp(),
-            "lastLoginBonus": FieldValue.serverTimestamp(),
-        ], merge: true)
-        pointHistoryDB.document().setData([
-            "point": self.registerBonus,
-            "method": Method.Bonus.rawValue,
-            "createdAt": FieldValue.serverTimestamp()
         ], merge: true)
         let alert = SCLAlertView()
         _ = alert.showSuccess(LString("Thank you for your registration!"), subTitle: String(format: LString("Got %.1f points!"), self.registerBonus))

@@ -261,6 +261,7 @@ DEPENDENCIES:
   - MessageKit
   - RealmSwift
   - SCLAlertView
+  - SDWebImage
   - SkyWay
   - Stripe
   - SwiftGifOrigin (~> 1.7.0)
@@ -366,6 +367,6 @@ SPEC CHECKSUMS:
   SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: af10b1ada5ff5dbc36ace365a9c1d75d461908d8
+PODFILE CHECKSUM: edd666cdb5476040360840f8be8bc59ef0a2d47a
 
 COCOAPODS: 1.8.1

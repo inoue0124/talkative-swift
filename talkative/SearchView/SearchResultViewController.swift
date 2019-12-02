@@ -86,6 +86,7 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
             let DetailVC = segue.destination as! userDetailViewController
             DetailVC.user = self.native
             DetailVC.offer = self.selectedOffer
+            DetailVC.tabIndex = 0
         }
     }
 

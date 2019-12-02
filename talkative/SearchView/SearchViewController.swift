@@ -52,7 +52,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
         navigationController?.setNavigationBarHidden(false, animated: false)
         tabBarController?.tabBar.isHidden = false
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        largeTitle(LString("先生を探す"))
+        largeTitle(LString("先生を見つける"))
         let realm = try! Realm()
         if realm.objects(RealmUserModel.self).isEmpty {
             return
@@ -73,6 +73,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
                 return
             }
             self.natives = documents.map{ UserModel(from: $0) }
+            self.natives!.sort{ $0.lastOnlineAt > $1.lastOnlineAt }
             self.MapView.removeAnnotations(self.MapView.annotations)
             for native in self.natives! {
                 self.native = native
@@ -88,7 +89,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
         if realm.objects(RealmUserModel.self).isEmpty {
             return
         }
-        self.reloadUserRating()
+        self.reloadUserRatingLearner()
     }
 
 
@@ -132,6 +133,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
         if segue.identifier == "showNativeDetailView" {
             let DetailVC = segue.destination as! userDetailViewController
             DetailVC.user = native
+            DetailVC.tabIndex = 0
             //DetailVC.offer = self.selectedOffer
         }
     }

@@ -32,14 +32,14 @@ class followViewController: UIViewController, UITableViewDelegate , UITableViewD
         userTable.delegate = self
         userTable.register(UINib(nibName: "followRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
         Usersdb.document(getUserUid()).collection(followeeORfollower!).getDocuments() { snapshot, error in
-         if let _error = error {
-             print("error\(_error)")
-             return
-         }
-         guard let documents = snapshot?.documents else {
-         print("error")
-            return
-        }
+            if let _error = error {
+                print("error\(_error)")
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                print("error")
+                return
+            }
             self.users = documents.map{ UserModel(from: $0) }
             self.userTable.reloadData()
         }
@@ -47,7 +47,7 @@ class followViewController: UIViewController, UITableViewDelegate , UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt numOfCells: IndexPath) -> UITableViewCell {
         let tableContent = tableView.dequeueReusableCell(withIdentifier: "recycleCell", for: numOfCells) as! followRowTableViewCell
-        tableContent.setRowData(numOfCells: numOfCells, user: self.users![numOfCells.row])
+        tableContent.setRowData(numOfCells: numOfCells, user: users![numOfCells.row])
         return tableContent
     }
 
@@ -57,16 +57,28 @@ class followViewController: UIViewController, UITableViewDelegate , UITableViewD
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        user = users![indexPath.row]
+        Usersdb.whereField("uid", isEqualTo: users![indexPath.row].uid).getDocuments() { snapshot, error in
+            if let _error = error {
+                print("error\(_error)")
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                print("error")
+                return
+            }
+            self.user = documents.map{ UserModel(from: $0) }[0]
+            self.userTable.reloadData()
+            self.performSegue(withIdentifier: "nativeDetail", sender: nil)
+        }
         tableView.allowsSelection = false
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "nativeDetail", sender: nil)
-       }
+    }
 
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "nativeDetail" {
             let userDetailVC = segue.destination as! userDetailViewController
-            userDetailVC.user = self.user!
+            userDetailVC.user = user!
+            userDetailVC.tabIndex = 0
         }
     }
 }

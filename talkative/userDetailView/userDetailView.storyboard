@@ -38,18 +38,23 @@
                                             <constraint firstAttribute="height" constant="50" id="HG2-6a-ld4"/>
                                             <constraint firstAttribute="width" constant="50" id="dMh-B3-Ip6"/>
                                         </constraints>
+                                        <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button" image="video_button"/>
                                         <connections>
-                                            <action selector="tappedCallButton:" destination="YN6-vY-cbJ" eventType="touchUpInside" id="S7m-5D-Dww"/>
+                                            <action selector="tappedVideoButton:" destination="YN6-vY-cbJ" eventType="touchUpInside" id="wqJ-Em-nQq"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vyq-dd-1DX">
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vyq-dd-1DX">
                                         <rect key="frame" x="80" y="40" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="c6X-cU-BZT"/>
                                             <constraint firstAttribute="height" constant="50" id="vuD-Gv-F8H"/>
                                         </constraints>
+                                        <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button" image="call_button"/>
+                                        <connections>
+                                            <action selector="tappedCallButton:" destination="YN6-vY-cbJ" eventType="touchUpInside" id="Qec-dh-sQs"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="授業を受ける!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uB-z8-tBU">
                                         <rect key="frame" x="6" y="10" width="128" height="24"/>
@@ -240,11 +245,22 @@
                         <outlet property="videoButton" destination="BhS-AZ-Bqx" id="iRm-ng-j5t"/>
                         <segue destination="Uzr-iC-099" kind="show" identifier="showChatroom" id="mxS-HR-iqm"/>
                         <segue destination="VGW-zT-Q1L" kind="show" identifier="show_media" id="kcz-WL-aMo"/>
+                        <segue destination="eYf-kJ-D29" kind="show" identifier="showReviewView" id="ret-0r-sgJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWc-GV-WE1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3013" y="123"/>
+        </scene>
+        <!--reviewView-->
+        <scene sceneID="3Pp-IY-W2i">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SearchView" referencedIdentifier="reviewView" id="eYf-kJ-D29" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="hg3-sk-hfQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FvA-Bi-YBv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3845" y="52"/>
         </scene>
         <!--callingView-->
         <scene sceneID="yt7-Jg-VIZ">
@@ -268,9 +284,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="call_button" width="128" height="128"/>
+        <image name="call_button" width="64" height="64"/>
         <image name="study" width="16" height="16"/>
         <image name="teach" width="16" height="16"/>
-        <image name="video_button" width="128" height="128"/>
+        <image name="video_button" width="64" height="64"/>
     </resources>
 </document>

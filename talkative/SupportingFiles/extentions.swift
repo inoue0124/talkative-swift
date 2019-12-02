@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import SCLAlertView
+import SDWebImage
 
 extension UITableViewCell {
     func getUserData() -> RealmUserModel {
@@ -89,7 +90,7 @@ extension UIView {
 
 extension UIViewController {
     func designTextView(textView: UITextView) {
-        textView.layer.borderColor = UIColor.blue.cgColor
+        textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.borderWidth = 1.0
         textView.layer.cornerRadius = 10.0
         textView.layer.masksToBounds = true
@@ -193,9 +194,7 @@ extension UIViewController {
                 return
             }
             var offers = documents.map{ OfferModel(from: $0) }
-            print(offers)
             offers = offers.filter{ $0.flagPayForNative == false && $0.isAccepted == true}
-            print(offers)
             if !offers.isEmpty {
                 let alert = SCLAlertView()
                 alert.addButton(self.LString("OK")) { return }
@@ -206,10 +205,37 @@ extension UIViewController {
             }
         }
     }
+    func checkUnpaidOfferLearner(completion: @escaping (Bool, OfferModel?) -> ()) {
+        let offersDB = Firestore.firestore().collection("offers")
+        offersDB.whereField("learnerID", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
+            if let _error = error {
+                self.showError(_error)
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                return
+            }
+            var offers = documents.map{ OfferModel(from: $0) }
+            offers = offers.filter{ $0.flagWithdrawFromLearner == false && $0.isAccepted == true}
+            print(offers)
+            if !offers.isEmpty {
+                let alert = SCLAlertView()
+                alert.addButton(self.LString("Go to evaluate")) {
+                    self.performSegue(withIdentifier: "showReviewView", sender: nil)
+                }
+                alert.addButton(self.LString("Cancel")) { return }
+                alert.showError(self.LString("Confirm payment"), subTitle: self.LString("未評価の授業があります。"))
+                self.dissmisPreloader()
+                completion(true, offers[0])
+            } else {
+                completion(false, nil)
+            }
+        }
+    }
 }
 
 extension UIViewController {
-    func reloadUserRating() {
+    func reloadUserRatingNative() {
         let usersDB = Firestore.firestore().collection("Users")
         usersDB.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
             if let _error = error {
@@ -227,6 +253,42 @@ extension UIViewController {
                     UserData.ratingAsNative = downloadedUserData[0].ratingAsNative
                 }
             }
+        }
+    }
+    func reloadUserRatingLearner() {
+        let usersDB = Firestore.firestore().collection("Users")
+        usersDB.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
+            if let _error = error {
+                self.showError(_error)
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                return
+            }
+            let downloadedUserData = documents.map{ UserModel(from: $0) }
+            let realm = try! Realm()
+            let UserData = realm.objects(RealmUserModel.self)
+            if let UserData = UserData.first {
+                try! realm.write {
+                    UserData.ratingAsLearner = downloadedUserData[0].ratingAsLearner
+                }
+            }
+        }
+    }
+}
+
+extension UIViewController {
+    func getTopViewController() -> UIViewController? {
+        if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
+            var topViewController: UIViewController = rootViewController
+
+            while let presentedViewController = topViewController.presentedViewController {
+                topViewController = presentedViewController
+            }
+
+            return topViewController
+        } else {
+            return nil
         }
     }
 }
@@ -266,6 +328,20 @@ extension UIViewController {
         let ref = storageRef.child("profImages/\(uid).jpg")
         imageView?.sd_setImage(with: ref, placeholderImage: nil)
     }
+}
+
+extension UIImageView {
+ func load(url: URL) {
+   DispatchQueue.global().async { [weak self] in
+       if let data = try? Data(contentsOf: url) {
+           if let image = UIImage(data: data) {
+               DispatchQueue.main.async {
+                   self?.image = image
+               }
+           }
+       }
+    }
+  }
 }
 
 enum BorderPosition {
@@ -325,7 +401,7 @@ extension UIViewController {
 extension UIImage {
     
     var scaledToSafeUploadSize: UIImage? {
-      let maxImageSideLength: CGFloat = 100
+      let maxImageSideLength: CGFloat = 300
 
       let largerSide: CGFloat = max(size.width, size.height)
       let ratioScale: CGFloat = largerSide > maxImageSideLength ? largerSide / maxImageSideLength : 1
@@ -385,6 +461,19 @@ extension UIColor {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
+    }
+}
+
+extension UITextView {
+    func addDoneButton(title: String, target: Any, selector: Selector) {
+        let toolBar = UIToolbar(frame: CGRect(x: 0.0,
+                                              y: 0.0,
+                                              width: UIScreen.main.bounds.size.width,
+                                              height: 44.0))//1
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)//2
+        let barButton = UIBarButtonItem(title: title, style: .plain, target: target, action: selector)//3
+        toolBar.setItems([flexible, barButton], animated: false)//4
+        self.inputAccessoryView = toolBar//5
     }
 }
 

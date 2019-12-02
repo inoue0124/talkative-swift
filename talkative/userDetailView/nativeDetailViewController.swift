@@ -42,7 +42,7 @@ class nativeDetailViewController: UIViewController, IndicatorInfoProvider {
     }
 
     func reloadTableData() {
-        let commentsDB = Firestore.firestore().collection("Users").document(user!.uid).collection("comment")
+        let commentsDB = Firestore.firestore().collection("Users").document(user!.uid).collection("commentAsNative")
         commentsDB.order(by: "createdAt", descending: true).getDocuments() { snapshot, error in
             if let _error = error {
                 print("error\(_error)")

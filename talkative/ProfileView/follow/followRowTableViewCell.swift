@@ -16,6 +16,6 @@ class followRowTableViewCell: UITableViewCell {
     func setRowData(numOfCells: IndexPath, user: UserModel){
         Thumbnail.layer.cornerRadius = 15
         Name.text = String(user.name)
-        self.setImage(uid: user.uid, imageView: Thumbnail)
+        setImage(uid: user.uid, imageView: Thumbnail)
     }
 }

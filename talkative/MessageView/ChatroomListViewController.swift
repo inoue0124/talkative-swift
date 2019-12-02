@@ -14,8 +14,9 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
     var chatroom: ChatroomModel?
     var chatrooms: [ChatroomModel]?
     let chatroomsDb = Firestore.firestore().collection("chatrooms")
-    let semaphore = DispatchSemaphore(value: 1)
     var chatroomListener: ListenerRegistration?
+    var isInitialCheck: Bool?
+    var chatPartnerName: String?
     deinit {
       chatroomListener?.remove()
     }
@@ -24,10 +25,11 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
 
   override func viewDidLoad() {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    isInitialCheck = true
     ChatroomListTable.dataSource = self
     ChatroomListTable.delegate = self
     ChatroomListTable.register(UINib(nibName: "chatroomListRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
-    self.chatroomListener = self.chatroomsDb.whereField("viewableUserIDs." + self.getUserUid(), isEqualTo: true).addSnapshotListener() { snapshot, error in
+    chatroomListener = chatroomsDb.whereField("viewableUserIDs." + getUserUid(), isEqualTo: true).addSnapshotListener() { snapshot, error in
         if let _error = error {
             print("error\(_error)")
             return
@@ -37,12 +39,15 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
         return
         }
         self.chatrooms = documents.map{ ChatroomModel(from: $0) }
-        
+        self.chatrooms = self.chatrooms!.filter{ $0.latestMsg != "" }
+        self.chatrooms!.sort{ $0.updatedAt > $1.updatedAt }
         DispatchQueue.main.async {
             // UI更新はメインスレッドで実行
-            self.tabBarItem.badgeValue = "new"
+            if !self.isInitialCheck! && self.chatrooms!.first != nil && self.chatrooms!.first?.senderID != self.getUserUid() {
+                self.tabBarItem.badgeValue = "N"
+            }
+            self.isInitialCheck = false
             self.ChatroomListTable.reloadData()
-            self.semaphore.signal()
         }
     }
   }
@@ -52,9 +57,10 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarItem.badgeValue = nil
+        tabBarItem.badgeValue = nil
         ChatroomListTable.allowsSelection = true
-        self.navigationItem.hidesBackButton = false
+        navigationItem.hidesBackButton = false
+        navigationController?.setNavigationBarHidden(false, animated: false)
         tabBarController?.tabBar.isHidden = false
         largeTitle(LString("Messages"))
     }
@@ -65,7 +71,7 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
 
   func tableView(_ tableView: UITableView, cellForRowAt numOfCells: IndexPath) -> UITableViewCell {
     let tableContent = tableView.dequeueReusableCell(withIdentifier: "recycleCell", for: numOfCells) as! chatroomListRowTableViewCell
-    tableContent.setRowData(numOfCells: numOfCells, chatroom: self.chatrooms![numOfCells.row])
+    tableContent.setRowData(numOfCells: numOfCells, chatroom: chatrooms![numOfCells.row])
     return tableContent
   }
 
@@ -73,13 +79,15 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
         chatroom = chatrooms![indexPath.row]
         tableView.allowsSelection = false
         tableView.deselectRow(at: indexPath, animated: true)
+        chatPartnerName = chatroom!.viewableUserNames.filter{ $0.key != getUserUid() }[0].value
         performSegue(withIdentifier: "showChatroomView", sender: nil)
        }
 
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showChatroomView" {
             let ChatroomVC = segue.destination as! ChatroomViewController
-            ChatroomVC.chatroom = self.chatroom
+            ChatroomVC.chatroom = chatroom
+            ChatroomVC.chatPartnerName = chatPartnerName!
         }
     }
 

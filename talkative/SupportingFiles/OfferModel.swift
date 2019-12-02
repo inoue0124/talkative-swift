@@ -44,42 +44,7 @@ class OfferModel {
     var ratingForLearner: Int
     var flagPayForNative: Bool
     var flagWithdrawFromLearner: Bool
-
-    var diff: Int {
-        return "\(offerID)\(createdAt.timeIntervalSince1970)".hashValue
-    }
-
-//    init(offerID: String, nativeID: String, nativeName: String, nativeNationality: Int, nativeMotherLanguage: Int, nativeRating: Int, nativeImageURL: URL, nativeLocation: GeoPoint, learnerID: String, learnerName: String, learnerNationality: Int, learnerMotherLanguage: Int, learnerRating: Int, learnerImageURL: URL, learnerLocation: GeoPoint, offerPrice: Int, offerTime: Int, targetLanguage: Int, supportLanguage: Int, peerID: String) {
-//        self.offerID = offerID
-//        self.nativeID = nativeID
-//        self.nativeName = nativeName
-//        self.nativeNationality = nativeNationality
-//        self.nativeMotherLanguage = nativeMotherLanguage
-//        self.nativeRating = nativeRating
-//        self.nativeImageURL = nativeImageURL
-//        self.nativeLocation = nativeLocation
-//        self.learnerID = learnerID
-//        self.learnerName = learnerName
-//        self.learnerNationality = learnerNationality
-//        self.learnerMotherLanguage = learnerMotherLanguage
-//        self.learnerRating = learnerRating
-//        self.learnerImageURL = learnerImageURL
-//        self.learnerLocation = learnerLocation
-//        self.offerPrice = offerPrice
-//        self.offerTime = offerTime
-//        self.targetLanguage = targetLanguage
-//        self.supportLanguage = supportLanguage
-//        self.nativeLevel
-//        self.peerID = peerID
-//        self.isOnline = true
-//        self.isFinished = false
-//        self.createdAt = Date()
-//        self.acceptedAt = Date()
-//        self.withdrawedAt = Date()
-//        self.finishedAt = Date()
-//        self.ratingForNative = 1
-//        self.ratingForLearner = 1
-//    }
+    var canExtend: Bool
 
     init(from: QueryDocumentSnapshot) {
         self.offerID = from.documentID
@@ -118,6 +83,7 @@ class OfferModel {
         self.ratingForLearner = from.get("ratingForLearner") as? Int ?? 1
         self.flagPayForNative = from.get("flagPayForNative") as? Bool ?? false
         self.flagWithdrawFromLearner = from.get("flagWithdrawFromLearner") as? Bool ?? false
+        self.canExtend = from.get("canExtend") as? Bool ?? false
     }
 
     var toAnyObject: [String: Any] {
@@ -154,6 +120,7 @@ class OfferModel {
             "ratingForLearner" : ratingForLearner,
             "flagPayForNative" : flagPayForNative,
             "flagWithdrawFromLearner" : flagWithdrawFromLearner,
+            "canExtend": canExtend,
         ]
     }
 }

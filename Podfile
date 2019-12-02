@@ -28,6 +28,7 @@ pod 'SCLAlertView'
 pod 'HydraAsync'
 pod 'Stripe'
 pod 'XLPagerTabStrip'
+pod 'SDWebImage'
 
   # Pods for talkative
 

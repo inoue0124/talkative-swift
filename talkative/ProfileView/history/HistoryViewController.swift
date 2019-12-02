@@ -82,8 +82,8 @@ class HistoryViewController: UIViewController , UITableViewDelegate , UITableVie
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailView" {
             let userDetailVC = segue.destination as! userDetailViewController
-            userDetailVC.offer = self.history
             userDetailVC.user = self.native
+            userDetailVC.tabIndex = 0
         }
     }
 

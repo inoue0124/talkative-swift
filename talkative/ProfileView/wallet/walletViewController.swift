@@ -18,7 +18,7 @@ class walletViewController: UIViewController, UITableViewDelegate , UITableViewD
     @IBOutlet weak var point: UILabel!
     @IBOutlet weak var pointHistoryTable: UITableView!
     var pointHistory: [pointHistoryModel]?
-    let usersDB = Firestore.firestore().collection("Users")
+    let pointsDB = Firestore.firestore().collection("points")
 
     override func viewWillAppear(_ animated: Bool) {
         pointHistoryTable.dataSource = self
@@ -28,24 +28,24 @@ class walletViewController: UIViewController, UITableViewDelegate , UITableViewD
         navigationItem.title = LString("Points history")
         navigationItem.largeTitleDisplayMode = .never
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        usersDB.whereField("uid", isEqualTo: self.getUserUid()).addSnapshotListener() { snapshot, error in
-            if let _error = error {
-                self.showError(_error)
-                return
+        pointsDB.document(getUserUid()).addSnapshotListener() { snapshot, error in
+            guard let document = snapshot else {
+              self.showError(error)
+              return
             }
-            guard let documents = snapshot?.documents else {
-                return
+            guard let data = document.data() else {
+              print("Document data was empty.")
+              return
             }
-            let downloadedUserData = documents.map{ UserModel(from: $0) }
-            self.point.text = String(format: "%.1f", downloadedUserData[0].point)
+            self.point.text = String(format: "%.1f", data["point"] as? Double ?? 0)
         }
-        usersDB.document(getUserUid()).collection("pointHistory").order(by: "createdAt", descending: true).getDocuments() { snapshot, error in
+        pointsDB.document(getUserUid()).collection("pointHistory").order(by: "createdAt", descending: true).getDocuments() { snapshot, error in
          if let _error = error {
-             print("error\(_error)")
-             return
+            self.showError(_error)
+            return
          }
          guard let documents = snapshot?.documents else {
-         print("error")
+            print("error")
             return
         }
         self.pointHistory = documents.map{ pointHistoryModel(from: $0) }

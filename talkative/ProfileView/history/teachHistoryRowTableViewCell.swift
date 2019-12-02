@@ -32,10 +32,10 @@ class teachHistoryRowTableViewCell: UITableViewCell {
         Thumbnail.layer.cornerRadius = 30
         Name.text = String(history.learnerName)
         finishedDate.text = formatter.string(from: history.finishedAt)
-        self.resetStars()
-        self.drawStars(rating: history.ratingForLearner)
-        self.setImage(uid: history.learnerID, imageView: Thumbnail)
-        self.makeFlagImageView(imageView: nationalFlag, nationality: history.learnerNationality, radius: 10)
+        resetStars()
+        drawStars(rating: history.ratingForLearner)
+        setImage(uid: history.learnerID, imageView: Thumbnail)
+        makeFlagImageView(imageView: nationalFlag, nationality: history.learnerNationality, radius: 10)
     }
 
     func resetStars() {

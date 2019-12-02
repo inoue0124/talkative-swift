@@ -13,13 +13,23 @@ import CoreLocation
 import InputBarAccessoryView
 import FirebaseAuth
 import FirebaseFirestore
+import Photos
+import FirebaseStorage
+import Firebase
+import SDWebImage
 
 class ChatroomViewController: MessagesViewController {
 
     var chatroom: ChatroomModel?
     var avatarImage: UIImage?
     var messageList: [MockMessage] = []
+    var chatPartnerName: String?
+    let usersDB = Firestore.firestore().collection("Users")
+    var user: UserModel?
+    var isSendingPhoto: Bool?
     private var messageListener: ListenerRegistration?
+    private var reference: CollectionReference?
+    private let storage = Storage.storage().reference()
 
     lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -30,9 +40,7 @@ class ChatroomViewController: MessagesViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        //self.navigationItem.title = chatroom!.nativeName
+        setupTitle()
         maintainPositionOnKeyboardFrameChanged = true
         scrollsToBottomOnKeyboardBeginsEditing = true
         if let layout = self.messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
@@ -45,7 +53,7 @@ class ChatroomViewController: MessagesViewController {
             layout.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: insets))
         }
         let messageDb = Firestore.firestore().collection(["chatrooms", self.chatroom!.chatroomID, "messages"].joined(separator: "/"))
-        self.messageListener = messageDb.addSnapshotListener { snapshot, error in
+        messageDb.getDocuments() { snapshot, error in
             guard let snapshot = snapshot else {
                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
                return
@@ -54,14 +62,133 @@ class ChatroomViewController: MessagesViewController {
               self.handleDocumentChange(change)
             }
         }
-
+        self.messageListener = messageDb.addSnapshotListener { snapshot, error in
+            guard let snapshot = snapshot else {
+               print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+               return
+             }
+            snapshot.documentChanges.forEach { change in
+              self.handleListenerDocumentChange(change)
+            }
+        }
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messageCellDelegate = self
-
         messageInputBar.delegate = self
         messageInputBar.sendButton.tintColor = UIColor.lightGray
+    }
+
+    func setupTitle() {
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        tabBarController?.tabBar.isHidden = true
+        let label = UILabel()
+        label.text = chatPartnerName!
+        label.sizeToFit()
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ChatroomViewController.tappedTitle(_:))))
+        label.isUserInteractionEnabled = true
+        navigationItem.titleView = label
+        let items = [
+            makeButton(named: "album").onTextViewDidChange { button, textView in
+                button.tintColor = UIColor.lightGray
+                button.isEnabled = textView.text.isEmpty
+            }
+        ]
+        items.forEach { $0.tintColor = .lightGray }
+        messageInputBar.setStackViewItems(items, forStack: .left, animated: false)
+        messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
+        messageInputBar.leftStackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
+        messageInputBar.leftStackView.isLayoutMarginsRelativeArrangement = true
+    }
+
+    func makeButton(named: String) -> InputBarButtonItem {
+        return InputBarButtonItem()
+        .configure {
+            $0.spacing = .fixed(10)
+            $0.image = UIImage(named: named)?.withRenderingMode(.alwaysTemplate)
+            $0.setSize(CGSize(width: 24, height: 24), animated: true)
+        }.onSelected {
+            $0.tintColor = UIColor.gray
+        }.onDeselected {
+            $0.tintColor = UIColor.lightGray
+        }.onTouchUpInside { _ in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .photoLibrary
+            self.present(picker, animated: true, completion: nil)
+        }
+    }
+
+    private func sendPhoto(_ image: UIImage) {
+      isSendingPhoto = true
+      uploadImage(image, to: chatroom!) { [weak self] url in
+        guard let `self` = self else {
+            return
+        }
+        self.isSendingPhoto = false
+
+        guard let url = url else {
+            return
+        }
+        let chatroomsDb = Firestore.firestore().collection("chatrooms")
+        let messageDb = Firestore.firestore().collection(["chatrooms", self.chatroom!.chatroomID, "messages"].joined(separator: "/"))
+        chatroomsDb.document(self.chatroom!.chatroomID).setData(["latestMsg": self.LString("photo"),
+                                                                 "senderID": self.getUserUid(),
+                                                                "updatedAt": FieldValue.serverTimestamp(),
+                                                                "chatroomID": self.chatroom!.chatroomID,
+                                                                "viewableUserIDs": self.chatroom!.viewableUserIDs,
+                                                                "viewableUserNames": self.chatroom!.viewableUserNames], merge: true)
+        messageDb.addDocument(data: ["createdAt": FieldValue.serverTimestamp(),
+                                     "senderID": self.getUserUid(),
+                                     "senderName": self.getUserData().name,
+                                     "downloadURL": url.absoluteString])
+        self.messagesCollectionView.scrollToBottom()
+      }
+    }
+
+    private func uploadImage(_ image: UIImage, to chatroom: ChatroomModel, completion: @escaping (URL?) -> Void) {
+        let chatroomID = chatroom.chatroomID
+        guard let scaledImage = image.scaledToSafeUploadSize,
+            let data = scaledImage.jpegData(compressionQuality: 1.0) else {
+            completion(nil)
+            return
+        }
+
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+
+        let imageName = [getUserUid(), String(Date().timeIntervalSince1970)].joined()
+        storage.child(chatroomID).child(imageName).putData(data, metadata: metadata) { meta, error in
+            self.storage.child(chatroomID).child(imageName).downloadURL { downloadURL, error in
+            completion(downloadURL)
+            }
+        }
+    }
+
+    @objc func tappedTitle(_ sender: UITapGestureRecognizer) {
+        usersDB.whereField("uid", isEqualTo: chatroom!.viewableUserIDs.filter{ $0.key != getUserUid() }[0].key).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else if querySnapshot!.documents.isEmpty {
+                print("user is not exist")
+            } else {
+                print("user is exist")
+                self.user = UserModel(from: querySnapshot!.documents[0])
+                self.performSegue(withIdentifier: "showDetailView", sender: nil)
+            }
+        }
+    }
+
+    func configureMediaMessageImageView(_ imageView: UIImageView,
+                                        for message: MessageType,
+                                        at indexPath: IndexPath,
+                                        in messagesCollectionView: MessagesCollectionView) {
+       guard case .photo(let mediaItem) = message.kind else { fatalError() }
+        if let url = mediaItem.url {
+            imageView.sd_setImage(with: url)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -77,15 +204,11 @@ class ChatroomViewController: MessagesViewController {
       guard !messageList.contains(message) else {
         return
       }
-
       messageList.append(message)
       messageList.sort()
-
-      let isLatestMessage = messageList.index(of: message) == (messageList.count - 1)
+      let isLatestMessage = messageList.firstIndex(of: message) == (messageList.count - 1)
       let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
-
       messagesCollectionView.reloadData()
-
       if shouldScrollToBottom {
         DispatchQueue.main.async {
           self.messagesCollectionView.scrollToBottom(animated: true)
@@ -98,17 +221,28 @@ class ChatroomViewController: MessagesViewController {
         return
       }
         insertNewMessage(message)
-//      switch change.type {
-//      case .added:
-//          insertNewMessage(message)
-//      default:
-//        print("not added")
-//        break
-//      }
+    }
+
+    private func handleListenerDocumentChange(_ change: DocumentChange) {
+      guard let message = MockMessage(document: change.document) else {
+        return
+      }
+        if message.sender.senderId == getUserUid() {
+            return
+        }
+        insertNewMessage(message)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailView" {
+            let userDetailVC = segue.destination as! userDetailViewController
+            userDetailVC.user = self.user!
+            userDetailVC.tabIndex = 0
+        }
     }
 }
 
@@ -137,13 +271,6 @@ extension ChatroomViewController: MessagesDataSource {
         }
         return nil
     }
-
-    // メッセージの上に文字を表示（名前）
-//    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-//        let name = message.sender.displayName
-//        return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
-//    }
-
     // メッセージの下に文字を表示（日付）
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let dateString = formatter.string(from: message.sentDate)
@@ -235,14 +362,22 @@ extension ChatroomViewController: MessageInputBarDelegate {
                 let imageMessage = MockMessage(image: image, sender: currentSender(), messageId: UUID().uuidString, date: Date())
                 messageList.append(imageMessage)
                 messagesCollectionView.insertSections([messageList.count - 1])
+                messagesCollectionView.scrollToBottom()
+                sendPhoto(image)
             } else if let text = component as? String {
-                chatroomsDb.document(chatroom!.chatroomID).setData(["latestMsg": text, "updatedAt": FieldValue.serverTimestamp(), "chatroomID": chatroom!.chatroomID, "viewableUserIDs": chatroom!.viewableUserIDs], merge: true)
-                messageDb.addDocument(data: ["createdAt": FieldValue.serverTimestamp(),"senderID": self.getUserUid(),"senderName": self.getUserData().name,"text":text])
-//                let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15),
-//                                                                                   .foregroundColor: UIColor.white])
-//                let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-//                messageList.append(message)
-//                messagesCollectionView.insertSections([messageList.count - 1])
+                let message = MockMessage(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                messageList.append(message)
+                messagesCollectionView.insertSections([messageList.count - 1])
+                chatroomsDb.document(chatroom!.chatroomID).setData(["latestMsg": text,
+                                                                    "senderID": self.getUserUid(),
+                                                                    "updatedAt": FieldValue.serverTimestamp(),
+                                                                    "chatroomID": chatroom!.chatroomID,
+                                                                    "viewableUserIDs": chatroom!.viewableUserIDs,
+                                                                    "viewableUserNames": chatroom!.viewableUserNames], merge: true)
+                messageDb.addDocument(data: ["createdAt": FieldValue.serverTimestamp(),
+                                             "senderID": self.getUserUid(),
+                                             "senderName": self.getUserData().name,
+                                             "text":text])
             }
         }
         inputBar.inputTextView.text = String()
@@ -270,12 +405,19 @@ private struct MockMediaItem: MediaItem {
     var placeholderImage: UIImage
     var size: CGSize
 
+    init(url: URL) {
+        self.url = url
+        self.size = CGSize(width: 240, height: 240)
+        self.placeholderImage = UIImage()
+    }
+
     init(image: UIImage) {
         self.image = image
         self.size = CGSize(width: 240, height: 240)
         self.placeholderImage = UIImage()
     }
 }
+
 
 internal struct MockMessage: MessageType {
 
@@ -293,7 +435,6 @@ internal struct MockMessage: MessageType {
 
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
-
         guard let sentDate = data["createdAt"] as? Timestamp else {
             print("sentdate")
             return nil
@@ -306,11 +447,13 @@ internal struct MockMessage: MessageType {
             print("sendername")
             return nil
         }
-        guard let text = data["text"] as? String else {
-            print("text")
+        if let text = data["text"] as? String {
+            self.init(kind: .text(text), sender: Sender(id: senderID, displayName: senderName), messageId: document.documentID, date: sentDate.dateValue())
+        } else if let downloadURL = URL(string: data["downloadURL"] as! String) {
+            self.init(kind: .photo(MockMediaItem(url: downloadURL)), sender: Sender(id: senderID, displayName: senderName), messageId: document.documentID, date: sentDate.dateValue())
+        } else {
             return nil
         }
-        self.init(kind: .text(text), sender: Sender(id: senderID, displayName: senderName), messageId: document.documentID, date: sentDate.dateValue())
     }
 
     init(text: String, sender: SenderType, messageId: String, date: Date) {
@@ -368,34 +511,31 @@ extension UIScrollView {
   }
 
 }
-        // メッセージ入力欄の左に画像選択ボタンを追加
-//        let items = [
-//            makeButton(named: "camera").onTextViewDidChange { button, textView in
-//                button.tintColor = UIColor.lightGray
-//                button.isEnabled = textView.text.isEmpty
-//            }
-//        ]
-//        items.forEach { $0.tintColor = .lightGray }
-//        messageInputBar.setStackViewItems(items, forStack: .left, animated: false)
-//        messageInputBar.setLeftStackViewWidthConstant(to: 45, animated: false)
-//
-//
-//        // メッセージ入力時に一番下までスクロール
-//        scrollsToBottomOnKeyboardBeginsEditing = true // default false
-//        maintainPositionOnKeyboardFrameChanged = true // default false
 
-    // ボタンの作成
-//    func makeButton(named: String) -> InputBarButtonItem {
-//        return InputBarButtonItem()
-//            .configure {
-//                $0.spacing = .fixed(10)
-//                $0.image = UIImage(named: named)?.withRenderingMode(.alwaysTemplate)
-//                $0.setSize(CGSize(width: 30, height: 30), animated: true)
-//            }.onSelected {
-//                $0.tintColor = UIColor.gray
-//            }.onDeselected {
-//                $0.tintColor = UIColor.lightGray
-//            }.onTouchUpInside { _ in
-//                print("Item Tapped")
-//        }
-//    }
+extension ChatroomViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        if let asset = info[.phAsset] as? PHAsset {
+            let size = CGSize(width: 500, height: 500)
+            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFit, options: nil) { result, info in
+                guard let image = result else {
+                    return
+                }
+                let imageMessage = MockMessage(image: image, sender: self.currentSender(), messageId: UUID().uuidString, date: Date())
+                self.messageList.append(imageMessage)
+                self.messagesCollectionView.insertSections([self.messageList.count - 1])
+                self.sendPhoto(image)
+            }
+        } else if let image = info[.originalImage] as? UIImage {
+            let imageMessage = MockMessage(image: image, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+            messageList.append(imageMessage)
+            messagesCollectionView.insertSections([messageList.count - 1])
+            sendPhoto(image)
+        }
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}

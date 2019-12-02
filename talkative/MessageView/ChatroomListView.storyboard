@@ -53,10 +53,23 @@
                         <viewLayoutGuide key="safeArea" id="EEk-HE-OKT"/>
                     </view>
                     <navigationItem key="navigationItem" id="aRf-D7-kJD"/>
+                    <connections>
+                        <segue destination="9zg-qr-JdQ" kind="show" identifier="showDetailView" id="xu5-VO-IpE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXV-fy-MvH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1025" y="-115"/>
+        </scene>
+        <!--userDetailView-->
+        <scene sceneID="2na-Tk-eYJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="userDetailView" id="9zg-qr-JdQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3pp-cw-DOU"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cRY-do-0h1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1968" y="-115"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3g0-Ca-wi7">

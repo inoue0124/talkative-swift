@@ -17,11 +17,16 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
 
     var user: UserModel?
     var offer: OfferModel?
+    var unpaidOffer: OfferModel?
     var chatroom: ChatroomModel?
     let usersDB = Firestore.firestore().collection("Users")
+    let pointsDB = Firestore.firestore().collection("points")
     let offersDB = Firestore.firestore().collection("offers")
     let chatroomsDB = Firestore.firestore().collection("chatrooms")
     var isFollowing: Bool?
+    var isUnpaid: Bool?
+    var isMuteVideo = false
+    var tabIndex: Int?
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var age: UILabel!
@@ -43,19 +48,22 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
         tabBarController?.tabBar.isHidden = true
         name.text = user?.name
         age.text = String(self.birthDateToAge(byBirthDate: user!.birthDate))
-        self.setGenderIcon(gender: user?.gender, imageView: genderIcon)
+        setGenderIcon(gender: user?.gender, imageView: genderIcon)
         motherLanguage.text = Language.strings[user!.motherLanguage]
         secondLanguage.text = Language.strings[user!.secondLanguage]
         proficiency.image = UIImage(named: String(user!.proficiency))
-        self.setImage(uid: user!.uid, imageView: self.thumbnail)
+        setImage(uid: user!.uid, imageView: self.thumbnail)
         thumbnail.layer.cornerRadius = 50
-        self.makeFlagImageView(imageView: nationalFlag, nationality: user!.nationality, radius: 12.5)
+        makeFlagImageView(imageView: nationalFlag, nationality: user!.nationality, radius: 12.5)
         getOfferData()
         setupTabDesign()
         setupButtonDesign()
         setupChatroom()
         setupFollowButton()
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            self.moveToViewController(at: self.tabIndex!, animated: false)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -90,12 +98,6 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
         messageButton.layer.borderColor = UIColor.gray.cgColor
         messageButton.layer.borderWidth = 0.5
         messageButton.backgroundColor = disableColor
-        callButton.layer.cornerRadius = 25
-        callButton.contentEdgeInsets = UIEdgeInsets(top: 7.0, left: 7.0, bottom: 7.0, right: 7.0)
-        callButton.tintColor = UIColor.white
-        videoButton.layer.cornerRadius = 25
-        videoButton.contentEdgeInsets = UIEdgeInsets(top: 7.0, left: 7.0, bottom: 7.0, right: 7.0)
-        videoButton.tintColor = UIColor.white
         callMethodView.layer.cornerRadius = 10
         callMethodView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         callMethodView.layer.shadowColor = UIColor.lightGray.cgColor
@@ -108,10 +110,13 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
             if let _err = err {
                 print(_err)
             } else if querySnapshot!.documents.isEmpty {
-                print("chatroom is not exist")
-                self.chatroom = ChatroomModel(chatroomID: self.chatroomsDB.document().documentID, viewableUserIDs: [self.getUserUid(): true, self.user!.uid: true])
+                self.chatroom = ChatroomModel(chatroomID: self.chatroomsDB.document().documentID, viewableUserIDs: [self.getUserUid(): true, self.user!.uid: true], viewableUserNames: [self.getUserUid(): self.getUserData().name, self.user!.uid: self.user!.name])
+                self.chatroomsDB.document(self.chatroom!.chatroomID).setData(["chatroomID": self.chatroom!.chatroomID,
+                                                                              "senderID": self.getUserUid(),
+                                                                              "viewableUserIDs": [self.getUserUid(): true, self.user!.uid: true],
+                                                                              "viewableUserNames": [self.getUserUid(): self.getUserData().name, self.user!.uid: self.user!.name]
+                ])
             } else {
-                print("chatroom is exist")
                 self.chatroom = ChatroomModel(from: querySnapshot!.documents[0])
             }
             self.messageButton.isEnabled = true
@@ -136,25 +141,38 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
     }
 
     @IBAction func tappedCallButton(_ sender: Any) {
+        isMuteVideo = true
+        tappedVideoButton(callButton!)
+    }
+
+    @IBAction func tappedVideoButton(_ sender: Any) {
         self.showPreloader()
-        usersDB.whereField("uid", isEqualTo: self.getUserUid()).getDocuments() { snapshot, error in
-            if let _error = error {
-                self.showError(_error)
-                return
+        checkUnpaidOfferLearner() { result, offer in
+            self.isUnpaid = result
+            self.unpaidOffer = offer
+            if !self.isUnpaid! {
+                self.pointsDB.document(self.getUserUid()).getDocument() { snapshot, error in
+                    guard let document = snapshot else {
+                        self.showError(error)
+                        return
+                    }
+                    guard let data = document.data() else {
+                        print("Document data was empty.")
+                        return
+                    }
+                    let point = data["point"] as? Double ?? 0
+                    if point - Double(self.offer!.offerPrice) < 0.0 {
+                        SCLAlertView().showError(self.LString("Oops"), subTitle: String(format: self.LString("Your have not enough points teach...") , Language.strings[self.getUserData().motherLanguage]), closeButtonTitle: self.LString("OK"))
+                        return
+                    }
+                    let alert = SCLAlertView()
+                    alert.addButton(self.LString("OK")) { self.performSegue(withIdentifier: "show_media", sender: nil) }
+                    alert.showInfo(self.LString("Confirm payment"),
+                                   subTitle: String(format: self.LString("Pay %d points and talk %d minutes"),
+                                    self.offer!.offerPrice,self.offer!.offerTime))
+                    self.dissmisPreloader()
+                }
             }
-            guard let documents = snapshot?.documents else {
-            return
-            }
-            let downloadedUserData = documents.map{ UserModel(from: $0) }
-            if downloadedUserData[0].point - Double(self.offer!.offerPrice) < 0.0 {
-                SCLAlertView().showError(self.LString("Oops"), subTitle: String(format: self.LString("Your have not enough points teach...") , Language.strings[self.getUserData().motherLanguage]), closeButtonTitle: self.LString("OK"))
-                return
-            }
-            let alert = SCLAlertView()
-            alert.addButton(self.LString("OK")) { self.performSegue(withIdentifier: "show_media", sender: nil) }
-            self.dissmisPreloader()
-            alert.showInfo(self.LString("Confirm payment"),
-                           subTitle: String(format: self.LString("Pay %d points and talk %d minutes"), self.offer!.offerPrice,self.offer!.offerTime))
         }
     }
 
@@ -167,20 +185,28 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
             guard let documents = snapshot?.documents else {
                 return
             }
-            print(documents)
-            self.offer = documents.map{ OfferModel(from: $0) }[0]
-            self.enableCallButton()
+            if documents != [] {
+                self.offer = documents.map{ OfferModel(from: $0) }[0]
+                if self.currentIndex == 0 {
+                    self.enableCallButton()
+                }
+            }
         }
     }
 
     func enableCallButton() {
         callMethodView.alpha = 100
-        callButton.layer.backgroundColor = UIColor(red: 137/255, green: 195/255, blue: 235/255, alpha: 1).cgColor
-        videoButton.layer.backgroundColor = UIColor(red: 211/255, green: 162/255, blue: 67/255, alpha: 1).cgColor
+        callButton.tintColor = UIColor(red: 137/255, green: 195/255, blue: 235/255, alpha: 1)
+        videoButton.tintColor = UIColor(red: 211/255, green: 162/255, blue: 67/255, alpha: 1)
     }
 
     @IBAction func tappedMessageButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "showChatroom", sender: nil)
+        let count = (navigationController?.viewControllers.count)! - 2
+        if (navigationController?.viewControllers[count] as? ChatroomViewController) != nil {
+            navigationController?.popViewController(animated: true)
+        } else {
+            self.performSegue(withIdentifier: "showChatroom", sender: nil)
+        }
     }
 
     @IBAction func tappedFollowButton(_ sender: Any) {
@@ -204,14 +230,21 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showChatroom" {
             let chatroomVC = segue.destination as! ChatroomViewController
-            chatroomVC.chatroom = self.chatroom
-            chatroomVC.avatarImage = self.thumbnail.image
+            chatroomVC.chatroom = chatroom
+            chatroomVC.avatarImage = thumbnail.image
+            chatroomVC.chatPartnerName = user!.name
         }
         if segue.identifier == "show_media" {
             let callVC = segue.destination as! callingViewController
-            callVC.offer = self.offer!
+            callVC.offer = offer!
             callVC.selectedChatroom = chatroom
+            callVC.chatPartnerName = offer!.nativeName
             callVC.avatarImage = thumbnail.image
+            callVC.isMuteVideo = isMuteVideo
+        }
+        if segue.identifier == "showReviewView" {
+            let ReviewVC = segue.destination as! ReviewViewController
+            ReviewVC.offer = unpaidOffer!
         }
     }
 
@@ -222,5 +255,16 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
         learnerVC.user = user
         let childViewControllers:[UIViewController] = [nativeVC, learnerVC]
         return childViewControllers
+    }
+
+    override func updateIndicator(for viewController: PagerTabStripViewController, fromIndex: Int, toIndex: Int, withProgressPercentage progressPercentage: CGFloat, indexWasChanged: Bool) {
+        super.updateIndicator(for: viewController, fromIndex: fromIndex, toIndex: toIndex, withProgressPercentage: progressPercentage, indexWasChanged: indexWasChanged)
+        if indexWasChanged {
+            if toIndex == 1 {
+                callMethodView.alpha = 0
+            } else if toIndex == 0 {
+                getOfferData()
+            }
+        }
     }
 }

@@ -309,8 +309,8 @@
 				70619145237B0F7A0028B85D /* teachSearchViewController.swift */,
 				70619142237B0F760028B85D /* incomingCallViewNib.xib */,
 				70619144237B0F790028B85D /* teachCallingViewController.swift */,
-				70619152237B1D610028B85D /* teachSearchView.storyboard */,
 				70619141237B0F740028B85D /* teachReviewViewController.swift */,
+				70619152237B1D610028B85D /* teachSearchView.storyboard */,
 			);
 			path = teachSearchView;
 			sourceTree = "<group>";

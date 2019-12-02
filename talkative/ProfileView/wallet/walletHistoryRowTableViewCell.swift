@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class walletHistoryRowTableViewCell: UITableViewCell {
 
@@ -25,13 +26,8 @@ class walletHistoryRowTableViewCell: UITableViewCell {
     func setRowData(numOfCells: IndexPath, pointHistory: pointHistoryModel){
         historyDate.text = formatter.string(from: pointHistory.createdAt)
         method.text = Method.strings[pointHistory.method]
-        price.text = String(format: "%.1f", pointHistory.point)
+        price.text = String(format: "%.1fP", pointHistory.point)
         Thumbnail.layer.cornerRadius = 25
-        DispatchQueue.global().async {
-            let image = UIImage(url: pointHistory.imageURL)
-            DispatchQueue.main.async {
-                self.Thumbnail.image = image
-            }
-        }
+        Thumbnail.sd_setImage(with: pointHistory.imageURL)
     }
 }

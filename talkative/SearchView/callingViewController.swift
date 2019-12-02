@@ -24,21 +24,37 @@ class callingViewController: UIViewController {
     var errorAlert: SCLAlertView?
     var offerListener: ListenerRegistration?
     var selectedChatroom: ChatroomModel?
+    var chatPartnerName: String?
     var avatarImage: UIImage?
+    var isPresentedExtensionAlert = false
+    var isCanceledExtension = false
+    var isMute = false
+    var isMuteVideo: Bool?
 
     @IBOutlet weak var remoteStreamView: SKWVideo!
     @IBOutlet weak var localStreamView: SKWVideo!
     @IBOutlet weak var endCallButton: UIButton!
+    @IBOutlet weak var muteButton: UIButton!
+    @IBOutlet weak var videoButton: UIButton!
+    @IBOutlet weak var changeCamera: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var remoteImage: UIImageView!
+    @IBOutlet weak var localImage: UIImageView!
 
     let offersDb = Firestore.firestore().collection("offers")
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         tabBarController?.tabBar.isHidden = true
         setup()
+        if isMuteVideo == true {
+            videoButton.tintColor = UIColor.blue
+            localStream?.setEnableVideoTrack(0, enable: false)
+            localImage.image = UIImage(named: "muteVideo_button")
+        } else {
+            isMuteVideo = false
+        }
         let appearance = SCLAlertView.SCLAppearance(
             showCloseButton: false
         )
@@ -83,6 +99,7 @@ class callingViewController: UIViewController {
     @IBAction func tapEndCall() {
         let alertController = UIAlertController(title: LString("Finish calling?"), message: LString("Do you want to finish calling?"), preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: LString("Finish"), style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+            self.timer.invalidate()
             self.offersDb.document(self.offer!.offerID).setData([
                 "finishedAt" : FieldValue.serverTimestamp()
             ], merge: true)
@@ -96,6 +113,42 @@ class callingViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
+    @IBAction func tappedMuteButton(_ sender: Any) {
+        isMute.toggle()
+        if isMute {
+            muteButton.tintColor = UIColor.blue
+            localStream?.setEnableAudioTrack(0, enable: false)
+        } else {
+            muteButton.tintColor = UIColor.gray
+            localStream?.setEnableAudioTrack(0, enable: true)
+        }
+    }
+
+    @IBAction func tappedVideoButton(_ sender: Any) {
+        isMuteVideo!.toggle()
+        if isMuteVideo! {
+            videoButton.tintColor = UIColor.blue
+            localStream?.setEnableVideoTrack(0, enable: false)
+            localImage.image = UIImage(named: "muteVideo_button")
+        } else {
+            let appearance = SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            )
+            let videoAlert = SCLAlertView(appearance: appearance)
+            videoAlert.addButton(self.LString("OK")) {
+                self.videoButton.tintColor = UIColor.gray
+                self.localStream?.setEnableVideoTrack(0, enable: true)
+                self.localImage.image = nil
+            }
+            videoAlert.addButton(self.LString("Cancel")) { return }
+            videoAlert.showInfo(self.LString("Confirm video usage"), subTitle:self.LString("Do you want to turn on the camera?"), closeButtonTitle: nil)
+        }
+    }
+
+    @IBAction func tappedSwitchCameraButton(_ sender: Any) {
+        localStream?.switchCamera()
+    }
+
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showReview" {
             let ReviewVC = segue.destination as! ReviewViewController
@@ -104,6 +157,7 @@ class callingViewController: UIViewController {
         if segue.identifier == "showChatroomView" {
             let chatroomVC = segue.destination as! ChatroomViewController
             chatroomVC.chatroom = self.selectedChatroom
+            chatroomVC.chatPartnerName = chatPartnerName
             chatroomVC.avatarImage = self.avatarImage
         }
     }
@@ -215,6 +269,29 @@ class callingViewController: UIViewController {
                         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
                             let timeRemaining = Double(self.offer!.offerTime * 60) + self.offer!.acceptedAt.timeIntervalSinceNow
                             self.timerLabel.text = formatter.string(from: Date(timeIntervalSinceReferenceDate: timeRemaining))
+                            if (timeRemaining < 60 * 3) && !self.isCanceledExtension {
+                                let appearance = SCLAlertView.SCLAppearance(
+                                    showCloseButton: false
+                                )
+                                let extentionAlert = SCLAlertView(appearance: appearance)
+                                extentionAlert.addButton(self.LString("OK")) {
+                                    self.offersDb.document(self.offer!.offerID).setData([
+                                        "offerTime" : self.offer!.offerTime + 5
+                                    ], merge: true)
+                                    self.isPresentedExtensionAlert = false
+                                }
+                                extentionAlert.addButton(self.LString("Cancel")) {
+                                    self.isCanceledExtension = true
+                                }
+                                guard (self.getTopViewController() as? callingViewController) != nil else {
+                                    self.timer.invalidate()
+                                    return
+                                }
+                                if !self.isPresentedExtensionAlert {
+                                    extentionAlert.showInfo(self.LString("Confirm extension"), subTitle:self.LString("Do you want to extend 5 minutes?"), closeButtonTitle: nil)
+                                    self.isPresentedExtensionAlert = true
+                                }
+                            }
                             if timeRemaining < 0 {
                                 self.timerLabel.text = formatter.string(from: Date(timeIntervalSinceReferenceDate: 0.0))
                                 self.timerLabel.textColor = .red

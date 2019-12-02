@@ -23,7 +23,7 @@ class teachHistoryViewController: UIViewController , UITableViewDelegate , UITab
     override func viewDidLoad() {
         HistoryTable.dataSource = self
         HistoryTable.delegate = self
-        HistoryTable.register(UINib(nibName: "HistoryRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
+        HistoryTable.register(UINib(nibName: "teachHistoryRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
         tabBarController?.tabBar.isHidden = true
     }
 
@@ -37,7 +37,7 @@ class teachHistoryViewController: UIViewController , UITableViewDelegate , UITab
 
     override func viewWillAppear(_ animated: Bool) {
         HistoryTable.allowsSelection = true
-        self.offersDb.whereField("nativeID", isEqualTo: getUserUid()).order(by: "finishedAt", descending: true).getDocuments() { snapshot, error in
+        offersDb.whereField("nativeID", isEqualTo: getUserUid()).order(by: "finishedAt", descending: true).getDocuments() { snapshot, error in
             if let _error = error {
                 print("error\(_error)")
                 return
@@ -57,8 +57,8 @@ class teachHistoryViewController: UIViewController , UITableViewDelegate , UITab
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt numOfCells: IndexPath) -> UITableViewCell {
-        let tableContent = tableView.dequeueReusableCell(withIdentifier: "recycleCell", for: numOfCells) as! HistoryRowTableViewCell
-        tableContent.setRowData(numOfCells: numOfCells, history: self.histories![numOfCells.row])
+        let tableContent = tableView.dequeueReusableCell(withIdentifier: "recycleCell", for: numOfCells) as! teachHistoryRowTableViewCell
+        tableContent.setRowData(numOfCells: numOfCells, history: histories![numOfCells.row])
         return tableContent
     }
 
@@ -66,7 +66,7 @@ class teachHistoryViewController: UIViewController , UITableViewDelegate , UITab
         tableView.allowsSelection = false
         tableView.deselectRow(at: indexPath, animated: true)
         history = histories![indexPath.row]
-        self.usersDb.whereField("uid", isEqualTo: self.history!.learnerID).getDocuments() { (querySnapshot, err) in
+        usersDb.whereField("uid", isEqualTo: self.history!.learnerID).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if querySnapshot!.documents.isEmpty {
@@ -82,8 +82,8 @@ class teachHistoryViewController: UIViewController , UITableViewDelegate , UITab
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showLearnerDetailView" {
             let userDetailVC = segue.destination as! userDetailViewController
-            userDetailVC.offer = self.history
-            userDetailVC.user = self.learner
+            userDetailVC.user = learner
+            userDetailVC.tabIndex = 1
         }
     }
 
