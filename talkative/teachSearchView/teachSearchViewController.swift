@@ -16,10 +16,12 @@ import CoreLocation
 import MapKit
 import SCLAlertView
 import FirebaseMessaging
+import Charts
 
 class teachSearchViewController: UIViewController, MKMapViewDelegate {
     var learners: [UserModel]?
     var isOnline = false
+    var unpaidOffer: OfferModel?
     let offersDb = Firestore.firestore().collection("offers")
     let usersDB = Firestore.firestore().collection("Users")
     let loginBonus: Double = 5.0
@@ -31,26 +33,67 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
     var locationManager: CLLocationManager!
     var myLocation: CLLocation?
     var window: UIWindow?
-    var offerTime: Int = 10
+    var offerTime: Int?
     var offerListener: ListenerRegistration?
     var incomingAlert: SCLAlertView?
     let chatroomsDb = Firestore.firestore().collection("chatrooms")
     var chatroom: ChatroomModel?
     var avatarImage: UIImage?
     var isUnpaid: Bool?
+    var hours: [String]!
 
     @IBOutlet weak var searchButton: UIImageView!
-    @IBOutlet weak var MapView: MKMapView!
     @IBOutlet weak var numOfLearners: UILabel!
     @IBOutlet weak var targetLanguage: UILabel!
-    @IBOutlet weak var instructionLabel: UIView!
-    @IBOutlet weak var instructionLabel2: UILabel!
+    @IBOutlet weak var balloonView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var timeStepper: UIStepper!
+    @IBOutlet weak var settingPanel: UIView!
+    @IBOutlet weak var teachStyleImage: UIImageView!
+    @IBOutlet weak var teachStyleLabel: UILabel!
+    @IBOutlet weak var allowExtensionLabel: UILabel!
+    @IBOutlet weak var matchProbChart: LineChartView!
 
-    @IBAction func changeStepperValue(_ sender: UIStepper) {
-        timeLabel.text = "\(Int(sender.value))"
-        offerTime = Int(sender.value)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLocationManager()
+        settingPanel.isUserInteractionEnabled = true
+        settingPanel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(teachSearchViewController.panelTapped(_:))))
+        hours = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"]
+        var matchProb = [49.0, 35.0, 28.0, 15.0, 20.0, 24.0, 27.0, 30.0, 32.0, 36.0, 37.0, 39.0, 43.0, 46.0, 59.0, 62.0, 65.0, 70.0, 75.0, 82.0, 84.0, 86.0, 85.0, 75.0, 65.0]
+        matchProb = matchProb.map{ $0 + Double.random(in: 1 ..< 3)}
+        setChart(dataPoints: hours, values: matchProb)
+    }
+
+    func setChart(dataPoints: [String], values: [Double]) {
+        matchProbChart.noDataText = "You need to provide data for the chart."
+        matchProbChart.xAxis.drawGridLinesEnabled = false
+        matchProbChart.xAxis.labelTextColor = UIColor.green
+        matchProbChart.legend.enabled = false
+        matchProbChart.leftAxis.drawGridLinesEnabled = false
+        matchProbChart.leftAxis.labelTextColor = UIColor.green
+        matchProbChart.rightAxis.enabled = false
+        matchProbChart.xAxis.labelPosition = .bottom
+        matchProbChart.pinchZoomEnabled = false
+        matchProbChart.dragEnabled = false
+        matchProbChart.animate(xAxisDuration: 1, yAxisDuration: 1)
+        var dataEntries: [ChartDataEntry] = []
+
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: Double(values[i]))
+            dataEntries.append(dataEntry)
+        }
+        let gradientColors = [UIColor.green.cgColor, UIColor.clear.cgColor] as CFArray
+        let colorLocations: [CGFloat] = [1.0, 0.0]
+        guard let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) else { print("gradiend error"); return }
+        let chartDataSet = LineChartDataSet(entries: dataEntries, label: "")
+        chartDataSet.drawCirclesEnabled = false
+        chartDataSet.cubicIntensity = 0.5
+        chartDataSet.fill = Fill.fillWithLinearGradient(gradient, angle: 90.0)
+        chartDataSet.drawFilledEnabled = true
+        let chartData = LineChartData()
+        chartData.addDataSet(chartDataSet)
+        chartData.setDrawValues(false)
+        matchProbChart.data = chartData
     }
 
     @objc func applicationWillTerminate(_ notification: Notification?) {
@@ -59,26 +102,32 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupLocationManager()
-        MapView.region.span.latitudeDelta = 120
-        MapView.region.span.longitudeDelta = 120
-        //self.MapView.isZoomEnabled = false
+    @objc func panelTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "showTeachSetting", sender: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
         tabBarController?.tabBar.isHidden = false
-        largeTitle(LString("先生を見つける"))
-        let realm = try! Realm()
-        if realm.objects(RealmUserModel.self).isEmpty {
-            return
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        largeTitle(LString("Teach language"))
+
+        targetLanguage.text = Language.shortStrings[getUserData().teachLanguage]
+        offerTime = getUserData().offerTime
+        timeLabel.text = String(offerTime!) + "分"
+        if getUserData().teachStyle == 0 {
+            teachStyleImage.image = UIImage(named: "Teach")
+        } else {
+            teachStyleImage.image = UIImage(named: "Free talk")
         }
-        targetLanguage.text = Language.strings[self.getUserData().motherLanguage]
+        teachStyleLabel.text = TeachingStyle.strings[getUserData().teachStyle]
+        if getUserData().isAllowExtension {
+            allowExtensionLabel.text = LString("OK")
+        } else {
+            allowExtensionLabel.text = LString("No")
+        }
         searchButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(teachSearchViewController.searchButtonTapped(_:))))
-        changeButtonState()
-        usersDB.whereField("secondLanguage", isEqualTo: self.getUserData().motherLanguage).whereField("isOnline", isEqualTo: true).getDocuments() { snapshot, error in
+        usersDB.whereField("studyLanguage", isEqualTo: getUserData().teachLanguage).whereField("isOnline", isEqualTo: true).getDocuments() { snapshot, error in
             if let _error = error {
                 print("error\(_error)")
                 return
@@ -88,36 +137,19 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
                 return
             }
             self.learners = documents.map{ UserModel(from: $0) }
-            self.numOfLearners.text = String(self.learners!.count)
-            self.MapView.removeAnnotations(self.MapView.annotations)
-            for learner in self.learners! {
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = CLLocationCoordinate2DMake(learner.location.latitude, learner.location.longitude)
-                self.MapView.addAnnotation(annotation)
-            }
+            self.numOfLearners.text = String(self.learners!.count)+"人が"
         }
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        let realm = try! Realm()
-        if realm.objects(RealmUserModel.self).isEmpty {
-            return
-        }
-        timeStepper.value = Double(offerTime)
-        instructionLabel.center.y = -65
-        UIView.animate(withDuration: 1.0, delay: 0.0, animations: {
-            self.instructionLabel.center.y = 65
-        }, completion: nil)
-        reloadUserRatingNative()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        instructionLabel.center.y = -65
+        changeButtonState()
+        reloadUserData()
     }
 
     @objc func searchButtonTapped(_ sender: UITapGestureRecognizer) {
-        checkUnpaidOfferNative() { result in
+        checkUnpaidOfferNative() { result, offer in
             self.isUnpaid = result
+            self.unpaidOffer = offer
             self.offerListener?.remove()
             guard let user = Auth.auth().currentUser else { return }
             user.reload()
@@ -127,7 +159,8 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
                 self.changeButtonState()
                 return
             }
-            if user.isEmailVerified && !self.isUnpaid! {
+            //if user.isEmailVerified && !self.isUnpaid! {
+            if !self.isUnpaid! {
                 self.isOnline.toggle()
                 if self.isOnline {
                     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
@@ -135,7 +168,7 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
                     }
                     self.changeButtonState()
                     self.makeOffer()
-                    self.usersDB.document(self.getUserUid()).setData(["isOffering" : true, "offeringTime": self.offerTime, "lastOnlineAt": FieldValue.serverTimestamp()], merge: true)
+                    self.usersDB.document(self.getUserUid()).setData(["isOffering" : true, "offerTime": self.offerTime!, "lastOnlineAt": FieldValue.serverTimestamp()], merge: true)
                     self.listenOffer()
                 } else {
                     self.changeButtonState()
@@ -153,23 +186,34 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
 
     func changeButtonState() {
         if isOnline {
-            self.searchButton.isUserInteractionEnabled = true
-            self.searchButton.image = UIImage.gif(name: "searchButton")
-            self.searchButton.layer.cornerRadius = 50
-            self.timeStepper.isEnabled = false
-            self.instructionLabel2.text = self.LString("Searching...")
+            searchButton.isUserInteractionEnabled = true
+            searchButton.image = UIImage.gif(name: "searchButton")
+            searchButton.layer.cornerRadius = 50
+            makeBalloonView(text: LString("Searching..."))
         } else {
-            self.searchButton.isUserInteractionEnabled = true
-            self.searchButton.image = UIImage(named: "gray")
-            self.searchButton.layer.cornerRadius = 50
-            self.timeStepper.isEnabled = true
-            self.instructionLabel2.text = self.LString("Tap to start searching learners!")
+            searchButton.isUserInteractionEnabled = true
+            searchButton.image = UIImage(named: "gray")
+            searchButton.layer.cornerRadius = 50
+            makeBalloonView(text: LString("Tap to start searching learners!"))
         }
     }
 
+    func makeBalloonView(text: String) {
+        let subviews = balloonView.subviews
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+        let label = UITextView(frame: CGRect(x: 0, y: 0, width: balloonView.frame.width, height: balloonView.frame.height))
+        label.backgroundColor = UIColor.clear
+        label.text = text
+        label.textColor = UIColor.white
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        balloonView.addSubview(label)
+    }
+
     func disableButton() {
-        self.searchButton.isUserInteractionEnabled = false
-        self.searchButton.image = UIImage.gif(name: "Preloader3")
+        searchButton.isUserInteractionEnabled = false
+        searchButton.image = UIImage.gif(name: "Preloader3")
     }
 
     private func sendEmailVerification(to user: User) {
@@ -189,14 +233,15 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
             "nativeID" : getUserUid(),
             "nativeName" : getUserData().name,
             "nativeNationality" : getUserData().nationality,
-            "nativeMotherLanguage" : getUserData().motherLanguage,
+            "nativeMotherLanguage" : getUserData().teachLanguage,
             "nativeRating" : getUserData().ratingAsNative,
             "nativeImageURL" : getUserData().imageURL,
             "nativeLocation" : GeoPoint(latitude: myLocation!.coordinate.latitude, longitude: myLocation!.coordinate.longitude),
-            "offerPrice" : offerTime,
-            "offerTime" : offerTime,
-            "targetLanguage" : getUserData().motherLanguage,
-            "supportLanguage" : getUserData().secondLanguage,
+            "offerPrice" : offerTime!,
+            "offerTime" : offerTime!,
+            "targetLanguage" : getUserData().teachLanguage,
+            "supportLanguage" : getUserData().studyLanguage,
+            "teachStyle": getUserData().teachStyle,
             "nativeProficiency": getUserData().proficiency,
             "isOnline": true,
             "createdAt" : FieldValue.serverTimestamp(),
@@ -238,17 +283,17 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
             buttonsLayout: .horizontal
         )
         incomingAlert = SCLAlertView(appearance: appearance)
-        let subview = UIView(frame: CGRect(x: 0,y: 0,width: 230,height: 180))
+        let subview = UIView(frame: CGRect(x: 0,y: 0,width: 216,height: 140))
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "incomingCallViewNib", bundle: bundle)
         let nibview = nib.instantiate(withOwner: self, options: nil).first as! incomingCallViewNib
         nibview.setData(offer: offerData)
+        nibview.center = subview.center
         subview.addSubview(nibview)
         incomingAlert!.customSubview = subview
         incomingAlert!.addButton("応答") {
             self.offersDb.document(self.offerID!).setData([
                 "isSelected" : false,
-                "isOnline" : true
             ], merge: true)
             self.tabBarController!.selectedIndex = 1
             self.peerID = offerData.peerID
@@ -284,6 +329,10 @@ class teachSearchViewController: UIViewController, MKMapViewDelegate {
             callVC.chatPartnerName = offer!.learnerName
             callVC.avatarImage = avatarImage
         }
+        if segue.identifier == "showReviewView" {
+            let ReviewVC = segue.destination as! teachReviewViewController
+            ReviewVC.offer = unpaidOffer!
+        }
     }
 }
 
@@ -316,7 +365,6 @@ extension teachSearchViewController: CLLocationManagerDelegate {
 class incomingCallViewNib: UIView {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var secondLanguage: UILabel!
     @IBOutlet weak var motherLanguage: UILabel!
@@ -331,7 +379,6 @@ class incomingCallViewNib: UIView {
         setImage(uid: offer.learnerID, imageView: imageView)
         imageView.layer.cornerRadius = 40
         makeFlagImageView(imageView: nationalFlag, nationality: offer.learnerNationality, radius: 12.5)
-        name.text = offer.learnerName
         rating.text = String(format: "%.1f", offer.learnerRating)
         secondLanguage.text = Language.shortStrings[offer.targetLanguage]
         motherLanguage.text = Language.shortStrings[offer.learnerMotherLanguage]

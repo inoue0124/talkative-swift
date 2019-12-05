@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import SwiftGifOrigin
 import RealmSwift
+import DZNEmptyDataSet
 
 class followViewController: UIViewController, UITableViewDelegate , UITableViewDataSource, UIPopoverPresentationControllerDelegate {
 
@@ -30,6 +31,8 @@ class followViewController: UIViewController, UITableViewDelegate , UITableViewD
         userTable.allowsSelection = true
         userTable.dataSource = self
         userTable.delegate = self
+        userTable.emptyDataSetDelegate = self
+        userTable.emptyDataSetSource = self
         userTable.register(UINib(nibName: "followRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
         Usersdb.document(getUserUid()).collection(followeeORfollower!).getDocuments() { snapshot, error in
             if let _error = error {
@@ -80,5 +83,27 @@ class followViewController: UIViewController, UITableViewDelegate , UITableViewD
             userDetailVC.user = user!
             userDetailVC.tabIndex = 0
         }
+    }
+}
+
+extension followViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "user")
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        var text: String?
+        if followeeORfollower == "followee" {
+            text = LString("No followee")
+        } else {
+            text = LString("No follower")
+        }
+        return NSAttributedString(string: text!)
+    }
+    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        userTable.separatorStyle = .none
+    }
+    func emptyDataSetWillDisappear(_ scrollView: UIScrollView!) {
+        userTable.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
     }
 }

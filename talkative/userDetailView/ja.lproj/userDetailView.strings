@@ -1,0 +1,29 @@
+
+/* Class = "UILabel"; text = "授業を受ける!"; ObjectID = "8uB-z8-tBU"; */
+"8uB-z8-tBU.text" = "授業を受ける!";
+
+/* Class = "UILabel"; text = "Yusuke"; ObjectID = "BM7-zm-Zqo"; */
+"BM7-zm-Zqo.text" = "Yusuke";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "BhS-AZ-Bqx"; */
+"BhS-AZ-Bqx.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "25"; ObjectID = "Dra-ED-EgC"; */
+"Dra-ED-EgC.text" = "25";
+
+/* Class = "UILabel"; text = "English"; ObjectID = "KLu-ej-S5C"; */
+"KLu-ej-S5C.text" = "English";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Vyq-dd-1DX"; */
+"Vyq-dd-1DX.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Japanese"; ObjectID = "d7W-wR-ZN1"; */
+"d7W-wR-ZN1.text" = "Japanese";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "ki5-b5-ZBp"; */
+"ki5-b5-ZBp.normalTitle" = "フォロー";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "vcD-aG-aRD"; */
+"vcD-aG-aRD.normalTitle" = "メッセージ";
+
+"Ikt-bj-dLm.normalTitle" = "リクエスト";

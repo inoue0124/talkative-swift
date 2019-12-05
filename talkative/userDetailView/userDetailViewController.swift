@@ -40,7 +40,9 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var followButton: UIButton!
-
+    @IBOutlet weak var offerTime: UILabel!
+    @IBOutlet weak var teachStyle: UILabel!
+    @IBOutlet weak var teachStyleImage: UIImageView!
 
     override func viewDidLoad() {
         navigationItem.largeTitleDisplayMode = .never
@@ -49,8 +51,8 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
         name.text = user?.name
         age.text = String(self.birthDateToAge(byBirthDate: user!.birthDate))
         setGenderIcon(gender: user?.gender, imageView: genderIcon)
-        motherLanguage.text = Language.strings[user!.motherLanguage]
-        secondLanguage.text = Language.strings[user!.secondLanguage]
+        motherLanguage.text = Language.strings[user!.teachLanguage]
+        secondLanguage.text = Language.strings[user!.studyLanguage]
         proficiency.image = UIImage(named: String(user!.proficiency))
         setImage(uid: user!.uid, imageView: self.thumbnail)
         thumbnail.layer.cornerRadius = 50
@@ -71,19 +73,29 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
     }
 
     func setupTabDesign() {
-        settings.style.buttonBarBackgroundColor = .white
-        settings.style.buttonBarItemBackgroundColor = .white
+        if #available(iOS 13.0, *) {
+            settings.style.buttonBarBackgroundColor = UIColor.systemBackground
+            settings.style.buttonBarItemBackgroundColor = UIColor.systemBackground
+            settings.style.buttonBarItemTitleColor = UIColor.label
+        } else {
+            settings.style.buttonBarBackgroundColor = .white
+            settings.style.buttonBarItemBackgroundColor = .white
+            settings.style.buttonBarItemTitleColor = .black
+        }
         settings.style.selectedBarBackgroundColor = UIColor(red: 37/255.0, green: 111/255.0, blue: 206/255.0, alpha: 1.0)
         settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 14)
         settings.style.selectedBarHeight = 2.0
         settings.style.buttonBarMinimumLineSpacing = 0
-        settings.style.buttonBarItemTitleColor = .black
         settings.style.buttonBarItemsShouldFillAvailableWidth = true
         settings.style.buttonBarLeftContentInset = 0
         settings.style.buttonBarRightContentInset = 0
         changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
-            oldCell?.label.textColor = .black
+            if #available(iOS 13.0, *) {
+                oldCell?.label.textColor = UIColor.label
+            } else {
+                oldCell?.label.textColor = .black
+            }
             newCell?.label.textColor = UIColor(red: 37/255.0, green: 111/255.0, blue: 206/255.0, alpha: 1.0)
         }
     }
@@ -91,13 +103,14 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
     func setupButtonDesign() {
         let disableColor: UIColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
         let titleColor: UIColor = UIColor(red: 90/255, green: 84/255, blue: 75/255, alpha: 1)
-        followButton.layer.borderColor = UIColor.gray.cgColor
-        followButton.layer.borderWidth = 0.5
         messageButton.isEnabled = false
         messageButton.setTitleColor(titleColor, for: .normal)
         messageButton.layer.borderColor = UIColor.gray.cgColor
         messageButton.layer.borderWidth = 0.5
         messageButton.backgroundColor = disableColor
+        callButton.isEnabled = false
+        videoButton.isEnabled = false
+        callMethodView.backgroundColor = .white
         callMethodView.layer.cornerRadius = 10
         callMethodView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         callMethodView.layer.shadowColor = UIColor.lightGray.cgColor
@@ -146,7 +159,7 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
     }
 
     @IBAction func tappedVideoButton(_ sender: Any) {
-        self.showPreloader()
+        startIndicator()
         checkUnpaidOfferLearner() { result, offer in
             self.isUnpaid = result
             self.unpaidOffer = offer
@@ -162,7 +175,7 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
                     }
                     let point = data["point"] as? Double ?? 0
                     if point - Double(self.offer!.offerPrice) < 0.0 {
-                        SCLAlertView().showError(self.LString("Oops"), subTitle: String(format: self.LString("Your have not enough points teach...") , Language.strings[self.getUserData().motherLanguage]), closeButtonTitle: self.LString("OK"))
+                        SCLAlertView().showError(self.LString("Oops"), subTitle: String(format: self.LString("Your have not enough points teach...") , Language.strings[self.getUserData().teachLanguage]), closeButtonTitle: self.LString("OK"))
                         return
                     }
                     let alert = SCLAlertView()
@@ -170,7 +183,7 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
                     alert.showInfo(self.LString("Confirm payment"),
                                    subTitle: String(format: self.LString("Pay %d points and talk %d minutes"),
                                     self.offer!.offerPrice,self.offer!.offerTime))
-                    self.dissmisPreloader()
+                    self.stopIndicator()
                 }
             }
         }
@@ -195,9 +208,17 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
     }
 
     func enableCallButton() {
-        callMethodView.alpha = 100
         callButton.tintColor = UIColor(red: 137/255, green: 195/255, blue: 235/255, alpha: 1)
         videoButton.tintColor = UIColor(red: 211/255, green: 162/255, blue: 67/255, alpha: 1)
+        callButton.isEnabled = true
+        videoButton.isEnabled = true
+        offerTime.text = String(offer!.offerTime)
+        teachStyle.text = TeachingStyle.strings[offer!.teachStyle]
+        if offer!.teachStyle == 0 {
+            teachStyleImage.image = UIImage(named: "Teach")
+        } else {
+            teachStyleImage.image = UIImage(named: "Free talk")
+        }
     }
 
     @IBAction func tappedMessageButton(_ sender: Any) {
@@ -220,8 +241,8 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
                     "createdAt" : FieldValue.serverTimestamp(),
                     "imageURL" : user!.imageURL.absoluteString,
                     "nationality" : user!.nationality,
-                    "motherLanguage": Language.strings[user!.motherLanguage],
-                    "secondLanguage": Language.strings[user!.secondLanguage],
+                    "teachLanguage": Language.strings[user!.teachLanguage],
+                    "studyLanguage": Language.strings[user!.studyLanguage],
                 ])
             }
         }
@@ -263,6 +284,7 @@ class userDetailViewController: ButtonBarPagerTabStripViewController {
             if toIndex == 1 {
                 callMethodView.alpha = 0
             } else if toIndex == 0 {
+                callMethodView.alpha = 1
                 getOfferData()
             }
         }

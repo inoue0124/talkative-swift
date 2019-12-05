@@ -17,20 +17,21 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var passwordTextField: UITextField!
     var email: String?
     var password: String?
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.emailTextField.placeholder = LString("EMAIL")
-        self.passwordTextField.placeholder = LString("PASSWORD")
+        emailTextField.placeholder = LString("EMAIL")
+        passwordTextField.placeholder = LString("PASSWORD")
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        emailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -39,27 +40,20 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction private func didTapSignUpButton() {
-        self.email = emailTextField.text ?? ""
-        self.password = passwordTextField.text ?? ""
-        self.signUp(email: self.email!, password: self.password!)
+        email = emailTextField.text ?? ""
+        password = passwordTextField.text ?? ""
+        signUp(email: self.email!, password: self.password!)
     }
 
     private func signUp(email: String, password: String) {
-        self.showPreloader()
+        startIndicator()
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             guard let self = self else { return }
             if let user = result?.user {
                 self.performSegue(withIdentifier: "toRegisterProfView", sender: nil)
             }
-            self.dissmisPreloader()
+            self.stopIndicator()
             self.showError(error)
-        }
-    }
-
-    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toRegisterProfView" {
-            let RegisterProfVC = segue.destination as! registerProfViewController
-            RegisterProfVC.email = self.email!
         }
     }
 }

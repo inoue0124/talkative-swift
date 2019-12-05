@@ -14,8 +14,10 @@
 "John Smith" = "John Smith";
 "Gender" = "Gender";
 "Date of birth" = "Date of birth";
+"Nationality" = "Nationality";
 "I am native in" = "I am native in";
-"I am learning" = "Also speak";
+"I am learning" = "I am learning";
+"Proficiency" = "Proficiency";
 "Error" = "Error";
 "Please fill all the blanks" = "Please fill all the blanks";
 "OK" = "OK";
@@ -47,12 +49,29 @@
 "Finish" = "Finish";
 "Cancel" = "Cancel";
 "Back to home" = "Back to home";
+"Language you want to learn" = "Language you want to learn";
+"Search" = "Search";
+"Only online" = "Only online";
+"Age" = "Age";
+"Nationality" = "Nationality";
+"Teaching language" = "Teaching language";
+"Also speak" = "Also speak";
+"Teachers' Second language proficiency" = "Teachers' Second language proficiency";
+"Length of call time" = "Length of call time";
+"Setting" = "Setting";
+"Teaching style" = "Teaching style";
+"Allow extension" = "Allow extension";
+"Search tutors" = "Search tutors";
+"Teach language" = "Teach language";
+
 
 // MessageView
 "Messages" = "Messages";
 
 // HistoryView
 "History" = "History";
+"Tutors" = "Tutors";
+"Learners" = "Learners";
 
 // ProfileView
 "Profile" = "Profile";
@@ -67,12 +86,32 @@
 "Basic profile" = "Basic profile";
 "Language setting" = "Language setting";
 "Points history" = "Points history";
-"Followee" = "Followee";
+"Save" = "Save";
+
+// userDetailView
+"As Tutor" = "As Tutor";
+"As Learner" = "As Learner";
+"+Follow" = "+Follow";
+"Followed" = "Followed";
+"Send an call request?" = "Send an call request?";
+"Call request" = "Call request";
+
+// DZNemptyView
+"Tutor not found" = "Tutor not found";
+"No chatrooms" = "No chatrooms";
+"No histories" = "No histories";
+"No followee" = "No followee";
+"No follower" = "No follower";
+"No reviews" = "No reviews";
+
 
 // Setting
-"Unknown" = "Unknown";
+"Not set" = "Not set";
+"No Answer" = "No Answer";
 "Male" = "Male";
 "Female" = "Female";
+"Teach" = "Teach";
+"Free talk" = "Free talk";
 
 // nationality
 "Australia" = "Australia";

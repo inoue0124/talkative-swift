@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import XLPagerTabStrip
+import DZNEmptyDataSet
 
 class teachHistoryViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, UIPopoverPresentationControllerDelegate, IndicatorInfoProvider {
     var history: OfferModel?
@@ -23,12 +24,14 @@ class teachHistoryViewController: UIViewController , UITableViewDelegate , UITab
     override func viewDidLoad() {
         HistoryTable.dataSource = self
         HistoryTable.delegate = self
+        HistoryTable.emptyDataSetDelegate = self
+        HistoryTable.emptyDataSetSource = self
         HistoryTable.register(UINib(nibName: "teachHistoryRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
         tabBarController?.tabBar.isHidden = true
     }
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "As Tutor")
+        return IndicatorInfo(title: LString("Learners"))
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,4 +95,22 @@ class teachHistoryViewController: UIViewController , UITableViewDelegate , UITab
         return .none
     }
 }
+
+extension teachHistoryViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "reviews")
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = LString("No histories")
+        return NSAttributedString(string: text)
+    }
+    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        HistoryTable.separatorStyle = .none
+    }
+    func emptyDataSetWillDisappear(_ scrollView: UIScrollView!) {
+        HistoryTable.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+    }
+}
+
 

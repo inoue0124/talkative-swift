@@ -12,6 +12,7 @@ import FirebaseFirestore
 import SwiftGifOrigin
 import SCLAlertView
 import XLPagerTabStrip
+import DZNEmptyDataSet
 
 class learnerDetailViewController: UIViewController, IndicatorInfoProvider {
 
@@ -31,6 +32,8 @@ class learnerDetailViewController: UIViewController, IndicatorInfoProvider {
 //        }
         commentTable.dataSource = self
         commentTable.delegate = self
+        commentTable.emptyDataSetDelegate = self
+        commentTable.emptyDataSetSource = self
         commentTable.allowsSelection = false
         commentTable.register(UINib(nibName: "commentTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
         rating.text = String(format: "%.1f", user!.ratingAsLearner)
@@ -59,7 +62,7 @@ class learnerDetailViewController: UIViewController, IndicatorInfoProvider {
     }
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "As Learner")
+        return IndicatorInfo(title: LString("As Learner"))
     }
 }
 
@@ -74,3 +77,22 @@ extension learnerDetailViewController: UITableViewDelegate , UITableViewDataSour
         return tableContent
     }
 }
+
+extension learnerDetailViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "reviews")
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = LString("No reviews")
+        return NSAttributedString(string: text)
+    }
+    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        commentTable.separatorStyle = .none
+    }
+    func emptyDataSetWillDisappear(_ scrollView: UIScrollView!) {
+        commentTable.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+    }
+}
+
+

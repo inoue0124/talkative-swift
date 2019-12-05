@@ -11,34 +11,43 @@ import UIKit
 class nativeCollectionViewCell: UICollectionViewCell {
 
     
+    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var nationalFlag: UIImageView!
     @IBOutlet weak var supportLanguage: UILabel!
     @IBOutlet weak var proficiency: UIImageView!
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var offerTime: UILabel!
+    @IBOutlet weak var styleImage: UIImageView!
+    @IBOutlet weak var styleLabel: UILabel!
 
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.contentView.layer.cornerRadius = 10.0
-        self.contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 10.0
+        contentView.layer.masksToBounds = true
 
-        self.layer.shadowColor = UIColor.lightGray.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        self.layer.shadowRadius = 4.0
-        self.layer.shadowOpacity = 2.0
-        self.layer.masksToBounds = false
+        layer.shadowColor = UIColor.lightGray.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 0.5)
+        layer.shadowRadius = 4.0
+        layer.shadowOpacity = 10.0
+        layer.masksToBounds = false
     }
 
     func setData(numOfCells: IndexPath, native: UserModel){
-        supportLanguage.text = Language.shortStrings[native.secondLanguage]
+        name.text = native.name
+        supportLanguage.text = Language.shortStrings[native.studyLanguage]
         proficiency.image = UIImage(named: String(native.proficiency))
         rating.text = String(format: "%.1f", native.ratingAsNative)
-        //offerTime.text = String(native.offerTime)
-        self.makeFlagImageView(imageView: nationalFlag, nationality: native.nationality, radius: 10)
+        makeFlagImageView(imageView: nationalFlag, nationality: native.nationality, radius: 10)
         thumbnail.layer.cornerRadius = 40
-        self.setImage(uid: native.uid, imageView: self.thumbnail)
-        offerTime.text = String(native.offeringTime)
+        setImage(uid: native.uid, imageView: self.thumbnail)
+        offerTime.text = String(native.offerTime)
+        styleLabel.text = String(TeachingStyle.strings[native.teachStyle])
+        if native.teachStyle == 0 {
+            styleImage.image = UIImage(named: "Teach")
+        } else {
+            styleImage.image = UIImage(named: "Free talk")
+        }
     }
 }

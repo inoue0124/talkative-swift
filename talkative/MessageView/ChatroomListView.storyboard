@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nQC-lu-vBU">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -25,13 +25,14 @@
                         <constraints>
                             <constraint firstItem="kte-lI-VZt" firstAttribute="trailing" secondItem="nQC-lu-vBU" secondAttribute="trailing" id="ahN-CZ-SIJ"/>
                             <constraint firstItem="nQC-lu-vBU" firstAttribute="leading" secondItem="kte-lI-VZt" secondAttribute="leading" id="kRw-G1-rpj"/>
-                            <constraint firstItem="nQC-lu-vBU" firstAttribute="top" secondItem="kte-lI-VZt" secondAttribute="top" id="nzd-jL-AMO"/>
+                            <constraint firstItem="nQC-lu-vBU" firstAttribute="top" secondItem="bxJ-we-ISx" secondAttribute="top" id="nzd-jL-AMO"/>
                             <constraint firstItem="kte-lI-VZt" firstAttribute="bottom" secondItem="nQC-lu-vBU" secondAttribute="bottom" id="r7U-P3-58t"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kte-lI-VZt"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="message" id="dyP-cK-nXr"/>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="Hyc-1B-HgH"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ChatroomListTable" destination="nQC-lu-vBU" id="75N-YR-7ic"/>

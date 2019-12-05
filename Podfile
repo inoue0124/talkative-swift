@@ -29,6 +29,9 @@ pod 'HydraAsync'
 pod 'Stripe'
 pod 'XLPagerTabStrip'
 pod 'SDWebImage'
+pod 'Charts'
+pod 'NVActivityIndicatorView'
+pod 'DZNEmptyDataSet'
 
   # Pods for talkative
 

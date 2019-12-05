@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import DZNEmptyDataSet
 
 class ChatroomListViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, UIPopoverPresentationControllerDelegate {
     var chatroom: ChatroomModel?
@@ -28,6 +29,8 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
     isInitialCheck = true
     ChatroomListTable.dataSource = self
     ChatroomListTable.delegate = self
+    ChatroomListTable.emptyDataSetDelegate = self
+    ChatroomListTable.emptyDataSetSource = self
     ChatroomListTable.register(UINib(nibName: "chatroomListRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
     chatroomListener = chatroomsDb.whereField("viewableUserIDs." + getUserUid(), isEqualTo: true).addSnapshotListener() { snapshot, error in
         if let _error = error {
@@ -96,5 +99,22 @@ class ChatroomListViewController: UIViewController , UITableViewDelegate , UITab
         return .none
     }
 
+}
+
+extension ChatroomListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "chats")
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = LString("No chatrooms")
+        return NSAttributedString(string: text)
+    }
+    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        ChatroomListTable.separatorStyle = .none
+    }
+    func emptyDataSetWillDisappear(_ scrollView: UIScrollView!) {
+        ChatroomListTable.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+    }
 }
 

@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "・授業回数"; ObjectID = "4uL-yK-w57"; */
+"4uL-yK-w57.text" = "・授業回数";
+
+/* Class = "UILabel"; text = "・評価"; ObjectID = "FIj-8V-C3l"; */
+"FIj-8V-C3l.text" = "・評価";
+
+/* Class = "UILabel"; text = "・他の生徒のレビュー"; ObjectID = "L8W-BB-fGa"; */
+"L8W-BB-fGa.text" = "・先生のレビュー";
+
+/* Class = "UILabel"; text = "4.8"; ObjectID = "g0I-O9-fd1"; */
+"g0I-O9-fd1.text" = "4.8";
+
+/* Class = "UILabel"; text = "15"; ObjectID = "srb-hE-iem"; */
+"srb-hE-iem.text" = "15";

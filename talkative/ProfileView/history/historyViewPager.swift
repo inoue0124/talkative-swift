@@ -12,19 +12,30 @@ import XLPagerTabStrip
 class historyViewPager: ButtonBarPagerTabStripViewController {
 
     override func viewDidLoad() {
-        settings.style.buttonBarBackgroundColor = .white
-        settings.style.buttonBarItemBackgroundColor = .white
+        if #available(iOS 13.0, *) {
+            settings.style.buttonBarBackgroundColor = UIColor.systemBackground
+            settings.style.buttonBarItemBackgroundColor = UIColor.systemBackground
+            settings.style.buttonBarItemTitleColor = UIColor.label
+        } else {
+            settings.style.buttonBarBackgroundColor = .white
+            settings.style.buttonBarItemBackgroundColor = .white
+            settings.style.buttonBarItemTitleColor = .black
+        }
         settings.style.selectedBarBackgroundColor = UIColor(red: 37/255.0, green: 111/255.0, blue: 206/255.0, alpha: 1.0)
         settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 14)
         settings.style.selectedBarHeight = 2.0
         settings.style.buttonBarMinimumLineSpacing = 0
-        settings.style.buttonBarItemTitleColor = .black
+
         settings.style.buttonBarItemsShouldFillAvailableWidth = true
         settings.style.buttonBarLeftContentInset = 0
         settings.style.buttonBarRightContentInset = 0
         changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
-            oldCell?.label.textColor = .black
+            if #available(iOS 13.0, *) {
+                oldCell?.label.textColor = UIColor.label
+            } else {
+                oldCell?.label.textColor = .black
+            }
             newCell?.label.textColor = UIColor(red: 37/255.0, green: 111/255.0, blue: 206/255.0, alpha: 1.0)
         }
         navigationItem.title = LString("History")

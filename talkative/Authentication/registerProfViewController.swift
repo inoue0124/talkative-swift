@@ -18,29 +18,12 @@ import Hydra
 
 class registerProfViewController: FormViewController {
 
-    public final class DetailedButtonRowOf<T: Equatable> : _ButtonRowOf<T>, RowType {
-        public required init(tag: String?) {
-            super.init(tag: tag)
-            cellStyle = .value1
-        }
-    }
-    public typealias DetailedButtonRow = DetailedButtonRowOf<String>
-
-    var email: String?
-    var password: String?
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-    let Usersdb = Firestore.firestore().collection("Users")
-    let UserData: RealmUserModel = RealmUserModel()
+    let usersDB = Firestore.firestore().collection("Users")
     let registerBonus: Double = 30.0
-    var secondLanguage: Int = 0
-    var proficiency: Int = 0
-    lazy var functions = Functions.functions()
-
+    let calendar = Calendar(identifier: .gregorian)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
-
         form +++ Section() {
             let header = HeaderFooterView<LogoViewNib>(.nibFile(name: "registerProfViewHeader", bundle: nil))
             $0.header = header
@@ -71,6 +54,7 @@ class registerProfViewController: FormViewController {
             $0.title = LString("Gender")
             $0.options = Gender.strings
             $0.tag = "gender"
+            $0.value = Gender.strings[0]
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
         }.onPresent { form, selectorController in
@@ -80,14 +64,16 @@ class registerProfViewController: FormViewController {
         <<< DateRow {
             $0.title = LString("Date of birth")
             $0.tag = "birthDate"
+            $0.value = calendar.date(from: DateComponents(year: 1990, month: 1, day: 1))!
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
         }
 
         <<< PushRow<String> {
             $0.title = LString("Nationality")
-            $0.options = Nationality.strings
+            $0.options = Array(Nationality.strings.dropFirst(1))
             $0.tag = "nationality"
+            $0.value = Nationality.strings[0]
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
         }.onPresent { form, selectorController in
@@ -96,51 +82,61 @@ class registerProfViewController: FormViewController {
 
         <<< PushRow<String> {
             $0.title = LString("I am native in")
-            $0.options = Language.strings
-            $0.tag = "motherLanguage"
+            $0.options = Array(Language.strings.dropFirst(1))
+            $0.tag = "teachLanguage"
+            $0.value = Language.strings[0]
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
         }.onPresent { form, selectorController in
             selectorController.enableDeselection = false
         }
 
-        <<< DetailedButtonRow {
+        <<< PushRow<String> {
             $0.title = LString("I am learning")
-            $0.presentationMode = .segueName(segueName: "registerSecondLanguage", onDismiss: nil)
+            $0.options = Array(Language.strings.dropFirst(1))
+            $0.tag = "studyLanguage"
+            $0.value = Language.strings[0]
         }.cellUpdate { cell, row in
             cell.height = ({return 80})
-            cell.detailTextLabel?.text = Language.strings[self.secondLanguage]+":"+Proficiency.strings[self.proficiency]
+        }.onPresent { form, selectorController in
+            selectorController.enableDeselection = false
+        }
+
+        <<< PushRow<String> {
+            $0.title = LString("Proficiency")
+            $0.options = Array(Proficiency.strings.dropFirst(1))
+            $0.tag = "proficiency"
+            $0.value = Proficiency.strings[0]
+        }.cellUpdate { cell, row in
+            cell.height = ({return 80})
+        }.onPresent { form, selectorController in
+            selectorController.enableDeselection = false
+        }
+
+        +++ Section()
+        <<< ButtonRow {
+            $0.title = LString("save")
+            $0.onCellSelection(self.tappedSaveButton)
+        }.cellUpdate { cell, row in
+            cell.height = ({return 60})
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == "registerSecondLanguage" {
-            let registerSecondLanguageVC = segue.destination as! registerSecondLanguageViewController
-            registerSecondLanguageVC.secondLanguage = secondLanguage
-            registerSecondLanguageVC.proficiency = proficiency
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
-    func validateForm(dict: [String : Any?]) -> Bool {
-        for (key, value) in dict {
-            if value == nil {
-                self.dissmisPreloader()
-                SCLAlertView().showError(LString("Error"), subTitle:LString("Please fill all the blanks"), closeButtonTitle:LString("OK"))
-                return false
-            }
-        }
-        return true
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
-    @IBAction func tappedSaveButton(_ sender: Any) {
-        self.showPreloader()
+    func tappedSaveButton(cell: ButtonCellOf<String>, row: ButtonRow) {
+        startIndicator()
         let values = form.values()
-        if self.validateForm(dict: values) {
-            let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
-            self.saveImageToStorage(uid: uid, values: values, image: values["profImage"] as! UIImage)
-            self.saveToFirestore(uid: uid, values: values)
-        }
+        let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
+        saveImageToStorage(uid: uid, values: values, image: values["profImage"] as! UIImage)
     }
+
 
     func saveImageToStorage(uid: String, values: [String : Any?], image: UIImage) {
         let profImagesDirRef = Storage.storage().reference().child("profImages")
@@ -154,9 +150,7 @@ class registerProfViewController: FormViewController {
             }
             fileRef.downloadURL { (url, error) in
                 if let downloadURL = url {
-                    self.Usersdb.document(uid).setData([
-                        "imageURL": downloadURL.absoluteString
-                    ], merge: true)
+                    self.saveToFirestore(uid: uid, values: values, imageURL: downloadURL)
                     self.saveToRealm(uid: uid, values: values, imageURL: downloadURL)
                     self.performSegue(withIdentifier: "toMain", sender: nil)  
                 }
@@ -165,108 +159,53 @@ class registerProfViewController: FormViewController {
     }
 
     func saveToRealm(uid: String, values: [String : Any?], imageURL: URL) {
-        self.UserData.uid = uid
-        self.UserData.name = values["name"] as! String
-        self.UserData.imageURL = imageURL.absoluteString
-        self.UserData.profImage = (values["profImage"] as! UIImage).scaledToSafeUploadSize!.jpegData(compressionQuality: 0.1)!
-        self.UserData.gender = Gender.fromString(string: values["gender"] as! String).rawValue
-        self.UserData.birthDate = values["birthDate"] as! Date
-        self.UserData.isRegisteredProf = true
-        self.UserData.createdAt = Date()
-        self.UserData.updatedAt = Date()
-        self.UserData.nationality = Nationality.fromString(string: values["nationality"] as! String).rawValue
-        self.UserData.motherLanguage = Language.fromString(string: values["motherLanguage"] as! String).rawValue
-        self.UserData.secondLanguage = self.secondLanguage
-        self.UserData.proficiency = self.proficiency
+        let userData: RealmUserModel = RealmUserModel()
+        userData.uid = uid
+        userData.profImage = (values["profImage"] as! UIImage).scaledToSafeUploadSize!.jpegData(compressionQuality: 0.1)!
+        userData.imageURL = imageURL.absoluteString
+        userData.name = values["name"] as? String ?? LString("Not set")
+        userData.gender = Gender.fromString(string: values["gender"] as! String).rawValue
+        userData.birthDate = values["birthDate"] as! Date
+        userData.nationality = Nationality.fromString(string: values["nationality"] as! String).rawValue
+        userData.proficiency = Proficiency.fromString(string: values["proficiency"] as! String).rawValue
+        userData.studyLanguage = Language.fromString(string: values["studyLanguage"] as! String).rawValue
+        userData.teachLanguage = Language.fromString(string: values["teachLanguage"] as! String).rawValue
+        userData.createdAt = Date()
+        userData.updatedAt = Date()
         let realm = try! Realm()
         try! realm.write {
-          realm.add(UserData)
+          realm.add(userData)
         }
     }
 
-    func saveToFirestore(uid: String, values: [String : Any?]) {
-        self.Usersdb.document(uid).setData([
+    func saveToFirestore(uid: String, values: [String : Any?], imageURL: URL) {
+        usersDB.document(uid).setData([
             "uid": uid,
-            "name": values["name"] as! String,
+            "imageURL": imageURL.absoluteString,
+            "name": values["name"] as? String ?? LString("Not set"),
             "gender": Gender.fromString(string: values["gender"] as! String).rawValue,
             "birthDate": Timestamp(date: values["birthDate"] as! Date),
             "isOnline" : true,
+            "isOffering" : false,
             "nationality": Nationality.fromString(string: values["nationality"] as! String).rawValue,
-            "motherLanguage": Language.fromString(string: values["motherLanguage"] as! String).rawValue,
-            "secondLanguage": self.secondLanguage,
-            "proficiency": self.proficiency,
-            "ratingAsLearner": 0,
-            "ratingAsNative": 0,
+            "proficiency": Proficiency.fromString(string: values["proficiency"] as! String).rawValue,
+            "teachLanguage" : Language.fromString(string: values["teachLanguage"] as! String).rawValue,
+            "studyLanguage" : Language.fromString(string: values["studyLanguage"] as! String).rawValue,
+            "ratingAsLearner": 4.0,
+            "ratingAsNative": 4.0,
             "callCountAsLearner": 0,
             "callCountAsNative": 0,
             "createdAt": FieldValue.serverTimestamp(),
             "updatedAt": FieldValue.serverTimestamp(),
         ], merge: true)
         let alert = SCLAlertView()
-        _ = alert.showSuccess(LString("Thank you for your registration!"), subTitle: String(format: LString("Got %.1f points!"), self.registerBonus))
+        alert.showSuccess(LString("Thank you for your registration!"), subTitle: String(format: LString("Got %.1f points!"), registerBonus))
     }
 }
 
 class LogoViewNib: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-}
-
-class registerSecondLanguageViewController: FormViewController {
-
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-    var presentingVC: UIViewController?
-    var secondLanguage: Int?
-    var proficiency: Int?
-
-    @IBAction func tappedSaveButton(_ sender: Any) {
-        let values = form.values()
-        let nc = self.navigationController
-        let vcNum = nc!.viewControllers.count
-        let registerProfVC = nc!.viewControllers[vcNum - 2] as! registerProfViewController
-        registerProfVC.secondLanguage = Language.fromString(string: values["secondLanguage"] as! String).rawValue
-        if Language.fromString(string: values["secondLanguage"] as! String).rawValue == 0 {
-            registerProfVC.proficiency = 0
-        } else {
-            registerProfVC.proficiency = Proficiency.fromString(string: values["proficiency"] as! String).rawValue
-        }
-        if Language.fromString(string: values["secondLanguage"] as! String).rawValue != 0 &&
-            Proficiency.fromString(string: values["proficiency"] as! String).rawValue == 0 {
-            SCLAlertView().showError(LString("Error"), subTitle:LString("Please select your level"), closeButtonTitle:LString("OK"))
-            return
-        }
-        self.navigationController?.popViewController(animated: true)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
-
-        form
-        +++ Section(LString("I am learning"))
-
-        <<< PushRow<String> {
-            $0.title = LString("I am learning")
-            $0.options = Language.strings
-            $0.value = Language.strings[self.secondLanguage!]
-            $0.tag = "secondLanguage"
-        }.cellUpdate { cell, row in
-            cell.height = ({return 80})
-        }.onPresent { form, selectorController in
-            selectorController.enableDeselection = false
-        }
-
-        <<< PushRow<String> {
-            $0.title = LString("proficiency")
-            $0.options = Proficiency.strings
-            $0.value = Proficiency.strings[self.proficiency!]
-            $0.tag = "proficiency"
-        }.cellUpdate { cell, row in
-            cell.height = ({return 80})
-        }.onPresent { form, selectorController in
-            selectorController.enableDeselection = false
-        }
     }
 }
 

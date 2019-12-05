@@ -12,20 +12,20 @@ import FBSDKLoginKit
 import FirebaseAuth
 
 class selectRegisterMethodViewController: UIViewController, LoginButtonDelegate {
-
-    var email: String?
+    @IBOutlet weak var facebookButton: FBLoginButton!
 
     override func viewWillAppear(_ animated: Bool) {
         facebookButton.delegate = self
+        LoginManager().logOut()
         super.viewWillAppear(animated)
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController!.navigationBar.shadowImage = UIImage()
+        navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController!.navigationBar.shadowImage = UIImage()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController!.navigationBar.shadowImage = nil
+        navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController!.navigationBar.shadowImage = nil
     }
 
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
@@ -36,30 +36,23 @@ class selectRegisterMethodViewController: UIViewController, LoginButtonDelegate 
         if result!.isCancelled {
             return
         }
-        self.showPreloader()
+        startIndicator()
         let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
         Auth.auth().signIn(with: credential) { [weak self] result, error in
-        guard let self = self else { return }
-            if let user = result?.user {
-                self.email = user.email
-                self.dissmisPreloader()
-                self.performSegue(withIdentifier: "toRegisterProfView", sender: nil)
+            guard let self = self else { return }
+            if let _result = result {
+                if _result.additionalUserInfo!.isNewUser {
+                    self.performSegue(withIdentifier: "toRegisterProfView", sender: nil)
+                } else {
+                    self.showErrorAlert(message: self.LString("Already have an account"))
+                    LoginManager().logOut()
+                }
             }
-            self.dissmisPreloader()
+            self.stopIndicator()
             self.showError(error)
         }
     }
 
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-    }
-
-
-    @IBOutlet weak var facebookButton: FBLoginButton!
-
-    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toRegisterProfView" {
-            let RegisterProfVC = segue.destination as! registerProfViewController
-            RegisterProfVC.email = self.email!
-        }
     }
 }

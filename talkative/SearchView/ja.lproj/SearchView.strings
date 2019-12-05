@@ -1,51 +1,60 @@
 
-/* Class = "UILabel"; text = "Also speak"; ObjectID = "4kh-wt-RWf"; */
-"4kh-wt-RWf.text" = "話せる言語";
-
-/* Class = "UILabel"; text = "Name"; ObjectID = "6tA-0U-uDx"; */
-"6tA-0U-uDx.text" = "Name";
-
 /* Class = "UILabel"; text = "Name"; ObjectID = "75X-fB-osh"; */
 "75X-fB-osh.text" = "Name";
 
-/* Class = "UILabel"; text = "0"; ObjectID = "Aex-QJ-JeP"; */
-"Aex-QJ-JeP.text" = "0";
+/* Class = "UIButton"; normalTitle = "もっと見る"; ObjectID = "Bfw-pa-j3B"; */
+"Bfw-pa-j3B.normalTitle" = "もっと見る";
 
-/* Class = "UILabel"; text = "Tap to start searching natives!"; ObjectID = "HYp-Ib-66V"; */
-"HYp-Ib-66V.text" = "▼タップして母語話者を探す!";
+/* Class = "UILabel"; text = "授業時間"; ObjectID = "FGx-bM-QAf"; */
+"FGx-bM-QAf.text" = "授業時間";
+
+/* Class = "UILabel"; text = "支払いポイント"; ObjectID = "M31-gm-Eqh"; */
+"M31-gm-Eqh.text" = "支払いポイント";
 
 /* Class = "UILabel"; text = "Please give stars!"; ObjectID = "ND8-gk-ISf"; */
 "ND8-gk-ISf.text" = "評価をお願いします!";
 
-/* Class = "UILabel"; text = "English"; ObjectID = "Qvk-G4-77N"; */
-"Qvk-G4-77N.text" = "English";
+/* Class = "UILabel"; text = "12:00:00"; ObjectID = "RFa-Yx-FyN"; */
+"RFa-Yx-FyN.text" = "12:00:00";
 
-/* Class = "UILabel"; text = "English"; ObjectID = "aqg-ue-pPo"; */
-"aqg-ue-pPo.text" = "English";
+/* Class = "UILabel"; text = "地図から探す"; ObjectID = "X8Z-2i-rqx"; */
+"X8Z-2i-rqx.text" = "地図から探す";
 
-/* Class = "UILabel"; text = "10"; ObjectID = "hkB-1t-HMV"; */
-"hkB-1t-HMV.text" = "10";
+/* Class = "UILabel"; text = "オンライン"; ObjectID = "bTh-Wb-3Bj"; */
+"bTh-Wb-3Bj.text" = "オンライン";
 
-/* Class = "UILabel"; text = "Japanese"; ObjectID = "mLU-p5-O24"; */
-"mLU-p5-O24.text" = "Japanese";
+/* Class = "UILabel"; text = "終了時刻"; ObjectID = "bag-xw-PiO"; */
+"bag-xw-PiO.text" = "終了時刻";
 
-/* Class = "UILabel"; text = "Mohter Language"; ObjectID = "nBB-pr-JdD"; */
-"nBB-pr-JdD.text" = "母国語";
+/* Class = "UILabel"; text = "12:15:00"; ObjectID = "hdF-5C-51J"; */
+"hdF-5C-51J.text" = "12:15:00";
+
+/* Class = "UILabel"; text = "開始時刻"; ObjectID = "l1E-fQ-GRk"; */
+"l1E-fQ-GRk.text" = "開始時刻";
 
 /* Class = "UIButton"; normalTitle = "Back to home"; ObjectID = "oen-OZ-OdK"; */
-"oen-OZ-OdK.normalTitle" = "ホームへ戻る";
+"oen-OZ-OdK.normalTitle" = "ホームに戻る";
 
-/* Class = "UILabel"; text = " "; ObjectID = "p4Z-t9-h5M"; */
-"p4Z-t9-h5M.text" = "名の";
+/* Class = "UIButton"; normalTitle = "英語"; ObjectID = "phh-1A-2Fx"; */
+"phh-1A-2Fx.normalTitle" = "英語";
 
-/* Class = "UILabel"; text = " natives"; ObjectID = "qhh-Pg-G2S"; */
-"qhh-Pg-G2S.text" = "母語話者が";
+/* Class = "UILabel"; text = "一言コメントを書こう！"; ObjectID = "qEN-8E-U9M"; */
+"qEN-8E-U9M.text" = "一言コメントを書こう！";
 
-/* Class = "UILabel"; text = "are online!"; ObjectID = "sbI-eF-w0R"; */
-"sbI-eF-w0R.text" = "オンラインです!";
+/* Class = "UILabel"; text = "人気の先生"; ObjectID = "qMg-W5-2GR"; */
+"qMg-W5-2GR.text" = "人気の先生";
 
-/* Class = "UILabel"; text = "4.8"; ObjectID = "taO-L9-UnZ"; */
-"taO-L9-UnZ.text" = "4.8";
+/* Class = "UILabel"; text = "00:00"; ObjectID = "sz2-kG-IHx"; */
+"sz2-kG-IHx.text" = "00:00";
 
-/* Class = "UILabel"; text = " min"; ObjectID = "uvr-dQ-8VR"; */
-"uvr-dQ-8VR.text" = "分";
+/* Class = "UILabel"; text = "学びたい言語"; ObjectID = "tfn-jF-IdY"; */
+"tfn-jF-IdY.text" = "学びたい言語";
+
+/* Class = "UIButton"; normalTitle = "もっと見る"; ObjectID = "uH3-cH-FuQ"; */
+"uH3-cH-FuQ.normalTitle" = "もっと見る";
+
+/* Class = "UILabel"; text = "15分00秒"; ObjectID = "wnL-n4-fcc"; */
+"wnL-n4-fcc.text" = "15分00秒";
+
+/* Class = "UILabel"; text = "15P"; ObjectID = "xAP-bd-BLX"; */
+"xAP-bd-BLX.text" = "15P";

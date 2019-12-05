@@ -44,7 +44,7 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uO-lo-Oqc">
-                        <rect key="frame" x="134" y="39" width="150" height="30"/>
+                        <rect key="frame" x="100" y="39" width="150" height="30"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="FKR-H6-ZJv">
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -83,15 +83,27 @@
                             </imageView>
                         </subviews>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYk-cH-pXh">
+                        <rect key="frame" x="277" y="39" width="78" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="78" id="0GJ-oA-vKp"/>
+                        </constraints>
+                        <state key="normal" title="Request"/>
+                        <connections>
+                            <action selector="tappedRequestButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Y5O-BI-Slh"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Uv4-OC-fIx" firstAttribute="leading" secondItem="J20-Lf-Vvh" secondAttribute="trailing" constant="8" id="PXn-a1-Enq"/>
                     <constraint firstItem="4uO-lo-Oqc" firstAttribute="top" secondItem="6S7-G0-jWU" secondAttribute="bottom" constant="2.5" id="YHX-xI-sf4"/>
                     <constraint firstItem="7YL-0P-fzz" firstAttribute="leading" secondItem="J20-Lf-Vvh" secondAttribute="leading" id="b7k-1d-Zcb"/>
                     <constraint firstItem="J20-Lf-Vvh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="bWL-Qy-scj"/>
-                    <constraint firstItem="4uO-lo-Oqc" firstAttribute="leading" secondItem="J20-Lf-Vvh" secondAttribute="trailing" constant="64" id="f5u-14-Ndu"/>
+                    <constraint firstAttribute="trailing" secondItem="WYk-cH-pXh" secondAttribute="trailing" constant="20" id="bvs-4E-Rdi"/>
+                    <constraint firstItem="4uO-lo-Oqc" firstAttribute="leading" secondItem="J20-Lf-Vvh" secondAttribute="trailing" constant="30" id="f5u-14-Ndu"/>
                     <constraint firstItem="Uv4-OC-fIx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="gLt-w1-JL9"/>
                     <constraint firstItem="6S7-G0-jWU" firstAttribute="centerY" secondItem="Uv4-OC-fIx" secondAttribute="centerY" id="hYP-Rb-Odp"/>
+                    <constraint firstItem="WYk-cH-pXh" firstAttribute="centerY" secondItem="4uO-lo-Oqc" secondAttribute="centerY" id="lF9-VX-BOv"/>
                     <constraint firstItem="J20-Lf-Vvh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="qez-YU-HLn"/>
                     <constraint firstAttribute="trailing" secondItem="6S7-G0-jWU" secondAttribute="trailing" constant="20.5" id="xZk-Ix-GWj"/>
                     <constraint firstAttribute="bottom" secondItem="J20-Lf-Vvh" secondAttribute="bottom" constant="10" id="zPv-jy-r4I"/>
@@ -104,6 +116,7 @@
                 <outlet property="Thumbnail" destination="J20-Lf-Vvh" id="7rd-MQ-SN6"/>
                 <outlet property="finishedDate" destination="6S7-G0-jWU" id="oFl-Lk-sgL"/>
                 <outlet property="nationalFlag" destination="7YL-0P-fzz" id="yZK-bq-m0N"/>
+                <outlet property="requestButton" destination="WYk-cH-pXh" id="pYN-1a-O7d"/>
                 <outlet property="star1" destination="FKR-H6-ZJv" id="Iip-78-RUR"/>
                 <outlet property="star2" destination="VIZ-1d-iUS" id="Xks-rd-IGn"/>
                 <outlet property="star3" destination="uwu-td-Leh" id="ILU-Q3-9s0"/>

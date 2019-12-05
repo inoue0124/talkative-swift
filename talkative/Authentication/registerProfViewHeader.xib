@@ -10,24 +10,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LogoViewNib" customModule="talkative" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="365" height="208"/>
+            <rect key="frame" x="0.0" y="0.0" width="365" height="199"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoimage" translatesAutoresizingMaskIntoConstraints="NO" id="LVO-Pg-JQc">
-                    <rect key="frame" x="0.0" y="0.0" width="365" height="208"/>
+                    <rect key="frame" x="0.0" y="0.0" width="365" height="199"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="LVO-Pg-JQc" secondAttribute="trailing" id="6I2-83-QOg"/>
-                <constraint firstAttribute="bottom" secondItem="LVO-Pg-JQc" secondAttribute="bottom" id="U4Y-x0-CsW"/>
-                <constraint firstItem="LVO-Pg-JQc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aUS-LU-b4O"/>
-                <constraint firstItem="LVO-Pg-JQc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ylH-ns-Sj0"/>
+                <constraint firstItem="LVO-Pg-JQc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GDv-9T-1c4"/>
+                <constraint firstAttribute="trailing" secondItem="LVO-Pg-JQc" secondAttribute="trailing" id="MFi-GE-whd"/>
+                <constraint firstItem="LVO-Pg-JQc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TRp-h3-X79"/>
+                <constraint firstAttribute="bottom" secondItem="LVO-Pg-JQc" secondAttribute="bottom" id="epe-0k-tZC"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="129.71014492753625" y="118.52678571428571"/>
+            <point key="canvasLocation" x="129.71014492753625" y="115.51339285714285"/>
         </view>
     </objects>
     <resources>

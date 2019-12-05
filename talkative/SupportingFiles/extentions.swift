@@ -13,6 +13,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import SCLAlertView
 import SDWebImage
+import NVActivityIndicatorView
 
 extension UITableViewCell {
     func getUserData() -> RealmUserModel {
@@ -30,7 +31,7 @@ extension UIViewController {
     /// NavigationBarの左にローカライズされたタイトルを表示する
     func largeTitle(_ title: String) {
         navigationItem.title = title
-        navigationController!.navigationBar.barTintColor = UIColor.white
+        //navigationController!.navigationBar.barTintColor = UIColor.white
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
 
@@ -48,7 +49,7 @@ extension UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
 
         //largetitleの適用時の画面遷移でチラ見する黒背景はコイツ
-        navigationController!.view.backgroundColor = UIColor.white
+        //navigationController!.view.backgroundColor = UIColor.white
     }
 }
 
@@ -60,7 +61,6 @@ extension UIViewController {
         let localDateIntVal = Int(string(localDate, format: "yyyyMMdd"))
         let birthDateIntVal = Int(string(birthDate, format: "yyyyMMdd"))
         let age = (localDateIntVal! - birthDateIntVal!) / 10000
-        print(age)
         return age
     }
     func string(_ date: Date, format: String) -> String {
@@ -72,19 +72,23 @@ extension UIViewController {
 
 extension UIViewController {
     func makeFlagImageView(imageView: UIImageView, nationality: Int, radius: CGFloat) {
-        imageView.image = Nationality.flags[nationality]
-        imageView.layer.cornerRadius = radius
-        imageView.layer.borderColor = UIColor.gray.cgColor
-        imageView.layer.borderWidth = 0.5
+        if nationality != 0 {
+            imageView.image = Nationality.flags[nationality]
+            imageView.layer.cornerRadius = radius
+            imageView.layer.borderColor = UIColor.gray.cgColor
+            imageView.layer.borderWidth = 0.5
+        }
     }
 }
 
 extension UIView {
     func makeFlagImageView(imageView: UIImageView, nationality: Int, radius: CGFloat) {
-        imageView.image = Nationality.flags[nationality]
-        imageView.layer.cornerRadius = radius
-        imageView.layer.borderColor = UIColor.gray.cgColor
-        imageView.layer.borderWidth = 0.5
+        if nationality != 0 {
+            imageView.image = Nationality.flags[nationality]
+            imageView.layer.cornerRadius = radius
+            imageView.layer.borderColor = UIColor.gray.cgColor
+            imageView.layer.borderWidth = 0.5
+        }
     }
 }
 
@@ -94,6 +98,22 @@ extension UIViewController {
         textView.layer.borderWidth = 1.0
         textView.layer.cornerRadius = 10.0
         textView.layer.masksToBounds = true
+    }
+}
+
+extension UIViewController {
+    func makeIndicator() {
+        var activityIndicatorView: NVActivityIndicatorView!
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60), type: NVActivityIndicatorType.ballSpinFadeLoader, color: UIColor.gray, padding: 0)
+        activityIndicatorView.center = view.center // 位置を中心に設定
+        view.addSubview(activityIndicatorView)
+    }
+    func startIndicator() {
+        makeIndicator()
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(ActivityData())
+    }
+    func stopIndicator() {
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
     }
 }
 
@@ -135,29 +155,11 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: LString("OK"), style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-}
 
-extension UIViewController {
-
-    func showPreloader() {
-        let image:UIImage? = UIImage.gif(name: "Preloader2")
-        let imageView:UIImageView! = UIImageView(image:image)
-        imageView.frame = CGRect(x: self.view.bounds.width/2-25,
-                                 y: self.view.bounds.height/2-25,
-                                 width: 50,
-                                 height: 50)
-        imageView.layer.borderColor = UIColor.gray.cgColor
-        imageView.layer.borderWidth = 1
-
-        //インスタンスビューに表示して一番前に表示
-        self.view.addSubview(imageView)
-        self.view.bringSubviewToFront(imageView)
-        self.view.isUserInteractionEnabled = false
-    }
-
-    func dissmisPreloader() {
-        self.view.isUserInteractionEnabled = true
-        self.view.subviews.last?.removeFromSuperview()
+    func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LString("OK"), style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -183,7 +185,7 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func checkUnpaidOfferNative(completion: @escaping (Bool) -> ()) {
+    func checkUnpaidOfferNative(completion: @escaping (Bool, OfferModel?) -> ()) {
         let offersDB = Firestore.firestore().collection("offers")
         offersDB.whereField("nativeID", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
             if let _error = error {
@@ -197,11 +199,14 @@ extension UIViewController {
             offers = offers.filter{ $0.flagPayForNative == false && $0.isAccepted == true}
             if !offers.isEmpty {
                 let alert = SCLAlertView()
-                alert.addButton(self.LString("OK")) { return }
+                alert.addButton(self.LString("Go to evaluate")) {
+                    self.performSegue(withIdentifier: "showReviewView", sender: nil)
+                }
+                alert.addButton(self.LString("Cancel")) { return }
                 alert.showError(self.LString("Confirm payment"), subTitle: self.LString("未評価の授業があります。"))
-                completion(true)
+                completion(true, offers[0])
             } else {
-                completion(false)
+                completion(false, nil)
             }
         }
     }
@@ -225,7 +230,7 @@ extension UIViewController {
                 }
                 alert.addButton(self.LString("Cancel")) { return }
                 alert.showError(self.LString("Confirm payment"), subTitle: self.LString("未評価の授業があります。"))
-                self.dissmisPreloader()
+                self.stopIndicator()
                 completion(true, offers[0])
             } else {
                 completion(false, nil)
@@ -235,7 +240,7 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func reloadUserRatingNative() {
+    func reloadUserData() {
         let usersDB = Firestore.firestore().collection("Users")
         usersDB.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
             if let _error = error {
@@ -251,25 +256,6 @@ extension UIViewController {
             if let UserData = UserData.first {
                 try! realm.write {
                     UserData.ratingAsNative = downloadedUserData[0].ratingAsNative
-                }
-            }
-        }
-    }
-    func reloadUserRatingLearner() {
-        let usersDB = Firestore.firestore().collection("Users")
-        usersDB.whereField("uid", isEqualTo: getUserUid()).getDocuments() { snapshot, error in
-            if let _error = error {
-                self.showError(_error)
-                return
-            }
-            guard let documents = snapshot?.documents else {
-                return
-            }
-            let downloadedUserData = documents.map{ UserModel(from: $0) }
-            let realm = try! Realm()
-            let UserData = realm.objects(RealmUserModel.self)
-            if let UserData = UserData.first {
-                try! realm.write {
                     UserData.ratingAsLearner = downloadedUserData[0].ratingAsLearner
                 }
             }
@@ -304,11 +290,12 @@ extension UIView {
         button.backgroundColor = UIColor(red: 56/255, green: 180/255, blue: 139/255, alpha: 1)
         button.setTitle(LString("+Follow"), for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = 2.0
+        button.layer.cornerRadius = 5
         if isFollowing {
             button.backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
             button.setTitle(LString("Followed"), for: .normal)
             button.setTitleColor(UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1), for: .normal)
+            button.layer.cornerRadius = 5
         }
     }
 }
@@ -390,10 +377,12 @@ extension UIViewController {
         button.backgroundColor = UIColor(red: 56/255, green: 180/255, blue: 139/255, alpha: 1)
         button.setTitle(LString("+Follow"), for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 5
         if isFollowing {
             button.backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
             button.setTitle(LString("Followed"), for: .normal)
             button.setTitleColor(UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1), for: .normal)
+            button.layer.cornerRadius = 5
         }
     }
 }
@@ -477,6 +466,67 @@ extension UITextView {
     }
 }
 
+extension UITextField {
+    func addBorderBottom(height: CGFloat, color: UIColor) {
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: self.frame.height - height, width: self.frame.width, height: height)
+        border.backgroundColor = color.cgColor
+        self.layer.addSublayer(border)
+    }
+}
+
+extension UIAlertController {
+    static func noButtonAlert(title: String?, message: String?) -> UIAlertController {
+        return UIAlertController(title: title, message: message, preferredStyle: .alert)
+    }
+    static func okAlert(title: String?,
+                        message: String?,
+                        okHandler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(.init(title: "OK", style: .default, handler: okHandler))
+        return alert
+    }
+
+    static func errorAlert(title: String? = "⚠️",
+                           error: Error,
+                           okHandler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: "\(error)", preferredStyle: .alert)
+        alert.addAction(.init(title: "OK", style: .default, handler: okHandler))
+        return alert
+    }
+
+    static func fieldAlert(title: String?,
+                           message: String?,
+                           placeholder: String?,
+                           handler: ((String?) -> Void)? = nil) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addTextField {
+            $0.placeholder = placeholder
+        }
+        alert.addAction(.init(title: "OK", style: .default, handler: { (action: UIAlertAction) in
+            handler?(alert.textFields?.first?.text)
+        }))
+        alert.addAction(.init(title: "Cancel", style: .cancel, handler: { (action) in
+            handler?(nil)
+        }))
+        return alert
+    }
+}
+
+extension UIViewController {
+    func present(_ alert: UIAlertController, completion: (() -> Void)? = nil) {
+        present(alert, animated: true, completion: completion)
+    }
+
+    func present(_ alert: UIAlertController, _ autoDismissInterval: TimeInterval, completion: (() -> Void)? = nil) {
+        present(alert, animated: true, completion: { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + autoDismissInterval) {
+                self?.dismiss(animated: true, completion: completion)
+            }
+        })
+    }
+}
+
 class DismissControllerSegue: UIStoryboardSegue {
     override func perform() {
         self.source.dismiss(animated: true, completion: nil)
@@ -534,5 +584,32 @@ class AppEventHandler: NSObject {
         self.Usersdb.document(self.uid).setData(["isOnline" : false], merge: true)
         sleep(1)
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+class BalloonView: UIView {
+
+    let triangleSideLength: CGFloat = 20
+    let triangleWidth: CGFloat = 17.3
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        context.setFillColor(UIColor(red: 56/255, green: 180/255, blue: 139/255, alpha: 1).cgColor)
+        contextBalloonPath(context: context, rect: rect)
+    }
+
+    func contextBalloonPath(context: CGContext, rect: CGRect) {
+        let triangleTopCorner = CGPoint(x: rect.maxX - triangleWidth, y: (rect.size.height + triangleSideLength) / 2)
+        let triangleBottomCorner = CGPoint(x: rect.maxX - triangleWidth, y: (rect.size.height - triangleSideLength) / 2)
+        let triangleRightCorner = CGPoint(x: rect.maxX, y: rect.size.height / 2)
+
+        context.addRect(CGRect(x: 0, y: 0, width: rect.size.width - triangleWidth, height: rect.size.height))
+        context.fillPath()
+        context.move(to: triangleRightCorner)
+        context.addLine(to: triangleBottomCorner)
+        context.addLine(to: triangleTopCorner)
+        context.fillPath()
     }
 }

@@ -30,6 +30,7 @@ class OfferModel {
     var offerTime: Int
     var targetLanguage: Int
     var supportLanguage: Int
+    var teachStyle: Int
     var nativeProficiency: Int
     var learnerProficiency: Int
     var peerID: String
@@ -66,6 +67,7 @@ class OfferModel {
         self.offerTime = from.get("offerTime") as? Int ?? 9999
         self.targetLanguage = from.get("targetLanguage") as? Int ?? 0
         self.supportLanguage = from.get("supportLanguage") as? Int ?? 0
+        self.teachStyle = from.get("teachStyle") as? Int ?? 0
         self.nativeProficiency = from.get("nativeProficiency") as? Int ?? 0
         self.learnerProficiency = from.get("learnerProficiency") as? Int ?? 0
         self.peerID = from.get("peerID") as? String ?? ""
@@ -107,6 +109,7 @@ class OfferModel {
             "offerTime" : offerTime,
             "targetLanguage" : targetLanguage,
             "supportLanguage" : supportLanguage,
+            "teachStyle": teachStyle,
             "nativeProficiency" : nativeProficiency,
             "learnerProficiency" : learnerProficiency,
             "peerID" : peerID,

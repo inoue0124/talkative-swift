@@ -7,13 +7,33 @@
 //
 import UIKit
 
+enum TeachingStyle: Int {
+    case Teach              = 0
+    case FreeTalk           = 1
+
+    static let all      = [Teach, FreeTalk]
+    static let strings  = [NSLocalizedString("Teach", comment: ""), NSLocalizedString("Free talk", comment: "")]
+
+    func string() -> String {
+        let index = TeachingStyle.all.firstIndex(of: self) ?? 0
+        return TeachingStyle.strings[index]
+    }
+
+    static func fromString(string: String) -> TeachingStyle {
+        if let index = TeachingStyle.strings.firstIndex(of: string) {
+            return TeachingStyle.all[index]
+        }
+        return TeachingStyle.Teach
+    }
+}
+
 enum Gender: Int {
-    case Unknown        = 0
+    case NoAnswer        = 0
     case Male           = 1
     case Female         = 2
 
-    static let all      = [Unknown, Male, Female]
-    static let strings  = [NSLocalizedString("Unknown", comment: ""), NSLocalizedString("Male", comment: ""), NSLocalizedString("Female", comment: "")]
+    static let all      = [NoAnswer, Male, Female]
+    static let strings  = [NSLocalizedString("No Answer", comment: ""), NSLocalizedString("Male", comment: ""), NSLocalizedString("Female", comment: "")]
 
     func string() -> String {
         let index = Gender.all.firstIndex(of: self) ?? 0
@@ -24,12 +44,12 @@ enum Gender: Int {
         if let index = Gender.strings.firstIndex(of: string) {
             return Gender.all[index]
         }
-        return Gender.Unknown
+        return Gender.NoAnswer
     }
 }
 
 enum Nationality: Int {
-   case Unknown = 0
+   case NotSet = 0
    case Australia = 1
    case Brazil = 2
    case Canada = 3
@@ -56,7 +76,7 @@ enum Nationality: Int {
    case US = 24
    case Vietnam = 25
 
-    static let all      = [ Unknown,
+    static let all      = [ NotSet,
                             Australia,
                             Brazil,
                             Canada,
@@ -84,7 +104,7 @@ enum Nationality: Int {
                             Vietnam
     ]
     static let strings  = [
-                            NSLocalizedString("Unknown", comment: ""),
+                            NSLocalizedString("Not set", comment: ""),
                             NSLocalizedString("Australia", comment: ""),
                             NSLocalizedString("Brazil", comment: ""),
                             NSLocalizedString("Canada", comment: ""),
@@ -113,7 +133,7 @@ enum Nationality: Int {
     ]
 
     static let flags = [
-        UIImage(named: "Unknown"),
+        UIImage(named: "NotSet"),
         UIImage(named: "Australia"),
         UIImage(named: "Brazil"),
         UIImage(named: "Canada"),
@@ -150,12 +170,12 @@ enum Nationality: Int {
         if let index = Nationality.strings.firstIndex(of: string) {
             return Nationality.all[index]
         }
-        return Nationality.Unknown
+        return Nationality.NotSet
     }
 }
 
 enum Language: Int {
-    case Unknown = 0
+    case NotSet = 0
     case Arabic = 1
     case Bengali = 2
     case Chinese = 3
@@ -176,8 +196,8 @@ enum Language: Int {
     case Turkish = 18
     case Vietnamese = 19
 
-    static let all      = [Unknown, Arabic, Bengali, Chinese, Cantonese, English, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Spanish, Tagalog, Thai, Turkish, Vietnamese]
-    static let strings  = [NSLocalizedString("Unknown", comment: ""),
+    static let all      = [NotSet, Arabic, Bengali, Chinese, Cantonese, English, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Spanish, Tagalog, Thai, Turkish, Vietnamese]
+    static let strings  = [NSLocalizedString("Not set", comment: ""),
                            NSLocalizedString("Arabic", comment: ""),
                            NSLocalizedString("Bengali", comment: ""),
                            NSLocalizedString("Chinese", comment: ""),
@@ -199,7 +219,7 @@ enum Language: Int {
                            NSLocalizedString("Vietnamese", comment: "")
     ]
 
-    static let shortStrings  = ["None",
+    static let shortStrings  = ["NO",
                                "AR",
                                "BN",
                                "CN",
@@ -230,7 +250,7 @@ enum Language: Int {
         if let index = Language.strings.firstIndex(of: string) {
             return Language.all[index]
         }
-        return Language.Unknown
+        return Language.NotSet
     }
 }
 
@@ -257,15 +277,15 @@ enum Method: Int {
 }
 
 enum Proficiency: Int {
-    case None               = 0
+    case NotSet               = 0
     case Beginner           = 1
     case PreIntermediate    = 2
     case Intermediate       = 3
     case PreAdvanced        = 4
     case Advanced           = 5
 
-    static let all      = [None, Beginner, PreIntermediate, Intermediate, PreAdvanced, Advanced]
-    static let strings  = [NSLocalizedString("None", comment: ""), NSLocalizedString("Beginner", comment: ""), NSLocalizedString("PreIntermediate", comment: ""), NSLocalizedString("Intermediate", comment: ""), NSLocalizedString("PreAdvanced", comment: ""), NSLocalizedString("Advanced", comment: "")]
+    static let all      = [NotSet, Beginner, PreIntermediate, Intermediate, PreAdvanced, Advanced]
+    static let strings  = [NSLocalizedString("Not set", comment: ""), NSLocalizedString("Beginner", comment: ""), NSLocalizedString("PreIntermediate", comment: ""), NSLocalizedString("Intermediate", comment: ""), NSLocalizedString("PreAdvanced", comment: ""), NSLocalizedString("Advanced", comment: "")]
 
     func string() -> String {
         let index = Proficiency.all.firstIndex(of: self) ?? 0
@@ -276,6 +296,6 @@ enum Proficiency: Int {
         if let index = Proficiency.strings.firstIndex(of: string) {
             return Proficiency.all[index]
         }
-        return Proficiency.None
+        return Proficiency.NotSet
     }
 }

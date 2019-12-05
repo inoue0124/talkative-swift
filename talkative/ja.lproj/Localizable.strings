@@ -14,8 +14,10 @@
 "John Smith" = "山田太郎";
 "Gender" = "性別";
 "Date of birth" = "誕生日";
+"Nationality" = "国籍";
 "I am native in" = "母国語";
-"I am learning" = "母語以外で話せる言語";
+"I am learning" = "学習言語";
+"Proficiency" = "学習言語のレベル";
 "Error" = "エラー";
 "Please fill all the blanks" = "未入力項目があります。";
 "OK" = "はい";
@@ -47,12 +49,28 @@
 "Finish" = "終了";
 "Cancel" = "キャンセル";
 "Back to home" = "ホームへ戻る";
+"Language you want to learn" = "学びたい言語";
+"Search" = "検索";
+"Only online" = "オンラインのみ";
+"Age" = "年齢";
+"Nationality" = "国籍";
+"Teaching language" = "教えている言語";
+"Also speak" = "学習言語";
+"Teachers' Second language proficiency" = "学習言語のレベル";
+"Length of call time" = "授業時間";
+"Setting" = "設定";
+"Teaching style" = "授業スタイル";
+"Allow extension" = "延長可否";
+"Search tutors" = "先生を探す";
+"Teach language" = "言語を教える";
 
 // MessageView
 "Messages" = "メッセージ";
 
 // HistoryView
 "History" = "通話履歴";
+"Tutors" = "先生";
+"Learners" = "生徒";
 
 // ProfileView
 "Profile" = "プロフィール";
@@ -67,11 +85,31 @@
 "Basic profile" = "基本情報";
 "Language setting" = "言語設定";
 "Points history" = "ポイント履歴";
+"Save" = "保存";
+
+// userDetailView
+"As Tutor" = "先生としての評価";
+"As Learner" = "学習者としての評価";
+"+Follow" = "+フォロー";
+"Followed" = "フォロー中";
+"Send an call request?" = "授業リクエストを送りますか？";
+"Call request" = "授業リクエスト";
+
+// DZNemptyView
+"Tutor not found" = "先生が見つかりません";
+"No chatrooms" = "チャットルームがありません";
+"No histories" = "通話履歴がありません";
+"No followee" = "誰もフォローしていません";
+"No follower" = "フォロワーがまだいません";
+"No reviews" = "評価がまだありません";
 
 // Setting
-"Unknown" = "回答しない";
+"Not set" = "未設定";
+"No Answer" = "無回答";
 "Male" = "男性";
 "Female" = "女性";
+"Teach" = "授業";
+"Free talk" = "フリートーク";
 
 // nationality
 "Australia" = "Australia";

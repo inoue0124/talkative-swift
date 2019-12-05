@@ -14,8 +14,10 @@
 "John Smith" = "李華";
 "Gender" = "性別";
 "Date of birth" = "生日";
+"Nationality" = "國籍";
 "I am native in" = "母語";
-"I am learning" = "也會說";
+"I am learning" = "學習語言";
+"Proficiency" = "學習語言的水平";
 "Error" = "出錯";
 "Please fill all the blanks" = "全部必填";
 "OK" = "好";
@@ -47,29 +49,66 @@
 "Finish" = "結束";
 "Cancel" = "取消";
 "Back to home" = "返回到主頁";
+"Language you want to learn" = "想學習的語言";
+"Only online" = "只看在線";
+"Age" = "年齡";
+"Nationality" = "國籍";
+"Teaching language" = "教學語言";
+"Also speak" = "學習語言";
+"Teachers' Second language proficiency" = "學習語言的水平";
+"Length of call time" = "上課時長";
+"Setting" = "設定";
+"Teaching style" = "上課方式";
+"Allow extension" = "可延長";
+"Search tutors" = "找個老師";
+"Teach language" = "教語言";
 
 // MessageView
-"Messages" = "信息";
+"Messages" = "聊天";
 
 // HistoryView
-"History" = "童話歷史";
+"History" = "通話歷史";
+"Tutors" = "老師";
+"Learners" = "學生";
 
 // ProfileView
 "Profile" = "個人資料";
-"Followee" = "關注";
+"followee" = "關注";
+"follower" = "粉絲";
 "Wallet" = "錢包";
+"Points" = "Point";
 "SIGN OUT" = "推出帳號";
 "Are you going to sign out?" = "想要退出帳號嗎？";
 "Edit" = "設定";
 "Basic profile" = "基本信息";
 "Language setting" = "語言設定";
 "Points history" = "point歷史";
-"Followee" = "關注";
+"Save" = "保存";
+
+// userDetailView
+"As Tutor" = "作為老師";
+"As Learner" = "作為學習者";
+"+Follow" = "+關注";
+"Followed" = "已關注";
+"Send an call request?" = "發送申請上課？";
+"Call request" = "申請上課";
+
+
+// DZNemptyView
+"Tutor not found" = "找不到老師";
+"No chatrooms" = "沒有聊天室";
+"No histories" = "沒有上課歷史";
+"No followee" = "還沒有關注";
+"No follower" = "還沒有粉絲";
+"No reviews" = "還沒有評價";
 
 // Setting
-"Unknown" = "不想回答";
+"Not set" = "沒設定";
+"No Answer" = "無回答";
 "Male" = "男";
 "Female" = "女";
+"Teach" = "教課";
+"Free talk" = "自由聊天";
 
 // nationality
 "Australia" = "Australia";

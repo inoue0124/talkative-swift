@@ -12,19 +12,27 @@ import FirebaseAuth
 import SwiftGifOrigin
 import RealmSwift
 import SCLAlertView
+import FirebaseFirestore
+import FBSDKLoginKit
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var Thumbnail: UIImageView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var age: UILabel!
+    @IBOutlet weak var genderIcon: UIImageView!
     @IBOutlet weak var secondLanguage: UILabel!
     @IBOutlet weak var motherLanguage: UILabel!
     @IBOutlet weak var proficiency: UIImageView!
     @IBOutlet weak var nationalFlag: UIImageView!
-    @IBOutlet weak var followeeButton: UIButton!
-    @IBOutlet weak var followerButton: UIButton!
     @IBOutlet weak var profPanelView: UIView!
-    let titleColor: UIColor = UIColor(red: 90/255, green: 84/255, blue: 75/255, alpha: 1)
+    @IBOutlet weak var numOfFollowees: UILabel!
+    @IBOutlet weak var numOfFollowers: UILabel!
+    @IBOutlet weak var followeeLabel: UILabel!
+    @IBOutlet weak var followerLabel: UILabel!
+    @IBOutlet weak var followeeButtonStackView: UIStackView!
+    @IBOutlet weak var followerButtonStackView: UIStackView!
     var followeeORfollower: String?
+    let usersDB = Firestore.firestore().collection("Users")
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.hidesBackButton = false
@@ -33,42 +41,68 @@ class ProfileViewController: UIViewController {
         largeTitle(LString("Profile"))
         setupUserdata()
         setupButtonDesign()
+        setSocialNumbers()
         profPanelView.isUserInteractionEnabled = true
         profPanelView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.panelTapped(_:))))
+        followeeButtonStackView.isUserInteractionEnabled = true
+        followeeButtonStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.tappedFolloweeButton(_:))))
+        followerButtonStackView.isUserInteractionEnabled = true
+        followerButtonStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.tappedFollowerButton(_:))))
+    }
+
+    func setSocialNumbers() {
+        usersDB.document(getUserUid()).collection("followee").getDocuments() { snapshot, error in
+            if let _error = error {
+                print("error\(_error)")
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                print("error")
+                return
+            }
+            self.numOfFollowees.text = String(documents.count)
+        }
+        usersDB.document(getUserUid()).collection("follower").getDocuments() { snapshot, error in
+            if let _error = error {
+                print("error\(_error)")
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                print("error")
+                return
+            }
+            self.numOfFollowers.text = String(documents.count)
+        }
     }
 
     func setupUserdata() {
-        let userData = self.getUserData()
+        let userData = getUserData()
         Thumbnail.image = UIImage(data: userData.profImage)
         Thumbnail.layer.cornerRadius = 40
         name.text = userData.name
-        secondLanguage.text = Language.strings[userData.secondLanguage]
-        motherLanguage.text = Language.strings[userData.motherLanguage]
+        age.text = String(self.birthDateToAge(byBirthDate: getUserData().birthDate))
+        setGenderIcon(gender: getUserData().gender, imageView: genderIcon)
+        secondLanguage.text = Language.strings[userData.studyLanguage]
+        motherLanguage.text = Language.strings[userData.teachLanguage]
         proficiency.image = UIImage(named: String(userData.proficiency))    
-        self.makeFlagImageView(imageView: self.nationalFlag, nationality: userData.nationality, radius: 12.5)
+        makeFlagImageView(imageView: nationalFlag, nationality: userData.nationality, radius: 12.5)
     }
 
     func setupButtonDesign() {
-        followeeButton.setTitle(LString("followee"), for: .normal)
-        followeeButton.setTitleColor(titleColor, for: .normal)
-        followeeButton.layer.borderColor = UIColor.gray.cgColor
-        followeeButton.layer.borderWidth = 0.5
-        followerButton.setTitle(LString("follower"), for: .normal)
-        followerButton.setTitleColor(titleColor, for: .normal)
-        followerButton.layer.borderColor = UIColor.gray.cgColor
-        followerButton.layer.borderWidth = 0.5
+        followeeLabel.text = LString("followee")
+        followerLabel.text = LString("follower")
     }
 
     @objc func panelTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "showProfEdit", sender: nil)
     }
 
-    @IBAction func followeeButtonTapped(_ sender: Any) {
+    @objc func tappedFolloweeButton(_ sender: UITapGestureRecognizer) {
         followeeORfollower = "followee"
         performSegue(withIdentifier: "showFollowView", sender: nil)
     }
 
-    @IBAction func followerButtonTapped(_ sender: Any) {
+    @objc func tappedFollowerButton(_ sender: UITapGestureRecognizer) {
         followeeORfollower = "follower"
         performSegue(withIdentifier: "showFollowView", sender: nil)
     }
@@ -133,6 +167,7 @@ class ProfileCollectionViewController: FormViewController, UINavigationControlle
     }
 
     func buttonTapped(cell: ButtonCellOf<String>, row: ButtonRow) {
+        
         let alert = SCLAlertView()
         alert.addButton(LString("OK")) {
             let realm = try! Realm()
@@ -142,6 +177,7 @@ class ProfileCollectionViewController: FormViewController, UINavigationControlle
                 try! realm.write {
                     realm.deleteAll()
                 }
+                LoginManager().logOut()
                 try Auth.auth().signOut()
             } catch let error {
                 print(error)

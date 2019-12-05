@@ -58,6 +58,11 @@ class teachReviewViewController: UIViewController {
         receivePoint.text = String(format: "%.1fP", duration / 60 * 0.7)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        tabBarController?.tabBar.isHidden = true
+    }
+
     @objc func tapDone(sender: Any) {
         view.endEditing(true)
     }  

@@ -77,6 +77,8 @@ class ChatroomViewController: MessagesViewController {
         messagesCollectionView.messageCellDelegate = self
         messageInputBar.delegate = self
         messageInputBar.sendButton.tintColor = UIColor.lightGray
+        setupCollectionView()
+        inputStyle()
     }
 
     func setupTitle() {
@@ -117,6 +119,7 @@ class ChatroomViewController: MessagesViewController {
             let picker = UIImagePickerController()
             picker.delegate = self
             picker.sourceType = .photoLibrary
+            picker.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             self.present(picker, animated: true, completion: nil)
         }
     }
@@ -323,6 +326,26 @@ extension ChatroomViewController: MessagesDisplayDelegate {
     // メッセージのURLに属性を適用
     func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
         return [.url]
+    }
+
+    func setupCollectionView() {
+        guard let flowLayout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout else {
+            print("Can't get flowLayout")
+            return
+        }
+        if #available(iOS 13.0, *) {
+            flowLayout.collectionView?.backgroundColor = .systemBackground
+        }
+    }
+    func inputStyle() {
+        if #available(iOS 13.0, *) {
+            messageInputBar.inputTextView.textColor = .label
+            messageInputBar.inputTextView.placeholderLabel.textColor = .secondaryLabel
+            messageInputBar.backgroundView.backgroundColor = .systemBackground
+        } else {
+            messageInputBar.inputTextView.textColor = .black
+            messageInputBar.inputTextView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+        }
     }
 }
 

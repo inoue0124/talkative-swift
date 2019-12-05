@@ -13,9 +13,11 @@ import CoreLocation
 import FirebaseFirestore
 import MapKit
 import SCLAlertView
+import DZNEmptyDataSet
 
 class SearchViewController: UIViewController, CLLocationManagerDelegate {
 
+    var onlineNatives: [UserModel]?
     var natives: [UserModel]?
     var native: UserModel?
     var searchConditions: [String:Any]?
@@ -30,20 +32,34 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var targetLanguageButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var MapView: MKMapView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var onlineNativeCollectionView: UICollectionView!
+    @IBOutlet weak var topNativeCollectionView: UICollectionView!
     @IBOutlet weak var onlineIcon: UIImageView!
 
     override func viewDidLoad() {
         setupLocationManager()
         MapView.region.span.latitudeDelta = 120
         MapView.region.span.longitudeDelta = 120
-        collectionView.register(UINib(nibName: "nativeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        collectionView.delegate = self
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
-        layout.itemSize = CGSize(width: 100, height: 160)
-        layout.scrollDirection = .horizontal
-        collectionView.collectionViewLayout = layout
+        onlineNativeCollectionView.register(UINib(nibName: "nativeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "onlineCell")
+        onlineNativeCollectionView.delegate = self
+        onlineNativeCollectionView.dataSource = self
+        onlineNativeCollectionView.emptyDataSetSource = self
+        onlineNativeCollectionView.emptyDataSetDelegate = self
+        topNativeCollectionView.register(UINib(nibName: "nativeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "topCell")
+        topNativeCollectionView.delegate = self
+        topNativeCollectionView.dataSource = self
+        topNativeCollectionView.emptyDataSetSource = self
+        topNativeCollectionView.emptyDataSetDelegate = self
+        let layout1 = UICollectionViewFlowLayout()
+        layout1.sectionInset = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
+        layout1.itemSize = CGSize(width: 110, height: 190)
+        layout1.scrollDirection = .horizontal
+        let layout2 = UICollectionViewFlowLayout()
+        layout2.sectionInset = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
+        layout2.itemSize = CGSize(width: 110, height: 190)
+        layout2.scrollDirection = .horizontal
+        onlineNativeCollectionView.collectionViewLayout = layout1
+        topNativeCollectionView.collectionViewLayout = layout2
         MapView.delegate = self
         //self.MapView.isZoomEnabled = false
     }
@@ -52,17 +68,21 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
         navigationController?.setNavigationBarHidden(false, animated: false)
         tabBarController?.tabBar.isHidden = false
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        largeTitle(LString("先生を見つける"))
+        largeTitle(LString("Search tutors"))
         let realm = try! Realm()
         if realm.objects(RealmUserModel.self).isEmpty {
             return
         }
         onlineIcon.image = UIColor.green.circleImage(size: onlineIcon.frame.size)
         if targetLanguage == nil {
-            targetLanguage = self.getUserData().secondLanguage
+            targetLanguage = getUserData().studyLanguage
         }
-        self.targetLanguageButton.setTitle(Language.strings[targetLanguage!], for: .normal)
-        self.usersDB.whereField("motherLanguage", isEqualTo: targetLanguage!).whereField("isOffering", isEqualTo: true).getDocuments() { snapshot, error in
+        targetLanguageButton.setTitle(Language.strings[getUserData().studyLanguage], for: .normal)
+        getCollectionData()
+    }
+
+    func getCollectionData() {
+        usersDB.whereField("teachLanguage", isEqualTo: getUserData().studyLanguage).getDocuments() { snapshot, error in
             if let _error = error {
                 print("error\(_error)")
                 return
@@ -73,14 +93,20 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
                 return
             }
             self.natives = documents.map{ UserModel(from: $0) }
-            self.natives!.sort{ $0.lastOnlineAt > $1.lastOnlineAt }
+            self.natives = self.natives?.filter{ $0.uid != self.getUserUid()}
+            self.onlineNatives = self.natives?.filter{ $0.isOffering == true }
+            self.natives?.sort{ $0.callCountAsNative > $1.callCountAsNative }
+            self.natives = Array((self.natives?.prefix(10))!)
+            self.onlineNatives?.sort{ $0.lastOnlineAt > $1.lastOnlineAt }
+            self.onlineNatives = Array((self.onlineNatives?.prefix(10))!)
             self.MapView.removeAnnotations(self.MapView.annotations)
-            for native in self.natives! {
+            for native in self.onlineNatives! {
                 self.native = native
                 let annotation = userAnnotation.init(coordinate: CLLocationCoordinate2DMake(native.location.latitude, native.location.longitude), user: native, title: String(format: "%.1f", native.ratingAsNative))
                 self.MapView.addAnnotation(annotation)
             }
-            self.collectionView.reloadData()
+            self.onlineNativeCollectionView.reloadData()
+            self.topNativeCollectionView.reloadData()
         }
     }
 
@@ -89,7 +115,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
         if realm.objects(RealmUserModel.self).isEmpty {
             return
         }
-        self.reloadUserRatingLearner()
+        self.reloadUserData()
     }
 
 
@@ -109,11 +135,15 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
 
-    @IBAction func tappedMoreButton(_ sender: Any) {
-        searchConditions = ["online": true]
+    @IBAction func tappedMoreOnlineButton(_ sender: Any) {
+        searchConditions = ["online": true, "teachLanguage": Language.strings[getUserData().studyLanguage]]
         performSegue(withIdentifier: "showResult", sender: nil)
     }
 
+    @IBAction func tappedMoreButton(_ sender: Any) {
+        searchConditions = ["teachLanguage": Language.strings[getUserData().studyLanguage]]
+        performSegue(withIdentifier: "showResult", sender: nil)
+    }
 
     private func sendEmailVerification(to user: User) {
         Auth.auth().useAppLanguage()
@@ -134,7 +164,6 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
             let DetailVC = segue.destination as! userDetailViewController
             DetailVC.user = native
             DetailVC.tabIndex = 0
-            //DetailVC.offer = self.selectedOffer
         }
     }
 
@@ -157,8 +186,8 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.myLocation = locations.first
-        self.usersDB.document(self.getUserUid()).setData([
-            "location": GeoPoint(latitude: self.myLocation!.coordinate.latitude, longitude: self.myLocation!.coordinate.longitude)
+        self.usersDB.document(getUserUid()).setData([
+            "location": GeoPoint(latitude: myLocation!.coordinate.latitude, longitude: myLocation!.coordinate.longitude)
         ], merge: true)
     }
 }
@@ -167,18 +196,51 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return natives?.count ?? 0
+        if collectionView.isEqual(onlineNativeCollectionView) {
+            if onlineNatives?.count ?? 0 > 10 {
+                return 10
+            } else {
+                return onlineNatives?.count ?? 0
+            }
+        } else {
+            if natives?.count ?? 0 > 10 {
+                return 10
+            } else {
+                return natives?.count ?? 0
+            }
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! nativeCollectionViewCell
-        cell.setData(numOfCells: indexPath, native: natives![indexPath.row])
-        return cell
+        if collectionView.isEqual(onlineNativeCollectionView) {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "onlineCell", for: indexPath) as! nativeCollectionViewCell
+            cell.setData(numOfCells: indexPath, native: onlineNatives![indexPath.row])
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topCell", for: indexPath) as! nativeCollectionViewCell
+            cell.setData(numOfCells: indexPath, native: natives![indexPath.row])
+            return cell
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        native = natives![indexPath.row]
+        if collectionView.isEqual(onlineNativeCollectionView) {
+            native = onlineNatives![indexPath.row]
+        } else {
+            native = natives![indexPath.row]
+        }
         self.performSegue(withIdentifier: "showNativeDetailView", sender: nil)
+    }
+}
+
+extension SearchViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "user")
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = LString("Tutor not found")
+        return NSAttributedString(string: text)
     }
 }
 

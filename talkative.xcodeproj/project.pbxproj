@@ -10,6 +10,8 @@
 		357751F20904743882F1793A /* Pods_talkativeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CE1B02D5EF776DF1F9FE9 /* Pods_talkativeTests.framework */; };
 		3CC88CC274CDFE21DF1512AE /* Pods_talkative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */; };
 		5F447A9537E886BBEC1B0DBB /* Pods_talkative_talkativeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */; };
+		7005D42F239502B70050BF20 /* teachSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005D42E239502B70050BF20 /* teachSettingViewController.swift */; };
+		7005D433239538FD0050BF20 /* selectLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005D432239538FC0050BF20 /* selectLanguageViewController.swift */; };
 		70188E0A235ED15100D2FAB8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70188E0C235ED15100D2FAB8 /* Localizable.strings */; };
 		70188E15235F56C000D2FAB8 /* followViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E14235F56C000D2FAB8 /* followViewController.swift */; };
 		70188E18235F668D00D2FAB8 /* followRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70188E16235F668D00D2FAB8 /* followRowTableViewCell.swift */; };
@@ -17,6 +19,9 @@
 		701AF3BB234D6E1B006A3F82 /* callingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF3BA234D6E1B006A3F82 /* callingViewController.swift */; };
 		703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 703976BB23577BB100F4207A /* GoogleService-Info.plist */; };
 		70488CD623551A0900B3C1CD /* ChatroomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70488CD523551A0900B3C1CD /* ChatroomModel.swift */; };
+		704BDD832397B9970086429B /* userDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 704BDD852397B9970086429B /* userDetailView.storyboard */; };
+		704BDDA6239895690086429B /* nativeDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 704BDDA8239895690086429B /* nativeDetailView.storyboard */; };
+		704BDDB3239897520086429B /* learnerDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 704BDDB5239897520086429B /* learnerDetailView.storyboard */; };
 		7059B899234F1472005BB6D4 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059B898234F1472005BB6D4 /* ImagePickerController.swift */; };
 		7059B89B234F1479005BB6D4 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059B89A234F1479005BB6D4 /* ImageRow.swift */; };
 		7059B8A6234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059B8A4234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift */; };
@@ -43,9 +48,6 @@
 		7061916A237BF9E50028B85D /* learnerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619165237BF9E50028B85D /* learnerDetailViewController.swift */; };
 		7061916C237BFB5A0028B85D /* historyViewPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7061916B237BFB5A0028B85D /* historyViewPager.storyboard */; };
 		7061917B237F8E040028B85D /* followView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7061917A237F8E040028B85D /* followView.storyboard */; };
-		7061917F2383B9BF0028B85D /* learnerDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7061917E2383B9BF0028B85D /* learnerDetailView.storyboard */; };
-		706191822383BA9A0028B85D /* userDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706191812383BA9A0028B85D /* userDetailView.storyboard */; };
-		706191842383BBA90028B85D /* nativeDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706191832383BBA90028B85D /* nativeDetailView.storyboard */; };
 		70619187238D10C10028B85D /* nativeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619185238D10C00028B85D /* nativeCollectionViewCell.swift */; };
 		70619188238D10C10028B85D /* nativeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70619186238D10C00028B85D /* nativeCollectionViewCell.xib */; };
 		7061918B238FCF830028B85D /* commentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70619189238FCF830028B85D /* commentTableViewCell.swift */; };
@@ -89,6 +91,7 @@
 		70D9BE26234CB71B004DA3BF /* SearchConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */; };
 		70D9BE2D234CD9BC004DA3BF /* nativeListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */; };
 		70D9BE30234CDE03004DA3BF /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9BE2F234CDE03004DA3BF /* SearchResultViewController.swift */; };
+		70E3625F2397613A0025288F /* indicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70E3625E2397613A0025288F /* indicator.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +116,8 @@
 		507CE1B02D5EF776DF1F9FE9 /* Pods_talkativeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkativeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C1CE72D49B2B7A35667C9C /* Pods_talkative_talkativeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkative_talkativeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65607C0E74B58F36D8C7BD3B /* Pods_talkative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talkative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7005D42E239502B70050BF20 /* teachSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teachSettingViewController.swift; sourceTree = "<group>"; };
+		7005D432239538FC0050BF20 /* selectLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectLanguageViewController.swift; sourceTree = "<group>"; };
 		70188E0B235ED15100D2FAB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		70188E14235F56C000D2FAB8 /* followViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followViewController.swift; sourceTree = "<group>"; };
 		70188E16235F668D00D2FAB8 /* followRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = followRowTableViewCell.swift; sourceTree = "<group>"; };
@@ -121,6 +126,34 @@
 		701AF3BC234D7733006A3F82 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		703976BB23577BB100F4207A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70488CD523551A0900B3C1CD /* ChatroomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomModel.swift; sourceTree = "<group>"; };
+		704BDD842397B9970086429B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/userDetailView.storyboard; sourceTree = "<group>"; };
+		704BDD892397B9AD0086429B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/userDetailView.strings; sourceTree = "<group>"; };
+		704BDD8B2397B9B20086429B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/userDetailView.strings"; sourceTree = "<group>"; };
+		704BDD8D2397B9BA0086429B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/userDetailView.strings"; sourceTree = "<group>"; };
+		704BDD8F2397B9BE0086429B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/userDetailView.strings"; sourceTree = "<group>"; };
+		704BDD912397B9DA0086429B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/userDetailView.strings; sourceTree = "<group>"; };
+		704BDD932397F84C0086429B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SearchView.strings; sourceTree = "<group>"; };
+		704BDD952397F8500086429B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/SearchView.strings"; sourceTree = "<group>"; };
+		704BDD972397F8550086429B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchView.strings"; sourceTree = "<group>"; };
+		704BDD982397F8580086429B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SearchView.strings"; sourceTree = "<group>"; };
+		704BDD9B2397FB3A0086429B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SearchView.strings; sourceTree = "<group>"; };
+		704BDD9D2397FB980086429B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/teachSearchView.strings; sourceTree = "<group>"; };
+		704BDD9F2397FB9C0086429B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/teachSearchView.strings"; sourceTree = "<group>"; };
+		704BDDA12397FBA10086429B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/teachSearchView.strings"; sourceTree = "<group>"; };
+		704BDDA32397FBA70086429B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/teachSearchView.strings"; sourceTree = "<group>"; };
+		704BDDA52397FBAD0086429B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/teachSearchView.strings; sourceTree = "<group>"; };
+		704BDDA7239895690086429B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/nativeDetailView.storyboard; sourceTree = "<group>"; };
+		704BDDAA2398957F0086429B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/nativeDetailView.strings; sourceTree = "<group>"; };
+		704BDDAC239895B80086429B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/nativeDetailView.strings"; sourceTree = "<group>"; };
+		704BDDAE239895BC0086429B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/nativeDetailView.strings"; sourceTree = "<group>"; };
+		704BDDB0239895BF0086429B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/nativeDetailView.strings"; sourceTree = "<group>"; };
+		704BDDB2239895C20086429B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/nativeDetailView.strings; sourceTree = "<group>"; };
+		704BDDB4239897520086429B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/learnerDetailView.storyboard; sourceTree = "<group>"; };
+		704BDDB72398976F0086429B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/learnerDetailView.strings; sourceTree = "<group>"; };
+		704BDDB9239897730086429B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/learnerDetailView.strings"; sourceTree = "<group>"; };
+		704BDDBB239897760086429B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/learnerDetailView.strings"; sourceTree = "<group>"; };
+		704BDDBD2398977A0086429B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/learnerDetailView.strings"; sourceTree = "<group>"; };
+		704BDDBF2398977E0086429B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/learnerDetailView.strings; sourceTree = "<group>"; };
 		7059B898234F1472005BB6D4 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		7059B89A234F1479005BB6D4 /* ImageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
 		7059B8A4234F6BDA005BB6D4 /* chatroomListRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatroomListRowTableViewCell.swift; sourceTree = "<group>"; };
@@ -154,11 +187,6 @@
 		706165E8236EF7A200B26C40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/loginView.strings; sourceTree = "<group>"; };
 		706165EA236EF7AE00B26C40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/registerView.strings; sourceTree = "<group>"; };
 		706165EC236EFAE200B26C40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/nativeListRowTableViewCell.strings; sourceTree = "<group>"; };
-		706165EE236EFAEC00B26C40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SearchView.strings; sourceTree = "<group>"; };
-		706165F0236EFB3F00B26C40 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/SearchView.strings"; sourceTree = "<group>"; };
-		706165F2236EFB4500B26C40 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchView.strings"; sourceTree = "<group>"; };
-		706165F4236EFB4C00B26C40 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SearchView.strings"; sourceTree = "<group>"; };
-		706165F6236EFB5000B26C40 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SearchView.strings; sourceTree = "<group>"; };
 		706165F8236EFFEE00B26C40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ProfileView.strings; sourceTree = "<group>"; };
 		706165F9236F058400B26C40 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		706165FA236F232D00B26C40 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -172,11 +200,6 @@
 		7061914C237B17C30028B85D /* searchButton.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = searchButton.gif; sourceTree = "<group>"; };
 		7061914D237B17C50028B85D /* Preloader3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Preloader3.gif; sourceTree = "<group>"; };
 		70619151237B1D610028B85D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/teachSearchView.storyboard; sourceTree = "<group>"; };
-		70619154237B1D700028B85D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/teachSearchView.strings; sourceTree = "<group>"; };
-		70619156237B1D890028B85D /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/teachSearchView.strings"; sourceTree = "<group>"; };
-		70619158237B1D900028B85D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/teachSearchView.strings"; sourceTree = "<group>"; };
-		7061915A237B1D980028B85D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/teachSearchView.strings"; sourceTree = "<group>"; };
-		7061915C237B1D9E0028B85D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/teachSearchView.strings; sourceTree = "<group>"; };
 		7061915F237BF98A0028B85D /* historyViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = historyViewPager.swift; sourceTree = "<group>"; };
 		70619161237BF9DE0028B85D /* teachHistoryRowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = teachHistoryRowTableViewCell.xib; sourceTree = "<group>"; };
 		70619162237BF9E00028B85D /* teachHistoryView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = teachHistoryView.storyboard; sourceTree = "<group>"; };
@@ -185,9 +208,6 @@
 		70619165237BF9E50028B85D /* learnerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = learnerDetailViewController.swift; sourceTree = "<group>"; };
 		7061916B237BFB5A0028B85D /* historyViewPager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = historyViewPager.storyboard; sourceTree = "<group>"; };
 		7061917A237F8E040028B85D /* followView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = followView.storyboard; sourceTree = "<group>"; };
-		7061917E2383B9BF0028B85D /* learnerDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = learnerDetailView.storyboard; sourceTree = "<group>"; };
-		706191812383BA9A0028B85D /* userDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = userDetailView.storyboard; sourceTree = "<group>"; };
-		706191832383BBA90028B85D /* nativeDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = nativeDetailView.storyboard; sourceTree = "<group>"; };
 		70619185238D10C00028B85D /* nativeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nativeCollectionViewCell.swift; sourceTree = "<group>"; };
 		70619186238D10C00028B85D /* nativeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = nativeCollectionViewCell.xib; sourceTree = "<group>"; };
 		70619189238FCF830028B85D /* commentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commentTableViewCell.swift; sourceTree = "<group>"; };
@@ -237,6 +257,7 @@
 		70D9BE25234CB71B004DA3BF /* SearchConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConditionViewController.swift; sourceTree = "<group>"; };
 		70D9BE2B234CD9BC004DA3BF /* nativeListRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nativeListRowTableViewCell.swift; sourceTree = "<group>"; };
 		70D9BE2F234CDE03004DA3BF /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		70E3625E2397613A0025288F /* indicator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = indicator.xib; sourceTree = "<group>"; };
 		9EDD02C4D06691FF1C1374DF /* Pods-talkative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talkative.debug.xcconfig"; path = "Target Support Files/Pods-talkative/Pods-talkative.debug.xcconfig"; sourceTree = "<group>"; };
 		D1BE3EA45B811FE4BE869C06 /* Pods-talkative-talkativeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talkative-talkativeUITests.debug.xcconfig"; path = "Target Support Files/Pods-talkative-talkativeUITests/Pods-talkative-talkativeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C845B4B0B2811624086446 /* Pods-talkative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talkative.release.xcconfig"; path = "Target Support Files/Pods-talkative/Pods-talkative.release.xcconfig"; sourceTree = "<group>"; };
@@ -299,6 +320,7 @@
 				70979CF8234E2C8400579395 /* extentions.swift */,
 				7059B898234F1472005BB6D4 /* ImagePickerController.swift */,
 				7059B89A234F1479005BB6D4 /* ImageRow.swift */,
+				70E3625E2397613A0025288F /* indicator.xib */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -307,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				70619145237B0F7A0028B85D /* teachSearchViewController.swift */,
+				7005D42E239502B70050BF20 /* teachSettingViewController.swift */,
 				70619142237B0F760028B85D /* incomingCallViewNib.xib */,
 				70619144237B0F790028B85D /* teachCallingViewController.swift */,
 				70619141237B0F740028B85D /* teachReviewViewController.swift */,
@@ -358,13 +381,13 @@
 			isa = PBXGroup;
 			children = (
 				70BD698523681E1B0063768C /* userDetailViewController.swift */,
-				706191812383BA9A0028B85D /* userDetailView.storyboard */,
+				704BDD852397B9970086429B /* userDetailView.storyboard */,
 				70695287234D697000D936EC /* nativeDetailViewController.swift */,
-				706191832383BBA90028B85D /* nativeDetailView.storyboard */,
+				704BDDA8239895690086429B /* nativeDetailView.storyboard */,
 				70619189238FCF830028B85D /* commentTableViewCell.swift */,
 				7061918A238FCF830028B85D /* commentTableViewCell.xib */,
 				70619165237BF9E50028B85D /* learnerDetailViewController.swift */,
-				7061917E2383B9BF0028B85D /* learnerDetailView.storyboard */,
+				704BDDB5239897520086429B /* learnerDetailView.storyboard */,
 			);
 			path = userDetailView;
 			sourceTree = "<group>";
@@ -372,14 +395,14 @@
 		70979CEF234DB90000579395 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				7061651F236ECA8400B26C40 /* loginView.storyboard */,
-				7065D3BB236B2F8F00814310 /* logInViewController.swift */,
-				7065D3BC236B2F9100814310 /* registerProfViewController.swift */,
-				7065D3B8236B2F8A00814310 /* registerProfViewHeader.xib */,
-				70616529236ECD6000B26C40 /* registerView.storyboard */,
 				7065D3BA236B2F8E00814310 /* selectLoginMethodViewController.swift */,
+				7065D3BB236B2F8F00814310 /* logInViewController.swift */,
+				7061651F236ECA8400B26C40 /* loginView.storyboard */,
 				7065D3B6236B2F8700814310 /* selectRegisterMethodViewController.swift */,
 				7065D3B9236B2F8C00814310 /* signUpViewController.swift */,
+				7065D3BC236B2F9100814310 /* registerProfViewController.swift */,
+				70616529236ECD6000B26C40 /* registerView.storyboard */,
+				7065D3B8236B2F8A00814310 /* registerProfViewHeader.xib */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -451,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				70A4DF48234C856300BA2D74 /* SearchViewController.swift */,
+				7005D432239538FC0050BF20 /* selectLanguageViewController.swift */,
 				70619185238D10C00028B85D /* nativeCollectionViewCell.swift */,
 				70619186238D10C00028B85D /* nativeCollectionViewCell.xib */,
 				70D9BE2F234CDE03004DA3BF /* SearchResultViewController.swift */,
@@ -618,21 +642,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				70A4DF53234C856500BA2D74 /* LaunchScreen.storyboard in Resources */,
-				706191842383BBA90028B85D /* nativeDetailView.storyboard in Resources */,
+				704BDDA6239895690086429B /* nativeDetailView.storyboard in Resources */,
 				70A4DF81234CAB9900BA2D74 /* HistoryView.storyboard in Resources */,
 				70616527236ECD6000B26C40 /* registerView.storyboard in Resources */,
 				7065D3C0236B2F9200814310 /* registerProfViewHeader.xib in Resources */,
+				70E3625F2397613A0025288F /* indicator.xib in Resources */,
 				70BD6982236708B70063768C /* walletHistoryRowTableViewCell.xib in Resources */,
 				70A4DF85234CAD9000BA2D74 /* ChatroomListView.storyboard in Resources */,
 				70619150237B1D610028B85D /* teachSearchView.storyboard in Resources */,
 				7061651D236ECA8400B26C40 /* loginView.storyboard in Resources */,
 				703976BC23577BB100F4207A /* GoogleService-Info.plist in Resources */,
 				70619147237B0F7B0028B85D /* incomingCallViewNib.xib in Resources */,
-				706191822383BA9A0028B85D /* userDetailView.storyboard in Resources */,
+				704BDD832397B9970086429B /* userDetailView.storyboard in Resources */,
 				70A4DF7F234CAB8B00BA2D74 /* Main.storyboard in Resources */,
 				70A4DF50234C856500BA2D74 /* Assets.xcassets in Resources */,
 				7061653C236ED06600B26C40 /* ProfileView.storyboard in Resources */,
-				7061917F2383B9BF0028B85D /* learnerDetailView.storyboard in Resources */,
+				704BDDB3239897520086429B /* learnerDetailView.storyboard in Resources */,
 				70616535236ECEF800B26C40 /* SearchView.storyboard in Resources */,
 				7061914E237B17C50028B85D /* searchButton.gif in Resources */,
 				70A551F52359F0C5005F4699 /* Preloader2.gif in Resources */,
@@ -847,8 +872,10 @@
 				70A4DF45234C856300BA2D74 /* AppDelegate.swift in Sources */,
 				70619169237BF9E50028B85D /* teachHistoryViewController.swift in Sources */,
 				7065D3C3236B2F9200814310 /* logInViewController.swift in Sources */,
+				7005D433239538FD0050BF20 /* selectLanguageViewController.swift in Sources */,
 				709E39E92363247000A74EF0 /* ProfileViewController.swift in Sources */,
 				70619149237B0F7B0028B85D /* teachCallingViewController.swift in Sources */,
+				7005D42F239502B70050BF20 /* teachSettingViewController.swift in Sources */,
 				7061914A237B0F7B0028B85D /* teachSearchViewController.swift in Sources */,
 				70A4DF77234C8C6800BA2D74 /* HistoryViewController.swift in Sources */,
 				7065D3C8236B2FEA00814310 /* editProfViewController.swift in Sources */,
@@ -902,6 +929,45 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		704BDD852397B9970086429B /* userDetailView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				704BDD842397B9970086429B /* Base */,
+				704BDD892397B9AD0086429B /* ja */,
+				704BDD8B2397B9B20086429B /* zh-Hans */,
+				704BDD8D2397B9BA0086429B /* zh-Hant */,
+				704BDD8F2397B9BE0086429B /* zh-HK */,
+				704BDD912397B9DA0086429B /* en */,
+			);
+			name = userDetailView.storyboard;
+			sourceTree = "<group>";
+		};
+		704BDDA8239895690086429B /* nativeDetailView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				704BDDA7239895690086429B /* Base */,
+				704BDDAA2398957F0086429B /* en */,
+				704BDDAC239895B80086429B /* zh-HK */,
+				704BDDAE239895BC0086429B /* zh-Hans */,
+				704BDDB0239895BF0086429B /* zh-Hant */,
+				704BDDB2239895C20086429B /* ja */,
+			);
+			name = nativeDetailView.storyboard;
+			sourceTree = "<group>";
+		};
+		704BDDB5239897520086429B /* learnerDetailView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				704BDDB4239897520086429B /* Base */,
+				704BDDB72398976F0086429B /* en */,
+				704BDDB9239897730086429B /* zh-HK */,
+				704BDDBB239897760086429B /* zh-Hans */,
+				704BDDBD2398977A0086429B /* zh-Hant */,
+				704BDDBF2398977E0086429B /* ja */,
+			);
+			name = learnerDetailView.storyboard;
+			sourceTree = "<group>";
+		};
 		7061651F236ECA8400B26C40 /* loginView.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -945,11 +1011,11 @@
 			isa = PBXVariantGroup;
 			children = (
 				70616536236ECEF800B26C40 /* Base */,
-				706165EE236EFAEC00B26C40 /* en */,
-				706165F0236EFB3F00B26C40 /* zh-HK */,
-				706165F2236EFB4500B26C40 /* zh-Hans */,
-				706165F4236EFB4C00B26C40 /* zh-Hant */,
-				706165F6236EFB5000B26C40 /* ja */,
+				704BDD932397F84C0086429B /* en */,
+				704BDD952397F8500086429B /* zh-HK */,
+				704BDD972397F8550086429B /* zh-Hans */,
+				704BDD982397F8580086429B /* zh-Hant */,
+				704BDD9B2397FB3A0086429B /* ja */,
 			);
 			name = SearchView.storyboard;
 			sourceTree = "<group>";
@@ -971,11 +1037,11 @@
 			isa = PBXVariantGroup;
 			children = (
 				70619151237B1D610028B85D /* Base */,
-				70619154237B1D700028B85D /* en */,
-				70619156237B1D890028B85D /* zh-HK */,
-				70619158237B1D900028B85D /* zh-Hans */,
-				7061915A237B1D980028B85D /* zh-Hant */,
-				7061915C237B1D9E0028B85D /* ja */,
+				704BDD9D2397FB980086429B /* en */,
+				704BDD9F2397FB9C0086429B /* zh-HK */,
+				704BDDA12397FBA10086429B /* zh-Hans */,
+				704BDDA32397FBA70086429B /* zh-Hant */,
+				704BDDA52397FBAD0086429B /* ja */,
 			);
 			name = teachSearchView.storyboard;
 			sourceTree = "<group>";

@@ -16,7 +16,8 @@ class SearchCondtionViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.title = LString("Search")
+        navigationItem.title = LString("Search")
+        navigationItem.largeTitleDisplayMode = .never
         form +++ Section()
 
             <<< SwitchRow() {
@@ -39,32 +40,31 @@ class SearchCondtionViewController: FormViewController {
 
             <<< ActionSheetRow<String> {
                 $0.title = LString("Gender")
-                $0.options = Gender.strings
+                $0.options = Array(Gender.strings.dropFirst(1))
                 $0.tag = "gender"
             }
 
             <<< PushRow<String> {
-                $0.title = LString("nationality")
-                $0.options = Nationality.strings
+                $0.title = LString("Nationality")
+                $0.options = Array(Nationality.strings.dropFirst(1))
                 $0.tag = "nationality"
             }
 
         +++ Section()
             <<< PushRow<String> {
-                $0.title = LString("Target Language")
-                $0.options = Language.strings
-                $0.value = Language.strings[getUserData().secondLanguage]
-                $0.tag = "targetLanguage"
+                $0.title = LString("Teaching language")
+                $0.options = Array(Language.strings.dropFirst(1))
+                $0.tag = "teachLanguage"
             }
 
             <<< PushRow<String> {
                 $0.title = LString("Also speak")
-                $0.options = Language.strings
-                $0.tag = "secondLanguage"
+                $0.options = Array(Language.strings.dropFirst(1))
+                $0.tag = "studyLanguage"
             }
 
             <<< DoublePickerInputRow<String, String>() {
-                $0.title = LString("proficiency")
+                $0.title = LString("Teachers' Second language proficiency")
                 $0.firstOptions = {Proficiency.strings}
                 $0.secondOptions = { _ in return Proficiency.strings}
                 $0.value = Tuple(a: Proficiency.strings[1], b: Proficiency.strings[5])
@@ -78,7 +78,7 @@ class SearchCondtionViewController: FormViewController {
 
         +++ Section()
             <<< DoublePickerInputRow<Int, Int>() {
-                $0.title = LString("Time of Length")
+                $0.title = LString("Length of call time")
                 $0.firstOptions = {([Int])(5...30)}
                 $0.secondOptions = { _ in return ([Int])(5...30)}
                 $0.value = Tuple(a:5, b:30)
@@ -94,9 +94,7 @@ class SearchCondtionViewController: FormViewController {
             <<< ButtonRow() {
                 $0.title = LString("search")
                 $0.onCellSelection(self.buttonTapped)
-            }.cellUpdate { cell, row in
-                cell.height = ({return 80})
-            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

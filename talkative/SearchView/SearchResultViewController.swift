@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Eureka
+import DZNEmptyDataSet
 
 class SearchResultViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, UIPopoverPresentationControllerDelegate {
     var selectedOffer: OfferModel?
@@ -27,6 +28,8 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
     override func viewDidLoad() {
         SearchResultTable.dataSource = self
         SearchResultTable.delegate = self
+        SearchResultTable.emptyDataSetDelegate = self
+        SearchResultTable.emptyDataSetSource = self
         SearchResultTable.register(UINib(nibName: "nativeListRowTableViewCell", bundle: nil), forCellReuseIdentifier:"recycleCell")
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: LString("Reloading"))
@@ -34,6 +37,7 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
         SearchResultTable.addSubview(refreshControl)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         tabBarController?.tabBar.isHidden = true
+        navigationItem.largeTitleDisplayMode = .never
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,10 +46,9 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
 
     override func viewWillAppear(_ animated: Bool) {
         SearchResultTable.allowsSelection = true
-        self.navigationItem.title = LString("Result")
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationItem.title = LString("Result")
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.shadowImage = UIImage()
         getNativeData()
     }
 
@@ -96,12 +99,7 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
     }
 
     func getNativeData() {
-        if let targetLanguage = self.searchConditions!["targetLanguage"] as? Int {
-            self.targetLanguage = targetLanguage
-        } else {
-            self.targetLanguage = getUserData().secondLanguage
-        }
-        self.usersDb.whereField("motherLanguage", isEqualTo: self.targetLanguage!).getDocuments() { snapshot, error in
+        usersDb.getDocuments() { snapshot, error in
             if let _error = error {
                 print("error\(_error)")
                 return
@@ -126,8 +124,11 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
             if let nationality = self.searchConditions!["nationality"] as? String {
                 self.natives = self.natives!.filter{ $0.nationality == Nationality.fromString(string: nationality).rawValue }
             }
-            if let secondLanguage = self.searchConditions!["secondLanguage"] as? String {
-                self.natives = self.natives!.filter{ $0.secondLanguage == Language.fromString(string: secondLanguage).rawValue }
+            if let teachLanguage = self.searchConditions!["teachLanguage"] as? String {
+                self.natives = self.natives!.filter{ $0.teachLanguage == Language.fromString(string: teachLanguage).rawValue }
+            }
+            if let studyLanguage = self.searchConditions!["studyLanguage"] as? String {
+                self.natives = self.natives!.filter{ $0.studyLanguage == Language.fromString(string: studyLanguage).rawValue }
                 if let proficiency = self.searchConditions!["proficiency"] as? Eureka.Tuple<String, String> {
                     self.natives = self.natives!.filter{ Proficiency.fromString(string: proficiency.a).rawValue <= $0.proficiency}
                     self.natives = self.natives!.filter{ Proficiency.fromString(string: proficiency.b).rawValue >= $0.proficiency}
@@ -136,5 +137,22 @@ class SearchResultViewController: UIViewController , UITableViewDelegate , UITab
             self.SearchResultTable.reloadData()
             self.semaphore.signal()
         }
+    }
+}
+
+extension SearchResultViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "user")
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = LString("Tutor not found")
+        return NSAttributedString(string: text)
+    }
+    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        SearchResultTable.separatorStyle = .none
+    }
+    func emptyDataSetWillDisappear(_ scrollView: UIScrollView!) {
+        SearchResultTable.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
     }
 }

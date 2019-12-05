@@ -16,8 +16,6 @@ class logInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
 
-    let Usersdb = Firestore.firestore().collection("Users")
-
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -26,6 +24,8 @@ class logInViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.placeholder = LString("PASSWORD")
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        emailTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        passwordTextField.addBorderBottom(height: 1.0, color: UIColor.lightGray)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -34,7 +34,7 @@ class logInViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction private func didTapSignInButton() {
-        showPreloader()
+        startIndicator()
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
 
@@ -43,20 +43,23 @@ class logInViewController: UIViewController, UITextFieldDelegate {
             if let user = result?.user {
                 self.showLogInCompletion()
             }
-            self.dissmisPreloader()
+            self.stopIndicator()
             self.showError(error)
         }
     }
+}
 
-    private func showLogInCompletion() {
+extension UIViewController {
+    func showLogInCompletion() {
+        let usersDB = Firestore.firestore().collection("Users")
         let uid = String(describing: Auth.auth().currentUser?.uid ?? "Error")
-        self.Usersdb.whereField("uid", isEqualTo: uid).getDocuments() { snapshot, error in
+        usersDB.whereField("uid", isEqualTo: uid).getDocuments() { snapshot, error in
             if let _error = error {
                 self.showError(_error)
                 return
             }
             guard let documents = snapshot?.documents else {
-            return
+                return
             }
             let downloadedUserData = documents.map{ UserModel(from: $0) }
             if !downloadedUserData.isEmpty {
@@ -67,13 +70,14 @@ class logInViewController: UIViewController, UITextFieldDelegate {
                 UserData.name = downloadedUserData[0].name
                 UserData.gender = downloadedUserData[0].gender
                 UserData.birthDate = downloadedUserData[0].birthDate
-                UserData.isRegisteredProf = true
                 UserData.nationality = downloadedUserData[0].nationality
-                UserData.motherLanguage = downloadedUserData[0].motherLanguage
-                UserData.secondLanguage = downloadedUserData[0].secondLanguage
                 UserData.proficiency = downloadedUserData[0].proficiency
                 UserData.ratingAsLearner = downloadedUserData[0].ratingAsLearner
                 UserData.ratingAsNative = downloadedUserData[0].ratingAsNative
+                UserData.callCountAsLearner = downloadedUserData[0].callCountAsLearner
+                UserData.callCountAsNative = downloadedUserData[0].callCountAsNative
+                UserData.studyLanguage = downloadedUserData[0].studyLanguage
+                UserData.teachLanguage = downloadedUserData[0].teachLanguage
                 UserData.createdAt = downloadedUserData[0].createdAt
                 UserData.updatedAt = downloadedUserData[0].updatedAt
                 let realm = try! Realm()
