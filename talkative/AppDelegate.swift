@@ -9,8 +9,8 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var skywayAPIKey:String? = "6aa642bb-37f2-46bd-b78c-4a148ce7efb6"
-    var skywayDomain:String? = "talkative.io"
+    var skywayAPIKey:String? = "xxxxxx"
+    var skywayDomain:String? = "xxxxxx"
 
     override init() {
         super.init()
